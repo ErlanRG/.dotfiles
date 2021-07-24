@@ -47,10 +47,10 @@ vim.api.nvim_set_keymap("n", "<leader>z", ":ZenMode<CR>",
 vim.api.nvim_set_keymap('n', '-', ':RnvimrToggle<CR>', {noremap = true, silent = true})
 
 -- better window movement
-vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', {silent = true})
-vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {silent = true})
-vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {silent = true})
-vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {silent = true})
+vim.api.nvim_set_keymap('n', '<leader>h', '<C-w>h', {silent = true})
+vim.api.nvim_set_keymap('n', '<leader>j', '<C-w>j', {silent = true})
+vim.api.nvim_set_keymap('n', '<leader>k', '<C-w>k', {silent = true})
+vim.api.nvim_set_keymap('n', '<leader>l', '<C-w>l', {silent = true})
 
 -- TODO fix this
 -- Terminal window navigation
