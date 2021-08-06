@@ -7,7 +7,7 @@ PATH="$HOME/.emacs.d/bin:$PATH"
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export DOTFILES=$HOME/.dotfiles
-export STOW_FOLDERS=("nvim,zsh")
+export STOW_FOLDERS=("bspwm","kitty","nvim","sxhkd","zsh")
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -127,3 +127,4 @@ alias gs='git status'
 # other
 alias c='clear'
 alias sozsh='source $HOME/.zshrc'
+alias startup_nvim='nvim --startuptime startup.log -c exit && tail -100 startup.log'
