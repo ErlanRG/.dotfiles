@@ -142,10 +142,6 @@ _G.packer_plugins = {
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/erlan/.local/share/nvim/site/pack/packer/start/telescope.nvim"
-  },
-  ["zen-mode.nvim"] = {
-    loaded = true,
-    path = "/home/erlan/.local/share/nvim/site/pack/packer/start/zen-mode.nvim"
   }
 }
 

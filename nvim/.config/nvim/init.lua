@@ -4,7 +4,7 @@ require('plugins')
 require('keymappings')
 require('settings')
 
--- Plugin configurations 
+-- Plugin configurations
 require('pl-telescope')
 require('pl-treesitter')
 require('pl-nvimtree')
@@ -16,9 +16,11 @@ require('pl-colorizer')
 require('pl-barbar')
 require('pl-dashboard')
 require('pl-galaxyline')
-require('pl-zenmode')
 require('pl-gitsigns')
 
--- LSP  
+-- LSP
 require('lsp')
--- if O.lang.python.active then require('lsp.python-ls') end
+require('lsp.python-ls')
+require('lsp.lua-ls')
+require('lsp.clangd')
+require('lsp.js-ts-ls')

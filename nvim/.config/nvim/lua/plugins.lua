@@ -9,12 +9,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
     execute 'packadd packer.nvim'
 end
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
     -- Treesitter
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } 
+    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
     -- Telescope
     use 'nvim-lua/popup.nvim'
@@ -58,10 +58,7 @@ return require('packer').startup(function()
     use 'glepnir/dashboard-nvim'
 
     -- Galaxyline
-    use 'glepnir/galaxyline.nvim' 
-
-    -- Zen
-    use 'folke/zen-mode.nvim'
+    use 'glepnir/galaxyline.nvim'
 
     -- Git signs
     use 'lewis6991/gitsigns.nvim'

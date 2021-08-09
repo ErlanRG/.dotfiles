@@ -1,6 +1,6 @@
 # Telescope
 
-[] Make telescope to show the preview window.
+[x] Make telescope to show the preview window.
 
 # NvimTree
 
@@ -9,13 +9,16 @@
 # Compe
 
 [-] Check if it works correctly
-[] Check after LSP is working correctly
+[x] Check after LSP is working correctly
 Compe is working but presenting some issues. TAB is not working to cycle through the list.
 
 # LPS
 
-[] Put the server to work
-[] Configure the LSP by default. Check YT videos
+[x] Put the server to work
+[x] Configure the LSP by default. Check YT videos
+[] Require the LSP configuration only when the server is active and running
+[] Fix multiple symbols loading when diagnostics appears
+[] Fix error that appears when launching js-ts language server
 
 # Zen mode
 
