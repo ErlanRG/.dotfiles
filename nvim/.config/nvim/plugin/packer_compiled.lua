@@ -87,6 +87,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/erlan/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/home/erlan/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
+  },
   ["nvim-autopairs"] = {
     loaded = true,
     path = "/home/erlan/.local/share/nvim/site/pack/packer/start/nvim-autopairs"

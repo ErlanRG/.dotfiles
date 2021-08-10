@@ -36,6 +36,7 @@ return require('packer').startup(function(use)
     -- LSP Install
     use 'neovim/nvim-lspconfig'
     use 'kabouzeid/nvim-lspinstall'
+    use 'glepnir/lspsaga.nvim'
 
     -- Commenter
     use 'terrortylor/nvim-comment'
