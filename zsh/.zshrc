@@ -7,7 +7,7 @@ PATH="$HOME/.emacs.d/bin:$PATH"
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export DOTFILES=$HOME/.dotfiles
-export STOW_FOLDERS=("kitty","nvim","zsh","fonts")
+export STOW_FOLDERS=("dunst","fonts","i3wm","kitty","nvim","zsh")
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -25,7 +25,7 @@ ZSH_THEME="dpoggi"
 # DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to enable command auto-correction.
- ENABLE_CORRECTION="true"
+ # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
