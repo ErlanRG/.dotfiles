@@ -1,3 +1,5 @@
+local CONFIG_PATH = "$HOME/.config/nvim/"
+
 vim.g.dashboard_custom_header = {
     '',
     '   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣭⣿⣶⣿⣦⣼⣆         ',
@@ -41,10 +43,11 @@ vim.g.dashboard_custom_section = {
     },
     f = {
         description = {'  Keymappings'},
-        command = ':e ' .. CONFIG_PATH .. '/lua/keymappings.lua'
+        command = ':e ' .. CONFIG_PATH .. 'lua/user/keymaps.lua'
     },
     g = {
         description = {'  Settings'},
-        command = ':e ' .. CONFIG_PATH .. '/lua/settings.lua'
+        command = ':e ' .. CONFIG_PATH .. 'lua/user/options.lua'
     }
 }
+

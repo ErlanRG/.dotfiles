@@ -1,27 +1,15 @@
--- General
-require('default-config')
-require('plugins')
-require('keymappings')
-require('settings')
-
--- Plugin configurations
-require('pl-telescope')
-require('pl-treesitter')
-require('pl-nvimtree')
-require('pl-autopairs')
-require('pl-lspinstall')
-require('pl-compe')
-require('pl-commenter')
-require('pl-colorizer')
-require('pl-barbar')
-require('pl-dashboard')
-require('pl-galaxyline')
-require('pl-gitsigns')
-
--- LSP
-require('lsp')
-require('lsp.python-ls')
-require('lsp.lua-ls')
-require('lsp.clangd')
-require('lsp.js-ts-ls')
-require('lsp.html-ls')
+require "user.options"
+require "user.keymaps"
+require "user.plugins"
+require "user.colorscheme"
+require "user.cmp"
+require "user.telescope"
+require "user.treesitter"
+require "user.autopairs"
+require "user.comments"
+require "user.gitsigns"
+require "user.nvimtree"
+require "user.bufferline"
+require "user.lualine"
+require "user.toggleterm"
+require "user.dashboard"

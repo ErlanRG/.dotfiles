@@ -9,7 +9,7 @@ font pango:hack 9
 exec_always --no-startup-id autotiling
 
 # Wallpaper
-exec_always --no-startup-id feh --no-fehbg --bg-scale ~/Pictures/0002.png
+# exec_always --no-startup-id feh --no-fehbg --bg-scale ~/Pictures/0002.png
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -33,7 +33,7 @@ floating_modifier $mod
 bindsym $mod+Return exec kitty
 
 # start web browser
-bindsym $mod+w exec firefox
+bindsym $mod+w exec brave
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -170,13 +170,7 @@ bindsym $mod+r mode "resize"
 # Bar
 bar {
     position top
-    # status_command i3status -c ~/.config/i3/i3status/i3status.conf 
-
-    # bumblebee-status
-    status_command ~/.config/i3/bumblebee-status/bumblebee-status \
-        -m spotify kernel layout xrandr memory datetime dunstctl \
-        -t onedark-powerline
-
+    status_command i3status -c ~/.config/i3/i3status/i3status.conf 
 
     i3bar_command i3bar --transparency
     colors {
