@@ -13,3 +13,7 @@ require "user.bufferline"
 require "user.lualine"
 require "user.toggleterm"
 require "user.dashboard"
+
+-- LPS
+require "user.lsp.pyright"
+require "user.lsp.sumneko_lua"

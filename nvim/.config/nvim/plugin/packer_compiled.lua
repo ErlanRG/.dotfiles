@@ -94,6 +94,11 @@ _G.packer_plugins = {
     path = "/home/erlan/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
     url = "https://github.com/hrsh7th/cmp-cmdline"
   },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/home/erlan/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    url = "https://github.com/hrsh7th/cmp-nvim-lua"
+  },
   ["cmp-path"] = {
     loaded = true,
     path = "/home/erlan/.local/share/nvim/site/pack/packer/start/cmp-path",

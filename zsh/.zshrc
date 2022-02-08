@@ -4,6 +4,9 @@
 # Path to doome emacs
 PATH="$HOME/.emacs.d/bin:$PATH"
 
+# PATH to lenguage servers
+PATH="~/.local/share/nvim/lsp_servers/sumneko_lua:~/.local/share/nvim/lsp_servers/python:$PATH"
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export DOTFILES=$HOME/.dotfiles
@@ -13,7 +16,7 @@ export STOW_FOLDERS=("dunst","fonts","i3wm","kitty","nvim","zsh")
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="dpoggi"
+ZSH_THEME="spaceship"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
