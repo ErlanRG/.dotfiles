@@ -71,10 +71,7 @@ return packer.startup(function(use)
     use "nvim-telescope/telescope.nvim"
 
     -- Treesitter
-    use {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-    }
+    use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", }
 
     -- Comments
     use "numToStr/Comment.nvim"

@@ -43,7 +43,7 @@ ZSH_THEME="spaceship"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(zsh-autosuggestions z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -68,11 +68,11 @@ alias l='ls -la --group-directories-first'
 
 # git
 alias gcl='git clone --depth 1'
-alias gi='git init'
-alias ga='git add'
-alias gc='git commit -m'
-alias gp='git push origin master'
-alias gs='git status'
+alias gin='git init'
+alias gad='git add'
+alias gcm='git commit -m'
+alias gpu='git push -u origin main'
+alias gst='git status'
 
 # other
 alias c='clear'
