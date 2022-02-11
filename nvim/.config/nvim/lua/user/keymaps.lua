@@ -100,3 +100,6 @@ keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- ToggleTerm
 keymap("n", "<leader>tt", ":ToggleTerm<CR>", opts)
+
+-- Dashboard
+keymap("n", "<leader>h", ":Dashboard<CR>", opts)
