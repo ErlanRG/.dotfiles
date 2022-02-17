@@ -43,7 +43,7 @@ ZSH_THEME="spaceship"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions z)
+plugins=(zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -53,9 +53,10 @@ export EDITOR='nvim'
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# alias
+# ALIASES
 # omz
-alias zshconfig="nvim ~/.zshrc"
+alias zshconf="nvim ~/.zshrc"
+alias sozsh='source $HOME/.zshrc'
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 
 # ls
@@ -70,11 +71,47 @@ alias l='ls -la --group-directories-first'
 alias gcl='git clone --depth 1'
 alias gin='git init'
 alias gad='git add'
-alias gcm='git commit -m'
+alias gcm='git commit'
 alias gpu='git push -u origin main'
 alias gst='git status'
 
+# pacman and yay
+alias pacsyu='sudo pacman -Syu'                  # update only standard pkgs
+alias pacsyyu='sudo pacman -Syyu'                # Refresh pkglist & update standard pkgs
+alias yaysua='yay -Sua --noconfirm'              # update only AUR pkgs (yay)
+alias yaysyu='yay -Syu --noconfirm'              # update standard pkgs and AUR pkgs (yay)
+alias parsua='paru -Sua --noconfirm'             # update only AUR pkgs (paru)
+alias parsyu='paru -Syu --noconfirm'             # update standard pkgs and AUR pkgs (paru)
+alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
+alias cleanup='sudo pacman -Rns (pacman -Qtdq)'  # remove orphaned packages
+
+
+# navigation
+up () {
+  local d=""
+  local limit="$1"
+
+  # Default to limit of 1
+  if [ -z "$limit" ] || [ "$limit" -le 0 ]; then
+    limit=1
+  fi
+
+  for ((i=1;i<=limit;i++)); do
+    d="../$d"
+  done
+
+  # perform cd. Show error if cd fails
+  if ! cd "$d"; then
+    echo "Couldn't go up $limit dirs.";
+  fi
+}
+
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv='mv -i'
+alias rm='rm -i'
+
 # other
 alias c='clear'
-alias sozsh='source $HOME/.zshrc'
 alias startup_nvim='nvim --startuptime startup.log -c exit && tail -100 startup.log'
+alias shutdown='shutdown now'
