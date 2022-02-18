@@ -1,9 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to doome emacs
-PATH="$HOME/.emacs.d/bin:$PATH"
-
 # PATH to lenguage servers
 PATH="~/.local/share/nvim/lsp_servers/sumneko_lua:~/.local/share/nvim/lsp_servers/python:$PATH"
 
@@ -115,3 +112,8 @@ alias rm='rm -i'
 alias c='clear'
 alias startup_nvim='nvim --startuptime startup.log -c exit && tail -100 startup.log'
 alias shutdown='shutdown now'
+
+# Tmux
+alias tmuxls='tmux list-sessions'
+alias tmuxk='tmux kill-server'
+alias tmuxconf='nvim $HOME/.tmux.conf'
