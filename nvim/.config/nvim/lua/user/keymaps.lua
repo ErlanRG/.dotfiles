@@ -37,7 +37,6 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
-keymap("i", "kj", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -56,18 +55,11 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
--- Terminal
--- Better terminal navigation
--- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
--- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
--- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
--- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-
 -- Close buffer
-keymap("n", "<Leader>c", ":bdelete<CR>", opts)
+keymap("n", "<Leader>c", ":bd<CR>", opts)
 
 -- Others
-keymap('n', '<Leader>h', ':let @/=""<CR>', opts)
+-- keymap('n', '<Leader>h', ':let @/=""<CR>', opts)
 
 -- Yank the rest of the line with "Y"
 vim.api.nvim_set_keymap('n', 'Y', 'y$', opts)
@@ -90,16 +82,14 @@ vim.api.nvim_set_keymap('x', 'J', ':move \'>+1<CR>gv-gv', opts)
 -- Plugin kemaps
 
 -- Telescope
-keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
-keymap("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
-keymap("n", "<leader>fk", "<cmd>Telescope keymaps<CR>", opts)
-keymap("n", "<leader>fl", "<cmd>Telescope live_grep<CR>", opts)
+keymap("n", "<leader>tf", "<cmd>Telescope find_files<CR>", opts)
+keymap("n", "<leader>th", "<cmd>Telescope help_tags<CR>", opts)
+keymap("n", "<leader>tk", "<cmd>Telescope keymaps<CR>", opts)
+keymap("n", "<leader>tn", "<cmd>Telescope find_files cwd=~/.config/nvim/<CR>", opts)
+keymap("n", "<leader>tg", "<cmd>Telescope git_commits<CR>", opts)
 
 -- NvimTree 
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- ToggleTerm
 keymap("n", "<leader>tt", ":ToggleTerm<CR>", opts)
-
--- Dashboard
-keymap("n", "<leader>h", ":Dashboard<CR>", opts)

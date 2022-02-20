@@ -2,12 +2,12 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # PATH to lenguage servers
-PATH="~/.local/share/nvim/lsp_servers/sumneko_lua:~/.local/share/nvim/lsp_servers/python:$PATH"
+PATH="$HOME/tools/lua-language-server/bin/lua-language-server:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export DOTFILES=$HOME/.dotfiles
-export STOW_FOLDERS=("dunst","fonts","i3wm","kitty","nvim","zsh")
+export STOW_FOLDERS=("fonts","kitty","nvim","tmux","zsh")
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -19,7 +19,7 @@ ZSH_THEME="spaceship"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -117,3 +117,5 @@ alias shutdown='shutdown now'
 alias tmuxls='tmux list-sessions'
 alias tmuxk='tmux kill-server'
 alias tmuxconf='nvim $HOME/.tmux.conf'
+
+alias luamake=/home/erlan/tools/lua-language-server/3rd/luamake/luamake

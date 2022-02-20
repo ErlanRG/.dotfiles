@@ -1,10 +1,131 @@
 #!/usr/bin/env zsh
-# I am using zsh instead of bash.  I was having some troubles using bash with
-# arrays.  Didn't want to investigate, so I just did zsh
-pushd $DOTFILES
-for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
-do
-    stow -D $folder
-    stow $folder
-done
-popd
+# Install dependencies
+
+function detect_distro() {
+    if [ -f "/etc/arch-release" ] || [ -f "/etc/artix-release" ]; then
+        INSTALL="sudo pacman -S"
+        
+    # TODO: check the apt directory name on Debian based
+    else
+        INSTALL="sudo apt-get install -y"
+    fi
+}
+
+function msg() {
+  local text="$1"
+  local div_width="80"
+  printf "%${div_width}s\n" ' ' | tr ' ' -
+  printf "%s\n" "$text"
+}
+
+function check_neovim_min_version() {
+  local verify_version_cmd='if !has("nvim-0.6.1") | cquit | else | quit | endif'
+
+  # exit with an error if min_version not found
+  if ! nvim --headless -u NONE -c "$verify_version_cmd"; then
+    echo "[ERROR]: Neovim configuration requires at least Neovim v0.6.1 or higher"
+    exit 1
+  fi
+}
+
+function bck_nvim_config() {
+    if [[ -d ~/.config/nvim/ ]]; then
+        echo "Backing up nvim current nvim configuration"
+        mv ~/.config/nvim ~/.config/old_nvim
+    else
+        echo "No nvim configuration found."
+    fi
+}
+
+function tpm_install () {
+    if [[ ! -d ~/.tmux/plugins/tpm ]]; then
+        msg "Installing Tmux Plugin Manager..."
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    else
+        echo "TPM already installed."
+    fi
+
+}
+
+# TODO: function to check if it is a symlink
+
+function check_packages() {
+    
+    # Check if Stow is installed
+    if ! command -v stow &> /dev/null; then
+        echo "Stow is not installed. Try $INSTALL stow and re-run the install script"
+        exit 1
+    fi
+
+    # Check if Neovim is installed
+    if ! command -v nvim &> /dev/null; then
+        echo "Neovim is not installed. Try building from source and re-run the install script"
+        exit 1
+    fi
+
+    check_neovim_min_version
+
+    # Check if tmux is installed
+    if ! command -v tmux &> /dev/null; then
+        echo "Kitty is not installed. Try $INSTALL tmux and re-run the install script"
+        exit 1
+    fi
+
+    tpm_install
+
+    # Check if kitty is installed
+    if ! command -v kitty &> /dev/null; then
+        echo "Kitty is not installed. Try $INSTALL kitty and re-run the install script"
+        exit 1
+    fi
+
+    # Check if zsh is installed
+    if ! command -v zsh &> /dev/null; then
+        echo "Zsh is not installed. Try $INSTALL zsh and re-run the install script"
+        exit 1
+    fi
+}
+
+function stow() {
+    pushd $DOTFILES
+    for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
+    do
+        stow -D $folder
+        stow $folder
+    done
+    popd
+}
+
+function print_logo () {
+    cat << 'EOF'
+            █████           █████       ██████   ███  ████                  
+           ░░███           ░░███       ███░░███ ░░░  ░░███                  
+         ███████   ██████  ███████    ░███ ░░░  ████  ░███   ██████   █████ 
+        ███░░███  ███░░███░░░███░    ███████   ░░███  ░███  ███░░███ ███░░  
+       ░███ ░███ ░███ ░███  ░███    ░░░███░     ░███  ░███ ░███████ ░░█████ 
+       ░███ ░███ ░███ ░███  ░███ ███  ░███      ░███  ░███ ░███░░░   ░░░░███
+     ██░░████████░░██████   ░░█████   █████     █████ █████░░██████  ██████ 
+    ░░  ░░░░░░░░  ░░░░░░     ░░░░░   ░░░░░     ░░░░░ ░░░░░  ░░░░░░  ░░░░░░  
+EOF
+}
+
+function main() {
+    print_logo
+
+    msg "Stowing everything..."
+    detect_distro
+
+    # Checking all packages
+    check_packages
+    msg "All packages are installed."
+
+    # Backing up nvim config
+    bck_nvim_config
+    
+    # Check kitty
+    stow
+    msg "Done"
+}
+
+# Execute main
+main

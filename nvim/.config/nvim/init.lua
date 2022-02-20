@@ -17,5 +17,5 @@ require "user.dashboard"
 -- LPS
 require "user.lsp.pyright"
 require "user.lsp.clang"
--- require "user.lsp.sumneko_lua"
+require "user.lsp.sumneko_lua"
 require "user.lsp.bashls"
