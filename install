@@ -86,7 +86,15 @@ function check_packages() {
     fi
 }
 
-function stow() {
+function run_stow() {
+    if [[ -z $STOW_FOLDERS ]]; then
+        STOW_FOLDERS=("fonts,kitty,nvim,tmux,zsh")
+    fi
+    
+    if [[ -z $DOTFILES ]]; then
+        DOTFILES=$HOME/.dotfiles
+    fi
+
     pushd $DOTFILES
     for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
     do
@@ -123,7 +131,7 @@ function main() {
     bck_nvim_config
     
     # Check kitty
-    stow
+    run_stow
     msg "Done"
 }
 
