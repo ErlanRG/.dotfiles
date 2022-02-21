@@ -40,7 +40,6 @@ nvim_tree.setup {
   ignore_ft_on_setup = {
     "startify",
     "dashboard",
-    "alpha",
   },
   auto_close = true,
   open_on_tab = false,

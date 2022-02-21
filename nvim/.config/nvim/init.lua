@@ -15,7 +15,7 @@ require "user.toggleterm"
 require "user.dashboard"
 
 -- LPS
-require "user.lsp.pyright"
-require "user.lsp.clang"
-require "user.lsp.sumneko_lua"
-require "user.lsp.bashls"
+require "user.lsp.lang.pyright"
+require "user.lsp.lang.clang"
+-- require "user.lsp.lang.sumneko_lua"
+require "user.lsp.lang.bashls"
