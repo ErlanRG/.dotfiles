@@ -13,9 +13,11 @@ require "user.bufferline"
 require "user.lualine"
 require "user.toggleterm"
 require "user.dashboard"
+require "user.lsp-installer"
 
 -- LPS
 require "user.lsp.lang.pyright"
-require "user.lsp.lang.clang"
+require "user.lsp.lang.clangd"
 -- require "user.lsp.lang.sumneko_lua"
 require "user.lsp.lang.bashls"
+require "user.lsp.lang.tsserver"

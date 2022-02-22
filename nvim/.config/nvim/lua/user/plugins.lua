@@ -56,9 +56,11 @@ return packer.startup(function(use)
     use "hrsh7th/cmp-buffer"       -- buffer completions
     use "hrsh7th/cmp-path"         -- path completions
     use "hrsh7th/cmp-cmdline"      -- cmdline completions
-    use "hrsh7th/cmp-nvim-lua"
-    use "hrsh7th/cmp-nvim-lsp"
+    use "hrsh7th/cmp-nvim-lua"     -- lua completions
+    use "hrsh7th/cmp-nvim-lsp"     -- lsp based completions
     use "saadparwaiz1/cmp_luasnip" -- snippet completions
+    use "jose-elias-alvarez/null-ls.nvim"
+    use "jose-elias-alvarez/nvim-lsp-ts-utils"
 
     -- Snippets
     use "L3MON4D3/LuaSnip"                --snippet engine
