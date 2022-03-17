@@ -41,7 +41,7 @@ M.setup = function()
 
 end
 
-local function keymaps()
+local function keymaps(bufnr)
     local keymap = vim.api.nvim_buf_set_keymap
     local opts = { noremap = true, silent = true }
     keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)

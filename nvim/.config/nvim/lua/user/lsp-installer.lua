@@ -46,3 +46,12 @@ lsp_installer.settings = ({
     -- servers that are requested to be installed will be put in a queue.
     max_concurrent_installers = 4,
 })
+
+lsp_installer.on_server_ready(function(server)
+    local opts = {
+        on_attach = require("user.lsp.settings").keymaps,
+        capabilities = require("user.lsp.settings").capabilities,
+    }
+
+    server:setup(opts)
+end)
