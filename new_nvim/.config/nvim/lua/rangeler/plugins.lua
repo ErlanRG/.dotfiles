@@ -55,8 +55,14 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
 
+  -- Colorscheme
+  use "navarasu/onedark.nvim"
+
   -- Comments
   use "numToStr/Comment.nvim" -- Easily comment stuff
+
+  -- Gitsigns
+  use "lewis6991/gitsigns.nvim"
 
   -- LSP
   use {
@@ -76,6 +82,9 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-tree.lua"
   use "kyazdani42/nvim-web-devicons"
 
+  -- Tablemode
+  use "dhruvasagar/vim-table-mode"
+
   -- Telescope
   use "nvim-telescope/telescope.nvim"
   use 'nvim-telescope/telescope-media-files.nvim'
@@ -88,8 +97,6 @@ return packer.startup(function(use)
   use "p00f/nvim-ts-rainbow"
   use "nvim-treesitter/playground"
 
-  -- Colorscheme
-  use "navarasu/onedark.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
