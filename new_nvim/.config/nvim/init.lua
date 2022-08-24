@@ -1,3 +1,4 @@
+-- User config
 require("rangeler.autopairs")
 require("rangeler.cmp")
 require("rangeler.colorscheme")
@@ -13,3 +14,7 @@ require("rangeler.plugins")
 require("rangeler.tablemode")
 require("rangeler.telescope")
 require("rangeler.treesitter")
+
+-- LSP languages
+require("rangeler.lsp.lua-lang")
+require("rangeler.lsp.pyright")

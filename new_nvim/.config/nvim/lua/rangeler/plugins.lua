@@ -53,6 +53,8 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
+  use "hrsh7th/cmp-nvim-lsp" -- lsp based completions
+  use "hrsh7th/cmp-nvim-lua" -- lua completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
 
   -- Colorscheme
