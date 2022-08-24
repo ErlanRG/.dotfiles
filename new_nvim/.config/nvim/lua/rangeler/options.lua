@@ -16,6 +16,7 @@ local options = {
     pumheight = 10,
     relativenumber = true,
     scrolloff = 8,
+    shiftwidth = 2,
     signcolumn = "yes",
     smartcase = true,
     smartindent = true,
