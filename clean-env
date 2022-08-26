@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 # I am using zsh instead of bash.  I was having some troubles using bash with
 # arrays.  Didn't want to investigate, so I just did zsh
-STOW_FOLDERS=("fonts,kitty,nvim,tmux,zsh")
+STOW_FOLDERS=("dunst,i3wm,kitty,new_nvim,zsh")
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
     echo "Removing $folder"

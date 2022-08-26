@@ -66,6 +66,9 @@ return packer.startup(function(use)
   -- Gitsigns
   use "lewis6991/gitsigns.nvim"
 
+  -- Indent lines
+  use "lukas-reineke/indent-blankline.nvim"
+
   -- LSP
   use {
     "williamboman/mason.nvim",

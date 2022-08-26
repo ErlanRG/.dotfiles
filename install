@@ -30,25 +30,48 @@ function check_neovim_min_version() {
 
 function bck_nvim_config() {
     if [[ -d ~/.config/nvim/ ]]; then
-        echo "Backing up nvim current nvim configuration"
+        echo "Backing up current nvim configuration"
         mv ~/.config/nvim ~/.config/old_nvim
     else
         echo "No nvim configuration found."
     fi
 }
 
-function tpm_install () {
-    if [[ ! -d ~/.tmux/plugins/tpm ]]; then
-        msg "Installing Tmux Plugin Manager..."
-        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+function bck_i3_config() {
+    if [[ -d ~/.config/i3/ ]]; then
+        echo "Backing up i3 current configuration"
+        mv ~/.config/i3 ~/.config/old_i3
     else
-        echo "TPM already installed."
+        echo "No i3 configuration found."
     fi
+}
 
+function zsh_dependencies()
+{
+  # zsh dependencies:
+  # oh-my-zsh installation
+  if [ -d $HOME/.oh-my-zsh/ ]; then
+    echo "oh-my-zsh already installed"
+  else
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+  echo "Checking zsh plugins..."
+  # zsh-autosuggestions
+  if [ -d $ZSH_CUSTOM/plugins/zsh-autosuggestions/ ]; then
+    echo "zsh-autosuggestions already installed"
+  else
+    "Installing zsh-autosuggestions"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+  # zsh-syntax-highlighting
+  if [ -d $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/ ]; then
+    echo "zsh-syntax-highlighting already installed"
+  else
+    "Installing zsh-autosuggestions"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 }
 
 # TODO: function to check if it is a symlink
-
 function check_packages() {
     
     # Check if Stow is installed
@@ -65,14 +88,6 @@ function check_packages() {
 
     check_neovim_min_version
 
-    # Check if tmux is installed
-    if ! command -v tmux &> /dev/null; then
-        echo "Kitty is not installed. Try $INSTALL tmux and re-run the install script"
-        exit 1
-    fi
-
-    tpm_install
-
     # Check if kitty is installed
     if ! command -v kitty &> /dev/null; then
         echo "Kitty is not installed. Try $INSTALL kitty and re-run the install script"
@@ -84,11 +99,19 @@ function check_packages() {
         echo "Zsh is not installed. Try $INSTALL zsh and re-run the install script"
         exit 1
     fi
+    
+    zsh_dependencies
+
+    # Check if dunst is installed
+    if ! command -v dunst &> /dev/null; then
+        echo "Dunst is not installed. Try $INSTALL dunst and re-run the install script"
+        exit 1
+    fi
 }
 
 function run_stow() {
     if [[ -z $STOW_FOLDERS ]]; then
-        STOW_FOLDERS=("fonts,kitty,nvim,tmux,zsh")
+        STOW_FOLDERS=("dunst,i3wm,kitty,new_nvim,zsh,wallpaper")
     fi
     
     if [[ -z $DOTFILES ]]; then
@@ -129,8 +152,9 @@ function main() {
 
     # Backing up nvim config
     bck_nvim_config
+    bck_i3_config
     
-    # Check kitty
+    # Run stow
     run_stow
     msg "Done"
 }
