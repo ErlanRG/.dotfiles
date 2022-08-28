@@ -2,13 +2,13 @@
 # Install dependencies
 
 function detect_distro() {
-    if [ -f "/etc/arch-release" ] || [ -f "/etc/artix-release" ]; then
-        INSTALL="sudo pacman -S"
-        
-    # TODO: check the apt directory name on Debian based
-    else
-        INSTALL="sudo apt-get install -y"
-    fi
+  if [ -f "/etc/arch-release" ] || [ -f "/etc/artix-release" ]; then
+    INSTALL="sudo pacman -S"
+
+  # TODO: check the apt directory name on Debian based
+  else
+    INSTALL="sudo apt-get install -y"
+  fi
 }
 
 function msg() {
@@ -29,49 +29,67 @@ function check_neovim_min_version() {
 }
 
 function bck_nvim_config() {
-    if [[ -d ~/.config/nvim/ ]]; then
-        echo "Backing up current nvim configuration"
-        mv ~/.config/nvim ~/.config/old_nvim
-    else
-        echo "No nvim configuration found."
-    fi
+  if [[ -d ~/.config/nvim/ ]]; then
+    echo "Backing up nvim configuration"
+    mv ~/.config/nvim ~/.config/old_nvim
+  else
+    echo "No nvim configuration found."
+  fi
 }
 
 function bck_i3_config() {
-    if [[ -d ~/.config/i3/ ]]; then
-        echo "Backing up i3 current configuration"
-        mv ~/.config/i3 ~/.config/old_i3
-    else
-        echo "No i3 configuration found."
-    fi
+  if [[ -d ~/.config/i3/ ]]; then
+    echo "Backing up i3 configuration"
+    mv ~/.config/i3 ~/.config/old_i3
+  else
+    echo "No i3 configuration found."
+  fi
 }
 
-function zsh_dependencies()
-{
-  # zsh dependencies:
-  # oh-my-zsh installation
-  if [ -d $HOME/.oh-my-zsh/ ]; then
+function bck_dunst_config() {
+  if [[ -d ~/.config/dunst/ ]]; then
+    echo "Backing up dunst configuration"
+    mv ~/.config/dunst ~/.config/old_dunst
+  else
+    echo "No dunst configuration found."
+  fi
+}
+
+function bck_zsh_config(){
+  if [[ -f "$HOME/.zshrc" ]]; then
+    echo "Backing up zshrc configuration"
+    mv $HOME/.zshrc $HOME/.old_zshrc
+  else
+    echo "No zshrc found"
+  fi
+}
+
+function zsh_dependencies(){
+  #zsh
+  if [[ -d "$HOME/.oh-my-zsh/" ]]; then
     echo "oh-my-zsh already installed"
   else
+    echo "Installing oh-my-zsh"
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  fi
 
-  echo "Checking zsh plugins..."
   # zsh-autosuggestions
-  if [ -d $ZSH_CUSTOM/plugins/zsh-autosuggestions/ ]; then
+  if [[ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/" ]]; then
     echo "zsh-autosuggestions already installed"
   else
-    "Installing zsh-autosuggestions"
+    echo "Installing zsh-autosuggestions"
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  fi
 
   # zsh-syntax-highlighting
-  if [ -d $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/ ]; then
+  if [[ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/" ]]; then
     echo "zsh-syntax-highlighting already installed"
   else
-    "Installing zsh-autosuggestions"
+    echo "Installing zsh-syntax-highlighting"
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  fi
 }
 
-# TODO: function to check if it is a symlink
 function check_packages() {
     
     # Check if Stow is installed
@@ -99,7 +117,7 @@ function check_packages() {
         echo "Zsh is not installed. Try $INSTALL zsh and re-run the install script"
         exit 1
     fi
-    
+
     zsh_dependencies
 
     # Check if dunst is installed
@@ -111,9 +129,9 @@ function check_packages() {
 
 function run_stow() {
     if [[ -z $STOW_FOLDERS ]]; then
-        STOW_FOLDERS=("dunst,i3wm,kitty,new_nvim,zsh,wallpaper")
+        STOW_FOLDERS=("dunst,i3wm,kitty,new_nvim,zsh")
     fi
-    
+
     if [[ -z $DOTFILES ]]; then
         DOTFILES=$HOME/.dotfiles
     fi
@@ -142,19 +160,19 @@ EOF
 
 function main() {
     print_logo
-
-    msg "Stowing everything..."
     detect_distro
 
     # Checking all packages
     check_packages
     msg "All packages are installed."
 
-    # Backing up nvim config
+    # Backing up default configs
     bck_nvim_config
-    bck_i3_config
-    
+    bck_zsh_config
+    bck_dunst_config
+
     # Run stow
+    msg "Stowing everything..."
     run_stow
     msg "Done"
 }

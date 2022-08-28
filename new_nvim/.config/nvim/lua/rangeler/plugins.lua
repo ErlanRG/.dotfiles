@@ -59,6 +59,7 @@ return packer.startup(function(use)
 
   -- Colorscheme
   use "navarasu/onedark.nvim"
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   -- Comments
   use "numToStr/Comment.nvim" -- Easily comment stuff

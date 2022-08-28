@@ -86,7 +86,6 @@ alias parsyu='paru -Syu --noconfirm'             # update standard pkgs and AUR 
 alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)'  # remove orphaned packages
 
-
 # navigation
 up () {
   local d=""
@@ -123,4 +122,3 @@ alias tmuxk='tmux kill-server'
 alias tmuxconf='nvim $HOME/.tmux.conf'
 
 alias luamake=/home/erlan/tools/lua-language-server/3rd/luamake/luamake
-source /home/erlan/Repos/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
