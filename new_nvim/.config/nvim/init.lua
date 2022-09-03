@@ -16,6 +16,8 @@ require("rangeler.telescope")
 require("rangeler.treesitter")
 
 -- LSP languages
+require("rangeler.lsp.bash")
+require("rangeler.lsp.clangd")
+require("rangeler.lsp.cmake")
 require("rangeler.lsp.lua-lang")
 require("rangeler.lsp.pyright")
-require("rangeler.lsp.bash")

@@ -63,11 +63,11 @@ alias ohmyzsh="nvim ~/.oh-my-zsh"
 
 # ls
 # alias l='ls -lh'
-alias ls='lsd -la'
 alias ll='lsd -lah'
 alias la='lsd -A'
 alias lm='lsd -m'
 alias lr='lsd -R'
+alias ls='lsd -la --group-directories-first'
 alias l='lsd -la --group-directories-first'
 
 # git
