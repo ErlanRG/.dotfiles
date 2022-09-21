@@ -1,8 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# PATH to lenguage servers
-PATH="$HOME/tools/lua-language-server/bin/lua-language-server:$PATH"
+# LunarVim PATH
+PATH="$HOME/.local/bin/:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -77,6 +77,8 @@ alias gad='git add'
 alias gcm='git commit'
 alias gpu='git push -u origin main'
 alias gst='git status'
+alias glog='git log --oneline'
+alias gch='git checkout'
 
 # pacman and yay
 alias pacsyu='sudo pacman -Syu'                  # update only standard pkgs
@@ -120,5 +122,3 @@ alias shutdown='shutdown now'
 alias tmuxls='tmux list-sessions'
 alias tmuxk='tmux kill-server'
 alias tmuxconf='nvim $HOME/.tmux.conf'
-
-alias luamake=/home/erlan/tools/lua-language-server/3rd/luamake/luamake

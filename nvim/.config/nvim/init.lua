@@ -1,16 +1,23 @@
-require "user.autopairs"
-require "user.bufferline"
-require "user.cmp"
-require "user.colorscheme"
-require "user.comments"
-require "user.dashboard"
-require "user.gitsigns"
-require "user.keymaps"
-require "user.lsp-installer"
-require "user.lualine"
-require "user.nvimtree"
-require "user.options"
-require "user.plugins"
--- require "user.telescope"
--- require "user.toggleterm"
-require "user.treesitter"
+require("rangeler.tablemode")
+require("rangeler.autopairs")
+require("rangeler.cmp")
+require("rangeler.colorscheme")
+require("rangeler.comments")
+require("rangeler.evil_lualine")
+require("rangeler.gitsigns")
+require("rangeler.indentline")
+require("rangeler.keymaps")
+require("rangeler.lsp.mason")
+require("rangeler.lsp.handlers")
+require("rangeler.nvimtree")
+require("rangeler.options")
+require("rangeler.plugins")
+require("rangeler.telescope")
+require("rangeler.treesitter")
+
+-- LSP languages
+require("rangeler.lsp.bash")
+require("rangeler.lsp.clangd")
+require("rangeler.lsp.cmake")
+require("rangeler.lsp.lua-lang")
+require("rangeler.lsp.pyright")
