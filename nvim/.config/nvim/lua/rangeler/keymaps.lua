@@ -46,12 +46,10 @@ keymap("v", ">", ">gv", opts)
 
 -- Visual Block --
 -- Move text up and down
-keymap("x", "J", "<cmd>move '>+1<CR>gv-gv", opts)
-keymap("x", "K", "<cmd>move '<-2<CR>gv-gv", opts)
-keymap("v", "<A-j>", "<cmd>m .+1<CR>==", opts)
-keymap("v", "<A-k>", "<cmd>m .-2<CR>==", opts)
-keymap("x", "<A-j>", "<cmd>move '>+1<CR>gv-gv", opts)
-keymap("x", "<A-k>", "<cmd>move '<-2<CR>gv-gv", opts)
+keymap("n", "<A-j>", ":m .+1<CR>==", opts)
+keymap("n", "<A-k>", ":m .-2<CR>==", opts)
+keymap("v", "K", ":move '<-2<CR>gv-gv", opts)
+keymap("v", "J", ":move '>+1<CR>gv-gv", opts)
 
 -- Others
 -- Yank the rest of the line with "Y"

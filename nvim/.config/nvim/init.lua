@@ -1,4 +1,4 @@
-require("rangeler.tablemode")
+-- require("rangeler.tablemode")
 require("rangeler.autopairs")
 require("rangeler.cmp")
 require("rangeler.colorscheme")
