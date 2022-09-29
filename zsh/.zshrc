@@ -67,7 +67,7 @@ alias ll='lsd -lah'
 alias la='lsd -A'
 alias lm='lsd -m'
 alias lr='lsd -R'
-alias ls='lsd -la --group-directories-first'
+alias ls='lsd'
 alias l='lsd -la --group-directories-first'
 
 # git
@@ -122,4 +122,4 @@ alias rpissh='kitty +kitten ssh pi@192.168.0.137'
 # Tmux
 alias tmuxls='tmux list-sessions'
 alias tmuxk='tmux kill-server'
-alias tmuxconf='nvim $HOME/.tmux.conf'
+alias tmuxconf='nvim $HOME/.config/tmux/tmux.conf'
