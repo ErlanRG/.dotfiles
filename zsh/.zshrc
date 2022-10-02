@@ -118,6 +118,7 @@ alias c='clear'
 alias startup_nvim='nvim --startuptime startup.log -c exit && tail -100 startup.log'
 alias shutdown='shutdown now'
 alias rpissh='kitty +kitten ssh pi@192.168.0.137'
+alias lg='lazygit'
 
 # Tmux
 alias tmuxls='tmux list-sessions'

@@ -241,7 +241,7 @@ bindsym $mod+g layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+t floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -351,6 +351,9 @@ for_window [class=TelegramDesktop] focus
 #
 # for custom config:
 exec_always --no-startup-id picom --config  ~/.config/picom/picom.conf
+
+# xborders (https://github.com/deter0/xborder)
+exec_always --no-startup-id ~/Repos/xborder/xborders --border-rgba 5294e2ff --border-width 1
 
 #############################################
 # autostart applications/services on login: #
