@@ -1,0 +1,20 @@
+;==========================================================
+[module/spacing]
+type = custom/text
+content = " "
+content-background = ${colors.darkgrey}
+
+[module/sep]
+type = custom/text
+content = -
+content-background = ${colors.darkgrey}
+content-foreground = ${colors.darkgrey}
+;==========================================================
+
+[module/dot]
+type = custom/text
+;content = 
+content = ""
+
+content-background = ${color.white}
+content-padding = 1

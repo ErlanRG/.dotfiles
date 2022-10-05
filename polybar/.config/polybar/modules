@@ -1,0 +1,228 @@
+;==========================================================
+
+[module/time]
+type = internal/date
+interval = 1
+format-margin = 0
+time = "%A %d %b %I:%M %p"
+time-alt = "%m/%d/%y"
+
+format-prefix = 
+;format-prefix-foreground = ${color.background}
+;format-prefix-background = ${color.blue}
+
+label = %time%
+;label-foreground = ${color.background}
+;label-background = ${color.blue}
+label-padding = 1
+
+;==========================================================
+
+[module/i3]
+type = internal/i3
+label-active-font = 0
+
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+
+enable-click = true
+enable-scroll = true
+wrapping-scroll = false
+reverse-scroll = false
+
+fuzzy-match = true
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;ﳳ
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+format = <label-state><label-mode>
+
+label-mode = %mode%
+label-mode-padding = 1
+label-mode-foreground = ${colors.white}
+
+label-focused = %icon%
+label-focused-foreground = ${colors.lightblue}
+label-focused-background = ${colors.darkgrey}
+
+label-unfocused = %icon%
+;label-unfocused-foreground = ${colors.foreground}
+;label-unfocused-background = ${colors.altblack}
+
+label-visible = %icon%
+;label-visible-foreground = ${colors.green}
+
+label-urgent = %icon%
+label-urgent-foreground = ${colors.urgentred}
+
+label-focused-padding = 1
+label-unfocused-padding = 1
+label-visible-padding = 1
+label-urgent-padding = 1
+
+;==========================================================
+
+[module/launcher]
+type=custom/text
+content = 
+content-font = 8
+content-foreground= ${colors.purple}
+content-padding=1
+click-left=rofi -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi
+
+;==========================================================
+
+[module/filesystem]
+type = internal/fs
+
+mount-0 = /
+interval = 30
+fixed-values = true
+
+format-mounted = <label-mounted>
+format-mounted-prefix = ""
+format-mounted-prefix-foreground = ${color.white}
+
+format-unmounted = <label-unmounted>
+format-unmounted-prefix = " "
+format-unmounted-prefix-foreground = ${color.white}
+
+label-mounted = "%{A1:terminal -e ncdu &:} %free%%{A}"
+label-unmounted = " %mountpoint%: NA"
+label-mounted-foreground = ${color.background}
+
+;==========================================================
+
+[module/memory]
+type = internal/memory
+
+interval = 1
+
+format = <label>
+format-prefix = " "
+format-prefix-foreground = ${color.background}
+format-foreground = ${color.white}
+
+exec = $HOME/.config/i3/scripts/memory
+
+;==========================================================
+
+[module/cpu]
+type = internal/cpu
+
+interval = 2
+format-prefix = " "
+format-padding = 0
+format-prefix-foreground = ${colors.white}
+format-foreground = ${colors.white}
+
+;==========================================================
+
+[module/cpu_temp]
+type = custom/script
+
+interval = 2
+format-padding = 0
+format-prefix-foreground = ${colors.white}
+format-foreground = ${colors.white}
+exec = $HOME/.config/i3/scripts/temperature
+
+;==========================================================
+
+[module/network]
+type = internal/network
+interface = enp37s0
+
+interval = 1.0
+accumulate-stats = true
+unknown-as-up = true
+
+format-connected = <ramp-signal><label-connected>
+ramp-signal-0 = " "
+ramp-signal-foreground = ${colors.background}
+ramp-signal-font = 2
+
+format-disconnected = <label-disconnected>
+format-disconnected-prefix = ""
+format-disconnected-prefix-font = 2
+format-disconnected-foreground = ${colors.white}
+
+label-connected = %netspeed%
+label-disconnected = Offline 
+
+label-connected-foreground = ${colors.white}
+label-disconnected-foreground = ${colors.background}
+
+label-connected-background = ${colors.magenta}
+label-disconnected-background = ${colors.magenta}
+
+;==========================================================
+
+[module/volume]
+type = internal/pulseaudio
+
+use-ui-max = false
+
+interval = 1
+
+format-volume = <ramp-volume><label-volume>
+
+format-muted = <label-muted>
+format-muted-prefix = " "
+format-muted-prefix-font = 2
+format-muted-prefix-foreground = ${color.background}
+format-muted-prefix-background = ${color.green}
+
+label-volume = "%percentage%% "
+label-muted = "Mute"
+
+label-volume-background = ${color.green}
+label-muted-background = ${color.green}
+
+label-volume-foreground = ${color.background}
+label-muted-foreground = ${color.background}
+
+ramp-volume-0 = " "
+ramp-volume-1 = " "
+ramp-volume-2 = " "
+ramp-volume-3 = " "
+ramp-volume-4 = " "
+ramp-volume-5 = " "
+ramp-volume-6 = " "
+ramp-volume-7 = " "
+ramp-volume-8 = " "
+ramp-volume-9 = " "
+ramp-volume-font = 2
+ramp-volume-foreground = ${color.background}
+
+;ramp-headphones-0 = 
+;ramp-headphones-1 = 
+
+;==========================================================
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " "
+label-layout = %layout%
+label-layout-foreground = ${colors.primary}
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-foreground = ${colors.background}
+
+;==========================================================
+
+[module/shutdown_menu]
+type=custom/text
+content = ⏻
+content-font = 8
+content-foreground= ${colors.urgentred}
+content-padding=1
+click-left = $HOME/.config/i3/scripts/powermenu

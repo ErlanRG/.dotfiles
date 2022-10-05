@@ -19,8 +19,8 @@ window {
     padding:          10;
     transparency:     "real";
     width:            120px;
-    location:         east;
-    /*y-offset:       18;*/
+    location:         northeast;
+    y-offset:         25;
     /*x-offset:       850;*/
 }
 listview {
