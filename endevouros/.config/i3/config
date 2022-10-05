@@ -353,7 +353,7 @@ for_window [class=TelegramDesktop] focus
 exec_always --no-startup-id picom --config  ~/.config/picom/picom.conf
 
 # xborders (https://github.com/deter0/xborder)
-exec_always --no-startup-id ~/Repos/xborder/xborders --border-rgba 5294e2ff --border-width 1
+# exec_always --no-startup-id ~/Repos/xborder/xborders --border-rgba 5294e2ff --border-width 1
 
 #############################################
 # autostart applications/services on login: #
@@ -485,7 +485,7 @@ set $yellowbrown	#e1b700
 
 # define colors for windows:
 #class		        	border		bground		text		indicator	child_border
-client.focused		    	$lightblue	$darkblue	$white		$mediumgrey	$mediumgrey
+client.focused		    	$lightblue	$darkblue	$white		$lightblue	$lightblue
 client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	$darkgrey
 client.focused_inactive		$darkblue	$darkblue	$grey		$black		$black
 client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
@@ -517,8 +517,8 @@ strip_workspace_numbers yes
 		    background         $darkgrey
 		    statusline         $white
 #                          		border 		        bg		txt		indicator
-		focused_workspace	$mediumgrey	   	$grey		$darkgrey	$purple
-		active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
+		focused_workspace	$lightblue	   	$grey		$darkgrey	$purple
+		active_workspace	$mediumgrey      	$mediumgrey	$darkgrey	$purple
 		inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
 		urgent_workspace	$urgentred	    	$urgentred	$white		$purple
 	}
