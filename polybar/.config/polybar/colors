@@ -1,6 +1,5 @@
 [colors]
-darkbluetrans = #08052be6
-darkblue = #08052b
+;EndeavourOS default colors 
 lightblue = #5294e2
 urgentred = #e53935
 white = #ffffff
@@ -8,5 +7,12 @@ black = #000000
 purple = #e345ff
 darkgrey = #383c4a
 grey = #b0b5bd
-mediumgrey = #8b8b8b
+mediumgrey = #8b8b8b09
 yellowbrown = #e1b700
+
+;My colors
+green = #48E896
+salmon = #DB8F7D 
+aqua = #76DBD6
+mustard = #D3DB6B
+fuchsia = #F76AAA

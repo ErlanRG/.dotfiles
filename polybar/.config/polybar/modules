@@ -8,12 +8,10 @@ time = "%A %d %b %I:%M %p"
 time-alt = "%m/%d/%y"
 
 format-prefix = 
-;format-prefix-foreground = ${color.background}
-;format-prefix-background = ${color.blue}
+format-prefix-foreground = ${colors.yellowbrown}
 
 label = %time%
 ;label-foreground = ${color.background}
-;label-background = ${color.blue}
 label-padding = 1
 
 ;==========================================================
@@ -48,11 +46,9 @@ label-mode-foreground = ${colors.white}
 
 label-focused = %icon%
 label-focused-foreground = ${colors.lightblue}
-label-focused-background = ${colors.darkgrey}
 
 label-unfocused = %icon%
 ;label-unfocused-foreground = ${colors.foreground}
-;label-unfocused-background = ${colors.altblack}
 
 label-visible = %icon%
 ;label-visible-foreground = ${colors.green}
@@ -69,10 +65,11 @@ label-urgent-padding = 1
 
 [module/launcher]
 type=custom/text
-content = 
+;content = 
+content = 
 content-font = 8
 content-foreground= ${colors.purple}
-content-padding=1
+content-padding = 0
 click-left=rofi -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi
 
 ;==========================================================
@@ -86,13 +83,13 @@ fixed-values = true
 
 format-mounted = <label-mounted>
 format-mounted-prefix = ""
-format-mounted-prefix-foreground = ${color.white}
+format-mounted-prefix-foreground = ${colors.green}
 
 format-unmounted = <label-unmounted>
 format-unmounted-prefix = " "
 format-unmounted-prefix-foreground = ${color.white}
 
-label-mounted = "%{A1:terminal -e ncdu &:} %free%%{A}"
+label-mounted = "%{A1:kitty -e ncdu / &:} %free%%{A}"
 label-unmounted = " %mountpoint%: NA"
 label-mounted-foreground = ${color.background}
 
@@ -105,7 +102,7 @@ interval = 1
 
 format = <label>
 format-prefix = " "
-format-prefix-foreground = ${color.background}
+format-prefix-foreground = ${colors.salmon}
 format-foreground = ${color.white}
 
 exec = $HOME/.config/i3/scripts/memory
@@ -118,19 +115,37 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-padding = 0
-format-prefix-foreground = ${colors.white}
+format-prefix-foreground = ${colors.aqua}
 format-foreground = ${colors.white}
 
 ;==========================================================
 
 [module/cpu_temp]
-type = custom/script
+type = internal/temperature
 
-interval = 2
-format-padding = 0
-format-prefix-foreground = ${colors.white}
-format-foreground = ${colors.white}
-exec = $HOME/.config/i3/scripts/temperature
+interval = 0.5
+
+thermal-zone = 0
+
+hwmon-path = /sys/devices/pci0000:00/0000:00:01.1/0000:01:00.0/nvme/nvme0/hwmon0/temp1_input
+base-temperature = 20
+warn-temperature = 60
+
+units = true
+
+format = <ramp> <label>
+
+format-warn = <ramp> <label-warn>
+
+label = %temperature-c%
+
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.urgentred}
+
+ramp-0 = ""
+ramp-1 = ""
+ramp-2 = ""
+ramp-foreground = #D3DB6B
 
 ;==========================================================
 
@@ -144,7 +159,7 @@ unknown-as-up = true
 
 format-connected = <ramp-signal><label-connected>
 ramp-signal-0 = " "
-ramp-signal-foreground = ${colors.background}
+ramp-signal-foreground = ${colors.fuchsia}
 ramp-signal-font = 2
 
 format-disconnected = <label-disconnected>
@@ -158,8 +173,6 @@ label-disconnected = Offline
 label-connected-foreground = ${colors.white}
 label-disconnected-foreground = ${colors.background}
 
-label-connected-background = ${colors.magenta}
-label-disconnected-background = ${colors.magenta}
 
 ;==========================================================
 
@@ -176,13 +189,9 @@ format-muted = <label-muted>
 format-muted-prefix = " "
 format-muted-prefix-font = 2
 format-muted-prefix-foreground = ${color.background}
-format-muted-prefix-background = ${color.green}
 
 label-volume = "%percentage%% "
 label-muted = "Mute"
-
-label-volume-background = ${color.green}
-label-muted-background = ${color.green}
 
 label-volume-foreground = ${color.background}
 label-muted-foreground = ${color.background}
@@ -198,7 +207,7 @@ ramp-volume-7 = " "
 ramp-volume-8 = " "
 ramp-volume-9 = " "
 ramp-volume-font = 2
-ramp-volume-foreground = ${color.background}
+ramp-volume-foreground = ${colors.green}
 
 ;ramp-headphones-0 = 
 ;ramp-headphones-1 = 
@@ -210,12 +219,12 @@ type = internal/xkeyboard
 blacklist-0 = num lock
 
 format-prefix = " "
+format-prefix-foreground = ${colors.salmon}
 label-layout = %layout%
-label-layout-foreground = ${colors.primary}
+;label-layout-foreground = ${colors.white}
 
-label-indicator-padding = 2
+label-indicator-padding = 1
 label-indicator-margin = 1
-label-indicator-foreground = ${colors.background}
 
 ;==========================================================
 
@@ -224,5 +233,5 @@ type=custom/text
 content = ⏻
 content-font = 8
 content-foreground= ${colors.urgentred}
-content-padding=1
+content-padding = 1
 click-left = $HOME/.config/i3/scripts/powermenu
