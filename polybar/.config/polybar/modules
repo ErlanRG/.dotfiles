@@ -4,12 +4,13 @@
 type = internal/date
 interval = 1
 format-margin = 0
-time = "%A %d %b  %I:%M %p"
+time = "%I:%M %p"
+date-alt = "%A, %b %d"
 
 format-prefix = 
 format-prefix-foreground = ${colors.yellowbrown}
 
-label = %time%
+label = %date% %time%
 ;label-foreground = ${color.background}
 label-padding = 1
 

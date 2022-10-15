@@ -6,8 +6,9 @@ PATH="$HOME/.local/bin/:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-#export DOTFILES=$HOME/.dotfiles
-#export STOW_FOLDERS=("fonts,kitty,nvim,tmux,zsh")
+
+# Define .dotfiles path
+export DOTFILES=$HOME/.dotfiles
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -62,7 +63,6 @@ alias sozsh='source $HOME/.zshrc'
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 
 # ls
-# alias l='ls -lh'
 alias ll='lsd -lah'
 alias la='lsd -A'
 alias lm='lsd -m'
