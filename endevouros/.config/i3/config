@@ -228,7 +228,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+t floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+u focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -259,7 +259,8 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym $mod+p exec /usr/local/bin/switch-audio-port
 
 ## App shortcuts
-bindsym $mod+w exec /usr/bin/firefox
+# bindsym $mod+w exec /usr/bin/firefox
+bindsym $mod+w exec /usr/bin/librewolf
 bindsym $mod+n exec /usr/bin/thunar
 # bindsym Print exec scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
 bindsym Print exec flameshot gui
@@ -295,7 +296,8 @@ set $ws10 "10"
 
 # bind program to workspace and focus to them on startup:
 assign [class="kitty"] $ws1
-assign [class="(?i)firefox"] $ws2
+# assign [class="(?i)firefox"] $ws2
+assign [class="(?i)librewolf"] $ws2
 assign [class="Thunar"] $ws3
 assign [class="KeePassXC"] $ws4
 assign [class="Spotify"] $ws5

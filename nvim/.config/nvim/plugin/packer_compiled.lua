@@ -209,6 +209,11 @@ _G.packer_plugins = {
     path = "/home/rangeler/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
+  ["rust-tools.nvim"] = {
+    loaded = true,
+    path = "/home/rangeler/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
+    url = "https://github.com/simrat39/rust-tools.nvim"
+  },
   ["telescope-media-files.nvim"] = {
     loaded = true,
     path = "/home/rangeler/.local/share/nvim/site/pack/packer/start/telescope-media-files.nvim",
