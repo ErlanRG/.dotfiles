@@ -301,6 +301,7 @@ assign [class="(?i)librewolf"] $ws2
 assign [class="Thunar"] $ws3
 assign [class="KeePassXC"] $ws4
 assign [class="Spotify"] $ws5
+assign [class="Steam"] $ws6
 assign [class="TelegramDesktop"] $ws7
 
 # automatic set focus new window if it opens on another workspace then the current:

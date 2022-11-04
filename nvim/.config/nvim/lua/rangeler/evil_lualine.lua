@@ -5,18 +5,19 @@ local lualine = require('lualine')
 
 -- Color table for highlights
 -- stylua: ignore
+-- Current colorscheme: catppuccin mocha
 local colors = {
-  bg       = '#202328',
+  bg       = '#181825',
   fg       = '#bbc2cf',
-  yellow   = '#ECBE7B',
-  cyan     = '#008080',
+  yellow   = '#f9e2af',
+  cyan     = '#89dceb',
   darkblue = '#081633',
-  green    = '#98be65',
-  orange   = '#FF8800',
-  violet   = '#a9a1e1',
-  magenta  = '#c678dd',
-  blue     = '#51afef',
-  red      = '#ec5f67',
+  green    = '#a6e3a1',
+  orange   = '#fab387',
+  violet   = '#cba6f7',
+  magenta  = '#f5c2e7',
+  blue     = '#89b4fa',
+  red      = '#f38ba8',
 }
 
 local conditions = {
@@ -187,7 +188,7 @@ ins_right {
 ins_right {
   'fileformat',
   fmt = string.upper,
-  icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+  icons_enabled = true, -- I think icons are cool but Eviline doesn't have them. sigh
   color = { fg = colors.green, gui = 'bold' },
 }
 

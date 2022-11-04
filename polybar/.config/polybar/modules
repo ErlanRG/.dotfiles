@@ -92,7 +92,7 @@ format-unmounted = <label-unmounted>
 format-unmounted-prefix = " "
 format-unmounted-prefix-foreground = ${color.white}
 
-label-mounted = "%{A1:kitty -e ncdu / &:} %free%%{A}"
+label-mounted = "%{A1:kitty -e ncdu / --exclude /mnt &:} %free%%{A}"
 label-unmounted = " %mountpoint%: NA"
 label-mounted-foreground = ${color.background}
 

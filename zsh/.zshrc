@@ -10,14 +10,9 @@ export ZSH=$HOME/.oh-my-zsh
 # Define .dotfiles path
 export DOTFILES=$HOME/.dotfiles
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
+# Themes
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="arch"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
 DISABLE_UPDATE_PROMPT="true"
@@ -28,19 +23,10 @@ DISABLE_UPDATE_PROMPT="true"
 # Uncomment the following line to enable command auto-correction.
  # ENABLE_CORRECTION="true"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
-# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
-# COMPLETION_WAITING_DOTS="true"
-
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+# Plugins
 plugins=(
   git
   zsh-autosuggestions
@@ -48,6 +34,7 @@ plugins=(
   vi-mode
 )
 
+# Oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -88,6 +75,23 @@ alias parsyu='paru -Syu --noconfirm'             # update standard pkgs and AUR 
 alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)'  # remove orphaned packages
 
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv='mv -i'
+alias rm='rm -i'
+
+# other
+alias c='clear'
+alias startup_nvim='nvim --startuptime startup.log -c exit && tail -100 startup.log'
+alias shutdown='shutdown now'
+alias rpissh='kitty +kitten ssh pi@192.168.0.137'
+alias lg='lazygit'
+
+# Tmux
+alias tmuxls='tmux list-sessions'
+alias tmuxk='tmux kill-server'
+alias tmuxconf='nvim $HOME/.config/tmux/tmux.conf'
+
 # navigation
 up () {
   local d=""
@@ -108,19 +112,22 @@ up () {
   fi
 }
 
-# confirm before overwriting something
-alias cp="cp -i"
-alias mv='mv -i'
-alias rm='rm -i'
+# Fzf
+# cf - fuzzy cd from anywhere
+# ex: cf word1 word2 ... (even part of a file name)
+# zsh autoload function
+cf() {
+  local file
 
-# other
-alias c='clear'
-alias startup_nvim='nvim --startuptime startup.log -c exit && tail -100 startup.log'
-alias shutdown='shutdown now'
-alias rpissh='kitty +kitten ssh pi@192.168.0.137'
-alias lg='lazygit'
+  file="$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf-tmux -p 80%,60% --read0 -0 -1)"
 
-# Tmux
-alias tmuxls='tmux list-sessions'
-alias tmuxk='tmux kill-server'
-alias tmuxconf='nvim $HOME/.config/tmux/tmux.conf'
+  if [[ -n $file ]]
+  then
+     if [[ -d $file ]]
+     then
+        cd -- $file
+     else
+        cd -- ${file:h}
+     fi
+  fi
+}
