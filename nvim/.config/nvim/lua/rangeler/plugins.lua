@@ -86,6 +86,9 @@ return packer.startup(function(use)
   use "L3MON4D3/LuaSnip" --snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
+  -- Nvim leap
+  use "ggandor/leap.nvim"
+
   -- Nvim tree
   use "kyazdani42/nvim-tree.lua"
   use "kyazdani42/nvim-web-devicons"
@@ -102,8 +105,8 @@ return packer.startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   }
-  use "p00f/nvim-ts-rainbow"
-  use "nvim-treesitter/playground"
+  -- use "p00f/nvim-ts-rainbow"
+  -- use "nvim-treesitter/playground"
 
 
   -- Automatically set up your configuration after cloning packer.nvim

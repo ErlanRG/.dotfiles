@@ -12,7 +12,7 @@ export DOTFILES=$HOME/.dotfiles
 
 # Themes
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="arch"
+# ZSH_THEME="arch"
 
 # Uncomment the following line to automatically update without prompting.
 DISABLE_UPDATE_PROMPT="true"
@@ -131,3 +131,5 @@ cf() {
      fi
   fi
 }
+
+eval "$(starship init zsh)"

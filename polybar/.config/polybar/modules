@@ -73,7 +73,7 @@ content = 
 content-font = 8
 content-foreground= ${colors.lightblue}
 content-padding = 0
-click-left=rofi -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi
+click-left= $HOME/.config/rofi/launchers/type-3/launcher.sh
 
 ;==========================================================
 
@@ -246,4 +246,4 @@ content = 
 content-font = 8
 content-foreground= ${colors.urgentred}
 content-padding = 0
-click-left = $HOME/.config/i3/scripts/powermenu
+click-left = ~/.config/rofi/powermenu/type-1/powermenu.sh

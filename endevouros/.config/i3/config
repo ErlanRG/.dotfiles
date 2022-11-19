@@ -162,7 +162,11 @@ bindsym $mod+Return exec kitty
 bindsym $mod+c kill
 
 # exit-menu
-bindsym $mod+Shift+e exec ~/.config/i3/scripts/powermenu
+# bindsym $mod+Shift+e exec ~/.config/i3/scripts/powermenu
+
+# This power menu requires https://github.com/adi1090x/rofi
+# TODO: include this in .dotfiles
+bindsym $mod+Shift+e exec ~/.config/rofi/powermenu/type-1/powermenu.sh
 
 # Lock the system
 # lock with a picture:
@@ -552,8 +556,12 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 ## rofi bindings fancy application menu ($mod+d /F9 optional disabled)
 
-bindsym $mod+d exec rofi -modi drun -show drun \
-		-config ~/.config/rofi/rofidmenu.rasi
+# bindsym $mod+d exec rofi -modi drun -show drun \
+# 		-config ~/.config/rofi/rofidmenu.rasi
+
+# This rofi config requires https://github.com/adi1090x/rofi
+# TODO: include this in .dotfiles
+bindsym $mod+d exec $HOME/.config/rofi/launchers/type-3/launcher.sh
 
 #bindsym F9 exec rofi -modi drun -show drun \
 #		-config ~/.config/rofi/rofidmenu.rasi

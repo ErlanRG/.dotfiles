@@ -1,4 +1,9 @@
--- require("rangeler.tablemode")
+-- Packer and options
+require("rangeler.plugins")
+require("rangeler.options")
+require("rangeler.keymaps")
+
+-- Plugins
 require("rangeler.autopairs")
 require("rangeler.cmp")
 require("rangeler.colorscheme")
@@ -6,12 +11,10 @@ require("rangeler.comments")
 require("rangeler.evil_lualine")
 require("rangeler.gitsigns")
 require("rangeler.indentline")
-require("rangeler.keymaps")
-require("rangeler.lsp.mason")
+require("rangeler.leap")
 require("rangeler.lsp.handlers")
+require("rangeler.lsp.mason")
 require("rangeler.nvimtree")
-require("rangeler.options")
-require("rangeler.plugins")
 require("rangeler.telescope")
 require("rangeler.treesitter")
 
