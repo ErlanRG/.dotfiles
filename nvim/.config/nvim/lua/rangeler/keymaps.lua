@@ -19,8 +19,9 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<Leader>vs", vim.cmd.vnew, opts)
 keymap("n", "<Leader>hs", vim.cmd.new, opts)
 
--- Save
-keymap("n", "<Leader>w", vim.cmd.w, opts)
+-- Save (actually, update)
+-- Like ":write", but only write when the buffer has been modified.
+keymap("n", "<Leader>w", vim.cmd.update, opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", "<cmd>resize +2<CR>", opts)
