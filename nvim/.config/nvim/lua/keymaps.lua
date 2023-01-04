@@ -34,7 +34,7 @@ keymap("n", "<S-l>", vim.cmd.bnext, opts)
 keymap("n", "<S-h>", vim.cmd.bprevious, opts)
 
 -- Close buffers
-keymap("n", "<Leader>c", require("options").buf_kill, opts)
+keymap("n", "<Leader>c", require("utils").buf_kill, opts)
 
 -- Insert --
 -- Press jk fast to enter

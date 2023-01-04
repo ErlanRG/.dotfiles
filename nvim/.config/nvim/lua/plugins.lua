@@ -41,34 +41,38 @@ packer.init {
 -- Install your plugins here
 return packer.startup(function(use)
   -- My plugins here
-  use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+  use { "wbthomason/packer.nvim" } -- Have packer manage itself
+  use { "nvim-lua/popup.nvim" } -- An implementation of the Popup API from vim in Neovim
+  use { "nvim-lua/plenary.nvim" } -- Useful lua functions used ny lots of plugins
 
   -- Autopairs
-  use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
+  use { "windwp/nvim-autopairs" } -- Autopairs, integrates with both cmp and treesitter
 
   -- Cmp
-  use "hrsh7th/nvim-cmp" -- The completion plugin
-  use "hrsh7th/cmp-buffer" -- buffer completions
-  use "hrsh7th/cmp-path" -- path completions
-  use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "hrsh7th/cmp-nvim-lsp" -- lsp based completions
-  use "hrsh7th/cmp-nvim-lua" -- lua completions
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  use { "hrsh7th/nvim-cmp" } -- The completion plugin
+  use { "hrsh7th/cmp-buffer" } -- buffer completions
+  use { "hrsh7th/cmp-path" } -- path completions
+  use { "hrsh7th/cmp-cmdline" } -- cmdline completions
+  use { "hrsh7th/cmp-nvim-lsp" } -- lsp based completions
+  use { "hrsh7th/cmp-nvim-lua" } -- lua completions
+  use { "saadparwaiz1/cmp_luasnip" } -- snippet completions
 
   -- Colorscheme
-  use "navarasu/onedark.nvim"
+  use { "navarasu/onedark.nvim" }
   use { "catppuccin/nvim", as = "catppuccin" }
+  use { 'rose-pine/neovim', as = 'rose-pine' }
 
   -- Comments
-  use "numToStr/Comment.nvim" -- Easily comment stuff
+  use { "numToStr/Comment.nvim" } -- Easily comment stuff
 
   -- Gitsigns
-  use "lewis6991/gitsigns.nvim"
+  use { "lewis6991/gitsigns.nvim" }
+
+  -- Harpoon
+  use { "ThePrimeagen/harpoon" }
 
   -- Indent lines
-  use "lukas-reineke/indent-blankline.nvim"
+  use { "lukas-reineke/indent-blankline.nvim" }
 
   -- LSP
   use {
@@ -78,27 +82,31 @@ return packer.startup(function(use)
   }
 
   -- Lualine
-  use "nvim-lualine/lualine.nvim"
+  use { "nvim-lualine/lualine.nvim" }
 
   -- Rust
-  use "simrat39/rust-tools.nvim"
+  use { "simrat39/rust-tools.nvim" }
+
   -- Snippets
-  use "L3MON4D3/LuaSnip" --snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  use { "L3MON4D3/LuaSnip" } --snippet engine
+  use { "rafamadriz/friendly-snippets" } -- a bunch of snippets to use
 
   -- Nvim leap
-  use "ggandor/leap.nvim"
+  use { "ggandor/leap.nvim" }
+
+  -- Nvim-navic
+  use { "SmiteshP/nvim-navic" }
 
   -- Nvim tree
-  use "kyazdani42/nvim-tree.lua"
-  use "kyazdani42/nvim-web-devicons"
+  use { "kyazdani42/nvim-tree.lua" }
+  use { "kyazdani42/nvim-web-devicons" }
 
   -- Tablemode
-  use "dhruvasagar/vim-table-mode"
+  use { "dhruvasagar/vim-table-mode" }
 
   -- Telescope
-  use "nvim-telescope/telescope.nvim"
-  use 'nvim-telescope/telescope-media-files.nvim'
+  use { "nvim-telescope/telescope.nvim" }
+  use { "nvim-telescope/telescope-media-files.nvim" }
 
   -- Treesitter
   use {

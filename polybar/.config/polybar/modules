@@ -237,6 +237,7 @@ format-prefix = 
 format-prefix-foreground = ${colors.aqua}
 exec = $HOME/.config/i3/scripts/updates-pacman-aurhelper.sh
 interval = 600
+click-left = kitty -e yay
 
 ;==========================================================
 

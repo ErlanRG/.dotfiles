@@ -1,6 +1,6 @@
 local ok, table_mode = pcall(require, "tablemode")
 if not ok then
-    return
+  return
 end
 
 tablemode.setup {}

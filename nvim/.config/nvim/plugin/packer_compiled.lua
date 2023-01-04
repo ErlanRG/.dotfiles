@@ -129,6 +129,11 @@ _G.packer_plugins = {
     path = "/home/rangeler/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  harpoon = {
+    loaded = true,
+    path = "/home/rangeler/.local/share/nvim/site/pack/packer/start/harpoon",
+    url = "https://github.com/ThePrimeagen/harpoon"
+  },
   ["indent-blankline.nvim"] = {
     loaded = true,
     path = "/home/rangeler/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
@@ -169,6 +174,11 @@ _G.packer_plugins = {
     path = "/home/rangeler/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-navic"] = {
+    loaded = true,
+    path = "/home/rangeler/.local/share/nvim/site/pack/packer/start/nvim-navic",
+    url = "https://github.com/SmiteshP/nvim-navic"
+  },
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/home/rangeler/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
@@ -203,6 +213,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/rangeler/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
+  },
+  ["rose-pine"] = {
+    loaded = true,
+    path = "/home/rangeler/.local/share/nvim/site/pack/packer/start/rose-pine",
+    url = "https://github.com/rose-pine/neovim"
   },
   ["rust-tools.nvim"] = {
     loaded = true,

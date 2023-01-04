@@ -68,9 +68,45 @@ local function lsp_keymaps(bufnr)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
--- Return lsp_keymaps
+-- Return lsp_keymaps & nvim-navic
+local navic = require("nvim-navic")
+
+navic.setup {
+  icons = {
+    File = ' ',
+    Module = ' ',
+    Namespace = ' ',
+    Package = ' ',
+    Class = ' ',
+    Method = ' ',
+    Property = ' ',
+    Field = ' ',
+    Constructor = ' ',
+    Enum = ' ',
+    Interface = ' ',
+    Function = ' ',
+    Variable = ' ',
+    Constant = ' ',
+    String = ' ',
+    Number = ' ',
+    Boolean = ' ',
+    Array = ' ',
+    Object = ' ',
+    Key = ' ',
+    Null = ' ',
+    EnumMember = ' ',
+    Struct = ' ',
+    Event = ' ',
+    Operator = ' ',
+    TypeParameter = ' '
+  }
+}
+
 M.on_attach = function(client, bufnr)
   lsp_keymaps(bufnr)
+  if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
 end
 
 -- cmp_nvim_lsp configuration
@@ -82,32 +118,38 @@ end
 M.capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- LUA
-require'lspconfig'.sumneko_lua.setup {
+require 'lspconfig'.sumneko_lua.setup {
   capabilities = M.capabilities,
   on_attach = M.on_attach,
 }
 
 -- Bash
-require'lspconfig'.bashls.setup {
+require 'lspconfig'.bashls.setup {
   capabilities = M.capabilities,
   on_attach = M.on_attach,
 }
 
 -- Clang family
-require'lspconfig'.clangd.setup {
+require 'lspconfig'.clangd.setup {
   filetypes = { "c", "cpp", "objc", "objcpp" },
   capabilities = M.capabilities,
   on_attach = M.on_attach,
 }
 
 -- Python
-require'lspconfig'.pyright.setup {
+require 'lspconfig'.pyright.setup {
+  capabilities = M.capabilities,
+  on_attach = M.on_attach,
+}
+
+-- TSserver
+require 'lspconfig'.tsserver.setup {
   capabilities = M.capabilities,
   on_attach = M.on_attach,
 }
 
 -- Rust
-require'lspconfig'.rust_analyzer.setup({
+require 'lspconfig'.rust_analyzer.setup({
   on_attach = M.on_attach,
   capabilities = M.capabilities,
   settings = {

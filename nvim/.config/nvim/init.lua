@@ -1,5 +1,5 @@
 -- Core options
-require("colorscheme")
+require("colors")
 require("keymaps")
 require("options")
 require("plugins")
