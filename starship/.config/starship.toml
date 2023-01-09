@@ -48,3 +48,6 @@ symbol = " "
 symbol = " "
 format = "[$symbol]($style)"
 style = "bold dimmed red"
+
+[rust]
+symbol = " "

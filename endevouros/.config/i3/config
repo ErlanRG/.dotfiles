@@ -29,10 +29,13 @@ workspace_layout default
 ##############################
 # extra options for windows: #
 ##############################
-
 #border indicator on windows:
+# Deprecated
 # new_window pixel 1
-for_window [class="^.*"] border pixel 1
+# for_window [class="^.*"] border pixel 1
+
+default_border pixel 1
+default_floating_border pixel 1
 
 # thin borders
 # hide_edge_borders both
@@ -414,6 +417,7 @@ exec_always --no-startup-id autotiling
 exec --no-startup-id sleep 2 && kitty
 # exec --no-startup-id sleep 7 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
 #exec --no-startup-id sleep 3 && thunar
+exec --no-startup-id sleep 3 && thunderbird
 
 ###############
 # system tray #

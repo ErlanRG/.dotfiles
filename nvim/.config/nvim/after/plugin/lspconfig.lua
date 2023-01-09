@@ -1,5 +1,14 @@
 local M = {}
 
+local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not status_ok then
+  return
+end
+
+M.capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
+
 M.setup = function()
   local signs = {
     { name = "DiagnosticSignError", text = "" },
@@ -13,9 +22,7 @@ M.setup = function()
   end
 
   local config = {
-    -- disable virtual text
-    virtual_text = false,
-    -- show signs
+    virtual_text = true,
     signs = {
       active = signs,
     },
@@ -23,7 +30,7 @@ M.setup = function()
     underline = true,
     severity_sort = true,
     float = {
-      focusable = false,
+      focusable = true,
       style = "minimal",
       border = "rounded",
       source = "always",
@@ -43,32 +50,27 @@ M.setup = function()
   })
 end
 
--- TODO: define my own keymaps depending on usage
 local function lsp_keymaps(bufnr)
   local opts = { noremap = true, silent = true }
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>f", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
-  vim.api.nvim_buf_set_keymap(
-    bufnr,
-    "n",
-    "gl",
-    '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>',
-    opts
-  )
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  local keymap = vim.api.nvim_buf_set_keymap
+  keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+  keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+  keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+  keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+  keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+  keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", opts)
+  keymap(bufnr, "n", "<leader>lI", "<cmd>LspInstallInfo<cr>", opts)
+  keymap(bufnr, "n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+  keymap(bufnr, "n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
+  keymap(bufnr, "n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
+  keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+  keymap(bufnr, "n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 end
 
--- Return lsp_keymaps & nvim-navic
+--[[ nvim-navic ]]
 local navic = require("nvim-navic")
 
 navic.setup {
@@ -104,70 +106,61 @@ navic.setup {
 
 M.on_attach = function(client, bufnr)
   lsp_keymaps(bufnr)
+
   if client.server_capabilities.documentSymbolProvider then
     navic.attach(client, bufnr)
   end
+
+  local status_ok, illuminate = pcall(require, "illuminate")
+  if not status_ok then
+    return
+  end
+
+  illuminate.on_attach(client)
 end
 
--- cmp_nvim_lsp configuration
-local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then
-  return
-end
-
-M.capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
--- LUA
-require 'lspconfig'.sumneko_lua.setup {
-  capabilities = M.capabilities,
-  on_attach = M.on_attach,
+local servers = {
+  "sumneko_lua",
+  "bashls",
+  "clangd",
+  "pyright",
+  "tsserver",
+  "rust_analyzer",
 }
 
--- Bash
-require 'lspconfig'.bashls.setup {
-  capabilities = M.capabilities,
-  on_attach = M.on_attach,
-}
+local opts = {}
 
--- Clang family
-require 'lspconfig'.clangd.setup {
-  filetypes = { "c", "cpp", "objc", "objcpp" },
-  capabilities = M.capabilities,
-  on_attach = M.on_attach,
-}
-
--- Python
-require 'lspconfig'.pyright.setup {
-  capabilities = M.capabilities,
-  on_attach = M.on_attach,
-}
-
--- TSserver
-require 'lspconfig'.tsserver.setup {
-  capabilities = M.capabilities,
-  on_attach = M.on_attach,
-}
-
--- Rust
-require 'lspconfig'.rust_analyzer.setup({
-  on_attach = M.on_attach,
-  capabilities = M.capabilities,
-  settings = {
-    ["rust-analyzer"] = {
-      imports = {
-        granularity = "module",
-      },
-      prefix = "self",
-    },
-    cargo = {
-      buildScripts = {
-        enable = true,
-      },
-    },
-    procMacro = {
-      enable = true,
-    },
+for _, server in pairs(servers) do
+  opts = {
+    on_attach = M.on_attach,
+    capabilities = M.capabilities,
   }
-})
+
+  server = vim.split(server, "@")[1]
+
+  if server == "rust_analyzer" then
+    require "lspconfig"[server].setup({
+      opts,
+      settings = {
+        ["rust-analyzer"] = {
+          imports = {
+            granularity = "module",
+          },
+          prefix = "self",
+        },
+        cargo = {
+          buildScripts = {
+            enable = true,
+          },
+        },
+        procMacro = {
+          enable = true,
+        },
+      }
+    })
+  end
+
+  require "lspconfig"[server].setup(opts)
+end
 
 return M

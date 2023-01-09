@@ -49,21 +49,26 @@ return packer.startup(function(use)
   use { "windwp/nvim-autopairs" } -- Autopairs, integrates with both cmp and treesitter
 
   -- Cmp
-  use { "hrsh7th/nvim-cmp" } -- The completion plugin
+  use { "L3MON4D3/LuaSnip" } --snippet engine
   use { "hrsh7th/cmp-buffer" } -- buffer completions
-  use { "hrsh7th/cmp-path" } -- path completions
   use { "hrsh7th/cmp-cmdline" } -- cmdline completions
   use { "hrsh7th/cmp-nvim-lsp" } -- lsp based completions
   use { "hrsh7th/cmp-nvim-lua" } -- lua completions
+  use { "hrsh7th/cmp-path" } -- path completions
+  use { "hrsh7th/nvim-cmp" } -- The completion plugin
+  use { "rafamadriz/friendly-snippets" } -- a bunch of snippets to use
   use { "saadparwaiz1/cmp_luasnip" } -- snippet completions
 
   -- Colorscheme
-  use { "navarasu/onedark.nvim" }
   use { "catppuccin/nvim", as = "catppuccin" }
+  use { "navarasu/onedark.nvim" }
   use { 'rose-pine/neovim', as = 'rose-pine' }
 
   -- Comments
   use { "numToStr/Comment.nvim" } -- Easily comment stuff
+
+  -- Fugitive
+  use { "tpope/vim-fugitive" }
 
   -- Gitsigns
   use { "lewis6991/gitsigns.nvim" }
@@ -71,51 +76,51 @@ return packer.startup(function(use)
   -- Harpoon
   use { "ThePrimeagen/harpoon" }
 
+  -- Illuminate
+  use { "RRethy/vim-illuminate" }
+
+  -- Impatient
+  use { "lewis6991/impatient.nvim" }
+
   -- Indent lines
   use { "lukas-reineke/indent-blankline.nvim" }
 
   -- LSP
-  use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",
-  }
+  use { "neovim/nvim-lspconfig" }
+  use { "williamboman/mason-lspconfig.nvim" }
+  use { "williamboman/mason.nvim" }
 
   -- Lualine
   use { "nvim-lualine/lualine.nvim" }
 
-  -- Rust
-  use { "simrat39/rust-tools.nvim" }
+  -- Null-ls
+  use { "jose-elias-alvarez/null-ls.nvim" }
 
-  -- Snippets
-  use { "L3MON4D3/LuaSnip" } --snippet engine
-  use { "rafamadriz/friendly-snippets" } -- a bunch of snippets to use
 
   -- Nvim leap
   use { "ggandor/leap.nvim" }
-
-  -- Nvim-navic
-  use { "SmiteshP/nvim-navic" }
 
   -- Nvim tree
   use { "kyazdani42/nvim-tree.lua" }
   use { "kyazdani42/nvim-web-devicons" }
 
+  -- Nvim-navic
+  use { "SmiteshP/nvim-navic" }
+
+  -- Rust
+  use { "simrat39/rust-tools.nvim" }
+
   -- Tablemode
   use { "dhruvasagar/vim-table-mode" }
 
   -- Telescope
-  use { "nvim-telescope/telescope.nvim" }
   use { "nvim-telescope/telescope-media-files.nvim" }
+  use { "nvim-telescope/telescope.nvim" }
 
   -- Treesitter
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-  }
-  -- use "p00f/nvim-ts-rainbow"
-  -- use "nvim-treesitter/playground"
-
+  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+  use { "p00f/nvim-ts-rainbow" }
+  -- use { "nvim-treesitter/playground" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

@@ -61,8 +61,11 @@ keymap("n", "Y", "y$", opts)
 keymap("n", "<Leader>ff", "<cmd>Telescope find_files<CR>", opts)
 keymap("n", "<Leader>fh", "<cmd>Telescope help_tags<CR>", opts)
 keymap("n", "<Leader>fk", "<cmd>Telescope keymaps<CR>", opts)
-keymap("n", "<Leader>fg", "<cmd>Telescope git_commits<CR>", opts)
+keymap("n", "<Leader>fg", "<cmd>Telescope git_files<CR>", opts)
 keymap("n", "<Leader>fb", "<cmd>Telescope buffers<CR>", opts)
+
+-- Git
+keymap("n", "<Leader>gs", vim.cmd.G, opts)
 
 -- Nvimtree
 keymap("n", "<Leader>e", vim.cmd.NvimTreeToggle, opts)
