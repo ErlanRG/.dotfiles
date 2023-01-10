@@ -7,7 +7,7 @@ comment.setup {
   ---Add a space b/w comment and the line
   padding = true,
   toggler = {
-    line = 'gcc',
-    block = 'gbc',
+    line = "gcc",
+    block = "gbc",
   },
 }

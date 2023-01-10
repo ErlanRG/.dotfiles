@@ -50,12 +50,12 @@ alias sozsh='source $HOME/.zshrc'
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 
 # ls
-alias ll='exa -lah'
-alias la='exa -A'
-alias lm='exa -m'
-alias lr='exa -R'
+alias ll='lsd -lah'
+alias la='lsd -A'
+alias lm='lsd -m'
+alias lr='lsd -R'
 alias ls='exa -lhF --color=always --icons --sort=size --group-directories-first'
-alias l='exa -lhF --color=always --icons --sort=size --group-directories-first'
+alias l='exa -lahF --color=always --icons --sort=size --group-directories-first'
 
 # git
 alias gcl='git clone --depth 1'

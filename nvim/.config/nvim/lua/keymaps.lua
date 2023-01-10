@@ -73,8 +73,8 @@ keymap("n", "<Leader>e", vim.cmd.NvimTreeToggle, opts)
 -- Tablemode
 keymap("x", "<Leader>tb", vim.cmd.Tableize, opts)
 
--- Packer
-keymap("n", "<Leader>ps", vim.cmd.PackerSync, opts)
+-- Lazy
+keymap("n", "<Leader>ps", "<cmd>Lazy sync<CR>", opts)
 
 -- Autoformat
 keymap("n", "<Leader>lf", vim.lsp.buf.format, opts)
@@ -91,4 +91,4 @@ keymap("n", "n", "nzzzv")
 keymap("n", "N", "Nzzzv")
 
 -- Not sure how to comment this one
-keymap("x", "<leader>p", "\"_dP", opts)
+keymap("x", "<leader>p", '"_dP', opts)

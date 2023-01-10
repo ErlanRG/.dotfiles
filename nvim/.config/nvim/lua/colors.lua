@@ -26,14 +26,14 @@ if not rose_ok then
   return
 end
 
-rosepine.setup({
+rosepine.setup {
   disable_background = true,
-})
+}
 
 --[[ Setup ]]
 function SetColors(color)
   color = color or "catppuccin"
-  vim.cmd.colorscheme(color)
+  -- vim.cmd.colorscheme(color)
 
   vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
   vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })

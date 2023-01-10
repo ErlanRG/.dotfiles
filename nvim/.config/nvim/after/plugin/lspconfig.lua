@@ -18,7 +18,10 @@ M.setup = function()
   }
 
   for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+    vim.fn.sign_define(
+      sign.name,
+      { texthl = sign.name, text = sign.text, numhl = "" }
+    )
   end
 
   local config = {
@@ -41,11 +44,13 @@ M.setup = function()
 
   vim.diagnostic.config(config)
 
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  vim.lsp.handlers["textDocument/hover"] =
+  vim.lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",
   })
 
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  vim.lsp.handlers["textDocument/signatureHelp"] =
+  vim.lsp.with(vim.lsp.handlers.signature_help, {
     border = "rounded",
   })
 end
@@ -59,49 +64,85 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-  keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+  keymap(
+    bufnr,
+    "n",
+    "<leader>lf",
+    "<cmd>lua vim.lsp.buf.format{ async = true }<cr>",
+    opts
+  )
   keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", opts)
   keymap(bufnr, "n", "<leader>lI", "<cmd>LspInstallInfo<cr>", opts)
-  keymap(bufnr, "n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-  keymap(bufnr, "n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
-  keymap(bufnr, "n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
+  keymap(
+    bufnr,
+    "n",
+    "<leader>la",
+    "<cmd>lua vim.lsp.buf.code_action()<cr>",
+    opts
+  )
+  keymap(
+    bufnr,
+    "n",
+    "<leader>lj",
+    "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>",
+    opts
+  )
+  keymap(
+    bufnr,
+    "n",
+    "<leader>lk",
+    "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
+    opts
+  )
   keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-  keymap(bufnr, "n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+  keymap(
+    bufnr,
+    "n",
+    "<leader>ls",
+    "<cmd>lua vim.lsp.buf.signature_help()<CR>",
+    opts
+  )
+  keymap(
+    bufnr,
+    "n",
+    "<leader>lq",
+    "<cmd>lua vim.diagnostic.setloclist()<CR>",
+    opts
+  )
 end
 
 --[[ nvim-navic ]]
-local navic = require("nvim-navic")
+local navic = require "nvim-navic"
 
 navic.setup {
   icons = {
-    File = ' ',
-    Module = ' ',
-    Namespace = ' ',
-    Package = ' ',
-    Class = ' ',
-    Method = ' ',
-    Property = ' ',
-    Field = ' ',
-    Constructor = ' ',
-    Enum = ' ',
-    Interface = ' ',
-    Function = ' ',
-    Variable = ' ',
-    Constant = ' ',
-    String = ' ',
-    Number = ' ',
-    Boolean = ' ',
-    Array = ' ',
-    Object = ' ',
-    Key = ' ',
-    Null = ' ',
-    EnumMember = ' ',
-    Struct = ' ',
-    Event = ' ',
-    Operator = ' ',
-    TypeParameter = ' '
-  }
+    File = " ",
+    Module = " ",
+    Namespace = " ",
+    Package = " ",
+    Class = " ",
+    Method = " ",
+    Property = " ",
+    Field = " ",
+    Constructor = " ",
+    Enum = " ",
+    Interface = " ",
+    Function = " ",
+    Variable = " ",
+    Constant = " ",
+    String = " ",
+    Number = " ",
+    Boolean = " ",
+    Array = " ",
+    Object = " ",
+    Key = " ",
+    Null = " ",
+    EnumMember = " ",
+    Struct = " ",
+    Event = " ",
+    Operator = " ",
+    TypeParameter = " ",
+  },
 }
 
 M.on_attach = function(client, bufnr)
@@ -139,7 +180,7 @@ for _, server in pairs(servers) do
   server = vim.split(server, "@")[1]
 
   if server == "rust_analyzer" then
-    require "lspconfig"[server].setup({
+    require("lspconfig")[server].setup {
       opts,
       settings = {
         ["rust-analyzer"] = {
@@ -156,11 +197,11 @@ for _, server in pairs(servers) do
         procMacro = {
           enable = true,
         },
-      }
-    })
+      },
+    }
   end
 
-  require "lspconfig"[server].setup(opts)
+  require("lspconfig")[server].setup(opts)
 end
 
 return M

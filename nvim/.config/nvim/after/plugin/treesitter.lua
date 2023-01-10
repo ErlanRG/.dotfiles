@@ -1,12 +1,14 @@
-local configs = require("nvim-treesitter.configs")
+local configs = require "nvim-treesitter.configs"
 configs.setup {
   ensure_installed = {
     "bash",
     "c",
     "cpp",
+    "help",
     "lua",
     "python",
     "rust",
+    "vim",
   },
   sync_install = false,
   highlight = {
@@ -24,6 +26,6 @@ configs.setup {
   },
   indent = {
     enable = true,
-    disable = { "yaml" }
+    disable = { "yaml" },
   },
 }

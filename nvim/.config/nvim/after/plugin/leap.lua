@@ -6,5 +6,5 @@ end
 leap.add_default_mappings()
 
 leap.setup {
-  case_sensitive = false
+  case_sensitive = false,
 }
