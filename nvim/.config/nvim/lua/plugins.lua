@@ -85,6 +85,6 @@ return {
   -- Treesitter
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
   { "mrjones2014/nvim-ts-rainbow" },
+  { "nvim-treesitter/playground" },
   -- { "p00f/nvim-ts-rainbow" }, -- No longer mantained
-  -- {"nvim-treesitter/playground" },
 }

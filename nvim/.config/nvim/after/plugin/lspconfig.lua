@@ -18,10 +18,7 @@ M.setup = function()
   }
 
   for _, sign in ipairs(signs) do
-    vim.fn.sign_define(
-      sign.name,
-      { texthl = sign.name, text = sign.text, numhl = "" }
-    )
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
   end
 
   local config = {
@@ -44,13 +41,11 @@ M.setup = function()
 
   vim.diagnostic.config(config)
 
-  vim.lsp.handlers["textDocument/hover"] =
-  vim.lsp.with(vim.lsp.handlers.hover, {
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",
   })
 
-  vim.lsp.handlers["textDocument/signatureHelp"] =
-  vim.lsp.with(vim.lsp.handlers.signature_help, {
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
     border = "rounded",
   })
 end
@@ -64,55 +59,22 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-  keymap(
-    bufnr,
-    "n",
-    "<leader>lf",
-    "<cmd>lua vim.lsp.buf.format{ async = true }<cr>",
-    opts
-  )
+  keymap(bufnr, "n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
   keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", opts)
   keymap(bufnr, "n", "<leader>lI", "<cmd>LspInstallInfo<cr>", opts)
-  keymap(
-    bufnr,
-    "n",
-    "<leader>la",
-    "<cmd>lua vim.lsp.buf.code_action()<cr>",
-    opts
-  )
-  keymap(
-    bufnr,
-    "n",
-    "<leader>lj",
-    "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>",
-    opts
-  )
-  keymap(
-    bufnr,
-    "n",
-    "<leader>lk",
-    "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
-    opts
-  )
+  keymap(bufnr, "n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+  keymap(bufnr, "n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
+  keymap(bufnr, "n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
   keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-  keymap(
-    bufnr,
-    "n",
-    "<leader>ls",
-    "<cmd>lua vim.lsp.buf.signature_help()<CR>",
-    opts
-  )
-  keymap(
-    bufnr,
-    "n",
-    "<leader>lq",
-    "<cmd>lua vim.diagnostic.setloclist()<CR>",
-    opts
-  )
+  keymap(bufnr, "n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 end
 
 --[[ nvim-navic ]]
-local navic = require "nvim-navic"
+local navic_ok, navic = pcall(require, "nvim-navic")
+if not navic_ok then
+  return
+end
 
 navic.setup {
   icons = {
@@ -145,6 +107,19 @@ navic.setup {
   },
 }
 
+-- Formatting
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts#neovim-08
+local lsp_formatting = function(bufnr)
+  vim.lsp.buf.format {
+    filter = function(client)
+      return client.name == "null-ls"
+    end,
+    bufnr = bufnr,
+  }
+end
+
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
 M.on_attach = function(client, bufnr)
   lsp_keymaps(bufnr)
 
@@ -152,8 +127,19 @@ M.on_attach = function(client, bufnr)
     navic.attach(client, bufnr)
   end
 
-  local status_ok, illuminate = pcall(require, "illuminate")
-  if not status_ok then
+  if client.supports_method "textDocument/formatting" then
+    vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        lsp_formatting(bufnr)
+      end,
+    })
+  end
+
+  local ill_ok, illuminate = pcall(require, "illuminate")
+  if not ill_ok then
     return
   end
 
@@ -164,8 +150,8 @@ local servers = {
   "sumneko_lua",
   "bashls",
   "clangd",
-  "pyright",
-  "tsserver",
+  -- "pyright",
+  -- "tsserver",
   "rust_analyzer",
 }
 

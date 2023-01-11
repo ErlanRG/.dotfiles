@@ -28,4 +28,7 @@ configs.setup {
     enable = true,
     disable = { "yaml" },
   },
+  playground = {
+    enable = true,
+  }
 }
