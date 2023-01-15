@@ -1,2 +1,2 @@
-clean-env
 install
+./nvim/.config/nvim/lazy-lock.json
