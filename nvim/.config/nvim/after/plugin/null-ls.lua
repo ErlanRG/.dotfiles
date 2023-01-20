@@ -10,5 +10,8 @@ null_ls.setup {
   sources = {
     formatting.prettier,
     formatting.stylua,
+    formatting.beautysh.with {
+      extra_args = { "-i 2" },
+    },
   },
 }

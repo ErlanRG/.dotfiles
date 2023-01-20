@@ -151,11 +151,30 @@ local servers = {
   "bashls",
   "clangd",
   -- "pyright",
-  -- "tsserver",
+  "tsserver",
+  "html",
   "rust_analyzer",
 }
 
 local opts = {}
+local rust_opts = {
+  settings = {
+    ["rust-analyzer"] = {
+      imports = {
+        granularity = "module",
+      },
+      prefix = "self",
+    },
+    cargo = {
+      buildScripts = {
+        enable = true,
+      },
+    },
+    procMacro = {
+      enable = true,
+    },
+  },
+}
 
 for _, server in pairs(servers) do
   opts = {
@@ -166,28 +185,10 @@ for _, server in pairs(servers) do
   server = vim.split(server, "@")[1]
 
   if server == "rust_analyzer" then
-    require("lspconfig")[server].setup {
-      opts,
-      settings = {
-        ["rust-analyzer"] = {
-          imports = {
-            granularity = "module",
-          },
-          prefix = "self",
-        },
-        cargo = {
-          buildScripts = {
-            enable = true,
-          },
-        },
-        procMacro = {
-          enable = true,
-        },
-      },
-    }
+    require("lspconfig")[server].setup(opts, rust_opts)
+  else
+    require("lspconfig")[server].setup(opts)
   end
-
-  require("lspconfig")[server].setup(opts)
 end
 
 return M
