@@ -1,4 +1,8 @@
-local configs = require "nvim-treesitter.configs"
+local configs_ok, configs = pcall(require, "nvim-treesitter.configs")
+if not configs_ok then
+  return
+end
+
 configs.setup {
   ensure_installed = {
     "bash",
@@ -30,5 +34,5 @@ configs.setup {
   },
   playground = {
     enable = true,
-  }
+  },
 }

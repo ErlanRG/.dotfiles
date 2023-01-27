@@ -145,7 +145,8 @@ return {
   tab_bar_at_bottom = true,
   tab_max_width = 50,
   use_fancy_tab_bar = false,
-  window_background_opacity = 1.0,
+  window_background_opacity = 0.8,
+  text_background_opacity = 0.4,
   window_decorations = "RESIZE",
   inactive_pane_hsb = {
     brightness = 0.6,

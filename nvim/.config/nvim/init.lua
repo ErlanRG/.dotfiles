@@ -14,9 +14,17 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 
-require("lazy").setup "plugins"
+local lazy_ok, lazy = pcall(require, "lazy")
+if not lazy_ok then
+  return
+end
+
+lazy.setup "plugins"
 
 -- Core options
 require "colors"
 require "keymaps"
 require "options"
+
+-- Lspconfig setup
+require("lspsettings").setup()
