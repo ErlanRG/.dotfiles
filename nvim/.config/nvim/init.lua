@@ -25,6 +25,7 @@ lazy.setup "plugins"
 require "colors"
 require "keymaps"
 require "options"
+require "autocmds"
 
 -- Lspconfig setup
 require("lspsettings").setup()

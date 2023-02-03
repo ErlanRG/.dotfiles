@@ -1,18 +1,3 @@
---[[ Highlight on yank ]]
-local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
-vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = "*",
-})
-
---[[ Clear registers ]]
-vim.cmd [[
-  command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
-]]
-
 local M = {}
 --stylua: ignore
 

@@ -568,15 +568,15 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # TODO: include this in .dotfiles
 bindsym $mod+d exec $HOME/.config/rofi/launchers/type-3/launcher.sh
 
-#bindsym F9 exec rofi -modi drun -show drun \
+#b indsym F9 exec rofi -modi drun -show drun \
 #		-config ~/.config/rofi/rofidmenu.rasi
 
 ## rofi bindings for window menu ($mod+t /F10 optional disabled)
 
 bindsym $mod+t exec rofi -show window \
-		-config ~/.config/rofi/rofidmenu.rasi
+		-config $HOME/.config/rofi/launchers/type-4/style-5.rasi
 
-#bindsym F10 exec rofi -show window \
+# bindsym F10 exec rofi -show window \
 #		-config ~/.config/rofi/rofidmenu.rasi
 
 ## rofi bindings to manage clipboard (install rofi-greenclip from the AUR)

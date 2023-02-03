@@ -58,11 +58,16 @@ keymap("n", "Y", "y$", opts)
 
 -- Plugin keymaps
 -- Telescope
-keymap("n", "<Leader>ff", "<cmd>Telescope find_files<CR>", opts)
+local builtin = require "telescope.builtin"
+
+keymap("n", "<Leader>ff", "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>", opts)
 keymap("n", "<Leader>fh", "<cmd>Telescope help_tags<CR>", opts)
-keymap("n", "<Leader>fk", "<cmd>Telescope keymaps<CR>", opts)
 keymap("n", "<Leader>fg", "<cmd>Telescope git_files<CR>", opts)
 keymap("n", "<Leader>fb", "<cmd>Telescope buffers<CR>", opts)
+keymap("n", "<Leader>fp", "<cmd>Telescope projects<CR>", opts)
+keymap("n", "<Leader>fk", function()
+  builtin.grep_string { search = vim.fn.input "Grep > " }
+end, opts)
 
 -- Git
 keymap("n", "<Leader>gs", vim.cmd.G, opts)

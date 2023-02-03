@@ -30,6 +30,9 @@ return {
   { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
   { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
 
+  -- Colorizer
+  { "norcalli/nvim-colorizer.lua" },
+
   -- Comments
   { "numToStr/Comment.nvim" }, -- Easily comment stuff
 
@@ -71,6 +74,9 @@ return {
 
   -- Nvim-navic
   { "SmiteshP/nvim-navic" },
+
+  -- Project
+  { "ahmedkhalf/project.nvim" },
 
   -- Rust
   { "simrat39/rust-tools.nvim" },

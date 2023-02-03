@@ -8,9 +8,9 @@ local settings = {
     check_outdated_packages_on_open = true,
     border = "none",
     icons = {
-      package_installed = "✓",
-      package_pending = "➜",
-      package_uninstalled = "✗",
+      package_pending = " ",
+      package_installed = " ",
+      package_uninstalled = " ﮊ",
     },
     log_level = vim.log.levels.INFO,
     max_concurrent_installers = 4,

@@ -34,13 +34,6 @@ format = "[$path]($style)[$lock_symbol]($lock_style) "
 [git_state]
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
 
-[git_status]
-style = "white"
-ahead = "⇡${count}"
-diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-behind = "⇣${count}"
-deleted = ""
-
 [lua]
 symbol = " "
 
