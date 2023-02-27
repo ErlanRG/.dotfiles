@@ -2,10 +2,7 @@
 # config starts here: #
 #######################
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
+# Font for window titles.
 font pango: JetBrains Mono Medium Nerd Font Complete 10
 
 # set the mod key to the winkey:
@@ -43,12 +40,6 @@ default_floating_border pixel 1
 # Set inner/outer gaps
 gaps inner 6
 gaps outer 3
-
-# show window title bars (not officially supported with i3gaps)
-#default_border normal
-
-# window title alignment
-#title_align center
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -159,7 +150,7 @@ bindcode $mod+Shift+90 	 move container to workspace  $ws10
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec wezterm
 
 # kill focused window
 bindsym $mod+c kill
@@ -168,7 +159,6 @@ bindsym $mod+c kill
 # bindsym $mod+Shift+e exec ~/.config/i3/scripts/powermenu
 
 # This power menu requires https://github.com/adi1090x/rofi
-# TODO: include this in .dotfiles
 bindsym $mod+Shift+e exec ~/.config/rofi/powermenu/type-1/powermenu.sh
 
 # Lock the system
@@ -184,7 +174,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # keybinding in fancy rofi (automated):
-bindsym F1 exec ~/.config/i3/scripts/keyhint-2
+# bindsym F1 exec ~/.config/i3/scripts/keyhint-2
 # alternative
 # keybinding list in editor:
 # bindsym $mod+F1 exec xed ~/.config/i3/keybindings
@@ -302,48 +292,30 @@ set $ws10 "10"
 #workspace $ws5 output HDMI-0
 
 # bind program to workspace and focus to them on startup:
-assign [class="kitty"] $ws1
+assign [class="wezterm"] $ws1
 # assign [class="(?i)firefox"] $ws2
 assign [class="(?i)librewolf"] $ws2
 assign [class="thunderbird"] $ws3
 assign [class="Thunar"] $ws3
+assign [class="^libreoffice"] $ws3
 assign [class="KeePassXC"] $ws4
 assign [class="Spotify"] $ws5
 assign [class="Steam"] $ws6
-assign [class="TelegramDesktop"] $ws7
+assign [class="Virt-manager"] $ws8
 
 # automatic set focus new window if it opens on another workspace then the current:
-for_window [class=kitty] focus
+for_window [class=wezterm] focus
 for_window [class=(?i)firefox] focus
 for_window [class=Thunar] focus
 for_window [class=thunderbird] focus
-for_window [class=TelegramDesktop] focus
 
 ##############
 # compositor #
 ##############
 
-# transparency
-# uncomment one of them to be used (picom package is installed per default)
-# options could need changes, related to used GPU and drivers.
-# to find the right setting consult the archwiki or ask at the forum.
-#
-# xcompmgr: https://wiki.archlinux.org/title/Xcompmgr
-# manpage: https://man.archlinux.org/man/xcompmgr.1.en
-#exec --no-startup-id xcompmgr -C -n &
-# or an more specialized config like this:
-#exec --no-startup-id xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
-#
-# or:
-#
-# picom: https://wiki.archlinux.org/title/Picom
-# manpage: https://man.archlinux.org/man/picom.1.en
-# The default configuration is available in /etc/xdg/picom.conf 
-# For modifications, it can be copied to ~/.config/picom/picom.conf or ~/.config/picom.conf
-#
 # using default config 
 #exec_always --no-startup-id picom -b
-#
+
 # for custom config:
 exec_always --no-startup-id picom --config  ~/.config/picom/picom.conf
 
@@ -405,6 +377,7 @@ exec --no-startup-id xset -dpms && xset s off
 
 # Desktop notifications
 exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
+
 # alternative if you installed aside with XFCE4:
 # exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
 
@@ -414,10 +387,9 @@ exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
 exec_always --no-startup-id autotiling
 
 # Autostart apps as you like
-exec --no-startup-id sleep 2 && kitty
+exec --no-startup-id sleep 2 && wezterm
 # exec --no-startup-id sleep 7 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
 #exec --no-startup-id sleep 3 && thunar
-exec --no-startup-id sleep 3 && thunderbird
 
 ###############
 # system tray #

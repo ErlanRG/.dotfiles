@@ -157,34 +157,17 @@ M.on_attach = function(client, bufnr)
 end
 
 local servers = {
-  "sumneko_lua",
   "bashls",
   "clangd",
-  -- "pyright",
-  "tsserver",
+  "emmet_ls",
   "html",
+  "lua_ls",
   "rust_analyzer",
+  "tsserver",
+  -- "pyright",
 }
 
 local opts = {}
-local rust_opts = {
-  settings = {
-    ["rust-analyzer"] = {
-      imports = {
-        granularity = "module",
-      },
-      prefix = "self",
-    },
-    cargo = {
-      buildScripts = {
-        enable = true,
-      },
-    },
-    procMacro = {
-      enable = true,
-    },
-  },
-}
 
 for _, server in pairs(servers) do
   opts = {
@@ -195,7 +178,25 @@ for _, server in pairs(servers) do
   server = vim.split(server, "@")[1]
 
   if server == "rust_analyzer" then
-    require("lspconfig")[server].setup(opts, rust_opts)
+    opts = {
+      settings = {
+        ["rust-analyzer"] = {
+          imports = {
+            granularity = "module",
+          },
+          prefix = "self",
+        },
+        cargo = {
+          buildScripts = {
+            enable = true,
+          },
+        },
+        procMacro = {
+          enable = true,
+        },
+      },
+    }
+    require("lspconfig")[server].setup(opts)
   else
     require("lspconfig")[server].setup(opts)
   end

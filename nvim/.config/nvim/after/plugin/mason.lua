@@ -1,6 +1,6 @@
 local to_install = {
   "bashls",
-  "sumneko_lua",
+  -- "lua-language-server",
 }
 
 local settings = {
