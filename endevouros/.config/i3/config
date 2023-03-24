@@ -150,7 +150,7 @@ bindcode $mod+Shift+90 	 move container to workspace  $ws10
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec wezterm
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+c kill
@@ -292,6 +292,7 @@ set $ws10 "10"
 #workspace $ws5 output HDMI-0
 
 # bind program to workspace and focus to them on startup:
+assign [class="kitty"] $ws1
 assign [class="wezterm"] $ws1
 # assign [class="(?i)firefox"] $ws2
 assign [class="(?i)librewolf"] $ws2
@@ -304,6 +305,7 @@ assign [class="Steam"] $ws6
 assign [class="Virt-manager"] $ws8
 
 # automatic set focus new window if it opens on another workspace then the current:
+for_window [class=kitty] focus
 for_window [class=wezterm] focus
 for_window [class=(?i)firefox] focus
 for_window [class=Thunar] focus
@@ -387,7 +389,7 @@ exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
 exec_always --no-startup-id autotiling
 
 # Autostart apps as you like
-exec --no-startup-id sleep 2 && wezterm
+exec --no-startup-id sleep 2 && kitty
 # exec --no-startup-id sleep 7 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
 #exec --no-startup-id sleep 3 && thunar
 

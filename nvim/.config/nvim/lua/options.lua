@@ -1,7 +1,7 @@
 local options = {
   backup = false,
   clipboard = "unnamedplus",
-  cmdheight = 1,
+  cmdheight = 2,
   completeopt = { "menuone", "noselect" },
   conceallevel = 0,
   cursorline = true,

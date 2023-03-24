@@ -40,10 +40,7 @@ alias sozsh='source $HOME/.zshrc'
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 
 # ls
-alias ll='lsd -lah'
-alias la='lsd -A'
-alias lm='lsd -m'
-alias lr='lsd -R'
+alias ll='exa -lah'
 alias ls='exa -lhF --color=always --icons --sort=size --group-directories-first'
 alias l='exa -lahF --color=always --icons --sort=size --group-directories-first -s=Name'
 
@@ -56,6 +53,7 @@ alias gpu='git push -u origin main'
 alias gst='git status'
 alias glog='git log --oneline'
 alias gch='git checkout'
+alias lg='lazygit'
 
 # pacman and yay
 alias pacsyu='sudo pacman -Syu'                  # update only standard pkgs
@@ -72,8 +70,6 @@ alias rm='rm -i'
 alias c='clear'
 alias startup_nvim='nvim --startuptime startup.log -c exit && tail -100 startup.log'
 alias shutdown='shutdown now'
-alias rpissh='kitty +kitten ssh pi@192.168.0.137'
-alias lg='lazygit'
 
 # Tmux
 alias tmuxls='tmux list-sessions'
