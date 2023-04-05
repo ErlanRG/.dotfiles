@@ -62,9 +62,6 @@ return {
   -- Lualine
   { "nvim-lualine/lualine.nvim" },
 
-  -- Neorg
-  { "nvim-neorg/neorg", build = ":Neorg sync-parsers" },
-
   -- Null-ls
   { "jose-elias-alvarez/null-ls.nvim" },
 
