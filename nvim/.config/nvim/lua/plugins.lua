@@ -36,6 +36,9 @@ return {
   -- Comments
   { "numToStr/Comment.nvim" }, -- Easily comment stuff
 
+  -- Copilot
+  { "github/copilot.vim" },
+
   -- Fugitive
   { "tpope/vim-fugitive" },
 
