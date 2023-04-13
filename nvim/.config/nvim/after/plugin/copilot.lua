@@ -3,13 +3,46 @@ if not status_ok then
   return
 end
 
-vim.cmd [[
-  imap <silent><script><expr> <C-A> copilot#Accept("\<CR>")
-  let g:copilot_no_tab_map = v:true
-]]
-
 copilot.setup {
-  server_opts_overrides = {
-    inlineSuggestCount = 3,
+  panel = {
+    enabled = true,
+    auto_refresh = false,
+    keymap = {
+      jump_prev = "[[",
+      jump_next = "]]",
+      accept = "<CR>",
+      refresh = "gr",
+      -- open = "<M-CR>",
+    },
+    layout = {
+      position = "right", -- | top | left | right
+      ratio = 0.4,
+    },
   },
+  suggestion = {
+    enabled = true,
+    auto_trigger = false,
+    debounce = 75,
+    keymap = {
+      accept = "<M-CR>",
+      accept_word = false,
+      accept_line = false,
+      next = "<M-]>",
+      prev = "<M-[>",
+      dismiss = "<C-]>",
+    },
+  },
+  filetypes = {
+    yaml = false,
+    markdown = false,
+    help = false,
+    gitcommit = false,
+    gitrebase = false,
+    hgcommit = false,
+    svn = false,
+    cvs = false,
+    ["."] = false,
+  },
+  copilot_node_command = "node", -- Node.js version must be > 16.x
+  server_opts_overrides = {},
 }
