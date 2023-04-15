@@ -111,6 +111,14 @@ bindcode $mod+Shift+80 	 move container to workspace  $ws8
 bindcode $mod+Shift+81 	 move container to workspace  $ws9
 bindcode $mod+Shift+90 	 move container to workspace  $ws10
 
+
+######################################
+# scratchpads                        #
+######################################
+
+bindsym $mod+BackSpace move scratchpad
+bindsym $mod+Shift+BackSpace scratchpad show
+
 ######################################
 # keybindings for different actions: #
 ######################################
@@ -185,7 +193,7 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+t floating toggle
+bindsym $mod+Shift+f floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+u focus mode_toggle

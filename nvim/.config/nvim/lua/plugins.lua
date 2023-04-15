@@ -19,6 +19,9 @@ return {
   -- Autopairs
   { "windwp/nvim-autopairs" }, -- Autopairs, integrates with both cmp and treesitter
 
+  -- Barbar
+  { "romgrk/barbar.nvim" },
+
   -- Cmp
   { "L3MON4D3/LuaSnip" }, --snippet engine
   { "hrsh7th/cmp-buffer" }, -- buffer completions
