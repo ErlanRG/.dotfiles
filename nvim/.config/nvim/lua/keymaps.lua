@@ -97,3 +97,7 @@ keymap("n", "N", "Nzzzv")
 
 -- Not sure how to comment this one
 keymap("x", "<leader>p", '"_dP', opts)
+
+-- (Barbar) Order buffers
+keymap("n", "<leader>bl", vim.cmd.BufferOrderByLanguage, opts)
+keymap("n", "<leader>bn", vim.cmd.BufferOrderByBufferNumber, opts)
