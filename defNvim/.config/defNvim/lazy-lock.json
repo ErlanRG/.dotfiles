@@ -1,0 +1,6 @@
+{
+  "catppuccin": { "branch": "main", "commit": "dd176757cc745f71bd54c472a9f58d5f8a54661d" },
+  "lazy.nvim": { "branch": "main", "commit": "903f0fe542fc35b74f3c09494f9c175346dfa76d" },
+  "onedark.nvim": { "branch": "master", "commit": "d20f23c0d6810c8754737428771eef40bd1056a7" },
+  "rose-pine": { "branch": "main", "commit": "667851c05f87874826084474b5f04829940b6451" }
+}
