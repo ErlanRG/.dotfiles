@@ -265,14 +265,14 @@ set $ws10 "10"
 # bind program to workspace and focus to them on startup:
 assign [class="kitty"] $ws1
 assign [class="wezterm"] $ws1
-# assign [class="(?i)firefox"] $ws2
+assign [class="(?i)firefox"] $ws2
 assign [class="(?i)librewolf"] $ws2
-assign [class="thunderbird"] $ws3
-assign [class="Thunar"] $ws3
 assign [class="^libreoffice"] $ws3
-assign [class="KeePassXC"] $ws4
+assign [class="Thunar"] $ws3
+assign [class="thunderbird"] $ws4
 assign [class="Spotify"] $ws5
 assign [class="Steam"] $ws6
+assign [class="whatsappweb"] $ws7
 assign [class="Virt-manager"] $ws8
 
 # automatic set focus new window if it opens on another workspace then the current:
@@ -319,6 +319,9 @@ exec --no-startup-id dex --autostart --environment i3
 # configure multiple keyboard layouts and hotkey to switch (Alt+CAPSLOCK in this example)
 #exec --no-startup-id setxkbmap -layout 'us,sk' -variant altgr-intl,qwerty -option 'grp:alt_caps_toggle'
 exec --no-startup-id setxkbmap -layout 'us,latam' -option 'grp:win_space_toggle'
+
+# Remap key 135 (Menu) with 133 (Super)
+exec_always --no-startup-id xmodmap -e 'keycode 135 = Super_L'
 
 # Start gxkb
 # exec --no-startup-id gxkb
@@ -397,6 +400,7 @@ for_window [class="urxvt"] border pixel 1
 # set size of floating window
 #for_window [window_role="(?i)GtkFileChooserDialog"] resize set 640 480 #to set size of file choose dialog
 for_window [class=".*"] resize set 640 480 #to change size of all floating windows 
+for_window [class="keepassxc"] resize set 640 480 #to change size of all floating windows 
 
 # set position of floating window
 #for_window [class=".*"] move position center
