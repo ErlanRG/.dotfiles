@@ -10,14 +10,15 @@ alias ls='exa -lhF --color=always --icons --sort=size --group-directories-first'
 alias l='exa -lahF --color=always --icons --sort=size --group-directories-first -s=Name'
 
 # git
-alias gc='git commit'
-alias gco='git checkout $(git branch | fzf-tmux -p 20%,50%)'
 alias ga='git add'
 alias gap='git add -p'
-alias gdb='git branch -D'
+alias gc='git commit'
+alias gco='git checkout $(git branch | fzf-tmux -p 20%,50%)'
 alias gd='git diff'
+alias gdb='git branch -D'
 alias gfp='git fetch -p origin'
 alias gl='git log --graph'
+alias gp='git push'
 alias lg='lazygit'
 
 # pacman and yay
