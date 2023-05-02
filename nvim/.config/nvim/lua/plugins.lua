@@ -66,10 +66,6 @@ return {
   -- Lualine
   { "nvim-lualine/lualine.nvim" },
 
-  --NeoAI
-  { "Bryley/neoai.nvim" },
-  { "MunifTanjim/nui.nvim" },
-
   -- Null-ls
   { "jose-elias-alvarez/null-ls.nvim" },
 

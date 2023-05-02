@@ -4,11 +4,6 @@
 # LunarVim PATH
 PATH="$HOME/.local/bin/:$PATH"
 
-# NeoAI variable
-# Previous key no longer works
-# @see https://platform.openai.com/account/api-keys
-# export OPENAI_API_KEY=
-
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
