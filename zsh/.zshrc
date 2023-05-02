@@ -5,7 +5,9 @@
 PATH="$HOME/.local/bin/:$PATH"
 
 # NeoAI variable
-export OPENAI_API_KEY=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
+# Previous key no longer works
+# @see https://platform.openai.com/account/api-keys
+# export OPENAI_API_KEY=
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
