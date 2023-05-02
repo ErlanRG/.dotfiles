@@ -4,6 +4,11 @@
 # LunarVim PATH
 PATH="$HOME/.local/bin/:$PATH"
 
+# NeoAI variable
+# Previous key no longer works
+# @see https://platform.openai.com/account/api-keys
+# export OPENAI_API_KEY=
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -189,6 +194,21 @@ function extract ()
   done
   __pkgtools__at_function_exit
   return 0
+}
+
+# Nvim switcher
+alias nvimv="NVIM_APPNAME=defNvim nvim"
+
+function nvims() {
+  items=("RangER" "Vanilla")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "RangER" ]]; then
+    config=""
+  fi
+  NVIM_APPNAME=$config nvim $@
 }
 
 eval "$(starship init zsh)"

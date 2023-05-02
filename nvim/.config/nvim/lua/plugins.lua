@@ -11,8 +11,6 @@ return {
   },
   { "navarasu/onedark.nvim" },
   { "rose-pine/neovim", name = "rose-pine" },
-
-  -- My plugins here
   { "nvim-lua/popup.nvim" }, -- An implementation of the Popup API from vim in Neovim
   { "nvim-lua/plenary.nvim" }, -- Useful lua functions used ny lots of plugins
 
@@ -68,6 +66,10 @@ return {
   -- Lualine
   { "nvim-lualine/lualine.nvim" },
 
+  --NeoAI
+  { "Bryley/neoai.nvim" },
+  { "MunifTanjim/nui.nvim" },
+
   -- Null-ls
   { "jose-elias-alvarez/null-ls.nvim" },
 
@@ -87,9 +89,6 @@ return {
   -- Rust
   { "simrat39/rust-tools.nvim" },
 
-  -- Tablemode
-  { "dhruvasagar/vim-table-mode" },
-
   -- Telescope
   { "nvim-telescope/telescope-media-files.nvim" },
   { "nvim-telescope/telescope.nvim" },
@@ -97,6 +96,4 @@ return {
   -- Treesitter
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
   { "mrjones2014/nvim-ts-rainbow" },
-  { "nvim-treesitter/playground" },
-  -- { "p00f/nvim-ts-rainbow" }, -- No longer mantained
 }

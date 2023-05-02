@@ -6,8 +6,8 @@ if not status_ok then
 end
 
 barbar.setup {
-  animation = true,
-  auto_hide = true,
+  animation = false,
+  auto_hide = false,
   clickable = true,
   icons = {
     -- Configure the base icons on the bufferline.

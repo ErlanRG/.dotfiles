@@ -12,9 +12,9 @@ M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 M.setup = function()
   local signs = {
     { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn",  text = "" },
-    { name = "DiagnosticSignHint",  text = "" },
-    { name = "DiagnosticSignInfo",  text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignInfo", text = "" },
   }
 
   for _, sign in ipairs(signs) do
@@ -163,11 +163,66 @@ local servers = {
   "html",
   "lua_ls",
   "rust_analyzer",
+  "tailwindcss",
   "tsserver",
-  -- "pyright",
 }
 
 local opts = {}
+local rust_opts = {
+  settings = {
+    ["rust-analyzer"] = {
+      imports = {
+        granularity = "module",
+      },
+      prefix = "self",
+    },
+    cargo = {
+      buildScripts = {
+        enable = true,
+      },
+    },
+    procMacro = {
+      enable = true,
+    },
+  },
+}
+
+local tailwind_opts = {
+  filetypes = {
+    "django-html",
+    "htmldjango",
+    "ejs",
+    "html",
+    "html-eex",
+    "heex",
+    "jade",
+    "markdown",
+    "nunjucks",
+    "razor",
+    "slim",
+    "twig",
+    "css",
+    "less",
+    "postcss",
+    "sass",
+    "scss",
+    "stylus",
+    "sugarss",
+    "javascript",
+    "javascriptreact",
+    "reason",
+    "rescript",
+    "typescript",
+    "typescriptreact",
+    "vue",
+  },
+  cmd = { "tailwindcss-language-server", "--stdio" },
+}
+
+local tsserver_opts = {
+  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { "typescript-language-server", "--stdio" },
+}
 
 for _, server in pairs(servers) do
   opts = {
@@ -178,24 +233,13 @@ for _, server in pairs(servers) do
   server = vim.split(server, "@")[1]
 
   if server == "rust_analyzer" then
-    opts = {
-      settings = {
-        ["rust-analyzer"] = {
-          imports = {
-            granularity = "module",
-          },
-          prefix = "self",
-        },
-        cargo = {
-          buildScripts = {
-            enable = true,
-          },
-        },
-        procMacro = {
-          enable = true,
-        },
-      },
-    }
+    opts = rust_opts
+    require("lspconfig")[server].setup(opts)
+  elseif server == "tsserver" then
+    opts = tsserver_opts
+    require("lspconfig")[server].setup(opts)
+  elseif server == "tailwindcss" then
+    opts = tailwind_opts
     require("lspconfig")[server].setup(opts)
   else
     require("lspconfig")[server].setup(opts)
