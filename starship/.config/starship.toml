@@ -1,46 +1,63 @@
-format = "$character"
-right_format = "$all$username$hostname"
+## ░█▀▀░▀█▀░█▀█░█▀▄░█▀▀░█░█░▀█▀░█▀█
+## ░▀▀█░░█░░█▀█░█▀▄░▀▀█░█▀█░░█░░█▀▀
+## ░▀▀▀░░▀░░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░░
+# Setups
+format="$directory$git_branch$character"
+right_format = """$git_status$cmd_duration"""
+add_newline = false 
 
-# Get editor completions based on the config schema
-"$schema" = 'https://starship.rs/config-schema.json'
+# Other languages configurations:
+c.disabled = true
+cmake.disabled = true
+haskell.disabled = true
+python.disabled = true
+ruby.disabled = true
+rust.disabled = true
+perl.disabled = true
+package.disabled = true
+lua.disabled = true
+nodejs.disabled = true
+java.disabled = true
+golang.disabled = true
 
-# Inserts a blank line between shell prompts
-add_newline = false
+[conda]
+format = ' [$symbol$environment](dimmed green) '
 
-[username]
-format = "[$user]($style)@"
-style_user = "bold green"
-style_root = "bold red"
-show_always = true
-
-[hostname]
-format = "[$hostname]($style)"
-style = "bold dimmed blue"
-ssh_only = false
-
-# Replace the "❯" symbol in the prompt with "➜"
+# Prompt symbols 
 [character]
-success_symbol = "[  ](bold green)"
-error_symbol = "[  ](bold red) "
-vimcmd_symbol = "[  ](bold green)"
-
-[line_break]
-disabled = true
+success_symbol = "[](#A6E3A1 bold)"
+error_symbol = "[](#FAB387)"
+vicmd_symbol = "[](#F9E2AF)"
 
 [directory]
-truncation_length = 2
-format = "[$path]($style)[$lock_symbol]($lock_style) "
+format = "[]($style)[ ](bg:#313244 fg:#F9E2AF)[$path](bg:#313244 fg:#94e2d5 bold)[ ]($style)"
+style = "bg:none fg:#313244"
+truncation_length = 3
+truncate_to_repo=false
 
-[git_state]
-format = '[\($state( $progress_current of $progress_total)\)]($style) '
+[git_branch]
+format = "[]($style)[[ ](bg:#313244 fg:#A6E3A1 bold)$branch](bg:#313244 fg:#94e2d5)[ ]($style)"
+style = "bg:none fg:#313244"
 
-[lua]
-symbol = " "
+[git_status]
+# $all status$ahead_behind
+format = "[]($style)[$all_status$ahead_behind](bg:#313244 fg:#b4befe)[ ]($style)"
+style = "bg:none fg:#313244"
+conflicted = "="
+ahead =	"⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+up_to_date = ""
+untracked = "?${count}"
+stashed = ""
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "${count}"
 
-[java]
-symbol = " "
-format = "[$symbol]($style)"
-style = "bold dimmed red"
-
-[rust]
-symbol = " "
+[cmd_duration]
+min_time = 1
+# duration & style 
+format = "[]($style)[[神](bg:#313244 fg:#eba0ac bold)$duration](bg:#313244 fg:#BBC3DF)[ ]($style)"
+disabled = false
+style = "bg:none fg:#313244"
