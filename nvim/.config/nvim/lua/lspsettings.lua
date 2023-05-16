@@ -156,73 +156,29 @@ M.on_attach = function(client, bufnr)
   illuminate.on_attach(client)
 end
 
+-- Server configuration
 local servers = {
   "bashls",
   "clangd",
   "emmet_ls",
   "html",
+  "jdtls",
   "lua_ls",
   "rust_analyzer",
   "tailwindcss",
   "tsserver",
 }
 
+-- This only adds the extra configuration for the servers.
+-- If it is not especified, then the server will use the defaults.
+local languageModule = {
+  clangd = "lang.clangd",
+  rust_analyzer = "lang.rust",
+  tailwindcss = "lang.tailwindcss",
+  tsserver = "lang.tsserver",
+}
+
 local opts = {}
-local rust_opts = {
-  settings = {
-    ["rust-analyzer"] = {
-      imports = {
-        granularity = "module",
-      },
-      prefix = "self",
-    },
-    cargo = {
-      buildScripts = {
-        enable = true,
-      },
-    },
-    procMacro = {
-      enable = true,
-    },
-  },
-}
-
-local tailwind_opts = {
-  filetypes = {
-    "django-html",
-    "htmldjango",
-    "ejs",
-    "html",
-    "html-eex",
-    "heex",
-    "jade",
-    "markdown",
-    "nunjucks",
-    "razor",
-    "slim",
-    "twig",
-    "css",
-    "less",
-    "postcss",
-    "sass",
-    "scss",
-    "stylus",
-    "sugarss",
-    "javascript",
-    "javascriptreact",
-    "reason",
-    "rescript",
-    "typescript",
-    "typescriptreact",
-    "vue",
-  },
-  cmd = { "tailwindcss-language-server", "--stdio" },
-}
-
-local tsserver_opts = {
-  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-  cmd = { "typescript-language-server", "--stdio" },
-}
 
 for _, server in pairs(servers) do
   opts = {
@@ -232,18 +188,12 @@ for _, server in pairs(servers) do
 
   server = vim.split(server, "@")[1]
 
-  if server == "rust_analyzer" then
-    opts = rust_opts
-    require("lspconfig")[server].setup(opts)
-  elseif server == "tsserver" then
-    opts = tsserver_opts
-    require("lspconfig")[server].setup(opts)
-  elseif server == "tailwindcss" then
-    opts = tailwind_opts
-    require("lspconfig")[server].setup(opts)
-  else
-    require("lspconfig")[server].setup(opts)
+  local moduleName = languageModule[server]
+  if moduleName then
+    opts = require(moduleName)
   end
+
+  require("lspconfig")[server].setup(opts)
 end
 
 return M
