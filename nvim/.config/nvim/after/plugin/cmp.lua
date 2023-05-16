@@ -42,6 +42,7 @@ local kind_icons = {
   Event = "",
   Operator = "",
   TypeParameter = "",
+  Copilot = "",
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
@@ -106,6 +107,7 @@ cmp.setup {
         luasnip = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
+        copilot = "[Copilot]",
       })[entry.source.name]
       return vim_item
     end,
@@ -117,7 +119,7 @@ cmp.setup {
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "path" },
-    -- { name = "cmdline" },
+    { name = "copilot" },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
