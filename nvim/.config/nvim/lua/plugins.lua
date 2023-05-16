@@ -18,7 +18,7 @@ return {
   { "windwp/nvim-autopairs" }, -- Autopairs, integrates with both cmp and treesitter
 
   -- Barbar
-  { "romgrk/barbar.nvim" },
+  { "romgrk/barbar.nvim", commit = "875ae20301cf13b8410f75d62857f87e2c53a58b" },
 
   -- Cmp
   { "L3MON4D3/LuaSnip" }, --snippet engine
@@ -39,6 +39,12 @@ return {
 
   -- Copilot
   { "zbirenbaum/copilot.lua" },
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function()
+      require("copilot_cmp").setup()
+    end,
+  },
 
   -- Fugitive
   { "tpope/vim-fugitive" },
