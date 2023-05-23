@@ -50,7 +50,6 @@ local mappings = {
       { "<Leader>fh", "<cmd>Telescope help_tags<CR>" },
       { "<Leader>fg", "<cmd>Telescope git_files<CR>" },
       { "<Leader>fb", "<cmd>Telescope buffers<CR>" },
-      { "<Leader>fp", "<cmd>Telescope projects<CR>" },
       {
         "<Leader>fk",
         function()

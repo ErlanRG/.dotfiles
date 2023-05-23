@@ -85,9 +85,6 @@ return {
   -- Nvim-navic
   { "SmiteshP/nvim-navic" },
 
-  -- Project
-  { "ahmedkhalf/project.nvim" },
-
   -- Rust
   { "simrat39/rust-tools.nvim" },
 
