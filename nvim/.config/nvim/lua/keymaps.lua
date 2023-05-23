@@ -1,5 +1,6 @@
+local bufkill = require("utils").buf_kill
+local builtin = require "telescope.builtin"
 local opts = { noremap = true, silent = true }
--- local term_opts = { silent = true }
 
 -- Shorten function name
 local keymap = vim.keymap.set
@@ -8,96 +9,115 @@ keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Normal mode
--- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+local mappings = {
+  -- Normal mode
+  {
+    mode = "n",
+    keys = {
+      -- Better window navigation
+      { "<C-h>", "<C-w>h" },
+      { "<C-j>", "<C-w>j" },
+      { "<C-k>", "<C-w>k" },
+      { "<C-l>", "<C-w>l" },
 
--- Creating splits
-keymap("n", "<Leader>vs", vim.cmd.vnew, opts)
-keymap("n", "<Leader>hs", vim.cmd.new, opts)
+      -- Creating splits
+      { "<Leader>vs", vim.cmd.vnew },
+      { "<Leader>hs", vim.cmd.new },
 
--- Save (actually, update)
--- Like ":write", but only write when the buffer has been modified.
-keymap("n", "<Leader>w", vim.cmd.update, opts)
+      -- Save (actually, update)
+      -- Like ":write", but only write when the buffer has been modified.
+      { "<Leader>w", vim.cmd.update },
 
--- Resize with arrows
-keymap("n", "<C-Up>", "<cmd>resize +2<CR>", opts)
-keymap("n", "<C-Down>", "<cmd>resize -2<CR>", opts)
-keymap("n", "<C-Left>", "<cmd>vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", "<cmd>vertical resize +2<CR>", opts)
+      -- Resize with arrows
+      { "<C-Up>", "<cmd>resize +2<CR>" },
+      { "<C-Down>", "<cmd>resize -2<CR>" },
+      { "<C-Left>", "<cmd>vertical resize -2<CR>" },
+      { "<C-Right>", "<cmd>vertical resize +2<CR>" },
 
--- Navigate buffers
-keymap("n", "<S-l>", vim.cmd.bnext, opts)
-keymap("n", "<S-h>", vim.cmd.bprevious, opts)
+      -- Navigate buffers
+      { "<S-l>", vim.cmd.bnext },
+      { "<S-h>", vim.cmd.bprevious },
 
--- Close buffers
-keymap("n", "<Leader>c", require("utils").buf_kill, opts)
+      -- Move text up and down
+      { "<A-j>", ":m .+1<CR>==" },
+      { "<A-k>", ":m .-2<CR>==" },
 
--- Insert --
--- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
+      -- Yank the rest of the line with "Y"
+      { "Y", "y$" },
 
--- Visual --
--- Stay in indent mode
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
+      -- Telescope
+      { "<Leader>ff", "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>" },
+      { "<Leader>fh", "<cmd>Telescope help_tags<CR>" },
+      { "<Leader>fg", "<cmd>Telescope git_files<CR>" },
+      { "<Leader>fb", "<cmd>Telescope buffers<CR>" },
+      { "<Leader>fp", "<cmd>Telescope projects<CR>" },
+      {
+        "<Leader>fk",
+        function()
+          builtin.grep_string { search = vim.fn.input "Grep > " }
+        end,
+      },
 
--- Visual Block --
--- Move text up and down
-keymap("n", "<A-j>", ":m .+1<CR>==", opts)
-keymap("n", "<A-k>", ":m .-2<CR>==", opts)
-keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
-keymap("v", "K", ":m '<-2<CR>gv=gv", opts)
+      -- Git
+      { "<Leader>gs", vim.cmd.G },
 
--- Others
--- Yank the rest of the line with "Y"
-keymap("n", "Y", "y$", opts)
+      -- Nvimtree
+      { "<Leader>e", vim.cmd.NvimTreeToggle },
 
--- Plugin keymaps
--- Telescope
-local builtin = require "telescope.builtin"
+      -- Lazy
+      { "<Leader>ps", "<cmd>Lazy sync<CR>" },
 
-keymap("n", "<Leader>ff", "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>", opts)
-keymap("n", "<Leader>fh", "<cmd>Telescope help_tags<CR>", opts)
-keymap("n", "<Leader>fg", "<cmd>Telescope git_files<CR>", opts)
-keymap("n", "<Leader>fb", "<cmd>Telescope buffers<CR>", opts)
-keymap("n", "<Leader>fp", "<cmd>Telescope projects<CR>", opts)
-keymap("n", "<Leader>fk", function()
-  builtin.grep_string { search = vim.fn.input "Grep > " }
-end, opts)
+      -- Autoformat
+      { "<Leader>lf", vim.lsp.buf.format },
 
--- Git
-keymap("n", "<Leader>gs", vim.cmd.G, opts)
+      -- C-u / C-d keep centered
+      { "<C-d>", "<C-d>zz" },
+      { "<C-u>", "<C-u>zz" },
 
--- Nvimtree
-keymap("n", "<Leader>e", vim.cmd.NvimTreeToggle, opts)
+      -- J keeps cursor in place
+      { "J", "mzJ`z" },
 
--- Tablemode
-keymap("x", "<Leader>tb", vim.cmd.Tableize, opts)
+      -- Search now keep cursor in the middle
+      { "n", "nzzzv" },
+      { "N", "Nzzzv" },
 
--- Lazy
-keymap("n", "<Leader>ps", "<cmd>Lazy sync<CR>", opts)
+      -- Not sure how to comment this one
+      { "<leader>p", '"_dP' },
 
--- Autoformat
-keymap("n", "<Leader>lf", vim.lsp.buf.format, opts)
+      -- (Barbar) Order buffers
+      { "<leader>bl", vim.cmd.BufferOrderByLanguage },
+      { "<leader>bn", vim.cmd.BufferOrderByBufferNumber },
 
--- C-u / C-d keep centered
-keymap("n", "<C-d>", "<C-d>zz", opts)
-keymap("n", "<C-u>", "<C-u>zz", opts)
+      -- TODO: Find out why this is throwing an error
+      -- Close buffer
+      { "<leader>c", bufkill },
+    },
+  },
+  -- Insert mode
+  {
+    mode = "i",
+    keys = {
+      -- Press jk fast to enter
+      { "jk", "<ESC>" },
+    },
+  },
+  -- Visual mode
+  {
+    mode = "v",
+    keys = {
+      -- Stay in indent mode
+      { "<", "<gv" },
+      { ">", ">gv" },
 
--- J keeps cursor in place
-keymap("n", "J", "mzJ`z", opts)
+      -- Move text up and down
+      { "J", ":m '>+1<CR>gv=gv" },
+      { "K", ":m '<-2<CR>gv=gv" },
+    },
+  },
+}
 
--- Search now keep cursor in the middle
-keymap("n", "n", "nzzzv")
-keymap("n", "N", "Nzzzv")
-
--- Not sure how to comment this one
-keymap("x", "<leader>p", '"_dP', opts)
-
--- (Barbar) Order buffers
-keymap("n", "<leader>bl", vim.cmd.BufferOrderByLanguage, opts)
-keymap("n", "<leader>bn", vim.cmd.BufferOrderByBufferNumber, opts)
+for _, mapping in ipairs(mappings) do
+  for _, key in ipairs(mapping.keys) do
+    keymap(mapping.mode, key[1], key[2], opts)
+  end
+end
