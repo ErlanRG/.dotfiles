@@ -96,6 +96,9 @@ return {
   { "nvim-telescope/telescope.nvim" },
 
   -- Treesitter
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-  { "mrjones2014/nvim-ts-rainbow" },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+  },
+  -- { "HiPhish/nvim-ts-rainbow2" },
 }

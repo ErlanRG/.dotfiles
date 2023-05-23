@@ -21,11 +21,14 @@ configs.setup {
   autopairs = {
     enable = true,
   },
-  rainbow = {
-    enable = true,
-    extended_mode = true,
-    max_file_lines = nil,
-  },
+  -- @@@
+  -- TODO: find out why rainbow is braking the buffer kill function.
+  -- By now, it should remain disabled.
+  -- rainbow = {
+  --   enable = false,
+  --   query = "rainbow-parens",
+  --   strategy = require("ts-rainbow").strategy.global,
+  -- },
   indent = {
     enable = true,
     disable = { "yaml" },
