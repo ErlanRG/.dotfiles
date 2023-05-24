@@ -1,4 +1,5 @@
 local bufkill = require("utils").buf_kill
+local formatting = require("utils").lsp_formatting
 local builtin = require "telescope.builtin"
 local opts = { noremap = true, silent = true }
 
@@ -67,7 +68,7 @@ local mappings = {
       { "<Leader>ps", "<cmd>Lazy sync<CR>" },
 
       -- Autoformat
-      { "<Leader>lf", vim.lsp.buf.format },
+      { "<Leader>lf", formatting },
 
       -- C-u / C-d keep centered
       { "<C-d>", "<C-d>zz" },

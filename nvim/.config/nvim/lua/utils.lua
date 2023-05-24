@@ -73,4 +73,16 @@ function M.buf_kill(kill_command, bufnr, force)
   end
 end
 
+-- Formatting
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts#neovim-08
+M.lsp_formatting = function(bufnr)
+  vim.lsp.buf.format {
+    filter = function(client)
+      return client.name == "null-ls"
+    end,
+    bufnr = bufnr,
+  }
+end
+
+
 return M
