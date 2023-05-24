@@ -3,9 +3,9 @@ if not status_ok then
   return
 end
 
-local function on_attach(bufnr)
-  local api = require "nvim-tree.api"
+local api = require "nvim-tree.api"
 
+local function on_attach(bufnr)
   local function opts(desc)
     return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
   end
@@ -77,6 +77,12 @@ local function on_attach(bufnr)
     vim.keymap.set("n", keys, mapping[1], opts(mapping[2]))
   end
 end
+
+-- Automatically open file upon creation
+--- @see https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#automatically-open-file-upon-creation
+api.events.subscribe(api.events.Event.FileCreated, function(file)
+  vim.cmd("edit" .. file.fname)
+end)
 
 nvim_tree.setup {
   on_attach = on_attach,
