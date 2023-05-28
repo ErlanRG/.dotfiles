@@ -269,11 +269,12 @@ assign [class="kitty"] $ws1
 assign [class="wezterm"] $ws1
 assign [class="(?i)firefox"] $ws2
 assign [class="(?i)librewolf"] $ws2
-assign [class="^libreoffice"] $ws3
 assign [class="Thunar"] $ws3
+assign [class="^libreoffice"] $ws3
 assign [class="thunderbird"] $ws4
 assign [class="Spotify"] $ws5
 assign [class="Steam"] $ws6
+assign [class="net-runelite-client-RuneLite"] $ws6
 assign [class="whatsappweb"] $ws7
 assign [class="Virt-manager"] $ws8
 
