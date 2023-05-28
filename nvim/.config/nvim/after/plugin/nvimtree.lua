@@ -19,7 +19,7 @@ local function on_attach(bufnr)
     ["<C-v>"] = { api.node.open.vertical, "Open: Vertical Split" },
     ["<C-x>"] = { api.node.open.horizontal, "Open: Horizontal Split" },
     ["<BS>"] = { api.node.navigate.parent_close, "Close Directory" },
-    ["<CR>"] = { api.node.open.edit, "Open" },
+    -- ["<CR>"] = { api.node.open.edit, "Open" },
     ["<Tab>"] = { api.node.open.preview, "Open Preview" },
     [">"] = { api.node.navigate.sibling.next, "Next Sibling" },
     ["<"] = { api.node.navigate.sibling.prev, "Previous Sibling" },
@@ -29,7 +29,7 @@ local function on_attach(bufnr)
     ["bmv"] = { api.marks.bulk.move, "Move Bookmarked" },
     ["B"] = { api.tree.toggle_no_buffer_filter, "Toggle No Buffer" },
     ["c"] = { api.fs.copy.node, "Copy" },
-    ["C"] = { api.tree.toggle_git_clean_filter, "Toggle Git Clean" },
+    -- ["C"] = { api.tree.toggle_git_clean_filter, "Toggle Git Clean" },
     ["[c"] = { api.node.navigate.git.prev, "Prev Git" },
     ["]c"] = { api.node.navigate.git.next, "Next Git" },
     ["d"] = { api.fs.remove, "Delete" },
@@ -47,7 +47,7 @@ local function on_attach(bufnr)
     ["J"] = { api.node.navigate.sibling.last, "Last Sibling" },
     ["K"] = { api.node.navigate.sibling.first, "First Sibling" },
     ["m"] = { api.marks.toggle, "Toggle Bookmark" },
-    ["o"] = { api.node.open.edit, "Open" },
+    -- ["o"] = { api.node.open.edit, "Open" },
     ["O"] = { api.node.open.no_window_picker, "Open: No Window Picker" },
     ["p"] = { api.fs.paste, "Paste" },
     ["P"] = { api.node.navigate.parent, "Parent Directory" },
@@ -263,8 +263,8 @@ nvim_tree.setup {
     require_confirm = true,
   },
   live_filter = {
-    prefix = "[FILTER]: ",
-    always_show_folders = true,
+    prefix = " ",
+    always_show_folders = false,
   },
   tab = {
     sync = {
