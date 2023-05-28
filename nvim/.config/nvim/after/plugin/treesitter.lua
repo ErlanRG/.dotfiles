@@ -14,21 +14,18 @@ configs.setup {
   },
   sync_install = false,
   highlight = {
-    enable = true, -- false will disable the whole extension
+    enable = true,    -- false will disable the whole extension
     disable = { "" }, -- list of language that will be disabled
     additional_vim_regex_highlighting = true,
   },
   autopairs = {
     enable = true,
   },
-  -- @@@
-  -- TODO: find out why rainbow is braking the buffer kill function.
-  -- By now, it should remain disabled.
-  -- rainbow = {
-  --   enable = false,
-  --   query = "rainbow-parens",
-  --   strategy = require("ts-rainbow").strategy.global,
-  -- },
+  rainbow = {
+    enable = true,
+    query = "rainbow-parens",
+    strategy = require("ts-rainbow").strategy.global,
+  },
   indent = {
     enable = true,
     disable = { "yaml" },

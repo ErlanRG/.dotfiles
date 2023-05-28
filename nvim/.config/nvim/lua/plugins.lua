@@ -18,7 +18,7 @@ return {
   { "windwp/nvim-autopairs" }, -- Autopairs, integrates with both cmp and treesitter
 
   -- Barbar
-  { "romgrk/barbar.nvim",          commit = "875ae20301cf13b8410f75d62857f87e2c53a58b" },
+  { "romgrk/barbar.nvim" },
 
   -- Cmp
   { "L3MON4D3/LuaSnip" },             --snippet engine
@@ -100,5 +100,5 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
   },
-  -- { "HiPhish/nvim-ts-rainbow2" },
+  { "HiPhish/nvim-ts-rainbow2" },
 }
