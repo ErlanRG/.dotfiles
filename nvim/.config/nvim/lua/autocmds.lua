@@ -55,7 +55,7 @@ autocmd("FileType", {
 local AutoResize = augroup("AutoResizeGroup", { clear = true })
 autocmd("VimResized", {
   pattern = "*",
-  group = Markdown,
+  group = AutoResize,
   command = "tabdo wincmd =",
 })
 

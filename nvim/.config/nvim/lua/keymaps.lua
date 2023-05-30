@@ -1,6 +1,6 @@
 local bufkill = require("utils").buf_kill
-local formatting = require("utils").lsp_formatting
 local builtin = require "telescope.builtin"
+local formatting = require("utils").lsp_formatting
 local opts = { noremap = true, silent = true }
 
 -- Shorten function name
@@ -16,10 +16,10 @@ local mappings = {
     mode = "n",
     keys = {
       -- Better window navigation
-      { "<C-h>", "<C-w>h" },
-      { "<C-j>", "<C-w>j" },
-      { "<C-k>", "<C-w>k" },
-      { "<C-l>", "<C-w>l" },
+      { "<C-h>",      "<C-w>h" },
+      { "<C-j>",      "<C-w>j" },
+      { "<C-k>",      "<C-w>k" },
+      { "<C-l>",      "<C-w>l" },
 
       -- Creating splits
       { "<Leader>vs", vim.cmd.vnew },
@@ -27,24 +27,24 @@ local mappings = {
 
       -- Save (actually, update)
       -- Like ":write", but only write when the buffer has been modified.
-      { "<Leader>w", vim.cmd.update },
+      { "<Leader>w",  vim.cmd.update },
 
       -- Resize with arrows
-      { "<C-Up>", "<cmd>resize +2<CR>" },
-      { "<C-Down>", "<cmd>resize -2<CR>" },
-      { "<C-Left>", "<cmd>vertical resize -2<CR>" },
-      { "<C-Right>", "<cmd>vertical resize +2<CR>" },
+      { "<C-Up>",     "<cmd>resize +2<CR>" },
+      { "<C-Down>",   "<cmd>resize -2<CR>" },
+      { "<C-Left>",   "<cmd>vertical resize -2<CR>" },
+      { "<C-Right>",  "<cmd>vertical resize +2<CR>" },
 
       -- Navigate buffers
-      { "<S-l>", vim.cmd.bnext },
-      { "<S-h>", vim.cmd.bprevious },
+      { "<S-l>",      vim.cmd.bnext },
+      { "<S-h>",      vim.cmd.bprevious },
 
       -- Move text up and down
-      { "<A-j>", ":m .+1<CR>==" },
-      { "<A-k>", ":m .-2<CR>==" },
+      { "<A-j>",      ":m .+1<CR>==" },
+      { "<A-k>",      ":m .-2<CR>==" },
 
       -- Yank the rest of the line with "Y"
-      { "Y", "y$" },
+      { "Y",          "y$" },
 
       -- Telescope
       { "<Leader>ff", "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>" },
@@ -62,35 +62,38 @@ local mappings = {
       { "<Leader>gs", vim.cmd.G },
 
       -- Nvimtree
-      { "<Leader>e", vim.cmd.NvimTreeToggle },
+      { "<Leader>e",  vim.cmd.NvimTreeToggle },
 
       -- Lazy
       { "<Leader>ps", "<cmd>Lazy sync<CR>" },
 
       -- Autoformat
       { "<Leader>lf", formatting },
+      { "<Leader>lF", vim.lsp.buf.format },
 
       -- C-u / C-d keep centered
-      { "<C-d>", "<C-d>zz" },
-      { "<C-u>", "<C-u>zz" },
+      { "<C-d>",      "<C-d>zz" },
+      { "<C-u>",      "<C-u>zz" },
 
       -- J keeps cursor in place
-      { "J", "mzJ`z" },
+      { "J",          "mzJ`z" },
 
       -- Search now keep cursor in the middle
-      { "n", "nzzzv" },
-      { "N", "Nzzzv" },
+      { "n",          "nzzzv" },
+      { "N",          "Nzzzv" },
 
       -- Not sure how to comment this one
-      { "<leader>p", '"_dP' },
+      { "<leader>p",  '"_dP' },
 
       -- (Barbar) Order buffers
       { "<leader>bl", vim.cmd.BufferOrderByLanguage },
       { "<leader>bn", vim.cmd.BufferOrderByBufferNumber },
 
-      -- TODO: Find out why this is throwing an error
       -- Close buffer
-      { "<leader>c", bufkill },
+      { "<leader>c",  bufkill },
+
+      -- Trouble
+      { "<leader>tr", vim.cmd.Trouble },
     },
   },
   -- Insert mode
