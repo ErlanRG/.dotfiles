@@ -10,7 +10,7 @@ return {
     end,
   },
   { "navarasu/onedark.nvim" },
-  { "rose-pine/neovim",            name = "rose-pine" },
+  { "rose-pine/neovim",                         name = "rose-pine" },
   { "nvim-lua/popup.nvim" },   -- An implementation of the Popup API from vim in Neovim
   { "nvim-lua/plenary.nvim" }, -- Useful lua functions used ny lots of plugins
 
@@ -39,12 +39,13 @@ return {
 
   -- Copilot
   { "zbirenbaum/copilot.lua" },
-  {
-    "zbirenbaum/copilot-cmp",
-    config = function()
-      require("copilot_cmp").setup()
-    end,
-  },
+  { "zbirenbaum/copilot-cmp" },
+
+  -- Dashboard
+  { "goolord/alpha-nvim" },
+
+  -- Fidget
+  { "j-hui/fidget.nvim" },
 
   -- Fugitive
   { "tpope/vim-fugitive" },

@@ -94,6 +94,12 @@ local mappings = {
 
       -- Trouble
       { "<leader>tr", vim.cmd.Trouble },
+
+      -- Copilot
+      { "<leader>]",  "<cmd>Copilot panel<CR>" },
+
+      -- Dashboard
+      { "<leader>;",  vim.cmd.Alpha },
     },
   },
   -- Insert mode

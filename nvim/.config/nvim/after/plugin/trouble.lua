@@ -4,20 +4,17 @@ if not ok then
 end
 
 trouble.setup {
-  position = "bottom",            -- position of the list can be: bottom, top, left, right
-  height = 20,                    -- height of the trouble list when position is top or bottom
-  width = 50,                     -- width of the list when position is left or right
-  icons = true,                   -- use devicons for filenames
+  position = "bottom",
+  height = 15,
+  width = 50,
+  icons = true,
   mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
   severity = nil,                 -- nil (ALL) or vim.diagnostic.severity.ERROR | WARN | INFO | HINT
-  fold_open = "",              -- icon used for open folds
-  fold_closed = "",            -- icon used for closed folds
-  group = true,                   -- group results by file
-  padding = true,                 -- add an extra new line on top of the list
+  fold_open = "",
+  fold_closed = "",
+  group = true,
+  padding = true,
   action_keys = {
-    -- key mappings for actions in the trouble list
-    -- map to {} to remove a mapping, for example:
-    -- close = {},
     close = "q",                     -- close the list
     cancel = "<esc>",                -- cancel the preview and get back to your last window / buffer / cursor
     refresh = "r",                   -- manually refresh
