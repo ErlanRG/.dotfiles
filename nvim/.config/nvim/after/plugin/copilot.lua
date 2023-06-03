@@ -1,7 +1,15 @@
-local status_ok, copilot = pcall(require, "copilot")
-if not status_ok then
+local copilot_ok, copilot = pcall(require, "copilot")
+if not copilot_ok then
   return
 end
+
+local copilotcmp_ok, copilot_cmp = pcall(require, "copilot_cmp")
+if not copilotcmp_ok then
+  return
+end
+
+-- Load copilot cmp
+copilot_cmp.setup {}
 
 copilot.setup {
   panel = {
@@ -36,8 +44,8 @@ copilot.setup {
     yaml = false,
     markdown = false,
     help = false,
-    gitcommit = false,
-    gitrebase = false,
+    gitcommit = true,
+    gitrebase = true,
     hgcommit = false,
     svn = false,
     cvs = false,

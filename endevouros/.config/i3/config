@@ -138,7 +138,7 @@ bindsym $mod+Shift+e exec ~/.config/rofi/powermenu/type-1/powermenu.sh
 # lock by blurring the screen:
 # bindsym $mod+l exec ~/.config/i3/scripts/blur-lock
 # lock with betterlockscreen:
-bindsym $mod+l exec betterlockscreen -l
+bindsym $mod+l exec betterlockscreen -u $HOME/Pictures/Wallpapers/tokyo-night05.png -l
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -269,11 +269,12 @@ assign [class="kitty"] $ws1
 assign [class="wezterm"] $ws1
 assign [class="(?i)firefox"] $ws2
 assign [class="(?i)librewolf"] $ws2
-assign [class="^libreoffice"] $ws3
 assign [class="Thunar"] $ws3
+assign [class="^libreoffice"] $ws3
 assign [class="thunderbird"] $ws4
 assign [class="Spotify"] $ws5
 assign [class="Steam"] $ws6
+assign [class="net-runelite-client-RuneLite"] $ws6
 assign [class="whatsappweb"] $ws7
 assign [class="Virt-manager"] $ws8
 
@@ -414,22 +415,23 @@ for_window [class="keepassxc"] resize set 640 480 #to change size of all floatin
 # Define colors variables:
 set $darkbluetrans	#08052be6
 set $darkblue		#08052b
-set $lightblue		#5294e2
-set $urgentred		#e53935
-set $white		#ffffff
-set $black		#000000
-set $purple		#e345ff
+set $lightblue		#a4b9ef
+set $urgentred		#e38c8f
+set $white		    #ffffff
+set $black		    #000000
+set $purple		    #c6aae8
 set $darkgrey		#383c4a
-set $grey		#b0b5bd
+set $grey		    #b0b5bd
 set $mediumgrey		#8b8b8b
-set $yellowbrown	#e1b700
-set $green #48E896
+set $yellowbrown	#ebddaa     
+set $green          #94e2d5
+
 # define colors for windows:
-#class		        	border		bground		text		indicator	child_border
-client.focused		    	$green	$darkblue	$white		$green	$green
-client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	$darkgrey
-client.focused_inactive		$darkblue	$darkblue	$grey		$black		$black
-client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
+#class		        	    border		bground		text		indicator	    child_border
+client.focused		    	$green	    $darkblue	$white		$green	        $green
+client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	    $darkgrey
+client.focused_inactive		$darkblue	$darkblue	$grey		$black		    $black
+client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown    $yellowbrown
 
 ############################################
 # bar settings (input comes from i3blocks) #

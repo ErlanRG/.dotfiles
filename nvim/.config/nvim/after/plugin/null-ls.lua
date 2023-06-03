@@ -8,10 +8,14 @@ local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup {
   sources = {
+    -- Formatting
+    formatting.beautysh.with {
+      extra_args = { "-i 2" }, -- indent with 2 spaces.
+    },
     formatting.prettier,
     formatting.stylua,
-    formatting.beautysh.with {
-      extra_args = { "-i 2" },
-    },
+    formatting.clang_format,
+
+    -- Diagnostics
   },
 }

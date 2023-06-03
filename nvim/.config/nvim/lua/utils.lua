@@ -73,4 +73,25 @@ function M.buf_kill(kill_command, bufnr, force)
   end
 end
 
+--- Formatting
+--- @see https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts#neovim-08
+--- @usage The formatting applied to the buffer will depend on the LSP client attached to the buffer.
+---        If "null-ls" is attached, it will use whatever formatter is configured in null-ls. Else, it will use the
+---        formatter configured in the LSP client.
+M.lsp_formatting = function(bufnr)
+  local clients = vim.lsp.get_active_clients()
+  for _, client in ipairs(clients) do
+    if client.name == "null-ls" then
+      vim.lsp.buf.format {
+        bufnr = bufnr,
+      }
+      return
+    end
+  end
+
+  vim.lsp.buf.format {
+    bufnr = bufnr,
+  }
+end
+
 return M

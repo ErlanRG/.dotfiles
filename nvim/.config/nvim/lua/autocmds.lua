@@ -4,7 +4,7 @@ local augroup = vim.api.nvim_create_augroup
 --[[ General settings ]]
 local GeneralSettings = augroup("GeneralSettings", { clear = true })
 autocmd("FileType", {
-  pattern = { "qf", "help", "man", "lspinfo" },
+  pattern = { "qf", "help", "man", "lspinfo", "fugitive" },
   group = GeneralSettings,
   callback = function(args)
     vim.keymap.set("n", "q", "<cmd>:close<CR>", { buffer = args.buf })
@@ -55,7 +55,7 @@ autocmd("FileType", {
 local AutoResize = augroup("AutoResizeGroup", { clear = true })
 autocmd("VimResized", {
   pattern = "*",
-  group = Markdown,
+  group = AutoResize,
   command = "tabdo wincmd =",
 })
 

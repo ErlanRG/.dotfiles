@@ -14,7 +14,7 @@ configs.setup {
   },
   sync_install = false,
   highlight = {
-    enable = true, -- false will disable the whole extension
+    enable = true,    -- false will disable the whole extension
     disable = { "" }, -- list of language that will be disabled
     additional_vim_regex_highlighting = true,
   },
@@ -23,8 +23,8 @@ configs.setup {
   },
   rainbow = {
     enable = true,
-    extended_mode = true,
-    max_file_lines = nil,
+    query = "rainbow-parens",
+    strategy = require("ts-rainbow").strategy.global,
   },
   indent = {
     enable = true,
