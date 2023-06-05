@@ -10,7 +10,10 @@ return {
     end,
   },
   { "navarasu/onedark.nvim" },
-  { "rose-pine/neovim",                         name = "rose-pine" },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+  },
   { "nvim-lua/popup.nvim" },   -- An implementation of the Popup API from vim in Neovim
   { "nvim-lua/plenary.nvim" }, -- Useful lua functions used ny lots of plugins
 
