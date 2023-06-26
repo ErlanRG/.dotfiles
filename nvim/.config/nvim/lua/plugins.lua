@@ -48,7 +48,10 @@ return {
   { "goolord/alpha-nvim" },
 
   -- Fidget
-  { "j-hui/fidget.nvim" },
+  {
+    "j-hui/fidget.nvim",
+    tag = "legacy",
+  },
 
   -- Fugitive
   { "tpope/vim-fugitive" },
