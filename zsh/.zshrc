@@ -1,6 +1,9 @@
 # User-specific binary directories to the path
 PATH="$HOME/.local/bin/:$PATH"
 
+# Add JavaFX to the path
+export PATH_TO_FX="/usr/lib/jvm/java-20-openjdk/lib/javafx_modules/"
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 

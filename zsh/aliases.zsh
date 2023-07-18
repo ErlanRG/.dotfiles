@@ -29,6 +29,7 @@ alias lg='lazygit'
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'  # remove orphaned packages
 alias pacsyu='sudo pacman -Syu'                  # update only standard pkgs
 alias pacsyyu='sudo pacman -Syyu'                # Refresh pkglist & update standard pkgs
+alias pacrns='sudo pacman -Rns'                 # Remove a package with its dependencies
 alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
 alias yaysua='yay -Sua --noconfirm'              # update only AUR pkgs (yay)
 alias yaysyu='yay -Syu --noconfirm'              # update standard pkgs and AUR pkgs (yay)
