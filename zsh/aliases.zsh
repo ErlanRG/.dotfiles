@@ -41,6 +41,7 @@ alias rm='rm -i'
 
 # other
 alias c='clear'
+alias rmdir='rm -rf'
 alias shutdown='shutdown now'
 alias startup_nvim='nvim --startuptime startup.log -c exit && tail -100 startup.log'
 
