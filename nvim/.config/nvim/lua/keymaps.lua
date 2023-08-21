@@ -107,7 +107,13 @@ local mappings = {
     mode = "i",
     keys = {
       -- Press jk fast to enter
-      { "jk", "<ESC>" },
+      { "jk",    "<ESC>" },
+
+      -- Use CTRL to control the cursor in insert mode
+      { "<C-h>", "<Left>" },
+      { "<C-j>", "<Down>" },
+      { "<C-k>", "<Up>" },
+      { "<C-l>", "<Right>" },
     },
   },
   -- Visual mode
