@@ -148,6 +148,7 @@ local servers = {
   "html",
   "jdtls",
   "lua_ls",
+  "pyright",
   "rust_analyzer",
   "tailwindcss",
   "tsserver",

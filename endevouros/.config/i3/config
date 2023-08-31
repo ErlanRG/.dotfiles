@@ -136,9 +136,10 @@ bindsym $mod+Shift+e exec ~/.config/rofi/powermenu/type-1/powermenu.sh
 # lock with a picture:
 #bindsym $mod+l exec i3lock -i  ~/.config/i3/i3-lock-screen.png -p default|win -t
 # lock by blurring the screen:
-bindsym $mod+l exec ~/.config/i3/scripts/blur-lock
+# bindsym $mod+l exec ~/.config/i3/scripts/blur-lock
 # lock with betterlockscreen:
-# bindsym $mod+l exec betterlockscreen -u $HOME/Pictures/Wallpapers/tokyo-night05.png -l
+exec --no-startup-id betterlockscreen -u ~/Pictures/Wallpapers/tokyo-night05.png
+bindsym $mod+l exec betterlockscreen -l
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
