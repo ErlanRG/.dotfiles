@@ -1,0 +1,14 @@
+[user]
+	email = erlanrangel@gmail.com
+	name = Erlan Rangel
+    username = rangeler
+
+[core]
+    editor = nvim
+
+[init]
+    defaultBranch = main
+
+[github]
+    user = ErlanRG
+    token = token
