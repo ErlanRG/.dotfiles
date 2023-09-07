@@ -12,7 +12,7 @@ null_ls.setup {
     formatting.beautysh.with {
       extra_args = { "-i 2" }, -- indent with 2 spaces.
     },
-    formatting.autopep8,
+    formatting.black,
     formatting.clang_format,
     formatting.prettier,
     formatting.stylua,
