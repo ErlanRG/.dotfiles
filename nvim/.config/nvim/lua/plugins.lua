@@ -3,11 +3,7 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    priority = 1000,
-    lazy = true,
-    config = function()
-      vim.cmd.colorscheme "catppuccin"
-    end,
+    commit = "2e3e5ebcdc24ef0d5b14a0a999dbbe7936512c46",
   },
   { "navarasu/onedark.nvim" },
   {
