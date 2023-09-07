@@ -12,9 +12,9 @@ M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 M.setup = function()
   local signs = {
     { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn",  text = "" },
-    { name = "DiagnosticSignHint",  text = "" },
-    { name = "DiagnosticSignInfo",  text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignInfo", text = "" },
   }
 
   for _, sign in ipairs(signs) do
@@ -145,13 +145,13 @@ local servers = {
   "bashls",
   "clangd",
   "emmet_ls",
-  "html",
+  -- "html",
   "jdtls",
   "lua_ls",
   "pyright",
   "rust_analyzer",
-  "tailwindcss",
-  "tsserver",
+  -- "tailwindcss",
+  -- "tsserver",
 }
 
 -- This only adds the extra configuration for the servers.
@@ -159,8 +159,8 @@ local servers = {
 local languageModule = {
   clangd = "lang.clangd",
   rust_analyzer = "lang.rust",
-  tailwindcss = "lang.tailwindcss",
-  tsserver = "lang.tsserver",
+  -- tailwindcss = "lang.tailwindcss",
+  -- tsserver = "lang.tsserver",
 }
 
 local opts = {}
