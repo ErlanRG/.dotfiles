@@ -2,6 +2,7 @@
 -- Author: shadmansaleh
 -- Credit: glepnir
 local lualine = require "lualine"
+local utils = require "utils"
 
 -- Color table for highlights
 -- stylua: ignore
@@ -182,6 +183,22 @@ ins_left {
   end,
   icon = " LSP:",
   color = { fg = "#ffffff", gui = "bold" },
+}
+
+ins_right {
+  -- Python virtual env
+  function()
+    if vim.bo.filetype == "python" then
+      local venv = os.getenv "VIRTUAL_ENV"
+      if venv then
+        local icons = require "nvim-web-devicons"
+        local py_icon, _ = icons.get_icon ".py"
+        return string.format(" " .. py_icon .. " (%s)", utils.env_cleanup(venv))
+      end
+    end
+    return ""
+  end,
+  color = { fg = colors.violet, gui = "bold" },
 }
 
 -- Add components to right sections
