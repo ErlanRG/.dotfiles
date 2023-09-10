@@ -2,6 +2,8 @@
 -- Author: shadmansaleh
 -- Credit: glepnir
 local lualine = require "lualine"
+local utils = require "utils"
+local icons = utils.icons
 
 -- Color table for highlights
 -- stylua: ignore
@@ -91,7 +93,7 @@ ins_left {
 ins_left {
   -- mode component
   function()
-    return ""
+    return icons.ui.Evil
   end,
   color = function()
     -- auto change color according to neovims mode
@@ -147,7 +149,11 @@ ins_left { "progress", color = { fg = colors.fg, gui = "bold" } }
 ins_left {
   "diagnostics",
   sources = { "nvim_diagnostic" },
-  symbols = { error = " ", warn = " ", info = " " },
+  symbols = {
+    error = icons.diagnostics.BoldError .. " ",
+    warn = icons.diagnostics.BoldWarning .. " ",
+    info = icons.diagnostics.BoldInformation .. " ",
+  },
   diagnostics_color = {
     color_error = { fg = colors.red },
     color_warn = { fg = colors.yellow },
@@ -184,6 +190,22 @@ ins_left {
   color = { fg = "#ffffff", gui = "bold" },
 }
 
+ins_right {
+  -- Python virtual env
+  function()
+    if vim.bo.filetype == "python" then
+      local venv = os.getenv "VIRTUAL_ENV"
+      if venv then
+        local icons = require "nvim-web-devicons"
+        local py_icon, _ = icons.get_icon ".py"
+        return string.format(" " .. py_icon .. " (%s)", utils.env_cleanup(venv))
+      end
+    end
+    return ""
+  end,
+  color = { fg = colors.violet, gui = "bold" },
+}
+
 -- Add components to right sections
 ins_right {
   "o:encoding",       -- option component same as &encoding in viml
@@ -201,14 +223,18 @@ ins_right {
 
 ins_right {
   "branch",
-  icon = "",
+  icon = icons.git.Branch,
   color = { fg = colors.violet, gui = "bold" },
 }
 
 ins_right {
   "diff",
   -- Is it me or the symbol for modified us really weird
-  symbols = { added = " ", modified = "柳 ", removed = " " },
+  symbols = {
+    added = icons.git.LineAdded .. " ",
+    modified = icons.git.LineModified .. " ",
+    removed = icons.git.FileRenamed .. " ",
+  },
   diff_color = {
     added = { fg = colors.green },
     modified = { fg = colors.orange },
@@ -225,5 +251,4 @@ ins_right {
   padding = { left = 1 },
 }
 
--- Now don't forget to initialize lualine
 lualine.setup(config)
