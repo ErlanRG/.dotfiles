@@ -3,6 +3,7 @@
 -- Credit: glepnir
 local lualine = require "lualine"
 local utils = require "utils"
+local icons = utils.icons
 
 -- Color table for highlights
 -- stylua: ignore
@@ -92,7 +93,7 @@ ins_left {
 ins_left {
   -- mode component
   function()
-    return ""
+    return icons.ui.Evil
   end,
   color = function()
     -- auto change color according to neovims mode
@@ -148,7 +149,11 @@ ins_left { "progress", color = { fg = colors.fg, gui = "bold" } }
 ins_left {
   "diagnostics",
   sources = { "nvim_diagnostic" },
-  symbols = { error = " ", warn = " ", info = " " },
+  symbols = {
+    error = icons.diagnostics.BoldError .. " ",
+    warn = icons.diagnostics.BoldWarning .. " ",
+    info = icons.diagnostics.BoldInformation .. " ",
+  },
   diagnostics_color = {
     color_error = { fg = colors.red },
     color_warn = { fg = colors.yellow },
@@ -218,14 +223,18 @@ ins_right {
 
 ins_right {
   "branch",
-  icon = "",
+  icon = icons.git.Branch,
   color = { fg = colors.violet, gui = "bold" },
 }
 
 ins_right {
   "diff",
   -- Is it me or the symbol for modified us really weird
-  symbols = { added = " ", modified = "柳 ", removed = " " },
+  symbols = {
+    added = icons.git.LineAdded .. " ",
+    modified = icons.git.LineModified .. " ",
+    removed = icons.git.FileRenamed .. " ",
+  },
   diff_color = {
     added = { fg = colors.green },
     modified = { fg = colors.orange },
@@ -242,5 +251,4 @@ ins_right {
   padding = { left = 1 },
 }
 
--- Now don't forget to initialize lualine
 lualine.setup(config)

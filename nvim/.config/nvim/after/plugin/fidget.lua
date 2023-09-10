@@ -3,10 +3,12 @@ if not ok then
   return
 end
 
+local icons = require("utils").icons
+
 fidget.setup {
   text = {
     spinner = "circle_quarters", -- animation shown when tasks are ongoing
-    done = "✔",                -- character shown when all tasks are complete
+    done = icons.ui.Check,       -- character shown when all tasks are complete
     commenced = "Started",       -- message shown when task starts
     completed = "Done",          -- message shown when task completes
   },

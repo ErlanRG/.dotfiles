@@ -4,6 +4,7 @@ if not status_ok then
 end
 
 local api = require "nvim-tree.api"
+local icons = require("utils").icons
 
 local function on_attach(bufnr)
   local function opts(desc)
@@ -99,7 +100,7 @@ nvim_tree.setup {
   view = {
     adaptive_size = false,
     centralize_selection = false,
-    width = 30,
+    width = 40,
     hide_root_folder = false,
     side = "left",
     preserve_window_proportions = false,
@@ -132,8 +133,8 @@ nvim_tree.setup {
       inline_arrows = true,
       icons = {
         corner = "└",
-        edge = "│",
-        item = "│",
+        edge = icons.ui.LineMiddle,
+        item = icons.ui.LineMiddle,
         none = " ",
       },
     },
@@ -141,7 +142,7 @@ nvim_tree.setup {
       webdev_colors = true,
       git_placement = "before",
       padding = " ",
-      symlink_arrow = " ➛ ",
+      symlink_arrow = " " .. icons.ui.SymlinkArrow .. " ",
       show = {
         file = true,
         folder = true,
@@ -149,27 +150,27 @@ nvim_tree.setup {
         git = true,
       },
       glyphs = {
-        default = "",
-        symlink = "",
-        bookmark = "",
+        default = icons.ui.Text,
+        symlink = icons.ui.FileSymlink,
+        bookmark = icons.ui.BookMark,
         folder = {
-          arrow_closed = "",
-          arrow_open = "",
-          default = "",
-          open = "",
-          empty = "",
-          empty_open = "",
-          symlink = "",
-          symlink_open = "",
+          arrow_closed = icons.ui.Triangle,
+          arrow_open = icons.ui.TriangleShortArrowDown,
+          default = icons.ui.Folder,
+          open = icons.ui.FolderOpen,
+          empty = icons.ui.EmptyFolder,
+          empty_open = icons.ui.EmptyFolderOpen,
+          symlink = icons.ui.FolderSymlink,
+          symlink_open = icons.ui.FolderOpen,
         },
         git = {
-          unstaged = "",
-          staged = "S",
-          unmerged = "",
-          renamed = "",
-          untracked = "U",
-          deleted = "",
-          ignored = "◌",
+          unstaged = icons.git.FileUnstaged,
+          staged = icons.git.FileStaged,
+          unmerged = icons.git.FileUnmerged,
+          renamed = icons.git.FileRenamed,
+          untracked = icons.git.FileUntracked,
+          deleted = icons.git.FileDeleted,
+          ignored = icons.git.FileIgnored,
         },
       },
     },
@@ -196,10 +197,10 @@ nvim_tree.setup {
       max = vim.diagnostic.severity.ERROR,
     },
     icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
+      hint = icons.diagnostics.BoldHint,
+      info = icons.diagnostics.BoldInformation,
+      warning = icons.diagnostics.BoldWarning,
+      error = icons.diagnostics.BoldError,
     },
   },
   filters = {
@@ -263,7 +264,7 @@ nvim_tree.setup {
     require_confirm = true,
   },
   live_filter = {
-    prefix = " ",
+    prefix = icons.ui.Search .. " ",
     always_show_folders = false,
   },
   tab = {

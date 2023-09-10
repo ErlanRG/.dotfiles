@@ -3,42 +3,44 @@ if not status_ok then
   return
 end
 
+local icons = require("utils").icons
+
 gitsigns.setup {
   signs = {
     add = {
       hl = "GitSignsAdd",
-      text = "▎",
+      text = icons.ui.BoldLineLeft,
       numhl = "GitSignsAddNr",
       linehl = "GitSignsAddLn",
     },
     change = {
       hl = "GitSignsChange",
-      text = "▎",
+      text = icons.ui.BoldLineLeft,
       numhl = "GitSignsChangeNr",
       linehl = "GitSignsChangeLn",
     },
     delete = {
       hl = "GitSignsDelete",
-      text = "契",
+      text = icons.ui.Triangle,
       numhl = "GitSignsDeleteNr",
       linehl = "GitSignsDeleteLn",
     },
     topdelete = {
       hl = "GitSignsDelete",
-      text = "契",
+      text = icons.ui.Triangle,
       numhl = "GitSignsDeleteNr",
       linehl = "GitSignsDeleteLn",
     },
     changedelete = {
       hl = "GitSignsChange",
-      text = "▎",
+      text = icons.ui.BoldLineLeft,
       numhl = "GitSignsChangeNr",
       linehl = "GitSignsChangeLn",
     },
   },
   signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-  numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
-  linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+  numhl = false,     -- Toggle with `:Gitsigns toggle_numhl`
+  linehl = false,    -- Toggle with `:Gitsigns toggle_linehl`
   word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
   watch_gitdir = {
     interval = 1000,

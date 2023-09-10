@@ -3,6 +3,8 @@ if not ok then
   return
 end
 
+local icons = require("utils").icons
+
 trouble.setup {
   position = "bottom",
   height = 15,
@@ -10,8 +12,8 @@ trouble.setup {
   icons = true,
   mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
   severity = nil,                 -- nil (ALL) or vim.diagnostic.severity.ERROR | WARN | INFO | HINT
-  fold_open = "",
-  fold_closed = "",
+  fold_open = icons.ui.TriangleShortArrowDown,
+  fold_closed = icons.ui.Triangle,
   group = true,
   padding = true,
   action_keys = {
@@ -42,10 +44,10 @@ trouble.setup {
   auto_jump = { "lsp_definitions" }, -- for the given modes, automatically jump if there is only a single result
   signs = {
     -- icons / text used for a diagnostic
-    error = "",
-    warning = "",
-    hint = "",
-    information = "",
+    error = icons.diagnostics.Error,
+    warning = icons.diagnostics.Warning,
+    hint = icons.diagnostics.Hint,
+    information = icons.diagnostics.Information,
     other = "﫠",
   },
   use_diagnostic_signs = false, -- enabling this will use the signs defined in your lsp client

@@ -3,6 +3,8 @@ if not status_ok then
   return
 end
 
+local icons = require("utils").icons
+
 -- HACK: work-around for https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
 vim.wo.colorcolumn = "99999"
 
@@ -19,8 +21,8 @@ indent_blankline.setup {
     "NvimTree",
     "Trouble",
   },
-  char = "▏",
-  context_char = "▏",
+  char = icons.ui.LineLeft,
+  context_char = icons.ui.LineLeft,
   show_trailing_blankline_indent = false,
   show_first_indent_level = true,
   use_treesitter = true,

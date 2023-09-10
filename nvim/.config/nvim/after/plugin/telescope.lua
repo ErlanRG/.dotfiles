@@ -6,6 +6,7 @@ end
 local actions = require "telescope.actions"
 local previewers = require "telescope.previewers"
 local sorters = require "telescope.sorters"
+local icons = require("utils").icons
 
 telescope.setup {
   defaults = {
@@ -22,7 +23,7 @@ telescope.setup {
     initial_mode = "insert",
     layout_strategy = "horizontal",
     path_display = { "truncate" },
-    prompt_prefix = "   ",
+    prompt_prefix = " " .. icons.ui.Search .. "  ",
     qflist_previewer = previewers.vim_buffer_qflist.new,
     selection_caret = "  ",
     selection_strategy = "reset",
