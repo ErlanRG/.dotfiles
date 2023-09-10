@@ -43,7 +43,17 @@ telescope.setup {
       preview_cutoff = 120,
     },
     mappings = {
-      n = { ["q"] = actions.close },
+      i = {
+        ["<C-n>"] = actions.move_selection_next,
+        ["<C-p>"] = actions.move_selection_previous,
+        ["<C-j>"] = actions.cycle_history_next,
+        ["<C-k>"] = actions.cycle_history_prev,
+      },
+      n = {
+        ["q"] = actions.close,
+        ["<C-n>"] = actions.move_selection_next,
+        ["<C-p>"] = actions.move_selection_previous,
+      },
     },
     vimgrep_arguments = {
       "rg",
