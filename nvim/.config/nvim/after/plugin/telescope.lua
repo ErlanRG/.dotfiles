@@ -7,6 +7,12 @@ local actions = require "telescope.actions"
 local previewers = require "telescope.previewers"
 local sorters = require "telescope.sorters"
 local icons = require("utils").icons
+local ignore_patterns = {
+  "node_modules",
+  "env",
+  "venv",
+  "__pycache__",
+}
 
 telescope.setup {
   defaults = {
@@ -15,7 +21,7 @@ telescope.setup {
     buffer_previewer_maker = previewers.buffer_previewer_maker,
     color_devicons = true,
     entry_prefix = "  ",
-    file_ignore_patterns = { "node_modules" },
+    file_ignore_patterns = ignore_patterns,
     file_previewer = previewers.vim_buffer_cat.new,
     file_sorter = sorters.get_fuzzy_file,
     generic_sorter = sorters.get_generic_fuzzy_sorter,
