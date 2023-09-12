@@ -3,14 +3,13 @@
 ## ░▀▀▀░░▀░░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░░
 # Setups
 format="$directory$git_branch$character"
-right_format = """$git_status$cmd_duration"""
+right_format = """$python$git_status$cmd_duration"""
 add_newline = false 
 
 # Other languages configurations:
 c.disabled = true
 cmake.disabled = true
 haskell.disabled = true
-python.disabled = true
 ruby.disabled = true
 rust.disabled = true
 perl.disabled = true
@@ -19,9 +18,6 @@ lua.disabled = true
 nodejs.disabled = true
 java.disabled = true
 golang.disabled = true
-
-[conda]
-format = ' [$symbol$environment](dimmed green) '
 
 # Prompt symbols 
 [character]
@@ -61,3 +57,8 @@ min_time = 1
 format = "[]($style)[[神](bg:#313244 fg:#eba0ac bold)$duration](bg:#313244 fg:#BBC3DF)[ ]($style)"
 disabled = false
 style = "bg:none fg:#313244"
+
+[python]
+format = '[]($style)[${symbol}${pyenv_prefix}(\($virtualenv\) )](bg:#313244 fg:#F9E2AF)[ ]($style)'
+style = "bg:none fg:#313244"
+symbol = "  "
