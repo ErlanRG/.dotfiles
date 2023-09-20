@@ -5,16 +5,18 @@ if not status_ok then
   return
 end
 
+local icons = require("utils").icons
+
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 
 M.setup = function()
   local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
+    { name = "DiagnosticSignError", text = icons.diagnostics.BoldError },
+    { name = "DiagnosticSignWarn",  text = icons.diagnostics.BoldWarning },
+    { name = "DiagnosticSignHint",  text = icons.diagnostics.BoldHint },
+    { name = "DiagnosticSignInfo",  text = icons.diagnostics.BoldInformation },
   }
 
   for _, sign in ipairs(signs) do
@@ -23,7 +25,7 @@ M.setup = function()
 
   local config = {
     virtual_text = {
-      prefix = "●",
+      prefix = icons.ui.Circle,
     },
     signs = {
       active = signs,
@@ -88,40 +90,40 @@ end
 
 navic.setup {
   icons = {
-    Array = "" .. " ",
-    Boolean = "",
-    Class = "" .. " ",
-    Color = "" .. " ",
-    Constant = "" .. " ",
-    Constructor = "" .. " ",
-    Enum = "" .. " ",
-    EnumMember = "" .. " ",
-    Event = "" .. " ",
-    Field = "" .. " ",
-    File = "" .. " ",
-    Folder = "" .. " ",
-    Function = "" .. " ",
-    Interface = "" .. " ",
-    Key = "" .. " ",
-    Keyword = "" .. " ",
-    Method = "" .. " ",
-    Module = "" .. " ",
-    Namespace = "" .. " ",
-    Null = "ﳠ" .. " ",
-    Number = "" .. " ",
-    Object = "" .. " ",
-    Operator = "" .. " ",
-    Package = "" .. " ",
-    Property = "" .. " ",
-    Reference = "" .. " ",
-    Snippet = "" .. " ",
-    String = "" .. " ",
-    Struct = "" .. " ",
-    Text = "" .. " ",
-    TypeParameter = "" .. " ",
-    Unit = "" .. " ",
-    Value = "" .. " ",
-    Variable = "" .. " ",
+    Array = icons.kind.Array .. " ",
+    Boolean = icons.kind.Boolean .. " ",
+    Class = icons.kind.Class .. " ",
+    Color = icons.kind.Color .. " ",
+    Constant = icons.kind.Constant .. " ",
+    Constructor = icons.kind.Constructor .. " ",
+    Enum = icons.kind.Enum .. " ",
+    EnumMember = icons.kind.EnumMember .. " ",
+    Event = icons.kind.Event .. " ",
+    Field = icons.kind.Field .. " ",
+    File = icons.kind.File .. " ",
+    Folder = icons.kind.Folder .. " ",
+    Function = icons.kind.Function .. " ",
+    Interface = icons.kind.Interface .. " ",
+    Key = icons.kind.Key .. " ",
+    Keyword = icons.kind.Keyword .. " ",
+    Method = icons.kind.Method .. " ",
+    Module = icons.kind.Module .. " ",
+    Namespace = icons.kind.Namespace .. " ",
+    Null = icons.kind.Null .. " ",
+    Number = icons.kind.Number .. " ",
+    Object = icons.kind.Object .. " ",
+    Operator = icons.kind.Operator .. " ",
+    Package = icons.kind.Package .. " ",
+    Property = icons.kind.Property .. " ",
+    Reference = icons.kind.Reference .. " ",
+    Snippet = icons.kind.Snippet .. " ",
+    String = icons.kind.String .. " ",
+    Struct = icons.kind.Struct .. " ",
+    Text = icons.kind.Text .. " ",
+    TypeParameter = icons.kind.TypeParameter .. " ",
+    Unit = icons.kind.Unit .. " ",
+    Value = icons.kind.Value .. " ",
+    Variable = icons.kind.Variable .. " ",
   },
 }
 
