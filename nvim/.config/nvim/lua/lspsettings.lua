@@ -154,14 +154,26 @@ local servers = {
   -- "tsserver",
 }
 
--- This only adds the extra configuration for the servers.
--- If it is not especified, then the server will use the defaults.
 local languageModule = {
   clangd = "lang.clangd",
   rust_analyzer = "lang.rust",
   -- tailwindcss = "lang.tailwindcss",
   -- tsserver = "lang.tsserver",
 }
+
+--- Adds the extra configuration for the servers.
+-- If not especified, then the server will use the defaults.
+M.moduleName = function(server, opts)
+  local moduleName = languageModule[server]
+  if moduleName then
+    local moduleConfig = require(moduleName)
+    if type(moduleConfig) == "table" then
+      for key, value in pairs(moduleConfig) do
+        opts[key] = value
+      end
+    end
+  end
+end
 
 local opts = {}
 
@@ -173,10 +185,7 @@ for _, server in pairs(servers) do
 
   server = vim.split(server, "@")[1]
 
-  local moduleName = languageModule[server]
-  if moduleName then
-    opts = require(moduleName)
-  end
+  M.moduleName(server, opts)
 
   require("lspconfig")[server].setup(opts)
 end
