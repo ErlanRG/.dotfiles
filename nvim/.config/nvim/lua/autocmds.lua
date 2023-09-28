@@ -51,6 +51,14 @@ autocmd("FileType", {
   command = "setlocal spell",
 })
 
+--[[C++]]
+local CPP = augroup("CPPGroup", { clear = true })
+autocmd("FileType", {
+  pattern = "cpp",
+  group = CPP,
+  command = "setlocal tabstop=4 shiftwidth=4 expandtab",
+})
+
 --[[ Auto resize ]]
 local AutoResize = augroup("AutoResizeGroup", { clear = true })
 autocmd("VimResized", {

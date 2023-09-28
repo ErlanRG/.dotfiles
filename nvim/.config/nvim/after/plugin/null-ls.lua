@@ -13,7 +13,7 @@ null_ls.setup {
       extra_args = { "-i 2" }, -- indent with 2 spaces.
     },
     formatting.black,
-    formatting.clang_format,
+    -- formatting.clang_format,
     formatting.prettier,
     formatting.stylua,
 
