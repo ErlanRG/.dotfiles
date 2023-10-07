@@ -81,8 +81,6 @@ return {
   -- Nvim leap
   { "ggandor/leap.nvim" },
 
-  -- Nvim-navic
-  { "SmiteshP/nvim-navic" },
   -- Neotree
   {
     "nvim-neo-tree/neo-tree.nvim",

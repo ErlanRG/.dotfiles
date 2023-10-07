@@ -39,7 +39,7 @@ vim.opt.formatoptions:remove { "c", "r", "o" }
 
 -- deafult winbar: vim.cmd "set winbar=%=%m%f"
 -- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}%=%m%f"
-vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+--vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 
 for k, v in pairs(options) do
   vim.opt[k] = v
