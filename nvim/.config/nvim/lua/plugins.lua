@@ -6,11 +6,8 @@ return {
     commit = "2e3e5ebcdc24ef0d5b14a0a999dbbe7936512c46",
   },
   { "navarasu/onedark.nvim" },
-  {
-    "rose-pine/neovim",
-    name = "rose-pine",
-  },
-  { "nvim-lua/popup.nvim" },   -- An implementation of the Popup API from vim in Neovim
+  { "rose-pine/neovim", name = "rose-pine" },
+  { "nvim-lua/popup.nvim" }, -- An implementation of the Popup API from vim in Neovim
   { "nvim-lua/plenary.nvim" }, -- Useful lua functions used ny lots of plugins
 
   -- Autopairs
@@ -20,15 +17,15 @@ return {
   { "romgrk/barbar.nvim" },
 
   -- Cmp
-  { "L3MON4D3/LuaSnip" },             --snippet engine
-  { "hrsh7th/cmp-buffer" },           -- buffer completions
-  { "hrsh7th/cmp-cmdline" },          -- cmdline completions
-  { "hrsh7th/cmp-nvim-lsp" },         -- lsp based completions
-  { "hrsh7th/cmp-nvim-lua" },         -- lua completions
-  { "hrsh7th/cmp-path" },             -- path completions
-  { "hrsh7th/nvim-cmp" },             -- The completion plugin
+  { "L3MON4D3/LuaSnip" }, --snippet engine
+  { "hrsh7th/cmp-buffer" }, -- buffer completions
+  { "hrsh7th/cmp-cmdline" }, -- cmdline completions
+  { "hrsh7th/cmp-nvim-lsp" }, -- lsp based completions
+  { "hrsh7th/cmp-nvim-lua" }, -- lua completions
+  { "hrsh7th/cmp-path" }, -- path completions
+  { "hrsh7th/nvim-cmp" }, -- The completion plugin
   { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
-  { "saadparwaiz1/cmp_luasnip" },     -- snippet completions
+  { "saadparwaiz1/cmp_luasnip" }, -- snippet completions
 
   -- Colorizer
   { "norcalli/nvim-colorizer.lua" },
@@ -44,10 +41,7 @@ return {
   { "goolord/alpha-nvim" },
 
   -- Fidget
-  {
-    "j-hui/fidget.nvim",
-    tag = "legacy",
-  },
+  { "j-hui/fidget.nvim", tag = "legacy" },
 
   -- Fugitive
   { "tpope/vim-fugitive" },
