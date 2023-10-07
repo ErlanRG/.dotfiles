@@ -3,7 +3,7 @@
 #######################
 
 # Font for window titles.
-font pango: JetBrains Mono Medium Nerd Font Complete 10
+font pango: JetBrainsMono NFM Medium 10
 
 # set the mod key to the winkey:
 set $mod Mod4
