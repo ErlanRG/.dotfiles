@@ -27,6 +27,9 @@ barbar.setup {
   insert_at_end = true,
   sidebar_filetypes = {
     NvimTree = { text = "NvimTree" },
+    ["neo-tree"] = {
+      event = "BufWipeout",
+    },
   },
   no_name_title = "New Buffer",
 }

@@ -81,12 +81,17 @@ return {
   -- Nvim leap
   { "ggandor/leap.nvim" },
 
-  -- Nvim tree
-  { "kyazdani42/nvim-tree.lua" },
-  { "kyazdani42/nvim-web-devicons" },
-
   -- Nvim-navic
   { "SmiteshP/nvim-navic" },
+  -- Neotree
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    },
+  },
 
   -- Rust
   { "simrat39/rust-tools.nvim" },

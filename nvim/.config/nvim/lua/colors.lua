@@ -22,6 +22,7 @@ catppuccin.setup {
     barbar = true,
     dashboard = true,
     nvimtree = true,
+    neotree = true,
   },
 }
 

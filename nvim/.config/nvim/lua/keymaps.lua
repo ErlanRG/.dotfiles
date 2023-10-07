@@ -62,7 +62,7 @@ local mappings = {
       { "<Leader>gs", vim.cmd.G },
 
       -- Nvimtree
-      { "<Leader>e",  vim.cmd.NvimTreeToggle },
+      { "<Leader>e",  "<cmd>Neotree toggle<CR>" },
 
       -- Lazy
       { "<Leader>ps", "<cmd>Lazy sync<CR>" },
