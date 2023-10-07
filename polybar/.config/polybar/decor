@@ -14,7 +14,7 @@ content-foreground = ${colors.darkgrey}
 [module/dot]
 type = custom/text
 ;content = 
-content = ""
+content = "󰇙"
 
 content-background = ${color.white}
 content-padding = 1

@@ -7,7 +7,7 @@ format-margin = 0
 time = "%I:%M %p"
 date-alt = "%A, %b %d"
 
-format-prefix = 
+format-prefix = 󰃰
 format-prefix-foreground = ${colors.yellowbrown}
 
 label = %date% %time%
@@ -114,7 +114,7 @@ exec = $HOME/.config/i3/scripts/memory
 type = internal/cpu
 
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-padding = 0
 format-prefix-foreground = ${colors.aqua}
 format-foreground = ${colors.white}
@@ -152,19 +152,19 @@ ramp-foreground = #D3DB6B
 
 [module/network]
 type = internal/network
-interface = enp5s0
+interface = enp1s0
 
 interval = 1.0
 accumulate-stats = true
 unknown-as-up = true
 
 format-connected = <ramp-signal><label-connected>
-ramp-signal-0 = " "
+ramp-signal-0 = "󰀂 "
 ramp-signal-foreground = ${colors.fuchsia}
 ramp-signal-font = 2
 
 format-disconnected = <label-disconnected>
-format-disconnected-prefix = ""
+format-disconnected-prefix = "󰯡"
 format-disconnected-prefix-font = 2
 format-disconnected-foreground = ${colors.white}
 
@@ -231,7 +231,7 @@ label-indicator-margin = 1
 [module/updates]
 type = custom/script
 format = <label>
-format-prefix = 
+format-prefix = 󰚰
 format-prefix-foreground = ${colors.aqua}
 exec = $HOME/.config/i3/scripts/updates-pacman-aurhelper.sh
 interval = 600
