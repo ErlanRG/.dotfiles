@@ -1,5 +1,5 @@
-local configs_ok, configs = pcall(require, "nvim-treesitter.configs")
-if not configs_ok then
+local ok, configs = pcall(require, "nvim-treesitter.configs")
+if not ok then
   return
 end
 
@@ -14,17 +14,18 @@ configs.setup {
   },
   sync_install = false,
   highlight = {
-    enable = true,    -- false will disable the whole extension
-    disable = { "" }, -- list of language that will be disabled
+    enable = true, -- false will disable the whole extension
+    disable = function(lang, buf)
+      local max_filesize = 100 * 1024
+      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+      if ok and stats and stats.size > max_filesize then
+        return true
+      end
+    end,
     additional_vim_regex_highlighting = true,
   },
   autopairs = {
     enable = true,
-  },
-  rainbow = {
-    enable = true,
-    query = "rainbow-parens",
-    strategy = require("ts-rainbow").strategy.global,
   },
   indent = {
     enable = true,

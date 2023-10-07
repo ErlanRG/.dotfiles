@@ -1,51 +1,80 @@
-local status_ok, indent_blankline = pcall(require, "indent_blankline")
-if not status_ok then
+local ibl_ok, ibl = pcall(require, "ibl")
+if not ibl_ok then
   return
 end
 
+local hooks_ok, hooks = pcall(require, "ibl.hooks")
+if not hooks_ok then
+  return
+end
+
+local highlight = {
+  "LineColor",
+}
+
+-- Set indenline color.
+hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+  vim.api.nvim_set_hl(0, "LineColor", { fg = "#cdd6f4" })
+end)
+
 local icons = require("utils").icons
 
--- HACK: work-around for https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
-vim.wo.colorcolumn = "99999"
-
-indent_blankline.setup {
+ibl.setup {
   enabled = true,
-  show_current_context = true,
-  buftype_exclude = { "terminal", "nofile" },
-  filetype_exclude = {
-    "help",
-    "startify",
-    "dashboard",
-    "lazy",
-    "neogitstatus",
-    "NvimTree",
-    "Trouble",
+  indent = {
+    char = icons.ui.LineLeft,
+    smart_indent_cap = true,
   },
-  char = icons.ui.LineLeft,
-  context_char = icons.ui.LineLeft,
-  show_trailing_blankline_indent = false,
-  show_first_indent_level = true,
-  use_treesitter = true,
-  context_patterns = {
-    "class",
-    "return",
-    "function",
-    "method",
-    "^if",
-    "^while",
-    "jsx_element",
-    "^for",
-    "^object",
-    "^table",
-    "block",
-    "arguments",
-    "if_statement",
-    "else_clause",
-    "jsx_element",
-    "jsx_self_closing_element",
-    "try_statement",
-    "catch_clause",
-    "import_statement",
-    "operation_type",
+  whitespace = {
+    remove_blankline_trail = true,
+  },
+  scope = {
+    enabled = true,
+    show_start = false,
+    show_end = false,
+    injected_languages = false,
+    highlight = highlight,
+    include = {
+      node_type = {
+        ["*"] = {
+          "^argument",
+          "^expression",
+          "^for",
+          "^if",
+          "^import",
+          "^type",
+          "arguments",
+          "block",
+          "bracket",
+          "declaration",
+          "field",
+          "func_literal",
+          "function",
+          "import_spec_list",
+          "list",
+          "return_statement",
+          "short_var_declaration",
+          "statement",
+          "switch_body",
+          "table_constructor",
+          "try",
+        },
+      },
+    },
+  },
+  exclude = {
+    buftypes = {
+      "terminal",
+      "nofile",
+    },
+    filetypes = {
+      "help",
+      "startify",
+      "dashboard",
+      "lazy",
+      "neogitstatus",
+      "NvimTree",
+      "Trouble",
+    },
   },
 }

@@ -104,9 +104,5 @@ return {
   { "folke/trouble.nvim" },
 
   -- Treesitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-  },
-  { "HiPhish/nvim-ts-rainbow2" },
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 }
