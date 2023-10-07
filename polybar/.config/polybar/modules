@@ -152,7 +152,7 @@ ramp-foreground = #D3DB6B
 
 [module/network]
 type = internal/network
-interface = enp1s0
+interface = enp5s0
 
 interval = 1.0
 accumulate-stats = true
