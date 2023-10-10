@@ -38,7 +38,7 @@ full_backup() {
     banner "Backing up config"
     for folder in "${STOW_FOLDERS[@]}"; do
         source_folder="$CONFIG_PATH$folder"
-        target_folder="$HOME/.bckps/$folder"
+        target_folder="$HOME/.bckps/"
 
         if [ "$folder" = "zsh" ]; then
             source_folder="$HOME/.zshrc"
@@ -55,9 +55,8 @@ full_backup() {
 }
 
 install_oh_my_zsh() {
-    banner "Setting up zsh"
+    banner "Configring Oh-My-Zsh"
 
-    # sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
     git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
     chsh -s "$(which zsh)" || {
         echo "Error: Failed to change shell to ZSH"
@@ -70,14 +69,14 @@ install_oh_my_zsh() {
 }
 
 install_fzf() {
-    banner "FZF"
+    banner "Installing FZF"
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install
 }
 
 install_dependencies() {
     banner "Installing dependencies from Arch Repos"
-    sudo pacman -S --needed dunst git kitty nitrogen picom polybar rofi starship stow thunar tmux yay zoxide zsh --noconfirm || {
+    sudo pacman -S --needed dunst eza git kitty lazygit nitrogen picom polybar rofi starship stow thunar tmux yay zoxide zsh --noconfirm || {
         echo "Error: Failed to install packages."
         exit 1
     }
@@ -95,6 +94,22 @@ install_dependencies() {
     if [ ! -d "$HOME/.fzf" ]; then
         install_fzf
     fi
+
+    if command -v nvim &>/dev/null; then
+      install_neovim
+    fi
+}
+
+install_neovim() {
+  banner "Installing Neovim"
+
+  git clone --depth=1 https://github.com/neovim/neovim.git ~/Repos
+  sudo pacman -S --needed base-devel cmake unzip ninja curl --noconfirm
+  sudo make CMAKE_BUILD_TYPE=Release && sudo make install
+
+  # This cleans up the build files and already prepares the build for the next time
+  make distclean
+  make deps
 }
 
 usage() {
@@ -110,9 +125,6 @@ main() {
     if [ "$1" = "install" ]; then
         # Dependencies
         install_dependencies
-
-        # Make sure there are no symlinks in the config path.
-        unstow_dirs
 
         full_backup
 
