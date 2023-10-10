@@ -103,7 +103,7 @@ install_dependencies() {
 install_neovim() {
   banner "Installing Neovim"
 
-  git clone --depth=1 https://github.com/neovim/neovim.git ~/Repos && cd ~/Repos/neovim
+  git clone --depth=1 https://github.com/neovim/neovim.git ~/Repos/neovim && cd ~/Repos/neovim
   sudo pacman -S --needed base-devel cmake unzip ninja curl --noconfirm
   sudo make CMAKE_BUILD_TYPE=Release && sudo make install
 
