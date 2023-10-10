@@ -95,7 +95,7 @@ install_dependencies() {
         install_fzf
     fi
 
-    if command -v nvim &>/dev/null; then
+    if ! command -v nvim &>/dev/null; then
       install_neovim
     fi
 }
@@ -103,13 +103,14 @@ install_dependencies() {
 install_neovim() {
   banner "Installing Neovim"
 
-  git clone --depth=1 https://github.com/neovim/neovim.git ~/Repos
+  git clone --depth=1 https://github.com/neovim/neovim.git ~/Repos && cd ~/Repos/neovim
   sudo pacman -S --needed base-devel cmake unzip ninja curl --noconfirm
   sudo make CMAKE_BUILD_TYPE=Release && sudo make install
 
   # This cleans up the build files and already prepares the build for the next time
-  make distclean
-  make deps
+  sudo make distclean && sudo make deps
+
+  cd ~/.dotfiles
 }
 
 usage() {
