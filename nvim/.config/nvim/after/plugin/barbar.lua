@@ -18,10 +18,10 @@ barbar.setup {
     button = icons.ui.Close,
     -- Enables / disables diagnostic symbols
     diagnostics = {
-      [vim.diagnostic.severity.ERROR] = { enabled = true, icon = icons.diagnostics.BoldError },
-      [vim.diagnostic.severity.WARN] = { enabled = true, icon = icons.diagnostics.BoldWarning },
-      [vim.diagnostic.severity.INFO] = { enabled = true, icon = icons.diagnostics.BoldInformation },
-      [vim.diagnostic.severity.HINT] = { enabled = true, icon = icons.diagnostics.BoldHint },
+      [vim.diagnostic.severity.ERROR] = { enabled = true, icon = icons.diagnostics.BoldError .. " " },
+      [vim.diagnostic.severity.WARN] = { enabled = true, icon = icons.diagnostics.BoldWarning .. " " },
+      [vim.diagnostic.severity.INFO] = { enabled = true, icon = icons.diagnostics.BoldInformation .. " " },
+      [vim.diagnostic.severity.HINT] = { enabled = true, icon = icons.diagnostics.BoldHint .. " " },
     },
   },
   insert_at_end = true,

@@ -21,13 +21,13 @@ gitsigns.setup {
     },
     delete = {
       hl = "GitSignsDelete",
-      text = icons.ui.Triangle,
+      text = icons.ui.TriangleRight,
       numhl = "GitSignsDeleteNr",
       linehl = "GitSignsDeleteLn",
     },
     topdelete = {
       hl = "GitSignsDelete",
-      text = icons.ui.Triangle,
+      text = icons.ui.TriangleRight,
       numhl = "GitSignsDeleteNr",
       linehl = "GitSignsDeleteLn",
     },
