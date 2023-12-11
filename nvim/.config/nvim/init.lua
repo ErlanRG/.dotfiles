@@ -22,7 +22,6 @@ end
 lazy.setup "plugins"
 
 -- Core options
-require "colors"
 require "keymaps"
 require "options"
 require "autocmds"

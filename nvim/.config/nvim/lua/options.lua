@@ -17,6 +17,7 @@ local options = {
   relativenumber = true,
   scrolloff = 8,
   shiftwidth = 2,
+  showtabline = 2,
   signcolumn = "yes",
   smartcase = true,
   smartindent = true,
@@ -36,10 +37,6 @@ local options = {
 vim.opt.shortmess:append "c"
 vim.opt.iskeyword:append "-"
 vim.opt.formatoptions:remove { "c", "r", "o" }
-
--- deafult winbar: vim.cmd "set winbar=%=%m%f"
--- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}%=%m%f"
---vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 
 for k, v in pairs(options) do
   vim.opt[k] = v

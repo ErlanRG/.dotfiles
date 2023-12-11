@@ -18,11 +18,17 @@ end
 
 catppuccin.setup {
   catppuccin_flavour = "mocha",
+  custom_highlights = function(C)
+    return {
+      NeoTreeWinSeparator = { fg = C.blue },
+    }
+  end,
   integrations = {
-    barbar = true,
+    cmp = true,
     dashboard = true,
-    nvimtree = true,
     neotree = true,
+    nvimtree = true,
+    telescope = true,
   },
 }
 
