@@ -1,9 +1,11 @@
-local status_ok, harpoon = pcall(require, "harpoon")
-if not status_ok then
+local ok, harpoon = pcall(require, "harpoon")
+if not ok then
   return
 end
 
+-- REQUIRED
 harpoon:setup()
+-- REQUIRED
 
 vim.keymap.set("n", "<leader>a", function() harpoon:list():append() end)
 vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
