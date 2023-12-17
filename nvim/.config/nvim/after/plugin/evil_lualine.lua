@@ -2,8 +2,8 @@
 -- Author: shadmansaleh
 -- Credit: glepnir
 local lualine = require "lualine"
-local utils = require "utils"
-local icons = utils.icons
+local f = require "utils.functions"
+local icons = require "utils.icons"
 
 -- Color table for highlights
 -- stylua: ignore
@@ -198,7 +198,7 @@ ins_right {
       if venv then
         local icons = require "nvim-web-devicons"
         local py_icon, _ = icons.get_icon ".py"
-        return string.format(" " .. py_icon .. " (%s)", utils.env_cleanup(venv))
+        return string.format(" " .. py_icon .. " (%s)", f.env_cleanup(venv))
       end
     end
     return ""

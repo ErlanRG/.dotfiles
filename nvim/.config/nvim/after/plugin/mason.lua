@@ -8,7 +8,7 @@ end
 if not mason_lsp_status then
   return
 end
-local icons = require("utils").icons
+local icons = require("utils.icons")
 
 local to_install = {
   "bashls",

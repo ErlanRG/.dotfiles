@@ -6,7 +6,7 @@ end
 local actions = require "telescope.actions"
 local previewers = require "telescope.previewers"
 local sorters = require "telescope.sorters"
-local icons = require("utils").icons
+local icons = require("utils.icons")
 local ignore_patterns = {
   "node_modules",
   "env",

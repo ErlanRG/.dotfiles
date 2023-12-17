@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 local api = require "nvim-tree.api"
-local icons = require("utils").icons
+local icons = require("utils.icons")
 
 local function on_attach(bufnr)
   local function opts(desc)

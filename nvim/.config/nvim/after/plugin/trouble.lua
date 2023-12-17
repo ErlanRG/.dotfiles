@@ -3,7 +3,7 @@ if not ok then
   return
 end
 
-local icons = require("utils").icons
+local icons = require("utils.icons")
 
 trouble.setup {
   position = "bottom",

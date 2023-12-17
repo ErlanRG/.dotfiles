@@ -3,7 +3,7 @@ if not status_ok then
   return
 end
 
-local icons = require("utils").icons
+local icons = require "utils.icons"
 
 gitsigns.setup {
   signs = {
@@ -36,6 +36,12 @@ gitsigns.setup {
       text = icons.ui.BoldLineLeft,
       numhl = "GitSignsChangeNr",
       linehl = "GitSignsChangeLn",
+    },
+    untracked = {
+      hl = "GitSignsAdd",
+      text = icons.ui.BoldLineLeft,
+      numhl = "GitSignsAddNr",
+      linehl = "GitSignsAddLn",
     },
   },
   signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`

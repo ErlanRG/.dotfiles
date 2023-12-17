@@ -1,6 +1,5 @@
 return {
-  -- Colorschemes
-  {
+  { -- Colorschemes
     "catppuccin/nvim",
     name = "catppuccin",
     commit = "2e3e5ebcdc24ef0d5b14a0a999dbbe7936512c46",
@@ -34,9 +33,6 @@ return {
   { "hrsh7th/nvim-cmp" },             -- The completion plugin
   { "rafamadriz/friendly-snippets" }, -- a bunch of snippets to use
   { "saadparwaiz1/cmp_luasnip" },     -- snippet completions
-
-  -- Colorizer
-  { "norcalli/nvim-colorizer.lua" },
 
   -- Comments
   { "numToStr/Comment.nvim" }, -- Easily comment stuff
@@ -101,7 +97,6 @@ return {
   { "simrat39/rust-tools.nvim" },
 
   -- Telescope
-  { "nvim-telescope/telescope-media-files.nvim" },
   { "nvim-telescope/telescope.nvim" },
 
   -- Trouble

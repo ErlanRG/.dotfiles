@@ -4,18 +4,19 @@ if not status_ok then
 end
 
 local mocha = require("catppuccin.palettes").get_palette "mocha"
-local icons = require("utils").icons
+local icons = require "utils.icons"
 
 bufferline.setup {
   highlights = require("catppuccin.groups.integrations.bufferline").get {
     styles = { "italic", "bold" },
     custom = {
       all = {
-        fill = { bg = mocha.base },
-        indicator_selected = { bg = mocha.base, fg = mocha.blue },
-      },
-      mocha = {
         background = { fg = mocha.text },
+        fill = { bg = mocha.base },
+        indicator_selected = { bg = mocha.base, fg = mocha.peach },
+        indicator_visible = { bg = mocha.mantle, fg = mocha.mantle },
+        separator = { bg = mocha.mantle, fg = mocha.crust },
+        separator_visible = { bg = mocha.mantle, fg = mocha.mantle },
       },
     },
   },
@@ -25,7 +26,6 @@ bufferline.setup {
     right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
     left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
     middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
-    indicator_icon = nil,
     indicator = {
       style = "icon",
       icon = icons.ui.BoldLineLeft,

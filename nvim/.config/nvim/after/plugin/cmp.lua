@@ -10,7 +10,7 @@ end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
-local icons = require("utils").icons
+local icons = require("utils.icons")
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1

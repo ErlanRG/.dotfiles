@@ -1,6 +1,5 @@
-local bufkill = require("utils").buf_kill
+local f = require "utils.functions"
 local builtin = require "telescope.builtin"
-local formatting = require("utils").lsp_formatting
 local opts = { noremap = true, silent = true }
 
 -- Shorten function name
@@ -68,7 +67,7 @@ local mappings = {
       { "<Leader>ps", "<cmd>Lazy sync<CR>" },
 
       -- Autoformat
-      { "<Leader>lf", formatting },
+      { "<Leader>lf", f.lsp_formatting },
       { "<Leader>lF", vim.lsp.buf.format },
 
       -- C-u / C-d keep centered
@@ -90,7 +89,7 @@ local mappings = {
       { "<leader>bn", vim.cmd.BufferOrderByBufferNumber },
 
       -- Close buffer
-      { "<leader>c",  bufkill },
+      { "<leader>c",  f.buf_kill },
 
       -- Trouble
       { "<leader>tr", vim.cmd.Trouble },

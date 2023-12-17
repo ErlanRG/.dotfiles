@@ -5,7 +5,7 @@ if not status_ok then
   return
 end
 
-local icons = require("utils").icons
+local icons = require("utils.icons")
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true

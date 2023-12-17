@@ -17,7 +17,7 @@ hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
   vim.api.nvim_set_hl(0, "LineColor", { fg = "#cdd6f4" })
 end)
 
-local icons = require("utils").icons
+local icons = require("utils.icons")
 
 ibl.setup {
   enabled = true,
