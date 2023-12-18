@@ -50,9 +50,6 @@ return {
     tag = "legacy",
   },
 
-  -- Fugitive
-  { "tpope/vim-fugitive" },
-
   -- Gitsigns
   { "lewis6991/gitsigns.nvim" },
 
