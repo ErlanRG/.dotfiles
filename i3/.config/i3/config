@@ -277,7 +277,7 @@ assign [class="thunderbird"] $ws4
 assign [class="Spotify"] $ws5
 assign [class="Steam"] $ws6
 assign [class="net-runelite-client-RuneLite"] $ws6
-assign [class="whatsappweb"] $ws7
+assign [class="org.remmina.Remmina"] $ws7
 assign [class="Virt-manager"] $ws8
 
 # automatic set focus new window if it opens on another workspace then the current:
@@ -322,11 +322,7 @@ exec --no-startup-id dex --autostart --environment i3
 #exec --no-startup-id numlockx on
 
 # configure multiple keyboard layouts and hotkey to switch (Alt+CAPSLOCK in this example)
-#exec --no-startup-id setxkbmap -layout 'us,sk' -variant altgr-intl,qwerty -option 'grp:alt_caps_toggle'
 exec --no-startup-id setxkbmap -layout 'us,latam' -option 'grp:win_space_toggle'
-
-# Remap key 135 (Menu) with 133 (Super)
-exec_always --no-startup-id xmodmap -e 'keycode 135 = Super_L'
 
 # Start gxkb
 # exec --no-startup-id gxkb
