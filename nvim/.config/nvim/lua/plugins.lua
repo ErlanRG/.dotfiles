@@ -73,6 +73,9 @@ return {
   { "williamboman/mason-lspconfig.nvim" },
   { "williamboman/mason.nvim" },
 
+  -- LSPsaga
+  { "nvimdev/lspsaga.nvim" },
+
   -- Lualine
   { "nvim-lualine/lualine.nvim" },
 

@@ -5,7 +5,7 @@ if not status_ok then
   return
 end
 
-local icons = require("utils.icons")
+local icons = require "utils.icons"
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -66,10 +66,12 @@ local function lsp_keymaps(bufnr)
       ["gr"] = "<cmd>lua vim.lsp.buf.references()<CR>",
       ["gl"] = "<cmd>lua vim.diagnostic.open_float()<CR>",
       ["<leader>li"] = "<cmd>LspInfo<CR>",
-      ["<leader>la"] = "<cmd>lua vim.lsp.buf.code_action()<CR>",
+      -- ["<leader>la"] = "<cmd>lua vim.lsp.buf.code_action()<CR>",
+      ["<leader>la"] = "<cmd>Lspsaga code_action<CR>",
       ["<leader>lj"] = "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>",
       ["<leader>lk"] = "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>",
-      ["<leader>lr"] = "<cmd>lua vim.lsp.buf.rename()<CR>",
+      -- ["<leader>lr"] = "<cmd>lua vim.lsp.buf.rename()<CR>",
+      ["<leader>lr"] = "<cmd>Lspsaga rename mode=n<CR>",
       ["<leader>ls"] = "<cmd>lua vim.lsp.buf.signature_help()<CR>",
       ["<leader>lq"] = "<cmd>lua vim.diagnostic.setloclist()<CR>",
     },
@@ -98,20 +100,13 @@ local servers = {
   "bashls",
   "clangd",
   "emmet_ls",
-  -- "html",
-  "jdtls",
   "lua_ls",
   "pyright",
-  "rust_analyzer",
-  -- "tailwindcss",
-  -- "tsserver",
+  "tsserver",
 }
 
 local languageModule = {
   clangd = "lang.clangd",
-  rust_analyzer = "lang.rust",
-  -- tailwindcss = "lang.tailwindcss",
-  -- tsserver = "lang.tsserver",
 }
 
 --- Adds the extra configuration for the servers.
