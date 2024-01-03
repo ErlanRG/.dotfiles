@@ -83,7 +83,7 @@ end
 --- @usage The formatting applied to the buffer will depend on the LSP client attached to the buffer.
 ---        If "null-ls" is attached, it will use whatever formatter is configured in null-ls. Else, it will use the
 ---        formatter configured in the LSP client.
-M.lsp_formatting = function(bufnr)
+function M.lsp_formatting(bufnr)
   local clients = vim.lsp.get_active_clients()
   for _, client in ipairs(clients) do
     if client.name == "null-ls" then
