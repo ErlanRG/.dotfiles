@@ -63,6 +63,11 @@ function M.config()
       u = { "<cmd>Lazy update<cr>", "Update" },
     },
     t = {
+      name = "Terminal",
+      t = { "<cmd>ToggleTerm<CR>", "Open Terminal" },
+      g = { "<cmd>lua _lazygit_toggle()<cr>", "Open Lazygit" },
+    },
+    T = {
       name = "Trouble",
       R = { "<cmd>Trouble lsp_references<CR>", "LSP References" },
       d = { "<cmd>Trouble lsp_definitions<CR>", "LSP Definitions" },
@@ -79,7 +84,10 @@ function M.config()
     nowait = true,
   }
 
-  local wk = require "which-key"
+  local ok, wk = pcall(require, "which-key")
+  if not ok then
+    return
+  end
   wk.setup {
     plugins = {
       marks = false,
