@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=WhatsApp Web
-Comment=Open WhatsApp Web
-Exec=firefox --new-instance --new-window --class=whatsappweb "https://web.whatsapp.com/"
-Icon=whatsapp
-Terminal=false
-Type=Application
-Categories=Network;
