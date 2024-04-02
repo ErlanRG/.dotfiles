@@ -1,4 +1,7 @@
 # Dotfiles
+<h1 align="center">DOTFILES | i3WM</h1>
+
+![](./assets/screenshots/ksnip_20240315-104553.png)
 
 ## Dependencies
 
