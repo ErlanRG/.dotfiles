@@ -76,13 +76,13 @@ install_fzf() {
 
 install_dependencies() {
     banner "Installing dependencies from Arch Repos"
-    sudo pacman -S --needed dunst eza git kitty lazygit nitrogen polybar rofi starship stow thunar tmux yay zoxide zsh --noconfirm || {
+    sudo pacman -S --needed dunst eza fd git kitty lazygit nitrogen npm polybar picom rofi starship stow thunar tmux yay zoxide zsh --noconfirm || {
         echo "Error: Failed to install packages."
         exit 1
     }
 
     banner "Installing dependencies from the AUR"
-    yay -S --needed librewolf-bin autotiling picom-ftlabs-git betterlockscreen --noconfirm || {
+    yay -S --needed i3lock-color librewolf-bin autotiling betterlockscreen --noconfirm || {
         echo "Error: Failed to install packages"
         exit 1
     }
