@@ -46,10 +46,10 @@ function M.config()
     },
     l = {
       name = "LSP",
-      F = { vim.lsp.buf.format, "Format" },
+      f = { vim.lsp.buf.format, "Format" },
       I = { "<cmd>LspInfo<cr>", "Info" },
       R = { "<cmd>LspRestart<CR>", "Restart server" },
-      f = { "<cmd>lua require('utils.functions').lsp_formatting()<CR>", "Format" },
+      F = { "<cmd>lua require('utils.functions').lsp_formatting()<CR>", "Format" },
     },
     P = {
       name = "Plugins",
