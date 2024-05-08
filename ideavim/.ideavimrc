@@ -1,0 +1,34 @@
+let mapleader=" "
+
+set number
+set relativenumber
+set clipboard=unnamedplus
+
+nmap <S-h> <Action>(PreviousTab)
+nmap <S-l> <Action>(NextTab)
+nmap <leader>lf <Action>(ReformatCode)
+nmap <leader>lr <Action>(RenameElement)
+nmap <leader>c <Action>(CloseContent)
+nmap <leader>e <Action>(ActivateProjectToolWindow)
+vmap gc <Action>(CommentByLineComment)
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+inoremap jk <Esc>
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+nnoremap <leader>w :w<CR>
+nnoremap Y y$
+
+vnoremap < <gv
+vnoremap > >gv
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
