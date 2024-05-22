@@ -246,3 +246,18 @@ content-font = 8
 content-foreground= ${colors.urgentred}
 content-padding = 0
 click-left = ~/.config/rofi/powermenu/type-1/powermenu.sh
+
+;==========================================================
+
+[module/tray]
+type = internal/tray
+
+tray-position = modules-right
+tray-spacing = 5px
+
+;==========================================================
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:60:...%
+
