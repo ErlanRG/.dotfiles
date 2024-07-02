@@ -21,6 +21,7 @@ M.config = function()
       changedelete = { text = icons.ui.BoldLineLeft },
       untracked = { text = icons.ui.BoldLineLeft },
     },
+    signs_staged_enable = false,
     signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
     numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
     linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
