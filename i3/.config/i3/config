@@ -230,6 +230,9 @@ bindsym XF86AudioPrev exec playerctl previous
 # Redirect sound to headphones
 bindsym $mod+p exec $HOME/.local/bin/switch-audio-port
 
+# Monitor configuration
+bindsym $mod+Shift+p exec $HOME/.screenlayout/monitor_applet.sh
+
 ## App shortcuts
 bindsym $mod+w exec /usr/bin/firefox
 bindsym $mod+Shift+w exec /usr/bin/librewolf
@@ -238,7 +241,7 @@ bindsym $mod+n exec /usr/bin/thunar
 bindsym Print exec flameshot gui
 
 # Power Profiles menu switcher (rofi)
-bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
+# bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 
 ##########################################
 # configuration for workspace behaviour: #
@@ -275,7 +278,7 @@ assign [class="Thunar"] $ws3
 assign [class="^libreoffice"] $ws3
 assign [class="thunderbird"] $ws4
 assign [class="Spotify"] $ws5
-assign [class="Steam"] $ws6
+assign [class="steam"] $ws6
 assign [class="net-runelite-client-RuneLite"] $ws6
 assign [class="org.remmina.Remmina"] $ws7
 assign [class="Virt-manager"] $ws8
