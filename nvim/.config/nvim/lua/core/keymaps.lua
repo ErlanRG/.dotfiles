@@ -18,10 +18,6 @@ local mappings = {
       { "<C-k>", "<C-w>k" },
       { "<C-l>", "<C-w>l" },
 
-      -- Creating splits
-      { "<Leader>vs", vim.cmd.vnew },
-      { "<Leader>hs", vim.cmd.new },
-
       -- Resize with arrows
       { "<C-Up>", "<cmd>resize +2<CR>" },
       { "<C-Down>", "<cmd>resize -2<CR>" },
