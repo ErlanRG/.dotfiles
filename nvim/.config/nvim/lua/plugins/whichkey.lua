@@ -7,7 +7,7 @@ local M = {
       function()
         require("which-key").show { global = false }
       end,
-      desc = "Buffer Local Keymaps (which-key)",
+      desc = "Local Keymaps",
     },
   },
   dependencies = { "echasnovski/mini.icons" },
@@ -20,6 +20,58 @@ function M.config()
     { "<leader>e", "<cmd>NvimTreeToggle<CR>", desc = "Explorer", nowait = true, remap = false },
     { "<leader>p", '"_dP', desc = "Special Paste", nowait = true, remap = false },
     { "<leader>w", vim.cmd.update, desc = "Save buffer", nowait = true, remap = false },
+
+    -- Harpoon
+    { "<leader>h", group = "Harpoon", nowait = true, remap = false },
+    {
+      "<leader>ha",
+      function()
+        require("harpoon"):list():add()
+      end,
+      desc = "Harpoon current file",
+      nowait = true,
+      remap = false,
+    },
+
+    {
+      "<leader>he",
+      function()
+        require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
+      end,
+      desc = "Toggle Harpoon UI",
+      nowait = true,
+      remap = false,
+    },
+
+    {
+      "<leader>hg",
+      function()
+        require("harpoon"):list():select(1)
+      end,
+      desc = "Select Harpoon 1",
+      nowait = true,
+      remap = false,
+    },
+
+    {
+      "<leader>ht",
+      function()
+        require("harpoon"):list():select(2)
+      end,
+      desc = "Select Harpoon 2",
+      nowait = true,
+      remap = false,
+    },
+
+    {
+      "<leader>hn",
+      function()
+        require("harpoon"):list():select(3)
+      end,
+      desc = "Select Harpoon 3",
+      nowait = true,
+      remap = false,
+    },
 
     -- Git diff
     { "<leader>D", group = "Git Diff", nowait = true, remap = false },
