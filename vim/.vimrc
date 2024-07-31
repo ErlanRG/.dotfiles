@@ -87,6 +87,53 @@ function! CloseBuffer()
   endif
 endfunction
 
+" For PxPlus
+command! NumberLines call NumberLines()
+
+function! NumberLines()
+  " Get the number of lines in the buffer
+  let l:num_lines = line('$')
+
+  " Variable to store the current line number
+  let l:current_number = 10
+
+  " Loop through each line
+  for l:i in range(1, l:num_lines)
+    " Get the current line content
+    let l:line_content = getline(l:i)
+
+    " Skip empty lines
+    if len(trim(l:line_content)) == 0
+        continue
+    endif
+
+    " Check if the line already has a number
+    if l:line_content =~ '^\d\{4\}\s'
+      " Extract the existing number
+      let l:existing_number = str2nr(matchstr(l:line_content, '^\d\{4\}'))
+      " Remove the existing number
+      let l:line_content = matchstr(l:line_content, '^\d\{4\}\s\zs.*')
+
+      " Update current number to the maximum of the existing number or the current number
+      if l:existing_number > l:current_number
+          let l:current_number = l:existing_number
+      endif
+    endif
+
+    " Format the current number with leading zeros
+    let l:line_number = printf('%04d', l:current_number)
+
+    " Combine line number and content
+    let l:new_line_content = l:line_number . ' ' . l:line_content
+
+    " Set the new line content
+    call setline(l:i, l:new_line_content)
+
+    " Increment the current number by 10 for the next line
+    let l:current_number += 10
+  endfor
+endfunction
+
 nnoremap <silent> <leader>c :call CloseBuffer()<CR>
 nnoremap <silent> <leader>e :vertical 25 Lex<CR>
 
