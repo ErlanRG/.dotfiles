@@ -9,6 +9,8 @@ if has('clipboard')
     set clipboard=unnamed
   endif
 endif
+set autoread
+au FocusGained,BufEnter * silent! checktime
 set background=dark
 set cmdheight=2
 set completeopt=menuone,noselect
@@ -17,13 +19,15 @@ set cursorline
 :highlight Cursorline cterm=bold ctermbg=black
 set expandtab
 set fileencoding=utf-8
+set fileformats=unix,dos,mac
 set formatoptions-=cro
 set hidden
 set hlsearch
-set incsearch
 set ignorecase
+set incsearch
 set iskeyword+=-
 set laststatus=2
+set magic
 set mouse=a
 set nobackup
 set noswapfile
@@ -52,6 +56,8 @@ set timeoutlen=1000
 set undofile
 set updatetime=300
 set whichwrap+=b,s,<,>,[,],h,l
+set wildchar=<TAB>
+set wildmenu
 syntax on
 if !has('gui_running')
     set t_Co=256
@@ -59,11 +65,39 @@ endif
 
 colorscheme retrobox
 
+" Source .vimrc on save
+augroup vimrc
+  autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+augroup END
+
+" Netrw settings
+let g:netrw_banner = 0
+let g:netrw_keepdir = 0
+let g:netrw_localcopydircmd = 'cp -r'
+hi! link netwMarkFile Search
+
+" Return to last edit position when opening files
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Format the status line
+set statusline=\%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+
+" Delete trailing white space on save, useful for some filetypes ;)
+function! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfunction
+
+" Delete extra spaces on save
+if has("autocmd")
+    autocmd BufWritePre * :call CleanExtraSpaces()
+endif
+
 " Remappings
 let mapleader=" "
-
-" Source .vimrc on save
-autocmd! BufWritePost .vimrc source %
 
 " Close buffer confirmation
 function! CloseBuffer()
@@ -88,8 +122,6 @@ function! CloseBuffer()
 endfunction
 
 " For PxPlus
-command! NumberLines call NumberLines()
-
 function! NumberLines()
   " Get the number of lines in the buffer
   let l:num_lines = line('$')
@@ -134,6 +166,8 @@ function! NumberLines()
   endfor
 endfunction
 
+" Normal mode
+nnoremap <silent> <leader>nl :call NumberLines()<CR>
 nnoremap <silent> <leader>c :call CloseBuffer()<CR>
 nnoremap <silent> <leader>e :vertical 25 Lex<CR>
 
@@ -142,9 +176,9 @@ nnoremap <silent> <C-j> <C-w>j
 nnoremap <silent> <C-k> <C-w>k
 nnoremap <silent> <C-l> <C-w>l
 
-nnoremap <silent> <A-j> :m .+1<CR>==
-nnoremap <silent> <A-k> :m .-2<CR>==
-nnoremap <silent> <leader>w :w<CR>
+nnoremap <silent> <C-A> ggVG
+nnoremap <silent> <leader><CR> :nohl<CR>
+nnoremap <silent> <leader>w :w!<CR>
 nnoremap <silent> Y y$
 
 nnoremap <silent> <leader>sv :vnew<CR>
@@ -153,12 +187,21 @@ nnoremap <silent> <leader>sh :new<CR>
 nnoremap <silent> <S-l> :bnext<CR>
 nnoremap <silent> <S-h> :bprevious<CR>
 
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+
+" Insert mode
 inoremap <silent> jk <Esc>
+
 inoremap <silent> <C-h> <Left>
 inoremap <silent> <C-j> <Down>
 inoremap <silent> <C-k> <Up>
 inoremap <silent> <C-l> <Right>
 
+" Visual mode
 vnoremap <silent> < <gv
 vnoremap <silent> > >gv
 vnoremap <silent> J :m '>+1<CR>gv=gv
