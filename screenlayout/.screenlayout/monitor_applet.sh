@@ -10,8 +10,8 @@ source "$HOME"/.config/rofi/applets/shared/theme.bash
 theme="$type/$style"
 
 # Theme Elements
-prompt='Monitor resolution'
-mesg="Choose resolution:"
+prompt='Monitor config'
+mesg="Choose monitor configuration:"
 
 if [[ ( "$theme" == *'type-1'* ) || ( "$theme" == *'type-3'* ) || ( "$theme" == *'type-5'* ) ]]; then
 	list_col='1'
@@ -30,11 +30,13 @@ fi
 # Options
 layout=`cat ${theme} | grep 'USE_ICON' | cut -d'=' -f2`
 if [[ "$layout" == 'NO' ]]; then
-  option_1="󰨇 2k (1440p)"
+    option_1="󰨇 2k (1440p)"
 	option_2="󱎓 HD (1080p)"
+    option_3="󰃖 Work (1080p only)"
 else
 	option_1="󰨇"
 	option_2="󱎓"
+	option_3="󰃖"
 fi
 
 # Rofi CMD
@@ -51,7 +53,7 @@ rofi_cmd() {
 
 # Pass variables to rofi dmenu
 run_rofi() {
-	echo -e "$option_1\n$option_2" | rofi_cmd
+	echo -e "$option_1\n$option_2\n$option_3" | rofi_cmd
 }
 
 # Execute Command
@@ -60,6 +62,8 @@ run_cmd() {
         sh ~/.screenlayout/monitor.sh
 	elif [[ "$1" == '--opt2' ]]; then
         sh ~/.screenlayout/gaming.sh
+	elif [[ "$1" == '--opt3' ]]; then
+        sh ~/.screenlayout/work.sh
 	fi
 }
 
@@ -71,5 +75,8 @@ case ${chosen} in
         ;;
     $option_2)
 		run_cmd --opt2
+        ;;
+    $option_3)
+		run_cmd --opt3
         ;;
 esac
