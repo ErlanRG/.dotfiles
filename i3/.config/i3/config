@@ -15,12 +15,6 @@ set $mod Mod4
 # default i3 tiling mode:
 workspace_layout default
 
-# i3 stacking layout:
-#workspace_layout stacking
-
-# i3 tabbed layout:
-#workspace_layout tabbed
-
 ##############################
 # extra options for windows: #
 ##############################
@@ -135,24 +129,15 @@ bindsym $mod+Shift+e exec ~/.config/rofi/powermenu/type-1/powermenu.sh
 
 # Lock the system
 # lock with a picture:
-#bindsym $mod+l exec i3lock -i  ~/.config/i3/i3-lock-screen.png -p default|win -t
+bindsym $mod+l exec i3lock -i $HOME/Pictures/Wallpapers/tokyo-night05.png -F
 # lock by blurring the screen:
 # bindsym $mod+l exec ~/.config/i3/scripts/blur-lock
-# lock with betterlockscreen:
-exec --no-startup-id betterlockscreen -u ~/Pictures/Wallpapers/tokyo-night05.png
-bindsym $mod+l exec betterlockscreen -l
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to update i3)
 bindsym $mod+Shift+r restart
-
-# keybinding in fancy rofi (automated):
-# bindsym F1 exec ~/.config/i3/scripts/keyhint-2
-# alternative
-# keybinding list in editor:
-# bindsym $mod+F1 exec xed ~/.config/i3/keybindings
 
 # Backlight control
 bindsym XF86MonBrightnessUp exec xbacklight +5 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
@@ -234,14 +219,10 @@ bindsym $mod+p exec $HOME/.local/bin/switch-audio-port
 bindsym $mod+Shift+p exec $HOME/.screenlayout/monitor_applet.sh
 
 ## App shortcuts
-bindsym $mod+w exec /usr/bin/firefox
+bindsym $mod+w exec /usr/bin/zen-browser
 bindsym $mod+Shift+w exec /usr/bin/librewolf
 bindsym $mod+n exec /usr/bin/thunar
-# bindsym Print exec ksnip -r
 bindsym Print exec flameshot gui
-
-# Power Profiles menu switcher (rofi)
-# bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 
 ##########################################
 # configuration for workspace behaviour: #
@@ -274,6 +255,7 @@ assign [class="kitty"] $ws1
 assign [class="wezterm"] $ws1
 assign [class="(?i)firefox"] $ws2
 assign [class="(?i)librewolf"] $ws2
+assign [class="(?i)zen-alpha"] $ws2
 assign [class="Thunar"] $ws3
 assign [class="^libreoffice"] $ws3
 assign [class="thunderbird"] $ws4
@@ -286,7 +268,7 @@ assign [class="Virt-manager"] $ws8
 # automatic set focus new window if it opens on another workspace then the current:
 for_window [class=kitty] focus
 for_window [class=wezterm] focus
-for_window [class=(?i)firefox] focus
+for_window [class=(?i)zen-alpha] focus
 for_window [class=Thunar] focus
 for_window [class=thunderbird] focus
 
@@ -294,14 +276,8 @@ for_window [class=thunderbird] focus
 # compositor #
 ##############
 
-# using default config 
-#exec_always --no-startup-id picom -b
-
 # for custom config:
 exec_always --no-startup-id picom --config  ~/.config/picom/picom.conf
-
-# xborders (https://github.com/deter0/xborder)
-# exec_always --no-startup-id ~/Repos/xborder/xborders --border-rgba 5294e2ff --border-width 1
 
 #############################################
 # autostart applications/services on login: #
@@ -322,16 +298,10 @@ exec --no-startup-id dex --autostart --environment i3
 #exec --no-startup-id sh /usr/share/endeavouros/scripts/welcome --startdelay=3 
 
 # num lock activated
-#exec --no-startup-id numlockx on
+exec --no-startup-id numlockx on
 
 # configure multiple keyboard layouts and hotkey to switch (Alt+CAPSLOCK in this example)
 exec --no-startup-id setxkbmap -layout 'us,latam' -option 'grp:win_space_toggle'
-
-# Start gxkb
-# exec --no-startup-id gxkb
-
-# start conky:
-#exec_always --no-startup-id conky
 
 # start a script to setup displays
 # uncomment the next line, use arandr to setup displays and save the file as monitor:
@@ -339,17 +309,12 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # set wallpaper
 exec --no-startup-id sleep 2 && nitrogen --restore
-#exec --no-startup-id feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros_i3.png
 
 # set powersavings for display:
 # exec --no-startup-id xset s 480 dpms 600 600 600
 
 # disable power saving (for example if using xscreensaver)
 exec --no-startup-id xset -dpms && xset s off
-
-# xscreensaver
-# https://www.jwz.org/xscreensaver
-#exec --no-startup-id xscreensaver --no-splash
 
 # Desktop notifications
 exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
@@ -361,8 +326,6 @@ exec_always --no-startup-id autotiling
 
 # Autostart apps as you like
 exec --no-startup-id sleep 2 && kitty -e tmux
-# exec --no-startup-id sleep 7 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
-#exec --no-startup-id sleep 3 && thunar
 
 ###############
 # system tray #
@@ -445,19 +408,8 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # Application menu handled by rofi: #
 #####################################
 
-## rofi bindings fancy application menu ($mod+d /F9 optional disabled)
-
-# bindsym $mod+d exec rofi -modi drun -show drun \
-# 		-config ~/.config/rofi/rofidmenu.rasi
-
 # This rofi config requires https://github.com/adi1090x/rofi
-# TODO: include this in .dotfiles
 bindsym $mod+d exec $HOME/.config/rofi/launchers/type-3/launcher.sh
-
-#b indsym F9 exec rofi -modi drun -show drun \
-#		-config ~/.config/rofi/rofidmenu.rasi
-
-## rofi bindings for window menu ($mod+t /F10 optional disabled)
 
 bindsym $mod+t exec rofi -show window \
 		-config $HOME/.config/rofi/launchers/type-4/style-5.rasi

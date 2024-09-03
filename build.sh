@@ -82,7 +82,7 @@ install_dependencies() {
     }
 
     banner "Installing dependencies from the AUR"
-    yay -S --needed i3lock-color librewolf-bin autotiling betterlockscreen --noconfirm || {
+    yay -S --needed autotiling librewolf-bin zen-browser-bin --noconfirm || {
         echo "Error: Failed to install packages"
         exit 1
     }
