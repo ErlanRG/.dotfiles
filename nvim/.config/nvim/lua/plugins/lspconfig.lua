@@ -77,6 +77,7 @@ function M.config()
     "bashls",
     "clangd",
     "emmet_ls",
+    "gopls",
     "lua_ls",
     "pyright",
     "tsserver",

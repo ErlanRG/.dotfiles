@@ -18,6 +18,7 @@ function M.config()
       lua = { "stylua" },
       c = { "clang_format" },
       cpp = { "clang_format" },
+      go = { "gofumpt" },
     },
   }
 end

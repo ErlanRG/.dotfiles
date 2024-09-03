@@ -107,7 +107,7 @@ function M.config()
       adaptive_size = false,
       centralize_selection = false,
       width = 40,
-      side = "left",
+      side = "right",
       preserve_window_proportions = false,
       number = false,
       relativenumber = false,
