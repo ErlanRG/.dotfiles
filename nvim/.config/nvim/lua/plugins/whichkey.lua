@@ -94,7 +94,8 @@ function M.config()
     { "<leader>T", group = "Trouble", nowait = true, remap = false },
     { "<leader>TR", "<cmd>Trouble lsp_references<CR>", desc = "LSP References", nowait = true, remap = false },
     { "<leader>Td", "<cmd>Trouble lsp_definitions<CR>", desc = "LSP Definitions", nowait = true, remap = false },
-    { "<leader>Tr", "<cmd>Trouble document_diagnostics<CR>", desc = "Open diagnostics", nowait = true, remap = false },
+    { "<leader>Tr", "<cmd>Trouble diagnostics<CR>", desc = "Open diagnostics", nowait = true, remap = false },
+    { "<leader>Tq", "<cmd>Trouble qflist<CR>", desc = "Open diagnostics", nowait = true, remap = false },
     {
       "<leader>c",
       "<cmd>lua require 'utils.functions'.buf_kill()<CR>",
