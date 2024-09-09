@@ -12,7 +12,7 @@ M.servers = {
   "emmet_ls",
   "lua_ls",
   "pyright",
-  "tsserver",
+  "ts_ls",
 }
 
 function M.config()

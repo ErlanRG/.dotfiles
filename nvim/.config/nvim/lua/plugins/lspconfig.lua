@@ -80,7 +80,7 @@ function M.config()
     "gopls",
     "lua_ls",
     "pyright",
-    "tsserver",
+    "ts_ls",
   }
 
   local default_diagnostic_config = {
