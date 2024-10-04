@@ -15,11 +15,27 @@ local M = {
 
 function M.config()
   local mappings = {
-    { "<leader>;", "<cmd>Alpha<CR>", desc = "Dashboard", nowait = true, remap = false },
-    { "<leader>]", "<cmd>Copilot panel<CR>", desc = "Copilot panel", nowait = true, remap = false },
-    { "<leader>e", "<cmd>NvimTreeToggle<CR>", desc = "Explorer", nowait = true, remap = false },
     { "<leader>p", '"_dP', desc = "Special Paste", nowait = true, remap = false },
-    { "<leader>w", vim.cmd.update, desc = "Save buffer", nowait = true, remap = false },
+
+    -- Buffer
+    { "<leader>b", group = "Buffer", nowait = true, remap = false },
+    { "<leader>bw", vim.cmd.update, desc = "Save buffer", nowait = true, remap = false },
+    {
+      "<leader>bc",
+      "<cmd>lua require 'utils.functions'.buf_kill()<CR>",
+      desc = "Close buffer",
+      nowait = true,
+      remap = false,
+    },
+
+    -- Open
+    { "<leader>o", group = "Open", nowait = true, remap = false },
+    { "<leader>od", "<cmd>Alpha<CR>", desc = "Open Dashboard", nowait = true, remap = false },
+    { "<leader>oe", "<cmd>NvimTreeToggle<CR>", desc = "Open NvimTree Explorer", nowait = true, remap = false },
+    { "<leader>og", "<cmd>lua _lazygit_toggle()<cr>", desc = "Open Lazygit", nowait = true, remap = false },
+    { "<leader>oo", "<cmd>Oil<CR>", desc = "Open Oil Explorer", nowait = true, remap = false },
+    { "<leader>ot", "<cmd>ToggleTerm<CR>", desc = "Open Terminal", nowait = true, remap = false },
+    { "<leader>oc", "<cmd>Copilot panel<CR>", desc = "Open Copilot panel", nowait = true, remap = false },
 
     -- Harpoon
     { "<leader>h", group = "Harpoon", nowait = true, remap = false },
@@ -44,7 +60,7 @@ function M.config()
     },
 
     {
-      "<leader>hg",
+      "<leader>h1",
       function()
         require("harpoon"):list():select(1)
       end,
@@ -54,7 +70,7 @@ function M.config()
     },
 
     {
-      "<leader>ht",
+      "<leader>h2",
       function()
         require("harpoon"):list():select(2)
       end,
@@ -64,7 +80,7 @@ function M.config()
     },
 
     {
-      "<leader>hn",
+      "<leader>h3",
       function()
         require("harpoon"):list():select(3)
       end,
@@ -91,18 +107,11 @@ function M.config()
     { "<leader>Pu", "<cmd>Lazy update<cr>", desc = "Update", nowait = true, remap = false },
 
     -- Trouble
-    { "<leader>T", group = "Trouble", nowait = true, remap = false },
-    { "<leader>TR", "<cmd>Trouble lsp_references<CR>", desc = "LSP References", nowait = true, remap = false },
-    { "<leader>Td", "<cmd>Trouble lsp_definitions<CR>", desc = "LSP Definitions", nowait = true, remap = false },
-    { "<leader>Tr", "<cmd>Trouble diagnostics<CR>", desc = "Open diagnostics", nowait = true, remap = false },
-    { "<leader>Tq", "<cmd>Trouble qflist<CR>", desc = "Open diagnostics", nowait = true, remap = false },
-    {
-      "<leader>c",
-      "<cmd>lua require 'utils.functions'.buf_kill()<CR>",
-      desc = "Close buffer",
-      nowait = true,
-      remap = false,
-    },
+    { "<leader>t", group = "Trouble", nowait = true, remap = false },
+    { "<leader>tR", "<cmd>Trouble lsp_references<CR>", desc = "LSP References", nowait = true, remap = false },
+    { "<leader>td", "<cmd>Trouble lsp_definitions<CR>", desc = "LSP Definitions", nowait = true, remap = false },
+    { "<leader>tq", "<cmd>Trouble qflist<CR>", desc = "Open diagnostics", nowait = true, remap = false },
+    { "<leader>tr", "<cmd>Trouble diagnostics<CR>", desc = "Open diagnostics", nowait = true, remap = false },
 
     -- Debug
     { "<leader>d", group = "Debug", nowait = true, remap = false },
@@ -168,20 +177,15 @@ function M.config()
     },
     { "<leader>lI", "<cmd>LspInfo<cr>", desc = "Info", nowait = true, remap = false },
     { "<leader>lR", "<cmd>LspRestart<CR>", desc = "Restart server", nowait = true, remap = false },
-
-    { "<leader>t", group = "Terminal", nowait = true, remap = false },
-    { "<leader>tg", "<cmd>lua _lazygit_toggle()<cr>", desc = "Open Lazygit", nowait = true, remap = false },
-    { "<leader>tt", "<cmd>ToggleTerm<CR>", desc = "Open Terminal", nowait = true, remap = false },
-
     { "<leader>s", group = "Split buffers", nowait = true, remap = false },
-    { "<leader>sv", vim.cmd.vnew, desc = "Vertical split", nowait = true, remap = false },
     { "<leader>sh", vim.cmd.new, desc = "Horizontal split", nowait = true, remap = false },
+    { "<leader>sv", vim.cmd.vnew, desc = "Vertical split", nowait = true, remap = false },
   }
 
   local config = {
     preset = "modern",
     notify = true,
-    delay = 500,
+    delay = 1000,
     filter = function(map)
       return map.desc and map.desc ~= ""
     end,
@@ -199,7 +203,7 @@ function M.config()
       -- col = 0,
       -- row = math.huge,
       -- border = "none",
-      padding = { 1, 2 }, -- extra window padding [top/bottom, right/left]
+      padding = { 2, 2 }, -- extra window padding [top/bottom, right/left]
       title = "Keybindings",
       title_pos = "center",
       zindex = 1000,
