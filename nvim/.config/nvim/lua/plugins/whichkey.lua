@@ -21,7 +21,7 @@ function M.config()
     { "<leader>b", group = "Buffer", nowait = true, remap = false },
     { "<leader>bw", vim.cmd.update, desc = "Save buffer", nowait = true, remap = false },
     {
-      "<leader>bc",
+      "<leader>bd",
       "<cmd>lua require 'utils.functions'.buf_kill()<CR>",
       desc = "Close buffer",
       nowait = true,

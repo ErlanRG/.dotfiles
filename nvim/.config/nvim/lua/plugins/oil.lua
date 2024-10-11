@@ -22,7 +22,8 @@ function M.config()
     },
     keymaps = {
       ["l"] = "actions.select",
-      ["h"] = "actions.parent"
+      ["h"] = "actions.parent",
+      ["q"] = "actions.close",
     }
   }
 
