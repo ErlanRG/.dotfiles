@@ -178,7 +178,7 @@ return {
   },
   colors = {
     background = catppuccin_colors.base,
-    split = catppuccin_colors.sky,
+    split = catppuccin_colors.text,
     tab_bar = {
       active_tab = {
         bg_color = catppuccin_colors.base,
@@ -186,13 +186,13 @@ return {
       },
       inactive_tab = {
         bg_color = catppuccin_colors.crust,
-        fg_color = catppuccin_colors.text,
+        fg_color = catppuccin_colors.surface1,
       },
       background = catppuccin_colors.base,
     },
   },
   window_frame = {
-    font = wezterm.font { family = "Iosevka" },
+    font = wezterm.font { family = "Iosevka Nerd Font" },
     font_size = 10,
   },
   window_padding = {
