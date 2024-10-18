@@ -232,5 +232,7 @@ return {
     { mods = "ALT", key = "7", action = wezterm.action { ActivateTab = 6 } },
     { mods = "ALT", key = "8", action = wezterm.action { ActivateTab = 7 } },
     { mods = "ALT", key = "9", action = wezterm.action { ActivateTab = 8 } },
+    -- CopyMode
+    { mods = "LEADER", key = "[", action = wezterm.action.ActivateCopyMode },
   },
 }
