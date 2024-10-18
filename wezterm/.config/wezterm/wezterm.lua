@@ -34,103 +34,128 @@ local catppuccin_colors = {
 }
 
 local function get_process(tab)
-  local process_icons = {
+  local wnf = wezterm.nerdfonts
+  local PROCESS_ICONS = {
     ["docker"] = {
       { Foreground = { Color = catppuccin_colors.blue } },
-      { Text = wezterm.nerdfonts.linux_docker },
+      { Text = wnf.md_docker },
     },
     ["docker-compose"] = {
       { Foreground = { Color = catppuccin_colors.blue } },
-      { Text = wezterm.nerdfonts.linux_docker },
+      { Text = wnf.md_docker },
     },
     ["nvim"] = {
       { Foreground = { Color = catppuccin_colors.green } },
-      { Text = wezterm.nerdfonts.custom_vim },
+      { Text = wnf.custom_neovim },
     },
     ["vim"] = {
       { Foreground = { Color = catppuccin_colors.green } },
-      { Text = wezterm.nerdfonts.dev_vim },
+      { Text = wnf.custom_vim },
     },
     ["node"] = {
       { Foreground = { Color = catppuccin_colors.green } },
-      { Text = wezterm.nerdfonts.mdi_hexagon },
+      { Text = wnf.md_hexagon },
     },
     ["zsh"] = {
       { Foreground = { Color = catppuccin_colors.peach } },
-      { Text = wezterm.nerdfonts.dev_terminal },
+      { Text = wnf.dev_terminal },
     },
     ["bash"] = {
-      { Foreground = { Color = catppuccin_colors.subtext0 } },
-      { Text = wezterm.nerdfonts.cod_terminal_bash },
-    },
-    ["yay"] = {
-      { Foreground = { Color = catppuccin_colors.lavender } },
-      { Text = wezterm.nerdfonts.linux_archlinux },
+      { Foreground = { Color = catppuccin_colors.overlay1 } },
+      { Text = wnf.cod_terminal_bash },
     },
     ["htop"] = {
       { Foreground = { Color = catppuccin_colors.yellow } },
-      { Text = wezterm.nerdfonts.mdi_chart_donut_variant },
+      { Text = wnf.fa_area_chart },
     },
-    ["cargo"] = {
-      { Foreground = { Color = catppuccin_colors.peach } },
-      { Text = wezterm.nerdfonts.dev_rust },
-    },
-    ["lazydocker"] = {
-      { Foreground = { Color = catppuccin_colors.blue } },
-      { Text = wezterm.nerdfonts.linux_docker },
+    ["go"] = {
+      { Foreground = { Color = catppuccin_colors.sapphire } },
+      { Text = wnf.seti_go },
     },
     ["git"] = {
-      { Foreground = { Color = catppuccin_colors.peach } },
-      { Text = wezterm.nerdfonts.dev_git },
+      { Foreground = { Color = catppuccin_colors.red } },
+      { Text = wnf.md_git },
     },
     ["lazygit"] = {
-      { Foreground = { Color = catppuccin_colors.peach } },
-      { Text = wezterm.nerdfonts.dev_git },
-    },
-    ["lua"] = {
-      { Foreground = { Color = catppuccin_colors.blue } },
-      { Text = wezterm.nerdfonts.seti_lua },
+      { Foreground = { Color = catppuccin_colors.red } },
+      { Text = wnf.md_git },
     },
     ["wget"] = {
       { Foreground = { Color = catppuccin_colors.yellow } },
-      { Text = wezterm.nerdfonts.mdi_arrow_down_box },
+      { Text = wnf.md_tray_arrow_down },
     },
     ["curl"] = {
       { Foreground = { Color = catppuccin_colors.yellow } },
-      { Text = wezterm.nerdfonts.mdi_flattr },
+      { Text = wnf.cod_arrow_swap },
     },
     ["gh"] = {
       { Foreground = { Color = catppuccin_colors.mauve } },
-      { Text = wezterm.nerdfonts.dev_github_badge },
+      { Text = wnf.dev_github_badge },
+    },
+    ["flatpak"] = {
+      { Foreground = { Color = catppuccin_colors.blue } },
+      { Text = wnf.md_package_variant },
+    },
+    ["yay"] = {
+      { Foreground = { Color = catppuccin_colors.mauve } },
+      { Text = wnf.md_arch },
     },
   }
 
   local process_name = string.gsub(tab.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
 
-  return wezterm.format(
-    process_icons[process_name]
-      or { { Foreground = { Color = catppuccin_colors.sky } }, { Text = string.format("[%s]", process_name) } }
-  )
+  if PROCESS_ICONS[process_name] then
+    return wezterm.format(PROCESS_ICONS[process_name])
+  elseif process_name == "" then
+    return wezterm.format {
+      { Foreground = { Color = catppuccin_colors.red } },
+      { Text = wezterm.nerdfonts.md_lock },
+    }
+  else
+    return wezterm.format {
+      { Foreground = { Color = catppuccin_colors.red } },
+      { Text = string.format("[%s]", process_name) },
+    }
+  end
 end
 
 local function get_current_working_dir(tab)
-  local current_dir = tab.active_pane.current_working_dir
-  local HOME_DIR = string.format("file://%s", os.getenv "HOME")
+  local cwd_uri = tab.active_pane.current_working_dir
 
-  return current_dir == HOME_DIR and "  ~"
-    or string.format("  %s", string.gsub(current_dir, "(.*[/\\])(.*)", "%2"))
+  if cwd_uri then
+    local cwd = ""
+    if type(cwd_uri) == "userdata" then
+      cwd = cwd_uri.file_path
+    else
+      cwd_uri = cwd_uri:sub(8)
+      local slash = cwd_uri:find "/"
+      if slash then
+        cwd = cwd_uri:sub(slash):gsub("%%(%x%x)", function(hex)
+          return string.char(tonumber(hex, 16))
+        end)
+      end
+    end
+
+    if cwd == os.getenv "HOME" then
+      return "~"
+    end
+
+    return string.format("%s", string.match(cwd, "[^/]+$"))
+  end
 end
 
 wezterm.on("format-tab-title", function(tab)
   return wezterm.format {
+    { Text = "  " },
     { Attribute = { Intensity = "Half" } },
-    { Text = string.format(" %s  ", tab.tab_index + 1) },
+    { Text = string.format("%s", tab.tab_index + 1) },
     "ResetAttributes",
-    { Text = get_process(tab) },
     { Text = " " },
+    { Text = get_process(tab) },
+    { Text = "  " },
     { Text = get_current_working_dir(tab) },
     { Foreground = { Color = catppuccin_colors.base } },
-    { Text = "  ▕" },
+    { Text = " ▕" },
   }
 end)
 
@@ -146,8 +171,6 @@ return {
   tab_bar_at_bottom = false,
   tab_max_width = 50,
   use_fancy_tab_bar = false,
-  -- window_background_opacity = 0.8,
-  -- text_background_opacity = 0.4,
   window_decorations = "RESIZE",
   inactive_pane_hsb = {
     brightness = 0.6,
@@ -158,8 +181,12 @@ return {
     split = catppuccin_colors.sky,
     tab_bar = {
       active_tab = {
-        bg_color = catppuccin_colors.sky,
-        fg_color = catppuccin_colors.base,
+        bg_color = catppuccin_colors.base,
+        fg_color = catppuccin_colors.text,
+      },
+      inactive_tab = {
+        bg_color = catppuccin_colors.crust,
+        fg_color = catppuccin_colors.text,
       },
       background = catppuccin_colors.base,
     },
