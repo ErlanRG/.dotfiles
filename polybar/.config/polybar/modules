@@ -102,7 +102,7 @@ type = internal/memory
 interval = 1
 
 format = <label>
-format-prefix = " "
+format-prefix = "  "
 format-prefix-foreground = ${colors.salmon}
 format-foreground = ${color.white}
 

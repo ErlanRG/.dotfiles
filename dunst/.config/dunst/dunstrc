@@ -22,11 +22,11 @@ frame_width = 6
 frame_color = "#383c4a"
 separator_color = "#c0caf5"
 
-font = JetBrainsMono NFM 10
+font = "Iosevka NF SemiBold 10"
 
 line_height = 0
 markup = full
-format = "<span size='x-large' font_desc='Cantarell 9' weight='bold' foreground='#f9f9f9'>%s</span>\n%b"
+format = "<span size='x-large' font_desc='Iosevka NF SemiBold 9' weight='bold' foreground='#f9f9f9'>%s</span>\n%b"
 alignment = center
 
 idle_threshold = 120
