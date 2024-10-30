@@ -166,6 +166,7 @@ return {
   enable_scroll_bar = false,
   font_size = 12,
   font = wezterm.font("Iosevka Nerd Font", { weight = "DemiBold", stretch = "Normal", style = "Normal" }),
+  warn_about_missing_glyphs = false,
   hide_tab_bar_if_only_one_tab = true,
   show_new_tab_button_in_tab_bar = false,
   tab_bar_at_bottom = false,

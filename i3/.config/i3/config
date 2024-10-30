@@ -118,8 +118,9 @@ bindsym $mod+Shift+BackSpace scratchpad show
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec kitty
+#bindsym $mod+Return exec kitty
 bindsym $mod+Shift+Return exec kitty -e tmux
+bindsym $mod+Return exec wezterm
 
 # kill focused window
 bindsym $mod+c kill
@@ -325,7 +326,7 @@ exec --no-startup-id dbus-launch dunst --config ~/.config/dunst/dunstrc
 exec_always --no-startup-id autotiling
 
 # Autostart apps as you like
-exec --no-startup-id sleep 2 && kitty -e tmux
+# exec --no-startup-id sleep 2 && kitty -e tmux
 
 ###############
 # system tray #

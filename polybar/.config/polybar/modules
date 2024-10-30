@@ -90,7 +90,7 @@ format-unmounted = <label-unmounted>
 format-unmounted-prefix = " "
 format-unmounted-prefix-foreground = ${color.white}
 
-label-mounted = "%{A1:kitty -e ncdu / --exclude /mnt &:} %free%%{A}"
+label-mounted = "%{A1:wezterm -e ncdu / --exclude /mnt &:} %free%%{A}"
 label-unmounted = " %mountpoint%: NA"
 label-mounted-foreground = ${color.background}
 
@@ -235,7 +235,7 @@ format-prefix = 󰚰
 format-prefix-foreground = ${colors.aqua}
 exec = $HOME/.config/i3/scripts/updates-pacman-aurhelper.sh
 interval = 600
-click-left = kitty -e yay
+click-left = wezterm -e yay
 
 ;==========================================================
 
