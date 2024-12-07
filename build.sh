@@ -2,7 +2,7 @@
 
 set -eo pipefail
 
-STOW_FOLDERS=("dunst" "i3" "git" "kitty" "nvim" "picom" "polybar" "rofi" "starship" "tmux" "wezterm" "zsh")
+STOW_FOLDERS=("dunst" "i3" "git" "kitty" "nvim" "picom" "polybar" "rofi" "screenlayout" "starship" "tmux" "wezterm" "zsh")
 CONFIG_PATH="$HOME/.config/"
 
 banner() {
@@ -55,7 +55,7 @@ full_backup() {
 }
 
 install_oh_my_zsh() {
-    banner "Configring Oh-My-Zsh"
+    banner "Configuring Oh-My-Zsh"
 
     git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
     chsh -s "$(which zsh)" || {
@@ -76,7 +76,7 @@ install_fzf() {
 
 install_dependencies() {
     banner "Installing dependencies from Arch Repos"
-    sudo pacman -S --needed dunst eza fd git kitty lazygit nitrogen npm polybar picom rofi starship stow thunar tmux yay zoxide zsh --noconfirm || {
+    sudo pacman -S --needed dunst eza fd git kitty lazygit neovim nitrogen npm polybar picom rofi starship stow thunar tmux wezterm yay zoxide zsh --noconfirm || {
         echo "Error: Failed to install packages."
         exit 1
     }
@@ -87,6 +87,8 @@ install_dependencies() {
         exit 1
     }
 
+    install_fonts
+
     if [ ! -d "$HOME/.oh-my-zsh" ]; then
         install_oh_my_zsh
     fi
@@ -94,23 +96,47 @@ install_dependencies() {
     if [ ! -d "$HOME/.fzf" ]; then
         install_fzf
     fi
-
-    if ! command -v nvim &>/dev/null; then
-      install_neovim
-    fi
 }
 
-install_neovim() {
-  banner "Installing Neovim"
+install_fonts() {
+    banner "Installing fonts"
 
-  git clone --depth=1 https://github.com/neovim/neovim.git ~/Repos/neovim && cd ~/Repos/neovim
-  sudo pacman -S --needed base-devel cmake unzip ninja curl --noconfirm
-  sudo make CMAKE_BUILD_TYPE=Release && sudo make install
+    IOSEVKA_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Iosevka.zip"
+    DEST_DIR="$HOME/.local/share/fonts"
+    FILE_NAME="Iosevka.zip"
+    FILE_PATH="$DEST_DIR/$FILE_NAME"
 
-  # This cleans up the build files and already prepares the build for the next time
-  sudo make distclean && sudo make deps
+    # Create the fonts directory if it doesn't exist
+    if [ ! -d "$DEST_DIR" ]; then
+        mkdir -p "$DEST_DIR"
+    fi
 
-  cd ~/.dotfiles
+    # Download the font
+    wget -P "$DEST_DIR" "$IOSEVKA_URL" || {
+        echo "Error: Download failed. File not found."
+            exit 1
+    }
+
+    # Check if the file was downloaded successfully
+    if [ ! -f "$FILE_PATH" ]; then
+        echo "Download failed. File does not exist."
+        exit 1
+    fi
+
+    echo "Download successful. Extracting file..."
+
+    # Extract the downloaded file
+    unzip -o "$FILE_PATH" -d "$DEST_DIR" || {
+        echo "Error: Extraction failed."
+            exit 1
+    }
+
+    # Optionally, remove the downloaded zip file after extraction
+    rm "$FILE_PATH" || {
+        echo "Error: Failed to remove the downloaded zip file."
+    }
+
+    echo "Fonts installed successfully."
 }
 
 usage() {
