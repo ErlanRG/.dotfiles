@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# check-hash script
+
+# Define the list of supported hash functions
+supported_hash_functions=("md5sum" "sha1sum" "sha256sum" "sha512sum" "sha3sum")
+
+# Ensure correct number of arguments
+if [ "$#" -ne 3 ]; then
+    echo "Usage: check-hash <hash_function> <file> <hash_provided>"
+    echo "Supported hash functions: ${supported_hash_functions[*]}"
+    exit 1
+fi
+
+# Extract arguments
+hash_function=$1
+file=$2
+hash_provided=$3
+
+# Check if the provided hash function is valid
+if [[ ! " ${supported_hash_functions[@]} " =~ " $hash_function " ]]; then
+    echo "Error: Invalid hash function '$hash_function'."
+    echo "Supported hash functions: ${supported_hash_functions[*]}"
+    exit 1
+fi
+
+# Check if the hash function is available on the system
+if ! command -v "$hash_function" &> /dev/null; then
+    echo "Error: Hash function '$hash_function' not found on your system."
+    exit 1
+fi
+
+# Calculate the hash of the file using the specified hash function
+hash_calculated=$($hash_function "$file" | awk '{print $1}')
+
+# Compare the calculated hash with the provided hash
+if [ "$hash_calculated" == "$hash_provided" ]; then
+    echo "Hashes match."
+    exit 0
+else
+    echo "Hashes do not match."
+    exit 1
+fi
