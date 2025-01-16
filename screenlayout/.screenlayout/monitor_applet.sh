@@ -10,8 +10,8 @@ source "$HOME"/.config/rofi/applets/shared/theme.bash
 theme="$type/$style"
 
 # Theme Elements
-prompt='Monitor config'
-mesg="Choose monitor configuration:"
+prompt='Display config'
+mesg="Choose display configuration:"
 
 if [[ ( "$theme" == *'type-1'* ) || ( "$theme" == *'type-3'* ) || ( "$theme" == *'type-5'* ) ]]; then
 	list_col='1'
@@ -22,21 +22,23 @@ elif [[ ( "$theme" == *'type-2'* ) || ( "$theme" == *'type-4'* ) ]]; then
 fi
 
 if [[ ( "$theme" == *'type-1'* ) || ( "$theme" == *'type-5'* ) ]]; then
-	efonts="JetBrains Mono Nerd Font 10"
+	efonts="Iosevka Nerd Font 11"
 else
-	efonts="JetBrains Mono Nerd Font 28"
+	efonts="Iosevka Nerd Font 28"
 fi
 
 # Options
 layout=`cat ${theme} | grep 'USE_ICON' | cut -d'=' -f2`
 if [[ "$layout" == 'NO' ]]; then
-    option_1="󰨇 2k (1440p)"
-	option_2="󱎓 HD (1080p)"
-    option_3="󰃖 Work (1080p only)"
+    option_1="󰍺  Dual Display"
+	option_2="󰍹  Main Display"
+	option_3="󰍹  Secundary Display"
+    option_4="󰨇  Gaming Setup"
 else
-	option_1="󰨇"
-	option_2="󱎓"
-	option_3="󰃖"
+    option_1="󰍺"
+	option_2="󰍹"
+	option_3="󰍹"
+    option_4="󰨇"
 fi
 
 # Rofi CMD
@@ -53,17 +55,19 @@ rofi_cmd() {
 
 # Pass variables to rofi dmenu
 run_rofi() {
-	echo -e "$option_1\n$option_2\n$option_3" | rofi_cmd
+	echo -e "$option_1\n$option_2\n$option_3\n$option_4\n" | rofi_cmd
 }
 
 # Execute Command
 run_cmd() {
 	if [[ "$1" == '--opt1' ]]; then
-        sh ~/.screenlayout/monitor.sh
+        sh ~/.screenlayout/layouts/dual_display.sh
 	elif [[ "$1" == '--opt2' ]]; then
-        sh ~/.screenlayout/gaming.sh
+        sh ~/.screenlayout/layouts/main_display.sh
 	elif [[ "$1" == '--opt3' ]]; then
-        sh ~/.screenlayout/work.sh
+        sh ~/.screenlayout/layouts/secundary_display.sh
+	elif [[ "$1" == '--opt4' ]]; then
+        sh ~/.screenlayout/layouts/gaming.sh
 	fi
 }
 
@@ -78,5 +82,8 @@ case ${chosen} in
         ;;
     $option_3)
 		run_cmd --opt3
+        ;;
+    $option_4)
+		run_cmd --opt4
         ;;
 esac
