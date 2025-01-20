@@ -1,2 +1,1 @@
-require "core"
-require "plugins"
+require 'rangeler.config'
