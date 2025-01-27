@@ -26,7 +26,6 @@ map('i', 'jk', '<Esc>', { desc = 'Quick <Esc>' })
 
 -- Buffer
 map('n', '<leader>bw', '<cmd>update<CR>', { desc = '[B]uffer [S]ave' })
-map('n', '<leader>bd', '<cmd>:bd<CR>', { desc = '[B]uffer [D]elete' })
 
 -- better indenting
 map('v', '<', '<gv')
