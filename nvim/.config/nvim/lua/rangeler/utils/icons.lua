@@ -37,6 +37,9 @@ return {
         Variable = '',
     },
     git = {
+        BoldLineAdded = '',
+        BoldLineModified = '󰝤',
+        BoldLineRemoved = '',
         Branch = '',
         Conflict = '',
         Diff = '',
@@ -134,11 +137,12 @@ return {
         TriangleDown = '',
         TriangleLeft = '',
         TriangleRight = '',
-        TriangleUp = '',
         TriangleShortArrowDown = '',
         TriangleShortArrowLeft = '',
         TriangleShortArrowRight = '',
         TriangleShortArrowUp = '',
+        TriangleUp = '',
+        Vim = '',
         Watches = '󰂥',
     },
     diagnostics = {
