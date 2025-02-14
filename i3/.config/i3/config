@@ -130,9 +130,9 @@ bindsym $mod+Shift+e exec ~/.config/rofi/powermenu/type-1/powermenu.sh
 
 # Lock the system
 # lock with a picture:
-bindsym $mod+l exec i3lock -i $HOME/Pictures/Wallpapers/tokyo-night05.png -t
+# bindsym $mod+l exec i3lock -i $HOME/Pictures/Wallpapers/tokyo-night05.png -t
 # lock by blurring the screen:
-bindsym $mod+l exec $HOME/.config/i3/scripts/blur-lock
+bindsym $mod+Mod1+l exec $HOME/.config/i3/scripts/blur-lock
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -145,10 +145,10 @@ bindsym XF86MonBrightnessUp exec xbacklight +5 && notify-send "Brightness - $(xb
 bindsym XF86MonBrightnessDown exec xbacklight -5 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+b focus up
-bindsym $mod+o focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -157,10 +157,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+b move up
-bindsym $mod+Shift+o move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -169,7 +169,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+Mod1+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -297,7 +297,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id dex --autostart --environment i3
 
 # start welcome app
-#exec --no-startup-id sh /usr/share/endeavouros/scripts/welcome --startdelay=3 
+#exec --no-startup-id sh /usr/share/endeavouros/scripts/welcome --startdelay=3
 
 # num lock activated
 exec --no-startup-id numlockx on
@@ -368,8 +368,8 @@ for_window [class="urxvt"] border pixel 1
 
 # set size of floating window
 #for_window [window_role="(?i)GtkFileChooserDialog"] resize set 640 480 #to set size of file choose dialog
-for_window [class=".*"] resize set 640 480 #to change size of all floating windows 
-for_window [class="keepassxc"] resize set 640 480 #to change size of all floating windows 
+for_window [class=".*"] resize set 640 480 #to change size of all floating windows
+for_window [class="keepassxc"] resize set 640 480 #to change size of all floating windows
 
 # set position of floating window
 #for_window [class=".*"] move position center
@@ -389,7 +389,7 @@ set $purple		    #c6aae8
 set $darkgrey		#383c4a
 set $grey		    #b0b5bd
 set $mediumgrey		#8b8b8b
-set $yellowbrown	#ebddaa     
+set $yellowbrown	#ebddaa
 set $green          #94e2d5
 
 # define colors for windows:
