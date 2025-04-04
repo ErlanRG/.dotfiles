@@ -27,6 +27,7 @@ return {
         -- Adds other completion capabilities.
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-path',
+        'hrsh7th/cmp-buffer',
     },
     config = function()
         -- See `:help cmp`
@@ -65,8 +66,10 @@ return {
                     -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
                     group_index = 0,
                 },
-                { name = 'nvim_lsp' },
+                { name = 'buffer' },
+                { name = 'copilot', group_index = 2 },
                 { name = 'luasnip' },
+                { name = 'nvim_lsp' },
                 { name = 'path' },
             },
             duplicates_default = 0,

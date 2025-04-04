@@ -52,6 +52,7 @@ return {
         spec = {
             { '<leader>b', group = '[B]uffer', mode = { 'n', 'x' } },
             { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
+            { '<leader>C', group = '[C]opilot', mode = { 'n', 'x' } },
             { '<leader>d', group = '[D]ocument' },
             { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
             { '<leader>o', group = '[O]pen' },
