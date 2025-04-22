@@ -78,7 +78,7 @@ install_fzf() {
 
 install_dependencies() {
     banner "Installing dependencies from Arch Repos"
-    sudo pacman -S --needed dunst eza fd git kitty lazygit neovim nitrogen npm polybar picom rofi starship stow thunar tmux wezterm yazi zoxide zsh --noconfirm
+    sudo pacman -S --needed dunst eza fd git kdeconnect kitty lazygit neovim nextcloud-client nitrogen npm polybar picom rofi starship stow thunar tmux veracrypt wezterm yazi zoxide zsh --noconfirm
 
     banner "Installing dependencies from AUR"
     yay -S --needed autotiling librewolf-bin zen-browser-bin --noconfirm
