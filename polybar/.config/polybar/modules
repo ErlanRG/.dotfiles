@@ -1,5 +1,6 @@
 ;==========================================================
 
+
 [module/time]
 type = internal/date
 interval = 1
@@ -11,7 +12,7 @@ format-prefix = 󰃰
 format-prefix-foreground = ${colors.yellowbrown}
 
 label = %date% %time%
-;label-foreground = ${color.background}
+label-foreground = ${colors.white}
 label-padding = 1
 
 ;==========================================================
@@ -67,9 +68,9 @@ label-urgent-padding = 1
 [module/launcher]
 type=custom/text
 ;content = 
-content = 
-content-font = 8
-content-foreground= ${colors.lightblue}
+format = 
+format-font = 8
+format-foreground= ${colors.lightblue}
 content-padding = 0
 click-left= $HOME/.config/rofi/launchers/type-3/launcher.sh
 
@@ -88,11 +89,11 @@ format-mounted-prefix-foreground = ${colors.green}
 
 format-unmounted = <label-unmounted>
 format-unmounted-prefix = " "
-format-unmounted-prefix-foreground = ${color.white}
+format-unmounted-prefix-foreground = ${colors.white}
 
 label-mounted = "%{A1:wezterm -e ncdu / --exclude /mnt &:} %free%%{A}"
 label-unmounted = " %mountpoint%: NA"
-label-mounted-foreground = ${color.background}
+label-mounted-foreground = ${colors.white}
 
 ;==========================================================
 
@@ -104,7 +105,7 @@ interval = 1
 format = <label>
 format-prefix = "  "
 format-prefix-foreground = ${colors.salmon}
-format-foreground = ${color.white}
+format-foreground = ${colors.white}
 
 exec = $HOME/.config/i3/scripts/memory
 
@@ -201,7 +202,7 @@ label-connected = %netspeed%
 label-disconnected = Offline
 
 label-connected-foreground = ${colors.white}
-label-disconnected-foreground = ${colors.background}
+label-disconnected-foreground = ${colors.white}
 
 ;==========================================================
 
@@ -217,13 +218,13 @@ format-volume = <ramp-volume><label-volume>
 format-muted = <label-muted>
 format-muted-prefix = " "
 format-muted-prefix-font = 2
-format-muted-prefix-foreground = ${color.background}
+format-muted-prefix-foreground = ${colors.white}
 
 label-volume = "%percentage%% "
 label-muted = "Mute"
 
-label-volume-foreground = ${color.background}
-label-muted-foreground = ${color.background}
+label-volume-foreground = ${colors.white}
+label-muted-foreground = ${colors.white}
 
 ramp-volume-0 = " "
 ramp-volume-1 = " "
@@ -270,10 +271,10 @@ click-left = wezterm -e yay
 
 [module/shutdown_menu]
 type=custom/text
-content = 
-content-font = 8
-content-foreground= ${colors.urgentred}
-content-padding = 0
+format = 
+format-font = 8
+format-foreground= ${colors.urgentred}
+format-padding = 0
 click-left = ~/.config/rofi/powermenu/type-1/powermenu.sh
 
 ;==========================================================

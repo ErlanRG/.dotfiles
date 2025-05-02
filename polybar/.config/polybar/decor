@@ -1,7 +1,7 @@
 ;==========================================================
 [module/spacing]
 type = custom/text
-content = " "
+format = " "
 content-background = ${colors.darkgrey}
 
 [module/sep]
@@ -14,7 +14,7 @@ content-foreground = ${colors.darkgrey}
 [module/dot]
 type = custom/text
 ;content = 
-content = "󰇙"
+format = "󰇙"
 
-content-background = ${color.white}
+;content-background = ${color.white}
 content-padding = 1
