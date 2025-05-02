@@ -128,9 +128,38 @@ interval = 0.5
 
 thermal-zone = 0
 
-hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon0/temp1_input
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input
 base-temperature = 20
-warn-temperature = 60
+warn-temperature = 80
+
+units = true
+
+format = <ramp> <label>
+
+format-warn = <ramp> <label-warn>
+
+label = %temperature-c%
+
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.urgentred}
+
+ramp-0 = ""
+ramp-1 = ""
+ramp-2 = ""
+ramp-foreground = #D3DB6B
+
+;==========================================================
+
+[module/gpu_temp]
+type = internal/temperature
+
+interval = 0.5
+
+thermal-zone = 0
+
+hwmon-path = /sys/devices/pci0000:00/0000:00:08.1/0000:38:00.0/hwmon/hwmon5/temp1_input
+base-temperature = 20
+warn-temperature = 80
 
 units = true
 
@@ -152,7 +181,7 @@ ramp-foreground = #D3DB6B
 
 [module/network]
 type = internal/network
-interface = enp5s0
+interface = enp6s0
 
 interval = 1.0
 accumulate-stats = true
@@ -169,7 +198,7 @@ format-disconnected-prefix-font = 2
 format-disconnected-foreground = ${colors.white}
 
 label-connected = %netspeed%
-label-disconnected = Offline 
+label-disconnected = Offline
 
 label-connected-foreground = ${colors.white}
 label-disconnected-foreground = ${colors.background}
