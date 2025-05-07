@@ -9,7 +9,7 @@ STOW_FOLDERS=("dunst" "i3" "git" "kitty" "nvim" "picom" "polybar" "rofi" "screen
 
 banner() {
     local text="$1"
-    local border=$(printf "=%.0s" $(seq 1 $(( ${#text} + 4 ))))
+    local border=$(printf "=%.0s" $(seq 1 $((${#text} + 4))))
     echo "$border"
     echo "| $text |"
     echo "$border"
@@ -38,7 +38,6 @@ stow_dirs() {
     done
     cd "$HOME"
 }
-
 
 full_backup() {
     banner "Backing up config"
@@ -78,7 +77,7 @@ install_fzf() {
 
 install_dependencies() {
     banner "Installing dependencies from Arch Repos"
-    sudo pacman -S --needed dunst eza fd git kdeconnect kitty lazygit neovim nextcloud-client nitrogen npm polybar picom rofi starship stow thunar tmux veracrypt wezterm yazi zoxide zsh --noconfirm
+    sudo pacman -S --needed dunst eza fd git kdeconnect keepassxc kitty lazygit neovim nextcloud-client nitrogen npm polybar picom rofi starship stow thunar tmux veracrypt wezterm yazi zoxide zsh --noconfirm
 
     banner "Installing dependencies from AUR"
     yay -S --needed autotiling librewolf-bin zen-browser-bin --noconfirm
@@ -117,21 +116,21 @@ main() {
     fi
 
     case "$1" in
-        install)
-            git clone --depth 1 https://github.com/ErlanRG/.dotfiles "$DOTFILES_DIR"
-            install_dependencies
-            full_backup
-            stow_dirs
-            ;;
-        clean)
-            unstow_dirs
-            ;;
-        setup)
-            stow_dirs
-            ;;
-        *)
-            usage
-            ;;
+    install)
+        git clone --depth 1 https://github.com/ErlanRG/.dotfiles "$DOTFILES_DIR"
+        install_dependencies
+        full_backup
+        stow_dirs
+        ;;
+    clean)
+        unstow_dirs
+        ;;
+    setup)
+        stow_dirs
+        ;;
+    *)
+        usage
+        ;;
     esac
 }
 
