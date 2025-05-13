@@ -1,0 +1,81 @@
+{
+    "custom/launcher": {
+        "format": " \udb82\udcc7 ",
+        "on-click": "~/.config/rofi/launchers/type-3/launcher.sh",
+    },
+
+    "hyprland/workspaces": {
+        "all-outputs": true,
+        "format-icons": {
+            "urgent": "",
+            "active": "",
+            "default": ""
+        },
+        "format": "{icon}",
+        "on-scroll-up": "hyprctl dispatch workspace e+1 1>/dev/null",
+        "on-scroll-down": "hyprctl dispatch workspace e-1 1>/dev/null",
+        "sort-by-number": true,
+        "active-only": false,
+    },
+
+    "hyprland/window": {
+        "icon": false,
+        "separate-outputs": true,
+    },
+
+    "temperature#cpu": {
+        "interval": 1,
+        "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon0/temp1_input",
+        "critical-threshold": 80,
+        "format-critical": "{temperatureC}°C ",
+        "format": "{temperatureC}°C ",
+        "tooltip": true,
+        "tooltip-format": "CPU",
+    },
+
+    "temperature#gpu": {
+        "interval": 1,
+        "hwmon-path": "/sys/devices/pci0000:00/0000:00:08.1/0000:38:00.0/hwmon/hwmon4/temp1_input",
+        "critical-threshold": 80,
+        "format-critical": "{temperatureC}°C ",
+        "format": "{temperatureC}°C ",
+        "tooltip": true,
+        "tooltip-format": "GPU",
+    },
+
+    "disk": {
+        "format": " {specific_free:0.2f} GB",
+        "unit": "GB",
+    },
+
+    "network": {
+        "interface": "enp6s0",
+        "interval": 2,
+        "format-ethernet": " {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "format-disconnected": "󰲛 Disconnected"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " Muted",
+        "format-icons": {
+            "alsa_output.usb-Macronix_Razer_Barracuda_X_2.4_1234-00.analog-stereo": "",
+            "alsa_output.usb-Macronix_Razer_Barracuda_X_2.4_1234-00.analog-stereo-muted": " ",
+            "headset": "",
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "clock": {
+        "format": "󰥔 {:%I:%M %p}",
+        "format-alt": " {:%A %B %d, %Y }",
+        "interval": 1,
+        "timezone": "America/Costa_Rica",
+        "tooltip": false,
+    },
+
+    "tray": {
+        "spacing": 10
+    },
+}

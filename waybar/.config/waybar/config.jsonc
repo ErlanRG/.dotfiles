@@ -1,0 +1,15 @@
+{
+    "layer": "top",
+    "position": "top",
+    "margin-top": 8,
+    "margin-bottom": 0,
+    "margin-left": 12,
+    "margin-right": 12,
+    "spacing": 0,
+
+    "include": [ "~/.config/waybar/modules.json" ],
+
+    "modules-left": [ "custom/launcher", "hyprland/workspaces", "temperature#cpu", "temperature#gpu", "disk" ],
+    "modules-center": [ "hyprland/window" ],
+    "modules-right": [ "network", "pulseaudio", "clock", "tray" ],
+}

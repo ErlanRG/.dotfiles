@@ -129,7 +129,7 @@ interval = 0.5
 
 thermal-zone = 0
 
-hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon0/temp1_input
 base-temperature = 20
 warn-temperature = 80
 
@@ -158,7 +158,7 @@ interval = 0.5
 
 thermal-zone = 0
 
-hwmon-path = /sys/devices/pci0000:00/0000:00:08.1/0000:38:00.0/hwmon/hwmon5/temp1_input
+hwmon-path = /sys/devices/pci0000:00/0000:00:08.1/0000:38:00.0/hwmon/hwmon4/temp1_input
 base-temperature = 20
 warn-temperature = 80
 

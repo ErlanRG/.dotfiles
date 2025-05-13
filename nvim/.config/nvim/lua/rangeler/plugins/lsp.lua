@@ -139,6 +139,7 @@ return {
                     },
                 },
                 pyright = {},
+                bashls = {},
                 ts_ls = {},
                 lua_ls = {
                     settings = {
