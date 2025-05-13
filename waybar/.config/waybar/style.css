@@ -222,3 +222,25 @@ window#waybar.empty #window {
     padding: 3px 6px;
     color: @surface2;
 }
+
+
+/* -----------------------------------------------------
+ * Group power
+ * ----------------------------------------------------- */
+#group-power {
+    background-color: @base;
+    border-radius: 8px;
+    color: @red;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 12px;
+    padding: 3px 6px;
+}
+
+#custom-power,#custom-quit,#custom-lock,#custom-reboot {
+    margin: 0px 6px 0px 6px;
+}
+
+#custom-power,#custom-quit,#custom-reboot {
+    color: @text;
+}

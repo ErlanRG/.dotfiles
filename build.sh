@@ -82,7 +82,7 @@ install_dependencies() {
     dunst eza fd git kdeconnect keepassxc kitty lazygit neovim nextcloud-client \
     nitrogen npm picom polybar rofi starship stow thunar tmux veracrypt wezterm \
     yazi zoxide zsh \
-    hyprland hyprpaper waybar wl-clipboard \
+    hyprland hyprpaper hyprlock waybar wl-clipboard \
     sddm
 
     banner "Installing dependencies from AUR"
