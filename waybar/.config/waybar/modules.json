@@ -35,7 +35,7 @@
 
     "temperature#gpu": {
         "interval": 1,
-        "hwmon-path": "/sys/devices/pci0000:00/0000:00:08.1/0000:38:00.0/hwmon/hwmon4/temp1_input",
+        "hwmon-path": "/sys/devices/pci0000:00/0000:00:01.1/0000:01:00.0/0000:02:00.0/0000:03:00.0/hwmon/hwmon3/temp1_input",
         "critical-threshold": 80,
         "format-critical": "{temperatureC}°C ",
         "format": "{temperatureC}°C ",
