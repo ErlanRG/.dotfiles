@@ -11,5 +11,5 @@
 
     "modules-left": [ "custom/launcher", "hyprland/workspaces", "temperature#cpu", "temperature#gpu", "disk" ],
     "modules-center": [ "hyprland/window" ],
-    "modules-right": [ "network", "pulseaudio", "clock", "tray", "group/group-power" ],
+    "modules-right": [ "network", "pulseaudio", "hyprland/language", "clock", "tray", "group/group-power" ],
 }

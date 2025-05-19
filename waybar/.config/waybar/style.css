@@ -194,6 +194,24 @@ window#waybar.empty #window {
 }
 
 /* -----------------------------------------------------
+ * Keyboard layout
+ * ----------------------------------------------------- */
+#language {
+    background-color: @base;
+    padding: 3px 6px;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 8px;
+    color: @red;
+    margin-right: 12px;
+    transition: color 0.2s ease;
+}
+
+#language:hover {
+    color: @teal
+}
+
+/* -----------------------------------------------------
  * Date & time
  * ----------------------------------------------------- */
 #clock {

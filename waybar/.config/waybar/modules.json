@@ -67,6 +67,11 @@
         "on-click": "pavucontrol"
     },
 
+    "hyprland/language" : {
+        "format-en": "en",
+        "format-es": "es",
+    },
+
     "clock": {
         "format": "󰥔 {:%I:%M %p}",
         "format-alt": " {:%A %B %d, %Y }",
