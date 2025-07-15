@@ -17,7 +17,7 @@ if not status_ok then
 end
 
 lazy.setup {
-    'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+    'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
 
     -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/rangeler/plugins/*.lua`
     --    This is the easiest way to modularize your config.
