@@ -1,78 +1,210 @@
+local colors = require 'catppuccin.palettes.mocha'
 local icons = require 'rangeler.utils.icons'
--- Just give me the logo
-local function vim_mode_logo()
-    return icons.ui.Vim
-end
+
+local window_width_limit = 80
+local branch = '%#SLGitIcon#' .. icons.git.Branch .. '%*' .. '%#SLBranchName#'
 
 local conditions = {
     hide_in_width = function()
-        return vim.fn.winwidth(0) > 80
+        return vim.o.columns > window_width_limit
     end,
 }
 
-local function lsp_server_name()
-    local msg = 'No Active LSP'
-    local buf_ft = vim.api.nvim_get_option_value('filetype', { buf = 0 })
-    local clients = vim.lsp.get_clients()
-    if next(clients) == nil then
-        return msg
-    end
-    for _, client in ipairs(clients) do
-        local filetypes = client.config.filetypes
-        if filetypes and vim.fn.index(filetypes, buf_ft) ~= 1 then
-            return client.name
-        end
-    end
-    return msg
-end
+local components = {
+    mode = {
+        function()
+            return ' ' .. icons.ui.Vim .. ' '
+        end,
+        padding = { left = 0, right = 0 },
+        color = {},
+        cond = nil,
+    },
+    branch = {
+        'b:gitsigns_head',
+        icon = branch,
+        color = { gui = 'bold' },
+    },
+    filename = {
+        'filename',
+        color = {},
+        path = 4,
+        cond = nil,
+    },
+    filetype = {
+        'filetype',
+        icon_only = false,
+        cond = nil,
+        padding = { left = 1, right = 1 },
+    },
+    diff = {
+        'diff',
+        symbols = {
+            added = icons.git.LineAdded .. ' ',
+            modified = icons.git.LineModified .. ' ',
+            removed = icons.git.LineRemoved .. ' ',
+        },
+        padding = { left = 2, right = 1 },
+        cond = nil,
+    },
+    python_env = {
+        function()
+            local utils = require 'rangeler.utils.misc'
+            if vim.bo.filetype == 'python' then
+                local venv = os.getenv 'CONDA_DEFAULT_ENV' or os.getenv 'VIRTUAL_ENV'
+                if venv then
+                    local web_icdons = require 'nvim-web-devicons'
+                    local py_icon, _ = web_icdons.get_icon '.py'
+                    return string.format(' ' .. py_icon .. ' (%s)', utils.env_cleanup(venv))
+                end
+            end
+            return ''
+        end,
+        cond = conditions.hide_in_width,
+    },
+    diagnostics = {
+        'diagnostics',
+        sources = { 'nvim_diagnostic' },
+        symbols = {
+            error = icons.diagnostics.BoldError .. ' ',
+            warn = icons.diagnostics.BoldWarning .. ' ',
+            info = icons.diagnostics.BoldInformation .. ' ',
+            hint = icons.diagnostics.BoldHint .. ' ',
+        },
+    },
+    treesitter = {
+        function()
+            return icons.ui.Tree
+        end,
+        color = function()
+            local buf = vim.api.nvim_get_current_buf()
+            local ts = vim.treesitter.highlighter.active[buf]
+            return { fg = ts and not vim.tbl_isempty(ts) and colors.green or colors.red }
+        end,
+        cond = conditions.hide_in_width,
+    },
+    lsp = {
+        function()
+            local buf_clients = vim.lsp.get_clients { bufnr = 0 }
+            if #buf_clients == 0 then
+                return 'LSP Inactive'
+            end
+
+            -- local buf_ft = vim.bo.filetype
+            local buf_client_names = {}
+            local copilot_active = false
+
+            -- add client
+            for _, client in pairs(buf_clients) do
+                if client.name ~= 'copilot' then
+                    table.insert(buf_client_names, client.name)
+                end
+
+                if client.name == 'copilot' then
+                    copilot_active = true
+                end
+
+                -- add formatter
+                local formatters = require 'conform.formatters'
+                vim.list_extend(buf_client_names, formatters)
+
+                local unique_client_names = table.concat(buf_client_names, ', ')
+                local language_servers = string.format(icons.ui.Gear .. ' LSP: %s', unique_client_names)
+
+                if copilot_active then
+                    language_servers = language_servers .. '%SLCopilot#' .. ' ' .. icons.kind.Copilot .. '%*'
+                end
+
+                return language_servers
+            end
+        end,
+        color = { gui = 'bold' },
+        cond = conditions.hide_in_width,
+    },
+    location = { 'location' },
+    progress = {
+        'progress',
+        fmt = function()
+            return '%P/%L'
+        end,
+        color = {},
+    },
+    spaces = {
+        function()
+            local shiftwidth = vim.api.nvim_get_option_value('shiftwidth', { buf = 0 })
+            return icons.ui.Tab .. ' ' .. shiftwidth
+        end,
+        padding = 1,
+    },
+    scrollbar = {
+        function()
+            local current_line = vim.fn.line '.'
+            local total_lines = vim.fn.line '$'
+            local chars = { '__', '▁▁', '▂▂', '▃▃', '▄▄', '▅▅', '▆▆', '▇▇', '██' }
+            local line_ratio = current_line / total_lines
+            local index = math.ceil(line_ratio * #chars)
+            return chars[index]
+        end,
+        padding = { left = 0, right = 0 },
+        color = 'SLProgress',
+        cond = nil,
+    },
+}
 
 return {
     'nvim-lualine/lualine.nvim',
     event = 'VeryLazy',
     opts = {
         options = {
-            section_separators = { left = '', right = '' },
-            component_separators = { left = '', right = '' },
+            theme = 'auto',
+            globalstatus = true,
+            icons_enabled = icons,
+            section_separators = { left = '', right = '' },
+            component_separators = { left = '', right = '' },
+            disabled_filetypes = {},
         },
         sections = {
-            lualine_a = { { vim_mode_logo } },
+            lualine_a = {
+                components.mode,
+            },
             lualine_b = {
-                { 'branch' },
-                {
-                    'diagnostics',
-                    sources = { 'nvim_diagnostic' },
-                    symbols = {
-                        error = icons.diagnostics.BoldError .. ' ',
-                        warn = icons.diagnostics.BoldWarning .. ' ',
-                        info = icons.diagnostics.BoldInformation .. ' ',
-                        hint = icons.diagnostics.BoldHint .. ' ',
-                    },
-                },
+                components.branch,
             },
             lualine_c = {
-                {
-                    'filename',
-                    cond = conditions.hide_in_width,
-                    color = { gui = 'bold' },
-                },
+                components.diff,
+                components.python_env,
             },
             lualine_x = {
-                {
-                    'diff',
-                    symbols = {
-                        added = icons.git.BoldLineAdded .. ' ',
-                        modified = icons.git.BoldLineModified .. ' ',
-                        removed = icons.git.BoldLineRemoved .. ' ',
-                    },
-                },
-                {
-                    'filetype',
-                    cond = conditions.hide_in_width,
-                },
-                {
-                    lsp_server_name,
-                    icon = icons.ui.Gear .. ' LSP:',
-                },
+                components.diagnostics,
+                components.treesitter,
+                components.lsp,
+                components.spaces,
+                components.filetype,
+            },
+            lualine_y = { components.location },
+            lualine_z = {
+                components.progress,
+            },
+        },
+        inactive_sections = {
+            lualine_a = {
+                components.mode,
+            },
+            lualine_b = {
+                components.branch,
+            },
+            lualine_c = {
+                components.diff,
+                components.python_env,
+            },
+            lualine_x = {
+                components.diagnostics,
+                components.lsp,
+                components.spaces,
+                components.filetype,
+            },
+            lualine_y = { components.location },
+            lualine_z = {
+                components.progress,
             },
         },
     },
