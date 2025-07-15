@@ -3,7 +3,6 @@
 return {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
-    dependencies = { 'hrsh7th/nvim-cmp' },
     opts = {
         map_char = {
             all = '(',
@@ -17,13 +16,18 @@ return {
             java = false,
         },
         disable_filetype = { 'TelescopePrompt', 'spectre_panel' },
+        disable_in_macro = false,
+        disable_in_visualblock = false,
+        disable_in_replace_mode = true,
         ignored_next_char = string.gsub([[ [%w%%%'%[%"%.] ]], '%s+', ''),
         enable_moveright = true,
-        disable_in_macro = false,
         enable_afterquote = true,
+        enable_abbr = false,
+        break_undo = true,
+        map_cr = true,
         map_bs = true,
         map_c_w = false,
-        disable_in_visualblock = false,
+        map_c_h = false,
         fast_wrap = {
             map = '<M-e>',
             chars = { '{', '[', '(', '"', "'" },
@@ -43,9 +47,5 @@ return {
         end
 
         autopairs.setup(opts)
-        -- If you want to automatically add `(` after selecting a function or method
-        local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-        local cmp = require 'cmp'
-        cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
     end,
 }
