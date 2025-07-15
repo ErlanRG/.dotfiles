@@ -21,16 +21,16 @@ return {
             local disable_filetypes = {}
             local lsp_format_opt
             if disable_filetypes[vim.bo[bufnr].filetype] then
-                lsp_format_opt = 'never'
+                return nil
             else
-                lsp_format_opt = 'fallback'
+                return {
+                    timeout_ms = 500,
+                    lsp_format = lsp_format_opt,
+                }
             end
-            return {
-                timeout_ms = 500,
-                lsp_format = lsp_format_opt,
-            }
         end,
         formatters_by_ft = {
+            c = { 'clang-format' },
             lua = { 'stylua' },
             -- Conform can also run multiple formatters sequentially
             -- python = { "isort", "black" },
