@@ -34,7 +34,7 @@ return {
             -- NOTE: For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
             --       https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
             ['<C-d>'] = { 'show', 'show_documentation', 'hide_documentation' },
-            ['<C-K>'] = { 'show_signature', 'hide_signature', 'fallback' },
+            -- ['<C-K>'] = { 'show_signature', 'hide_signature', 'fallback' },
             ['<C-k>'] = { 'select_prev', 'fallback' },
             ['<C-j>'] = { 'select_next', 'fallback' },
         },
