@@ -51,6 +51,7 @@ return {
         FileUnstaged = '',
         FileUntracked = 'U',
         GitIcon = '󰊢',
+        GitLogo = ' ',
         LineAdded = '',
         LineModified = '',
         LineRemoved = '',
