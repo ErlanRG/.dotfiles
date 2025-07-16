@@ -26,15 +26,21 @@ local components = {
     },
     filename = {
         'filename',
+        symbols = {
+            modified = icons.ui.Circle, -- Text to show when the file is modified.
+            unnamed = '[No Name]', -- Text to show for unnamed buffers.
+            newfile = '[New]', -- Text to show for newly created file before first write
+        },
+        padding = { left = 0, right = 0 },
         color = {},
         path = 4,
         cond = nil,
     },
     filetype = {
         'filetype',
-        icon_only = false,
+        padding = { left = 0, right = 0 },
+        icon_only = true,
         cond = nil,
-        padding = { left = 1, right = 1 },
     },
     diff = {
         'diff',
@@ -44,6 +50,7 @@ local components = {
             removed = icons.git.LineRemoved .. ' ',
         },
         padding = { left = 2, right = 1 },
+        color = { bg = '' },
         cond = nil,
     },
     python_env = {
@@ -160,7 +167,7 @@ return {
             icons_enabled = icons,
             section_separators = { left = '', right = '' },
             component_separators = { left = '', right = '' },
-            disabled_filetypes = {},
+            disabled_filetypes = { 'snacks_dashboard' },
         },
         sections = {
             lualine_a = {
@@ -168,17 +175,19 @@ return {
             },
             lualine_b = {
                 components.branch,
-            },
-            lualine_c = {
                 components.diff,
                 components.python_env,
+            },
+            lualine_c = {
+                '%=',
+                components.filetype,
+                components.filename,
             },
             lualine_x = {
                 components.diagnostics,
                 components.treesitter,
                 components.lsp,
                 components.spaces,
-                components.filetype,
             },
             lualine_y = { components.location },
             lualine_z = {
