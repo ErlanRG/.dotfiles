@@ -130,13 +130,6 @@ return {
                 desc = 'git [p]review hunk',
             },
             {
-                '<leader>hb',
-                function()
-                    require('gitsigns').blame_line()
-                end,
-                desc = 'git [b]lame line',
-            },
-            {
                 '<leader>hd',
                 function()
                     require('gitsigns').diffthis()
@@ -154,9 +147,9 @@ return {
             {
                 '<leader>tb',
                 function()
-                    require('gitsigns').toggle_current_line_blame()
+                    Snacks.git.blame_line()
                 end,
-                desc = '[T]oggle git show [b]lame line',
+                desc = '[T]oggle [B]lame line',
             },
             {
                 '<leader>tD',
