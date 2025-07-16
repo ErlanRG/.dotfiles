@@ -42,7 +42,7 @@ map('n', '<leader>ol', '<cmd>Lazy<cr>', { desc = '[O]pen [L]azy' })
 map('n', '<leader>om', '<cmd>Mason<cr>', { desc = '[O]pen [M]ason' })
 
 -- windows
-map('n', '<leader>w', '<c-w>', { desc = 'Windows', remap = true })
+-- map('n', '<leader>w', '<c-w>', { desc = 'Windows', remap = true })
 map('n', '<leader>-', '<C-W>s', { desc = 'Split Window Below', remap = true })
 map('n', '<leader>|', '<C-W>v', { desc = 'Split Window Right', remap = true })
 
