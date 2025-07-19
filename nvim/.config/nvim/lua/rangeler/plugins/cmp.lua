@@ -1,7 +1,7 @@
 -- Autocompletion
 return {
     'saghen/blink.cmp',
-    event = 'InsertEnter',
+    event = { 'BufReadPre', 'BufNewFile' },
     version = '1.*',
     dependencies = {
         -- Snippet Engine
