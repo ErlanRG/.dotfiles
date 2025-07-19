@@ -1,4 +1,5 @@
 local snacks_opts = require 'rangeler.plugins.custom.snacks_opts'
+local mini_opts = require 'rangeler.plugins.custom.mini_opts'
 
 -- Collection of various small independent plugins/modules
 return {
@@ -11,12 +12,8 @@ return {
             --  - va)  - [V]isually select [A]round [)]paren
             --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
             --  - ci'  - [C]hange [I]nside [']quote
-            require('mini.ai').setup { n_lines = 500 }
-            require('mini.files').setup {
-                windows = {
-                    preview = true,
-                },
-            }
+            require('mini.ai').setup(mini_opts.ai_opts)
+            require('mini.files').setup(mini_opts.mini_files_opts)
         end,
         keys = {
             -- stylua: ignore start
