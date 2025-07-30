@@ -119,8 +119,8 @@ bindsym $mod+Shift+BackSpace scratchpad show
 
 # start a terminal
 #bindsym $mod+Return exec kitty
-bindsym $mod+Shift+Return exec kitty -e tmux
-bindsym $mod+Return exec wezterm
+bindsym $mod+Shift+Return exec wezterm
+bindsym $mod+Return exec kitty -e tmux
 
 # kill focused window
 bindsym $mod+c kill
