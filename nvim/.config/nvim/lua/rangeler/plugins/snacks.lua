@@ -65,10 +65,11 @@ return {
         },
         opts = {
             -- Built-in
+            -- explorer = { enabled = true },
             bigfile = { enabled = true },
             dim = { enabled = true },
-            -- explorer = { enabled = true },
             input = { enabled = true },
+            image = { enabled = true },
             notifier = { enabled = true },
             statuscolumn = { enabled = true },
 
