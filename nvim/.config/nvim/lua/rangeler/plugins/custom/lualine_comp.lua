@@ -1,6 +1,5 @@
 local M = {}
 
-local colors = require 'catppuccin.palettes.mocha'
 local icons = require 'rangeler.utils.icons'
 
 local window_width_limit = 80
@@ -85,6 +84,7 @@ M.components = {
             return icons.ui.Tree
         end,
         color = function()
+	    local colors = require 'catppuccin.palettes.mocha'
             local buf = vim.api.nvim_get_current_buf()
             local ts = vim.treesitter.highlighter.active[buf]
             return { fg = ts and not vim.tbl_isempty(ts) and colors.green or colors.red }
