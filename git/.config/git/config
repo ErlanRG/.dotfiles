@@ -1,14 +1,23 @@
 [user]
-	email = erlanrangel@gmail.com
-	name = Erlan Rangel
-    username = rangeler
+    name = Erlan Rangel
+    email = erlanrangel@gmail.com
+    signingkey = <signingkey> # Change this for the GPG key ID
 
 [core]
     editor = nvim
+    autocrlf = input
+
+[color]
+    ui = auto
 
 [init]
     defaultBranch = main
 
-[github]
-    user = ErlanRG
-    token = token
+[commit]
+    gpgsign = true
+
+[diff]
+    tool = nvimdiff
+
+[log]
+    showSignature = true
