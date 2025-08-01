@@ -5,7 +5,7 @@ set -eo pipefail
 BACKUP_DIR="$HOME/.bckps"
 CONFIG_PATH="$HOME/.config/"
 DOTFILES_DIR="$HOME/.dotfiles"
-STOW_FOLDERS=("dunst" "i3" "git" "kitty" "nvim" "picom" "polybar" "rofi" "screenlayout" "starship" "tmux" "wezterm" "yazi" "zsh")
+STOW_FOLDERS=("dunst" "i3" "git" "kitty" "nvim" "picom" "polybar" "rofi" "screenlayout" "starship" "tmux" "wezterm" "xinitrc" "yazi" "zsh")
 
 banner() {
     local text="$1"
@@ -77,7 +77,9 @@ install_fzf() {
 
 install_dependencies() {
     banner "Installing dependencies from Arch Repos"
-    sudo pacman -S --needed dunst eza fd git kdeconnect keepassxc kitty lazygit neovim nextcloud-client nitrogen npm polybar picom rofi starship stow thunar tmux veracrypt wezterm yazi zoxide zsh --noconfirm
+    sudo pacman -S --needed dunst eza fd git gnome-keyring kdeconnect keepassxc \
+        kitty lazygit libsecret neovim nextcloud-client nitrogen npm polybar picom \
+        rofi starship stow thunar tmux veracrypt wezterm yazi zoxide zsh --noconfirm
 
     banner "Installing dependencies from AUR"
     yay -S --needed autotiling librewolf-bin zen-browser-bin --noconfirm
