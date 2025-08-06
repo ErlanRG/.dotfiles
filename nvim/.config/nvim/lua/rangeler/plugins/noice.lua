@@ -11,6 +11,9 @@ return {
             return
         end
 
+        local colors = require 'catppuccin.palettes.mocha'
+        vim.api.nvim_set_hl(0, 'MacroRecordingIcon', { fg = colors.red, bold = true })
+
         noice.setup {
             lsp = {
                 override = {
@@ -25,6 +28,13 @@ return {
                 long_message_to_split = true, -- long messages will be sent to a split
                 inc_rename = false, -- enables an input dialog for inc-rename.nvim
                 lsp_doc_border = false, -- add a border to hover docs and signature help
+            },
+            routes = {
+                {
+                    view = 'cmdline',
+                    filter = { event = 'msg_showmode', any = { { find = 'recording' } } },
+                    opts = { format = { { ' 󰑊', hl_group = 'MacroRecordingIcon' }, ' ', '{message}' } },
+                },
             },
         }
     end,
