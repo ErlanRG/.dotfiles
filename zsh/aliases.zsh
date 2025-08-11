@@ -5,7 +5,7 @@ alias sz='source $HOME/.zshrc'
 alias zshc="nvim ~/.zshrc"
 
 # ls
-alias l='eza -lahF --color=always --icons --sort=size --group-directories-first -s=Name'
+alias l='eza -lahF --color=always --icons --git --sort=size --group-directories-first -s=Name'
 alias ll='eza -lah'
 alias ls='eza -lhF --color=always --icons --sort=size --group-directories-first'
 
