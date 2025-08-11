@@ -1,7 +1,7 @@
 [user]
     name = Erlan Rangel
     email = erlanrangel@gmail.com
-    signingkey = <signingkey> # Change this for the GPG key ID
+    signingkey = C08D32B9B3F1C69D329F616870748C8750E3B083 # Change this for the GPG key ID
 
 [core]
     editor = nvim
