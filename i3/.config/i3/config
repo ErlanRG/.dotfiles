@@ -3,7 +3,7 @@
 #######################
 
 # Font for window titles.
-font pango: JetBrainsMono NFM Medium 10
+font pango: Iosevka NFM Medium 10
 
 # set the mod key to the winkey:
 set $mod Mod4
@@ -13,17 +13,17 @@ set $mod Mod4
 #####################
 
 # default i3 tiling mode:
-workspace_layout default
+workspace_layout tabbed
 
 ##############################
 # extra options for windows: #
 ##############################
 # border indicator on windows:
-default_border pixel 0
-default_floating_border pixel 0
+default_border pixel 1
+default_floating_border pixel 1
 
 # Set inner/outer gaps
-gaps inner 6
+gaps inner 3
 gaps outer 3
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -105,6 +105,29 @@ bindcode $mod+Shift+80 	 move container to workspace  $ws8
 bindcode $mod+Shift+81 	 move container to workspace  $ws9
 bindcode $mod+Shift+90 	 move container to workspace  $ws10
 
+######################################
+# resize                             #
+######################################
+mode "resize" {
+    # Resize with Vim keys
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+
+    # Resize with arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+
+    # Exit resize mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
 
 ######################################
 # scratchpads                        #
@@ -124,8 +147,19 @@ bindsym $mod+Return exec ghostty -e tmux
 # kill focused window
 bindsym $mod+c kill
 
-# This power menu requires https://github.com/adi1090x/rofi
+#####################################
+# Application menu handled by rofi: #
+#####################################
+
+# Launcher
+bindsym $mod+d exec $HOME/.config/rofi/launchers/type-3/launcher.sh
+
+# Powermenu
 bindsym $mod+Shift+e exec ~/.config/rofi/powermenu/type-1/powermenu.sh
+
+# Windows
+bindsym $mod+t exec rofi -show window -config \
+            $HOME/.config/rofi/launchers/type-4/style-5.rasi
 
 # Lock the system
 # lock with a picture:
@@ -178,7 +212,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking
-# bindsym $mod+g layout tabbed
+bindsym $mod+g layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -364,6 +398,7 @@ for_window [window_role="About"] floating enable
 
 # set border of floating window
 for_window [class="urxvt"] border pixel 1
+# for_window [class="com.mitchellh.ghostty"] border normal 1
 
 # set size of floating window
 #for_window [window_role="(?i)GtkFileChooserDialog"] resize set 640 480 #to set size of file choose dialog
@@ -371,32 +406,43 @@ for_window [class=".*"] resize set 640 480 #to change size of all floating windo
 for_window [class="keepassxc"] resize set 640 480 #to change size of all floating windows
 
 # set position of floating window
-#for_window [class=".*"] move position center
+for_window [class=".*"] move position center
 
 ######################################
 # color settings for bar and windows #
 ######################################
 
-# Define colors variables:
-set $darkbluetrans	#08052be6
-set $darkblue		#08052b
-set $lightblue		#a4b9ef
-set $urgentred		#e38c8f
-set $white		    #ffffff
-set $black		    #000000
-set $purple		    #c6aae8
-set $darkgrey		#383c4a
-set $grey		    #b0b5bd
-set $mediumgrey		#8b8b8b
-set $yellowbrown	#ebddaa
-set $green          #94e2d5
+# Catppuccin Mocha Colors
+set $blue          #89b4fa
+set $flamingo      #f2cdcd
+set $green         #a6e3a1
+set $lavender      #b4befe
+set $maroon        #eba0ac
+set $mauve         #cba6f7
+set $peach         #fab387
+set $pink          #f5c2e7
+set $red           #f38ba8
+set $rosewater     #f5e0dc
+set $sapphire      #74c7ec
+set $sky           #89dceb
+set $teal          #94e2d5
+set $yellow        #f9e2af
 
-# define colors for windows:
-#class		        	    border		bground		text		indicator	    child_border
-client.focused		    	$green	    $darkblue	$white		$green	        $green
-client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	    $darkgrey
-client.focused_inactive		$darkblue	$darkblue	$grey		$black		    $black
-client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown    $yellowbrown
+set $base          #1e1e2e
+set $crust         #11111b
+set $mantle        #181825
+set $overlay1      #7f849c
+set $subtext0      #a6adc8
+set $surface0      #313244
+set $surface1      #45475a
+set $text          #cdd6f4
+
+# Window colors
+# class                   border      bground     text        indicator   child_border
+client.focused            $teal       $base       $text       $mauve      $teal
+client.unfocused          $surface0   $crust      $subtext0   $overlay1   $base
+client.focused_inactive   $surface1   $base       $overlay1   $surface0   $surface0
+client.urgent             $red        $red        $base       $yellow     $yellow
 
 ############################################
 # bar settings (input comes from i3blocks) #
@@ -404,13 +450,3 @@ client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown    $yellowbrown
 
 # Polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
-#####################################
-# Application menu handled by rofi: #
-#####################################
-
-# This rofi config requires https://github.com/adi1090x/rofi
-bindsym $mod+d exec $HOME/.config/rofi/launchers/type-3/launcher.sh
-
-bindsym $mod+t exec rofi -show window \
-		-config $HOME/.config/rofi/launchers/type-4/style-5.rasi
