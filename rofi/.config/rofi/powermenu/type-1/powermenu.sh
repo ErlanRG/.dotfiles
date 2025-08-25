@@ -98,7 +98,7 @@ case ${chosen} in
 		if [[ -x '/usr/bin/betterlockscreen' ]]; then
 			betterlockscreen -l
 		elif [[ -x '/usr/bin/i3lock' ]]; then
-			i3lock
+			source $HOME/.config/i3/scripts/blur-lock
 		fi
         ;;
     $suspend)
