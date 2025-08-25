@@ -1,35 +1,25 @@
 ;==========================================================
-
-
 [module/time]
 type = internal/date
 interval = 1
-format-margin = 0
 time = "%I:%M %p"
 date-alt = "%A, %b %d"
 
-format-prefix = 󰃰
-format-prefix-foreground = ${colors.yellowbrown}
+format-prefix = "󰃰 "
+format-prefix-foreground = ${colors.yellow}
 
 label = %date% %time%
-label-foreground = ${colors.white}
+label-foreground = ${colors.text}
 label-padding = 1
 
 ;==========================================================
-
 [module/i3]
 type = internal/i3
-label-active-font = 0
-
 pin-workspaces = true
 strip-wsnumbers = true
 index-sort = true
-
 enable-click = true
 enable-scroll = true
-wrapping-scroll = false
-reverse-scroll = false
-
 fuzzy-match = true
 
 ws-icon-0 = 1;
@@ -39,24 +29,21 @@ ws-icon-3 = 4;󰇮
 ws-icon-4 = 5;
 ws-icon-5 = 6;
 ws-icon-6 = 7;
-ws-icon-default = 
+ws-icon-default = 
+
 format = <label-state><label-mode>
 
 label-mode = %mode%
 label-mode-padding = 1
-label-mode-foreground = ${colors.white}
+label-mode-foreground = ${colors.text}
 
 label-focused = %icon%
-label-focused-foreground = ${colors.aqua}
+label-focused-foreground = ${colors.sky}
 
 label-unfocused = %icon%
-;label-unfocused-foreground = ${colors.foreground}
-
 label-visible = %icon%
-;label-visible-foreground = ${colors.green}
-
 label-urgent = %icon%
-label-urgent-foreground = ${colors.urgentred}
+label-urgent-foreground = ${colors.red}
 
 label-focused-padding = 1
 label-unfocused-padding = 1
@@ -64,167 +51,137 @@ label-visible-padding = 1
 label-urgent-padding = 1
 
 ;==========================================================
-
 [module/launcher]
 type=custom/text
-;content = 
 format = 
 format-font = 8
-format-foreground= ${colors.lightblue}
-content-padding = 0
+format-foreground= ${colors.sapphire}
+format-padding = 0
 click-left= $HOME/.config/rofi/launchers/type-3/launcher.sh
 
 ;==========================================================
-
 [module/filesystem]
 type = internal/fs
-
 mount-0 = /
 interval = 30
 fixed-values = true
 
 format-mounted = <label-mounted>
-format-mounted-prefix = ""
+format-mounted-prefix = " "
 format-mounted-prefix-foreground = ${colors.green}
 
 format-unmounted = <label-unmounted>
-format-unmounted-prefix = " "
-format-unmounted-prefix-foreground = ${colors.white}
+format-unmounted-prefix = " "
+format-unmounted-prefix-foreground = ${colors.text}
 
-label-mounted = "%{A1:wezterm -e ncdu / --exclude /mnt &:} %free%%{A}"
-label-unmounted = " %mountpoint%: NA"
-label-mounted-foreground = ${colors.white}
+label-mounted = "%{A1:ghostty -e ncdu / --exclude /mnt &:}%free%%{A}"
+label-unmounted = "%mountpoint%: NA"
+label-mounted-foreground = ${colors.text}
+label-padding = 1
 
 ;==========================================================
-
 [module/memory]
 type = internal/memory
-
 interval = 1
 
 format = <label>
-format-prefix = "  "
-format-prefix-foreground = ${colors.salmon}
-format-foreground = ${colors.white}
-
-exec = $HOME/.config/i3/scripts/memory
+format-prefix = " "
+format-prefix-foreground = ${colors.maroon}
+format-foreground = ${colors.text}
+label-padding = 1
 
 ;==========================================================
-
 [module/cpu]
 type = internal/cpu
-
 interval = 2
 format-prefix = " "
-format-padding = 0
-format-prefix-foreground = ${colors.aqua}
-format-foreground = ${colors.white}
+format-prefix-foreground = ${colors.teal}
+format-foreground = ${colors.text}
+label-padding = 1
 
 ;==========================================================
-
 [module/cpu_temp]
 type = internal/temperature
-
-interval = 0.5
-
+interval = 1
 thermal-zone = 0
-
-hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon0/temp1_input
 base-temperature = 20
 warn-temperature = 80
-
 units = true
 
 format = <ramp> <label>
-
 format-warn = <ramp> <label-warn>
 
 label = %temperature-c%
-
 label-warn = %temperature-c%
-label-warn-foreground = ${colors.urgentred}
-
+label-warn-foreground = ${colors.red}
 ramp-0 = ""
 ramp-1 = ""
 ramp-2 = ""
 ramp-foreground = #D3DB6B
+label-padding = 1
 
 ;==========================================================
-
 [module/gpu_temp]
 type = internal/temperature
-
-interval = 0.5
-
+interval = 1
 thermal-zone = 0
-
-hwmon-path = /sys/devices/pci0000:00/0000:00:08.1/0000:38:00.0/hwmon/hwmon5/temp1_input
+hwmon-path = /sys/devices/pci0000:00/0000:00:01.1/0000:01:00.0/0000:02:00.0/0000:03:00.0/hwmon/hwmon3/temp1_input
 base-temperature = 20
 warn-temperature = 80
-
 units = true
 
 format = <ramp> <label>
-
 format-warn = <ramp> <label-warn>
 
 label = %temperature-c%
-
 label-warn = %temperature-c%
-label-warn-foreground = ${colors.urgentred}
-
+label-warn-foreground = ${colors.red}
 ramp-0 = ""
 ramp-1 = ""
 ramp-2 = ""
 ramp-foreground = #D3DB6B
+label-padding = 1
 
 ;==========================================================
-
 [module/network]
 type = internal/network
 interface = enp6s0
-
 interval = 1.0
 accumulate-stats = true
 unknown-as-up = true
 
 format-connected = <ramp-signal><label-connected>
 ramp-signal-0 = "󰀂 "
-ramp-signal-foreground = ${colors.fuchsia}
+ramp-signal-foreground = ${colors.pink}
 ramp-signal-font = 2
 
 format-disconnected = <label-disconnected>
-format-disconnected-prefix = "󰯡"
-format-disconnected-prefix-font = 2
-format-disconnected-foreground = ${colors.white}
+format-disconnected-prefix = "󰯡 "
+format-disconnected-prefix-foreground = ${colors.text}
 
 label-connected = %netspeed%
 label-disconnected = Offline
-
-label-connected-foreground = ${colors.white}
-label-disconnected-foreground = ${colors.white}
+label-connected-foreground = ${colors.text}
+label-disconnected-foreground = ${colors.text}
+label-padding = 1
 
 ;==========================================================
-
 [module/volume]
 type = internal/pulseaudio
-
+interval = 1
 use-ui-max = false
 
-interval = 1
-
 format-volume = <ramp-volume><label-volume>
-
 format-muted = <label-muted>
 format-muted-prefix = " "
-format-muted-prefix-font = 2
-format-muted-prefix-foreground = ${colors.white}
+format-muted-prefix-foreground = ${colors.text}
 
 label-volume = "%percentage%% "
 label-muted = "Mute"
-
-label-volume-foreground = ${colors.white}
-label-muted-foreground = ${colors.white}
+label-volume-foreground = ${colors.text}
+label-muted-foreground = ${colors.text}
+label-padding = 1
 
 ramp-volume-0 = " "
 ramp-volume-1 = " "
@@ -236,58 +193,49 @@ ramp-volume-6 = " "
 ramp-volume-7 = " "
 ramp-volume-8 = " "
 ramp-volume-9 = " "
-ramp-volume-font = 1
 ramp-volume-foreground = ${colors.green}
 
 click-right = pavucontrol
 
 ;==========================================================
-
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
 blacklist-1 = caps lock
 
 format-prefix = " "
-format-prefix-foreground = ${colors.salmon}
+format-prefix-foreground = ${colors.maroon}
 label-layout = %layout%
-;label-layout-foreground = ${colors.white}
-
-label-indicator-padding = 1
-label-indicator-margin = 1
+label-padding = 1
 
 ;==========================================================
-
 [module/updates]
 type = custom/script
 format = <label>
-format-prefix = 󰚰
-format-prefix-foreground = ${colors.aqua}
+format-prefix = "󰚰"
+format-prefix-foreground = ${colors.sapphire}
 exec = $HOME/.config/i3/scripts/updates-pacman-aurhelper.sh
 interval = 600
-click-left = wezterm -e yay
+click-left = ghostty -e yay
+label-padding = 0
 
 ;==========================================================
-
 [module/shutdown_menu]
 type=custom/text
 format = 
 format-font = 8
-format-foreground= ${colors.urgentred}
+format-foreground= ${colors.red}
 format-padding = 0
 click-left = ~/.config/rofi/powermenu/type-1/powermenu.sh
 
 ;==========================================================
-
 [module/tray]
 type = internal/tray
-
 tray-position = modules-right
 tray-spacing = 5px
 
 ;==========================================================
-
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:60:...%
-
+label-padding = 1
