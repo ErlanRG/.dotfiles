@@ -56,6 +56,7 @@ return {
             { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "[S]earch [D]iagnostics" },
             { "<leader>sD", function() Snacks.picker.diagnostics_buffer() end, desc = "[S]earch Buffer [D]iagnostics" },
             { "<leader>sg", function() Snacks.picker.grep() end, desc = "[S]earch [G]rep" },
+            { "<leader>sG", function() Snacks.picker.git_grep() end, desc = "[S]earch [G]it Grep" },
             { "<leader>sh", function() Snacks.picker.help() end, desc = "[S]earch [H]elp Pages" },
             { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "[S]earch [K]eymaps" },
             { "<leader>sq", function() Snacks.picker.qflist() end, desc = "[S]earch [Q]uickfix List" },
