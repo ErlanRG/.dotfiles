@@ -151,29 +151,14 @@ return {
             }
 
             local capabilities = require('blink.cmp').get_lsp_capabilities()
+            local configs = require 'rangeler.plugins.custom.servers_config'
 
             -- List of servers and its configuration.
             local servers = {
-                clangd = {
-                    cmd = {
-                        'clangd',
-                        '--offset-encoding=utf-16',
-                    },
-                    filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
-                },
-                pyright = {},
+                clangd = configs.clangd,
+                lua_ls = configs.lua_ls,
+                pyright = configs.ts_ls,
                 ts_ls = {},
-                lua_ls = {
-                    settings = {
-                        Lua = {
-                            completion = {
-                                callSnippet = 'Replace',
-                            },
-                            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-                            -- diagnostics = { disable = { 'missing-fields' } },
-                        },
-                    },
-                },
             }
 
             local ensure_installed = vim.tbl_keys(servers or {})
