@@ -159,6 +159,7 @@ return {
                 lua_ls = configs.lua_ls,
                 pyright = configs.ts_ls,
                 ts_ls = {},
+                texlab = {},
             }
 
             local ensure_installed = vim.tbl_keys(servers or {})

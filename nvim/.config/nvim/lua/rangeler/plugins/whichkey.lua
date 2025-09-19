@@ -60,6 +60,7 @@ return {
             { '<leader>g', group = '[G]o To', mode = { 'n', 'v' } },
             { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
             { '<leader>o', group = '[O]pen' },
+            { '<leader>l', group = '[L]aTeX' },
             { '<leader>r', group = '[R]ename' },
             { '<leader>s', group = '[S]earch' },
             { '<leader>t', group = '[T]oggle' },
