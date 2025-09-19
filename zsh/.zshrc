@@ -1,6 +1,11 @@
 # User-specific binary directories to the path
 PATH="$HOME/.local/bin/:$PATH"
 
+# TeX Live PATH
+export MANPATH="/usr/local/texlive/2025/texmf-dist/doc/man:$MANPATH"
+export INFOPATH="/usr/local/texlive/2025/texmf-dist/doc/info:$INFOPATH"
+export PATH="/usr/local/texlive/2025/bin/x86_64-linux:$PATH"
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
