@@ -1,0 +1,25 @@
+# Core packages
+
+curl
+eza
+fd
+ghostty
+git
+gnome-keyring
+kdeconnect
+keepassxc
+kitty
+lazygit
+libsecret
+neovim
+nextcloud-client
+npm
+polkit-gnome
+ripgrep
+starship
+stow
+tmux
+unzip
+yazi
+zoxide
+zsh

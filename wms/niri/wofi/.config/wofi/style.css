@@ -1,0 +1,52 @@
+window {
+    margin: 0px;
+    border: 2px solid #45475a; /* Surface1 */
+    border-radius: 5px;
+    background-color: #1e1e2e; /* Base */
+    font-family: monospace;
+    font-size: 12px;
+}
+
+#input {
+    margin: 5px;
+    border: 1px solid #1e1e2e; /* Base */
+    color: #cdd6f4; /* Text */
+    background-color: #1e1e2e; /* Base */
+}
+
+#input image {
+    color: #cdd6f4; /* Text */
+}
+
+#inner-box {
+    margin: 5px;
+    border: none;
+    background-color: #11111b; /* Base */
+}
+
+#outer-box {
+    margin: 5px;
+    border: none;
+    background-color: #11111b; /* Base */
+}
+
+#scroll {
+    margin: 0px;
+    border: none;
+}
+
+#text {
+    margin: 5px;
+    border: none;
+    color: #cdd6f4; /* Text */
+}
+
+#entry:selected {
+    background-color: #45475a; /* Surface1 */
+    font-weight: normal;
+}
+
+#text:selected {
+    background-color: #45475a; /* Surface1 */
+    font-weight: normal;
+}

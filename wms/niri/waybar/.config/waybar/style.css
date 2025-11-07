@@ -1,0 +1,165 @@
+@define-color rosewater #f5e0dc;
+@define-color flamingo  #f2cdcd;
+@define-color pink      #f5c2e7;
+@define-color mauve     #cba6f7;
+@define-color red       #f38ba8;
+@define-color maroon    #eba0ac;
+@define-color peach     #fab387;
+@define-color yellow    #f9e2af;
+@define-color green     #a6e3a1;
+@define-color teal      #94e2d5;
+@define-color sky       #89dceb;
+@define-color sapphire  #74c7ec;
+@define-color blue      #89b4fa;
+@define-color lavender  #b4befe;
+@define-color text      #cdd6f4;
+@define-color subtext1  #bac2de;
+@define-color subtext0  #a6adc8;
+@define-color overlay2  #9399b2;
+@define-color overlay1  #7f849c;
+@define-color overlay0  #6c7086;
+@define-color surface2  #585b70;
+@define-color surface1  #45475a;
+@define-color surface0  #313244;
+@define-color base      #1e1e2e;
+@define-color mantle    #181825;
+@define-color crust     #11111b;
+
+/* -------------------------------------------
+ * Global Styles
+ * ------------------------------------------- */
+* {
+    border: none;
+    font-family: "Iosevka NFM";
+    font-size: 13px;
+    font-weight: 500;
+    margin: 2px;
+    min-height: 0px;
+    padding: 0px;
+}
+
+window#waybar {
+    background: @crust;
+    border-radius: 6px;
+    border: 0px;
+}
+
+window#waybar.empty #window {
+    background-color: transparent;
+    border: 0px;
+    font-size: 0px;
+}
+
+tooltip {
+    background-color: @base;
+    border: 0px;
+    color: @text;
+    font-size: 2px;
+}
+
+tooltip label {
+    margin: 2px;
+}
+
+/* -------------------------------------------
+ * Modules Styling
+ * ------------------------------------------- */
+#backlight,
+#battery,
+#clock,
+#cpu,
+#custom-exit,
+#custom-launcher,
+#disk,
+#language,
+#memory,
+#network,
+#pulseaudio,
+#temperature.cpu,
+#temperature.gpu,
+#tray,
+#workspaces {
+    background-color: @base;
+    border-radius: 4px;
+    /* border: 1px solid @surface2; */
+    color: @text;
+    padding: 4px 8px;
+}
+
+/* Workspaces */
+#workspaces {
+    padding: 0 6px;
+}
+
+#workspaces button {
+    color: @subtext1;
+    padding: 0 8px;
+    background: transparent;
+    transition: all 0.2s ease-in-out;
+    border-radius: 8px;
+}
+
+#workspaces button.active {
+    color: @mauve;
+    font-weight: bold;
+}
+
+#workspaces button.visible {
+    color: @blue;
+}
+
+#workspaces button:hover {
+    color: @text;
+    background-color: @surface1;
+}
+
+/* Individual Modules Coloring */
+#cpu {
+    color: @sapphire;
+}
+
+#memory {
+    color: @yellow;
+}
+
+#disk {
+    color: @lavender;
+}
+
+#network {
+    color: @pink;
+}
+
+#temperature.cpu,
+#temperature.gpu
+{
+    color: @teal;
+}
+
+#language {
+    color: @peach;
+}
+
+#battery {
+    color: @blue;
+}
+
+#backlight {
+    color: @maroon;
+}
+
+#tray {
+    color: @green;
+}
+
+#pulseaudio {
+    color: @teal;
+}
+
+#clock {
+    color: @yellow;
+}
+
+#custom-exit {
+    color: @red;
+}
