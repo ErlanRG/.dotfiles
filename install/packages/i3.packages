@@ -1,0 +1,11 @@
+# i3-wm packages
+
+dunst
+i3-wm
+i3blocks
+i3lock
+i3status
+picom
+polybar
+rofi
+thunar

@@ -48,8 +48,8 @@ source $ZSH/oh-my-zsh.sh
 
 # Load additional configuration files
 export EDITOR='nvim'
-source $HOME/.dotfiles/zsh/aliases.zsh
-source $HOME/.dotfiles/zsh/functions.zsh
+source $DOTFILES/core/zsh/aliases.zsh
+source $DOTFILES/core/zsh/functions.zsh
 
 # Load additional configuration files
 eval "$(starship init zsh)"

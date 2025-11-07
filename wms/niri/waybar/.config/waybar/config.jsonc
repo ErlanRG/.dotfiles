@@ -1,0 +1,15 @@
+{
+    "layer": "top",
+    "position": "top",
+    "margin-top": 8,
+    "margin-bottom": 0,
+    "margin-left": 14,
+    "margin-right": 14,
+    "spacing": 0,
+
+    "include": [ "~/.config/waybar/modules.json" ],
+
+    "modules-left": [ "custom/launcher", "cpu", "memory", "disk", "network", "temperature#cpu", "temperature#gpu" ],
+    "modules-center": [ "niri/workspaces" ],
+    "modules-right": [ "backlight", "battery", "niri/language", "pulseaudio", "tray", "clock", "custom/exit" ],
+}
