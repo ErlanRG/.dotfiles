@@ -23,14 +23,15 @@ return {
                 },
             },
         },
+        selector = {
+            provider = 'mini_pick',
+        },
     },
     dependencies = {
         'nvim-lua/plenary.nvim',
         'MunifTanjim/nui.nvim',
         --- The below dependencies are optional,
         'nvim-mini/mini.pick', -- for file_selector provider mini.pick
-        'nvim-telescope/telescope.nvim', -- for file_selector provider telescope
-        'ibhagwan/fzf-lua', -- for file_selector provider fzf
         'folke/snacks.nvim', -- for input provider snacks
         'nvim-tree/nvim-web-devicons', -- or echasnovski/mini.icons
         'zbirenbaum/copilot.lua', -- for providers='copilot'

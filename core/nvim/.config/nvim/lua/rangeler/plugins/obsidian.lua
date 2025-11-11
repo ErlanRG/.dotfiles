@@ -60,7 +60,7 @@ return {
         end,
         workspaces = vim.tbl_values(vaults),
         ui = {
-            enable = true,
+            enable = false,
         },
         follow_url_func = function(url)
             local browser = os.getenv 'BROWSER'
