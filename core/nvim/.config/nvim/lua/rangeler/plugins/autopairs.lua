@@ -40,12 +40,4 @@ return {
             highlight_grey = 'Comment',
         },
     },
-    config = function(_, opts)
-        local status_autopairs_ok, autopairs = pcall(require, 'nvim-autopairs')
-        if not status_autopairs_ok then
-            return
-        end
-
-        autopairs.setup(opts)
-    end,
 }
