@@ -1,0 +1,12 @@
+{
+    "layer": "top",
+    "position": "top",
+    "margin-bottom": 0,
+    "spacing": 0,
+
+    "include": [ "~/.config/waybar/modules.json" ],
+
+    "modules-left": [ "custom/launcher", "cpu", "memory", "disk", "network", "temperature#cpu", "temperature#gpu" ],
+    "modules-center": [ "ext/workspaces" ],
+    "modules-right": [ "backlight", "battery", "pulseaudio", "tray", "clock", "custom/exit" ],
+}
