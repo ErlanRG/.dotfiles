@@ -1,7 +1,10 @@
 return {
     'yetone/avante.nvim',
     build = vim.fn.has 'win32' ~= 0 and 'powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false' or 'make',
-    event = 'VeryLazy',
+    keys = {
+        { '<leader>aa', '<cmd>AvanteAsk<cr>', desc = '[A]vante Ask' },
+        { '<leader>an', '<cmd>AvanteChatNew<cr>', desc = '[A]vante New Chat' },
+    },
     version = false,
     opts = {
         instructions_file = 'avante.md',
