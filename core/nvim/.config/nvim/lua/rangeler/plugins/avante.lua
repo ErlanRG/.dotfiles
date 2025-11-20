@@ -37,7 +37,7 @@ return {
         'nvim-mini/mini.pick', -- for file_selector provider mini.pick
         'folke/snacks.nvim', -- for input provider snacks
         'nvim-tree/nvim-web-devicons', -- or echasnovski/mini.icons
-        'zbirenbaum/copilot.lua', -- for providers='copilot'
+        'github/copilot.vim', -- for providers='copilot'
         {
             -- support for image pasting
             'HakonHarnes/img-clip.nvim',
