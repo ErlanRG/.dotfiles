@@ -21,3 +21,58 @@
 
 [log]
     showSignature = true
+
+[alias]
+    a = add -all
+    ai = add -i
+#############
+	c = commit
+	ca = commit -a
+	cm = commit -m
+	cam = commit -am
+	cem = commit --allow-empty -m
+	cd = commit --amend
+	cad = commit -a --amend
+	ced = commit --allow-empty --amend
+#############
+	o = checkout
+	om = checkout master
+	ob = checkout -b
+#############
+	cl = clone
+	cld = clone --depth 1
+#############
+	d = diff
+	dc = diff --cached
+	dk = diff --check
+	dkc = diff --cached --check
+	dt = difftool
+	dtc = difftool --cached
+	dw = diff --word-diff
+#############
+	f = fetch
+	fo = fetch origin
+	fu = fetch upstream
+#############
+    l = log --oneline
+	lg = log --oneline --graph --decorate
+	ll = log -L
+	lf = log -S
+#############
+	ps = push
+	psf = push --force-with-lease
+	psu = push -u
+	pst = push --tags
+#############
+    s = status
+	sb = status -s -b
+#############
+    re = reset
+	rh = reset HEAD
+	reh = reset --hard
+	rem = reset --mixed
+	res = reset --soft
+	rehh = reset --hard HEAD
+	remh = reset --mixed HEAD
+	resh = reset --soft HEAD
+	rehom = reset --hard origin/master

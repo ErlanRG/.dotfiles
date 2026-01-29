@@ -35,11 +35,10 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 DISABLE_UPDATE_PROMPT="true"
 
 plugins=(
-  git
-  ssh-agent
-  vi-mode
-  zsh-autosuggestions
-  zsh-syntax-highlighting
+    ssh-agent
+    vi-mode
+    zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
 # Oh-my-zsh
