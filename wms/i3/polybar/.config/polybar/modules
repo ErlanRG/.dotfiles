@@ -57,7 +57,7 @@ format = 
 format-font = 8
 format-foreground= ${colors.sapphire}
 format-padding = 0
-click-left= $HOME/.config/rofi/launchers/type-3/launcher.sh
+click-left= vicinae toggle
 
 ;==========================================================
 [module/filesystem]
@@ -226,7 +226,7 @@ format = 
 format-font = 8
 format-foreground= ${colors.red}
 format-padding = 0
-click-left = ~/.config/rofi/powermenu/type-1/powermenu.sh
+click-left = vicinae vicinae://extensions/vicinae/power
 
 ;==========================================================
 [module/tray]
