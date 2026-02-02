@@ -12,6 +12,10 @@ export ZSH=$HOME/.oh-my-zsh
 # .dotfiles path
 export DOTFILES=$HOME/.dotfiles
 
+# SSH Agent
+# Make sure to have the socket enabled
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
 # History related configuration
 HIST_FILE="$HOME/.zsh_history"
 HISTSIZE=10000000
@@ -35,14 +39,12 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 DISABLE_UPDATE_PROMPT="true"
 
 plugins=(
-    ssh-agent
     vi-mode
     zsh-autosuggestions
     zsh-syntax-highlighting
 )
 
 # Oh-my-zsh
-zstyle :omz:plugins:ssh-agent quiet yes
 source $ZSH/oh-my-zsh.sh
 
 # Load additional configuration files
