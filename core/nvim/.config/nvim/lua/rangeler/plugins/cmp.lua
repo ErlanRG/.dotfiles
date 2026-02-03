@@ -83,7 +83,7 @@ return {
         snippets = { preset = 'luasnip' },
         -- See :h blink-cmp-config-fuzzy for more information
         fuzzy = {
-            implementation = 'prefer_rust_with_warning',
+            implementation = 'prefer_rust',
             sorts = {
                 'exact',
                 'score',
