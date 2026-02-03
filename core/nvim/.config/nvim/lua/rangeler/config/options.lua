@@ -6,6 +6,8 @@ vim.g.maplocalleader = ' '
 
 vim.g.have_nerd_font = true -- Set to true if you have a Nerd Font installed and selected in the terminal
 
+local icons = require 'rangeler.utils.icons'
+
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 local opt = vim.opt
@@ -53,6 +55,39 @@ opt.updatetime = 250 -- Decrease update time
 opt.wildmode = 'longest:full,full' -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
 opt.wrap = false -- Disable line wrap
+
+vim.diagnostic.config {
+    update_in_insert = false,
+    severity_sort = true,
+    float = { border = 'rounded', source = 'if_many' },
+    underline = { severity = vim.diagnostic.severity.ERROR },
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = icons.diagnostics.BoldError,
+            [vim.diagnostic.severity.WARN] = icons.diagnostics.BoldWarning,
+            [vim.diagnostic.severity.INFO] = icons.diagnostics.BoldInformation,
+            [vim.diagnostic.severity.HINT] = icons.diagnostics.BoldHint,
+        },
+    },
+
+    virtual_text = {
+        source = 'if_many',
+        spacing = 2,
+        format = function(diagnostic)
+            local diagnostic_message = {
+                [vim.diagnostic.severity.ERROR] = diagnostic.message,
+                [vim.diagnostic.severity.WARN] = diagnostic.message,
+                [vim.diagnostic.severity.INFO] = diagnostic.message,
+                [vim.diagnostic.severity.HINT] = diagnostic.message,
+            }
+            return diagnostic_message[diagnostic.severity]
+        end,
+    }, -- Text shows up at the end of the line
+    virtual_lines = false, -- Text shows up underneath the line, with virtual lines
+
+    -- Auto open the float, so you can easily read the errors when jumping with `[d` and `]d`
+    jump = { float = true },
+}
 
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 vim.schedule(function()
