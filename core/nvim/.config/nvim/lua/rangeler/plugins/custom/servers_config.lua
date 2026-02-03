@@ -14,18 +14,6 @@ M.clangd = {
     filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
 }
 
-M.lua_ls = {
-    settings = {
-        Lua = {
-            completion = {
-                callSnippet = 'Replace',
-            },
-            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-            -- diagnostics = { disable = { 'missing-fields' } },
-        },
-    },
-}
-
 M.rust_analyzer = {}
 
 return M
