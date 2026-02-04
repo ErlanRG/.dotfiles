@@ -1,7 +1,7 @@
 -- Highlight todo, notes, etc in comments
 return {
     'folke/todo-comments.nvim',
-    event = 'BufWinEnter',
+    event = { 'BufReadPost', 'BufNewFile' },
     dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { signs = false },
+    opts = { signs = true },
 }

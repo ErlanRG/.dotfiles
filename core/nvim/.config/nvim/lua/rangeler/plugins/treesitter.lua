@@ -2,7 +2,8 @@ return {
     'nvim-treesitter/nvim-treesitter',
     branch = 'main',
     build = ':TSUpdate',
-    lazy = false,
+    event = { 'BufReadPost', 'BufNewFile' },
+    -- lazy = false,
     config = function()
         ---@see https://github.com/mbwilding/nvim/blob/main/lua/plugins/treesitter.lua
         -- Treesitter directory
@@ -42,10 +43,6 @@ return {
             callback = function(args)
                 -- Highlights
                 vim.treesitter.start()
-
-                -- Folds
-                -- vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-                -- vim.wo[0][0].foldmethod = 'expr'
 
                 -- Indentation
                 vim.bo[args.buf].indentexpr = 'v:lua.require"nvim-treesitter".indentexpr()'

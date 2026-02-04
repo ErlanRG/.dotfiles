@@ -3,7 +3,7 @@ local components = require('rangeler.plugins.custom.lualine_comp').components
 return {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    event = 'VeryLazy',
+    event = { 'BufReadPost', 'BufNewFile' },
     opts = {
         options = {
             theme = 'auto',
