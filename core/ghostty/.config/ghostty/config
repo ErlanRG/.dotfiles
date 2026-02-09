@@ -1,4 +1,4 @@
 font-family = "Iosevka NFM Medium"
 theme = Catppuccin Mocha
-window-decoration = none
+window-decoration = server
 cursor-invert-fg-bg = true
