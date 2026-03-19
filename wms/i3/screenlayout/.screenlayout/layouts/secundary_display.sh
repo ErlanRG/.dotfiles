@@ -1,9 +1,11 @@
 #!/bin/bash
 
-# Set up only the secondary monitor (HDMI-A-0)
+PRIMARY="DisplayPort-0"
+SECONDARY="HDMI-A-0"
+
 xrandr \
-  --output HDMI-A-0 --primary --mode 1920x1080 --rate 100 --pos 0x0 --rotate right \
-  --output DisplayPort-1 --off
+  --output "$SECONDARY" --primary --mode 2560x1440 --rate 60 --pos 0x0 \
+  --output "$PRIMARY" --off
 
 # Start picom if not already running
 pgrep -x "picom" > /dev/null || picom &
