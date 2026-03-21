@@ -163,7 +163,8 @@ binds {
     // ─── Exit / Power ───
     CTRL+ALT+DELETE                     { quit; } // Quits Niri
     MOD+SHIFT+E                         { spawn-sh "~/.config/waybar/scripts/powermenu.sh"; } // Powermenu
-    MOD+SHIFT+P                         { power-off-monitors; } // Turn off screens (useful for OLED or privacy)
+    MOD+CTRL+P                          { power-off-monitors; } // Turn off screens (useful for OLED or privacy)
+    MOD+SHIFT+P                         { spawn-sh "~/.config/screenlayout/applet.sh" ;}
     MOD+O                               repeat=false { toggle-overview; }
 }
 
@@ -175,9 +176,10 @@ spawn-sh-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 spawn-sh-at-startup "gnome-keyring-daemon --start"
 spawn-sh-at-startup "nm-applet &" // Network Applet
 spawn-sh-at-startup "octopi-notifier"
-spawn-sh-at-startup "swww img $HOME/Nextcloud/Wallpapers/huawei-matebook-2560x1080-22554.png"
+spawn-sh-at-startup "swww img $HOME/Nextcloud/Wallpapers/aishot-2377.jpg"
 spawn-sh-at-startup "swww-daemon" // Wallpaper daemon
 spawn-sh-at-startup "waybar" // Launch waybar
+spawn-sh-at-startup "~/.config/screenlayout/main.sh" // Force main monitor on startup
 
 prefer-no-csd // Disable program decorations
 screenshot-path "~/Pictures/Screenshots/%Y-%m-%d %H-%M-%S.png"
