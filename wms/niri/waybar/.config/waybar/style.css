@@ -25,45 +25,40 @@
 @define-color mantle    #181825;
 @define-color crust     #11111b;
 
-/* -------------------------------------------
- * Global Styles
- * ------------------------------------------- */
+/* -----------------------------
+ * Global
+ * ----------------------------- */
 * {
     border: none;
-    font-family: "Iosevka NFM";
+    font-family: "Iosevka NFM Medium";
     font-size: 13px;
-    font-weight: 500;
-    margin: 2px;
-    min-height: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 window#waybar {
-    background: @crust;
-    border-radius: 6px;
-    border: 0px;
+    background: transparent;
 }
 
-window#waybar.empty #window {
-    background-color: transparent;
-    border: 0px;
-    font-size: 0px;
+/* Floating bar effect */
+window#waybar > box {
+    background: @mantle;
+    margin: 1px 6px;
+    padding: 2px 8px;
+    border-radius: 10px;
 }
 
+/* Tooltip */
 tooltip {
-    background-color: @base;
-    border: 0px;
+    background: @base;
     color: @text;
-    font-size: 2px;
+    border-radius: 8px;
+    padding: 6px;
 }
 
-tooltip label {
-    margin: 2px;
-}
-
-/* -------------------------------------------
- * Modules Styling
- * ------------------------------------------- */
+/* -----------------------------
+ * Modules base
+ * ----------------------------- */
 #backlight,
 #battery,
 #clock,
@@ -77,31 +72,27 @@ tooltip label {
 #pulseaudio,
 #temperature.cpu,
 #temperature.gpu,
-#tray,
-#workspaces {
-    background-color: @base;
-    border-radius: 4px;
-    /* border: 1px solid @surface2; */
-    color: @text;
-    padding: 4px 8px;
+#tray {
+    color: @subtext1;
+    padding: 0 6px;
 }
 
-/* Workspaces */
+/* -----------------------------
+ * Workspaces
+ * ----------------------------- */
 #workspaces {
     padding: 0 6px;
 }
 
 #workspaces button {
-    color: @subtext1;
-    padding: 0 8px;
-    background: transparent;
-    transition: all 0.2s ease-in-out;
-    border-radius: 8px;
+    color: @overlay1;
+    padding: 0 6px;
+    border-radius: 6px;
 }
 
 #workspaces button.active {
-    color: @mauve;
-    font-weight: bold;
+    color: @text;
+    background: @surface0;
 }
 
 #workspaces button.visible {
@@ -109,57 +100,41 @@ tooltip label {
 }
 
 #workspaces button:hover {
+    background: @surface0;
     color: @text;
-    background-color: @surface1;
 }
 
-/* Individual Modules Coloring */
-#cpu {
-    color: @sapphire;
-}
-
-#memory {
-    color: @yellow;
-}
-
-#disk {
-    color: @lavender;
-}
-
-#network {
-    color: @pink;
-}
-
+/* -----------------------------
+ * Subtle accent colors
+ * ----------------------------- */
+#cpu { color: @sapphire; }
+#memory { color: @yellow; }
+#disk { color: @lavender; }
+#network { color: @pink; }
 #temperature.cpu,
-#temperature.gpu
-{
-    color: @teal;
+#temperature.gpu { color: @teal; }
+#battery { color: @green; }
+#pulseaudio { color: @teal; }
+#language { color: @peach; }
+
+/* Clock */
+#clock {
+    color: @yellow;
+    font-weight: 600;
 }
 
-#language {
-    color: @peach;
+/* Exit */
+#custom-exit {
+    color: @red;
 }
 
-#battery {
-    color: @blue;
-}
-
-#backlight {
-    color: @maroon;
-}
-
+/* -----------------------------
+ * Spacing tweaks
+ * ----------------------------- */
 #tray {
-    color: @green;
-}
-
-#pulseaudio {
-    color: @teal;
+    padding-right: 6px;
 }
 
 #clock {
-    color: @yellow;
-}
-
-#custom-exit {
-    color: @red;
+    padding-right: 6px;
 }

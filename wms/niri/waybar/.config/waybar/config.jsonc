@@ -1,10 +1,10 @@
 {
     "layer": "top",
     "position": "top",
-    "margin-top": 8,
+    "margin-top": 2,
     "margin-bottom": 0,
-    "margin-left": 14,
-    "margin-right": 14,
+    // "margin-left": 14,
+    // "margin-right": 14,
     "spacing": 0,
 
     "include": [ "~/.config/waybar/modules.json" ],
