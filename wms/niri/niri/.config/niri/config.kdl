@@ -202,9 +202,10 @@ layout {
     }
 
     focus-ring {
-        width 1
         active-color "#94e2d5"
         inactive-color "#505050"
+        urgent-color "#f38ba8"
+        width 1
     }
 
     shadow {
@@ -217,8 +218,15 @@ layout {
     struts {}
 
     tab-indicator {
+        active-color "#94e2d5"
+        corner-radius 8
         hide-when-single-tab
+        inactive-color "#505050"
+        length total-proportion=0.25
         place-within-column
+        position "right"
+        urgent-color "#f38ba8"
+        width 3
     }
 }
 
