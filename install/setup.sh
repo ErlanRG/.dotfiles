@@ -34,9 +34,6 @@ banner "Installing Core Packages"
 banner "Installing AUR Packages"
 ./aur.sh "$wm"
 
-banner "Installing Fonts"
-./fonts.sh
-
 banner "Installing Window Manager Specific Packages"
 ./wm.sh "$wm"
 
