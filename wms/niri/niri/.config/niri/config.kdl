@@ -320,13 +320,16 @@ layer-rule {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#environment
 
 environment {
-    _JAVA_AWT_WM_NONREPARENTING "1"
     DISPLAY ":1"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
+    PROTON_FSR4_RDNA3_UPGRADE "1g"
+    PROTON_FSR4_UPGRADE "1g"
+    PROTON_XESS_UPGRADE "1g"
     QT_QPA_PLATFORM "wayland"
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
     XDG_CURRENT_DESKTOP "niri"
     XDG_SESSION_TYPE "wayland"
+    _JAVA_AWT_WM_NONREPARENTING "1"
 }
 
 hotkey-overlay {
