@@ -5,5 +5,8 @@ niri
 qt5-wayland
 swww
 waybar
+wl-clipboard
 wlr-randr
 wofi
+xorg-xwayland
+xwayland-satellite

@@ -6,6 +6,7 @@ fd
 ghostty
 git
 gnome-keyring
+gparted
 kdeconnect
 keepassxc
 kitty
@@ -14,6 +15,7 @@ libsecret
 neovim
 nextcloud-client
 npm
+nwg-look
 polkit-gnome
 ripgrep
 starship
