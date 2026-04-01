@@ -86,15 +86,15 @@ binds {
     MOD+CTRL+HOME                       { move-column-to-first; }
     MOD+CTRL+END                        { move-column-to-last; }
 
-    // NOTE: No second monitor yet
-    // MOD+SHIFT+LEFT                      { focus-monitor-left; }
-    // MOD+SHIFT+RIGHT                     { focus-monitor-right; }
-    // MOD+SHIFT+UP                        { focus-monitor-up; }
-    // MOD+SHIFT+DOWN                      { focus-monitor-down; }
-    // MOD+SHIFT+CTRL+LEFT                 { move-column-to-monitor-left; }
-    // MOD+SHIFT+CTRL+RIGHT                { move-column-to-monitor-right; }
-    // MOD+SHIFT+CTRL+UP                   { move-column-to-monitor-up; }
-    // MOD+SHIFT+CTRL+DOWN                 { move-column-to-monitor-down; }
+    MOD+CTRL+H                         { focus-monitor-left; }
+    MOD+CTRL+L                         { focus-monitor-right; }
+    MOD+CTRL+K                         { focus-monitor-up; }
+    MOD+CTRL+J                         { focus-monitor-down; }
+
+    MOD+SHIFT+CTRL+H                 { move-column-to-monitor-left; }
+    MOD+SHIFT+CTRL+L                { move-column-to-monitor-right; }
+    MOD+SHIFT+CTRL+K                   { move-column-to-monitor-up; }
+    MOD+SHIFT+CTRL+J                 { move-column-to-monitor-down; }
 
     // ─── Workspace Switching ───
     MOD+WHEELSCROLLDOWN                 cooldown-ms=150 { focus-workspace-down; }
@@ -192,13 +192,12 @@ layout {
     background-color "transparent"
     center-focused-column "never" // Don’t auto-center focused column
     default-column-display "normal"
-    default-column-width { proportion 1.00; }
-    gaps 6 // Gap between windows
+    default-column-width { proportion 0.5; }
+    gaps 4 // Gap between windows
 
     preset-column-widths {
-        proportion 0.33333
+        proportion 0.25
         proportion 0.5
-        proportion 0.66667
     }
 
     focus-ring {
