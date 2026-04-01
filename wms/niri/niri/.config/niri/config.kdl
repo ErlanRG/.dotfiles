@@ -176,8 +176,8 @@ spawn-sh-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 spawn-sh-at-startup "gnome-keyring-daemon --start"
 spawn-sh-at-startup "nm-applet &" // Network Applet
 spawn-sh-at-startup "octopi-notifier"
-spawn-sh-at-startup "swww img $HOME/Nextcloud/Wallpapers/aishot-2377.jpg"
-spawn-sh-at-startup "swww-daemon" // Wallpaper daemon
+spawn-sh-at-startup "awww img $HOME/Nextcloud/Wallpapers/aishot-2377.jpg"
+spawn-sh-at-startup "awww-daemon" // Wallpaper daemon
 spawn-sh-at-startup "waybar" // Launch waybar
 spawn-sh-at-startup "~/.config/screenlayout/main.sh" // Force main monitor on startup
 
@@ -312,7 +312,7 @@ window-rule {
 }
 
 layer-rule {
-    match namespace="^swww-daemon$"
+    match namespace="^awww-daemon$"
     place-within-backdrop true
 }
 

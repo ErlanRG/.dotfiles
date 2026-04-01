@@ -3,7 +3,8 @@
 mako
 niri
 qt5-wayland
-swww
+swaylock
+awww
 waybar
 wl-clipboard
 wlr-randr
