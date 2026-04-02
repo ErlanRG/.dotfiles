@@ -1,13 +1,14 @@
 # Niri packages
 
+awww
 mako
 niri
 qt5-wayland
 swaylock
-awww
 waybar
 wl-clipboard
 wlr-randr
 wofi
+xorg-xhost
 xorg-xwayland
 xwayland-satellite
