@@ -28,7 +28,7 @@ opt.jumpoptions = 'view'
 opt.laststatus = 3 -- Same statusline for all windows
 opt.linebreak = true -- Wrap lines at convenient points
 opt.list = true
-opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+opt.listchars = { tab = ' ', trail = '·', nbsp = '␣', eol = '󰌑' }
 opt.mouse = 'a' -- Enable mouse mode
 opt.number = true -- Make line numbers default
 opt.pumblend = 10 -- Popup blend
@@ -95,10 +95,8 @@ vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decr
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
--- use Neovim nightly branch
 vim.o.fillchars = 'eob: ,fold: ,foldopen:,foldsep: ,foldclose:'
 
---  Schedule the setting after `UiEnter` because it can increase startup-time.
 vim.schedule(function()
     opt.clipboard = 'unnamedplus'
 end)

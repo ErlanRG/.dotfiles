@@ -3,19 +3,14 @@ return {
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     opts = {
-        -- delay between pressing a key and opening which-key (milliseconds)
-        -- this setting is independent of vim.opt.timeoutlen
-        preset = 'modern',
-        delay = 500,
+        preset = 'helix',
+        delay = 250,
         win = {
             title = 'Keybinds',
             title_pos = 'center',
         },
         icons = {
-            -- set icon mappings to true if you have a Nerd Font
             mappings = vim.g.have_nerd_font,
-            -- If you are using a Nerd Font: set icons.keys to an empty table which will use the
-            -- default which-key.nvim defined Nerd Font icons, otherwise define a string table
             keys = vim.g.have_nerd_font and {} or {
                 Up = '<Up> ',
                 Down = '<Down> ',
@@ -50,7 +45,6 @@ return {
 
         -- Document existing key chains
         spec = {
-            -- { '<leader>d', group = '[D]ocument' },
             { '<leader>O', group = '[O]bsidian' },
             { '<leader>S', group = '[S]ymbols' },
             { '<leader>a', group = '[A]vante' },
@@ -64,6 +58,7 @@ return {
             { '<leader>r', group = '[R]ename' },
             { '<leader>s', group = '[S]earch' },
             { '<leader>t', group = '[T]oggle' },
+            { 'gr', group = 'LSP Actions' },
         },
     },
 }

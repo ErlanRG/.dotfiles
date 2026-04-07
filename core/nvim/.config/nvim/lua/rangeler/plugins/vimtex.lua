@@ -1,6 +1,7 @@
 return {
     'lervag/vimtex',
     event = { 'BufReadPost', 'BufNewFile' },
+    ft = 'tex',
     -- lazy = false, -- we don't want to lazy load VimTeX
     keys = {
         { '<leader>lc', '<cmd>VimtexCompile<cr>', desc = 'Toggle [C]ompiler' },

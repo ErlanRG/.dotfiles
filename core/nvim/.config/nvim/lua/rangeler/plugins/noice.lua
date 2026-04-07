@@ -11,9 +11,6 @@ return {
             return
         end
 
-        local colors = require 'catppuccin.palettes.mocha'
-        vim.api.nvim_set_hl(0, 'MacroRecordingIcon', { fg = colors.red, bold = true })
-
         noice.setup {
             lsp = {
                 override = {
@@ -33,7 +30,7 @@ return {
                 {
                     view = 'cmdline',
                     filter = { event = 'msg_showmode', any = { { find = 'recording' } } },
-                    opts = { format = { { ' 󰑊', hl_group = 'MacroRecordingIcon' }, ' ', '{message}' } },
+                    opts = { format = { { ' 󰑊', hl_group = 'ErrorMsg' }, ' ', '{message}' } },
                 },
             },
         }

@@ -25,7 +25,6 @@ return {
             opts = {},
         },
         'folke/lazydev.nvim',
-        'Kaiser-Yang/blink-cmp-avante',
     },
     opts = {
         keymap = {
@@ -74,10 +73,9 @@ return {
             },
         },
         sources = {
-            default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer', 'avante' },
+            default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer' },
             providers = {
                 lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
-                avante = { module = 'blink-cmp-avante', name = 'Avante' },
             },
         },
         snippets = { preset = 'luasnip' },

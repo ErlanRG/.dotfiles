@@ -18,9 +18,6 @@ end
 
 lazy.setup {
     'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
-
-    -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/rangeler/plugins/*.lua`
-    --    This is the easiest way to modularize your config.
     { import = 'rangeler.plugins' },
 }
 -- vim: ts=2 sts=2 sw=2 et

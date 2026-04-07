@@ -24,42 +24,17 @@ return {
 
 
                 -- stylua: ignore start
-                -- Rename the variable under your cursor.
-                --  Most Language Servers support renaming across files, etc.
-                map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-
-                -- Execute a code action, usually your cursor needs to be on top of an error
-                -- or a suggestion from your LSP for this to activate.
-                map('ga', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
-
-                -- Find references for the word under your cursor.
-                map('gr', function() Snacks.picker.lsp_references() end, '[G]oto [R]eferences')
-
-                -- Jump to the implementation of the word under your cursor.
-                --  Useful when your language has ways of declaring types without an actual implementation.
-                map('gI', function() Snacks.picker.lsp_implementations() end, '[G]oto [I]mplementation')
-
-                -- Jump to the definition of the word under your cursor.
-                --  This is where a variable was first declared, or where a function is defined, etc.
-                --  To jump back, press <C-t>.
-                map('gd', function() Snacks.picker.lsp_definitions() end, '[G]oto [D]efinition')
-                map('gD', function() Snacks.picker.lsp_declarations() end, '[G]oto [D]eclaration')
-
-                -- Fuzzy find all the symbols in your current document.
-                --  Symbols are things like variables, functions, types, etc.
-                map('<leader>Ss', function() Snacks.picker.lsp_symbols() end, 'LSP Symbols')
-
-                -- Fuzzy find all the symbols in your current workspace.
-                --  Similar to document symbols, except searches over your entire project.
-                map('<leader>SS', function() Snacks.picker.lsp_workspace_symbols() end, 'LSP Workspace Symbols')
-
-                -- Jump to the type of the word under your cursor.
-                --  Useful when you're not sure what type a variable is and you want to see
-                --  the definition of its *type*, not where it was *defined*.
-                map('<leader>gy', function() Snacks.picker.lsp_type_definitions() end, '[G]oto T[y]pe Definition')
+                map('gra', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
+                map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
+                map('gO', function() Snacks.picker.lsp_symbols() end, 'LSP Symbols')
+                map('gW', function() Snacks.picker.lsp_workspace_symbols() end, 'LSP Workspace Symbols')
+                map('grD', function() Snacks.picker.lsp_declarations() end, '[G]oto [D]eclaration')
+                map('grd', function() Snacks.picker.lsp_definitions() end, '[G]oto [D]efinition')
+                map('gri', function() Snacks.picker.lsp_implementations() end, '[G]oto [I]mplementation')
+                map('grr', function() Snacks.picker.lsp_references() end, '[G]oto [R]eferences')
+                map('grt', function() Snacks.picker.lsp_type_definitions() end, '[G]oto T[y]pe Definition')
                 -- stylua: ignore end
 
-                -- When you move your cursor, the highlights will be cleared (the second autocommand).
                 local client = vim.lsp.get_client_by_id(event.data.client_id)
                 if client and client:supports_method('textDocument/documentHighlight', event.buf) then
                     local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
@@ -94,12 +69,13 @@ return {
             end,
         })
 
-        local capabilities = require('blink.cmp').get_lsp_capabilities()
+        -- local capabilities = require('blink.cmp').get_lsp_capabilities()
         local server_cfg = require 'rangeler.plugins.custom.servers_config'
 
         local servers = {
             bashls = {},
             clangd = server_cfg.clangd,
+            lua_ls = server_cfg.lua_ls,
             texlab = {},
         }
 
@@ -113,38 +89,9 @@ return {
         require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
         for name, server in pairs(servers) do
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            -- server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             vim.lsp.config(name, server)
             vim.lsp.enable(name)
         end
-
-        -- Special Lua Config, as recommended by neovim help docs
-        vim.lsp.config('lua_ls', {
-            on_init = function(client)
-                if client.workspace_folders then
-                    local path = client.workspace_folders[1].name
-                    if path ~= vim.fn.stdpath 'config' and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc')) then
-                        return
-                    end
-                end
-
-                client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-                    runtime = {
-                        version = 'LuaJIT',
-                        path = { 'lua/?.lua', 'lua/?/init.lua' },
-                    },
-                    workspace = {
-                        checkThirdParty = false,
-                        -- NOTE: this is a lot slower and will cause issues when working on your own configuration.
-                        --  See https://github.com/neovim/nvim-lspconfig/issues/3189
-                        library = vim.api.nvim_get_runtime_file('', true),
-                    },
-                })
-            end,
-            settings = {
-                Lua = {},
-            },
-        })
-        vim.lsp.enable 'lua_ls'
     end,
 }
