@@ -40,4 +40,20 @@ return {
             highlight_grey = 'Comment',
         },
     },
+    config = function()
+        local npairs = require 'nvim-autopairs'
+        local Rule = require 'nvim-autopairs.rule'
+
+        npairs.setup {}
+
+        npairs.add_rules {
+            Rule('<', '>'):with_pair(function(opts)
+                return opts.filetype ~= 'html'
+                    and opts.filetype ~= 'xml'
+                    and opts.filetype ~= 'javascriptreact'
+                    and opts.filetype ~= 'typescriptreact'
+                    and opts.filetype ~= 'cs'
+            end),
+        }
+    end,
 }
