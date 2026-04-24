@@ -1,0 +1,13 @@
+allow_images=true
+hide_scroll=true
+no_actions=false
+term=ghostty
+width=500
+height=500
+mode=drun
+show_all=true
+print_command=true
+layer=overlay
+--show
+
+
