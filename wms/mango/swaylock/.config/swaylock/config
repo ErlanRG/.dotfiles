@@ -1,0 +1,75 @@
+# Disable unlock indicator blinking animation
+# no-unlock-indicator
+
+# Background
+color=1e1e2ecc
+scaling=fill
+
+# Indicator behavior
+indicator-idle-visible
+indicator-radius=80
+indicator-thickness=8
+
+# Position
+# indicator-x-position=960
+# indicator-y-position=540
+
+# -----------------------------
+# Ring colors
+# -----------------------------
+ring-caps-lock-color=f9e2afcc
+ring-clear-color=45475aaa
+ring-color=94e2d5cc
+ring-ver-color=a6e3a1cc
+ring-wrong-color=f38ba8cc
+
+# -----------------------------
+# Inside colors
+# -----------------------------
+inside-caps-lock-color=181825cc
+inside-clear-color=181825cc
+inside-color=181825cc
+inside-ver-color=181825cc
+inside-wrong-color=181825cc
+
+# -----------------------------
+# Line
+# -----------------------------
+line-caps-lock-color=f9e2afcc
+line-color=313244aa
+line-ver-color=a6e3a1cc
+line-wrong-color=f38ba8cc
+
+# -----------------------------
+# Text
+# -----------------------------
+text-caps-lock-color=f9e2afcc
+text-clear-color=6c7086cc
+text-color=cdd6f4cc
+text-ver-color=a6e3a1cc
+text-wrong-color=f38ba8cc
+
+# Font
+font=Iosevka Nerd Font Mono
+font-size=18
+
+# -----------------------------
+# Key highlighting
+# -----------------------------
+bs-hl-color=f38ba8cc
+caps-lock-key-hl-color=f9e2afcc
+key-hl-color=94e2d5cc
+
+# Caps Lock indicator
+indicator-caps-lock
+
+# -----------------------------
+# Layout
+# -----------------------------
+layout-bg-color=1e1e2ecc
+layout-border-color=89b4facc
+layout-text-color=cdd6f4cc
+show-keyboard-layout
+
+# Separator lines
+separator-color=313244aa
