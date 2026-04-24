@@ -1,0 +1,149 @@
+@define-color rosewater #f5e0dc;
+@define-color flamingo  #f2cdcd;
+@define-color pink      #f5c2e7;
+@define-color mauve     #cba6f7;
+@define-color red       #f38ba8;
+@define-color maroon    #eba0ac;
+@define-color peach     #fab387;
+@define-color yellow    #f9e2af;
+@define-color green     #a6e3a1;
+@define-color teal      #94e2d5;
+@define-color sky       #89dceb;
+@define-color sapphire  #74c7ec;
+@define-color blue      #89b4fa;
+@define-color lavender  #b4befe;
+@define-color text      #cdd6f4;
+@define-color subtext1  #bac2de;
+@define-color subtext0  #a6adc8;
+@define-color overlay2  #9399b2;
+@define-color overlay1  #7f849c;
+@define-color overlay0  #6c7086;
+@define-color surface2  #585b70;
+@define-color surface1  #45475a;
+@define-color surface0  #313244;
+@define-color base      #1e1e2e;
+@define-color mantle    #181825;
+@define-color crust     #11111b;
+
+/* -----------------------------
+ * Global
+ * ----------------------------- */
+* {
+    border: none;
+    font-family: "Iosevka NFM Medium";
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+/* Main bar (reduced height) */
+window#waybar > box {
+    background: rgba(24, 24, 37, 0.6);
+    margin: 4px 8px;
+    padding: 2px 8px; /* ↓ less vertical padding */
+    border-radius: 10px;
+    border: 1px solid rgba(205, 214, 244, 0.07);
+}
+
+/* Tooltip */
+tooltip {
+    background: rgba(30, 30, 46, 0.9);
+    color: @text;
+    border-radius: 6px;
+    padding: 5px;
+    border: 1px solid @surface1;
+}
+
+/* -----------------------------
+ * Modules
+ * ----------------------------- */
+#backlight,
+#battery,
+#clock,
+#cpu,
+#custom-exit,
+#custom-launcher,
+#disk,
+#dwl-window,
+#language,
+#memory,
+#network,
+#pulseaudio,
+#temperature.cpu,
+#temperature.gpu,
+#tray {
+    background: rgba(49, 50, 68, 0.4);
+    color: @text;
+    margin: 0 3px;
+    padding: 2px 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(205, 214, 244, 0.05);
+}
+
+/* Hover */
+#backlight:hover,
+#battery:hover,
+#clock:hover,
+#cpu:hover,
+#disk:hover,
+#memory:hover,
+#network:hover,
+#temperature.cpu:hover,
+#temperature.gpu:hover,
+#pulseaudio:hover {
+    background: rgba(69, 71, 90, 0.55);
+}
+
+/* -----------------------------
+ * Workspaces
+ * ----------------------------- */
+#workspaces button {
+    background: rgba(49, 50, 68, 0.3);
+
+    margin: 0 2px;
+    padding: 1px 6px; /* slimmer */
+
+    border-radius: 6px;
+    color: @overlay1;
+}
+
+#workspaces button.active {
+    background: rgba(203, 166, 247, 0.3);
+    color: @text;
+}
+
+#workspaces button:hover {
+    background: rgba(137, 180, 250, 0.2);
+    color: @text;
+}
+
+/* -----------------------------
+ * Subtle accents
+ * ----------------------------- */
+#cpu { border: 1px solid rgba(116, 199, 236, 0.2); }
+#memory { border: 1px solid rgba(249, 226, 175, 0.2); }
+#network { border: 1px solid rgba(137, 220, 235, 0.2); }
+#battery { border: 1px solid rgba(166, 227, 161, 0.2); }
+#pulseaudio { border: 1px solid rgba(148, 226, 213, 0.2); }
+
+/* Clock*/
+#clock {
+    background: rgba(203, 166, 247, 0.2);
+    border: 1px solid rgba(203, 166, 247, 0.35);
+    font-weight: 500;
+}
+
+/* Exit */
+#custom-exit {
+    color: @red;
+    border: 1px solid rgba(243, 139, 168, 0.35);
+}
+
+#custom-exit:hover {
+    background: rgba(243, 139, 168, 0.2);
+    color: @text;
+}
