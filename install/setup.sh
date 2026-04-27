@@ -14,7 +14,7 @@ banner() {
 export -f banner
 
 # Define Window Managers
-wms=("i3" "niri")
+wms=("i3" "niri" "mango")
 
 # Select Window Manager
 banner "Select your Window Manager"

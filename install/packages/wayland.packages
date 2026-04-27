@@ -1,4 +1,5 @@
-# Niri packages
+# Wayland packages
+# These packages work for any wayland compositor
 
 awww
 mako
