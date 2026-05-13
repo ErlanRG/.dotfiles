@@ -26,3 +26,15 @@ if [ ! -d "$HOME/.fzf" ]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
     "$HOME/.fzf/install" --all --no-bash --no-fish
 fi
+
+banner "Installing web apps"
+local_bin="$HOME/.local/bin"
+mkdir -p "$local_bin"
+cp ./scripts/* "$local_bin"
+
+sh webapps "OSRS Wiki" https://oldschool.runescape.wiki/
+sh webapps "RS3 Wiki" https://runescape.wiki/
+sh webapps "WhatsApp Web" https://web.whatsapp.com/
+sh webapps ChatGPT https://www.chatgpt.com/
+sh webapps Discord https://www.discord.com/
+sh webapps YouTube https://www.youtube.com/
