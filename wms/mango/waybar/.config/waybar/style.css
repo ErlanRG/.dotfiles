@@ -73,6 +73,7 @@ tooltip {
 #memory,
 #network,
 #pulseaudio,
+#custom-kbd-layout,
 #temperature.cpu,
 #temperature.gpu,
 #tray {
@@ -94,7 +95,8 @@ tooltip {
 #network:hover,
 #temperature.cpu:hover,
 #temperature.gpu:hover,
-#pulseaudio:hover {
+#pulseaudio:hover,
+#custom-kbd-layout:hover {
     background: rgba(69, 71, 90, 0.55);
 }
 
@@ -129,6 +131,7 @@ tooltip {
 #network { border: 1px solid rgba(137, 220, 235, 0.2); }
 #battery { border: 1px solid rgba(166, 227, 161, 0.2); }
 #pulseaudio { border: 1px solid rgba(148, 226, 213, 0.2); }
+#custom-kbd-layout { border: 1px solid rgba(148, 226, 213, 0.2); }
 
 /* Clock*/
 #clock {

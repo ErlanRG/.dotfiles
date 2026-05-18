@@ -9,5 +9,5 @@
 
     "modules-left": [ "custom/launcher", "ext/workspaces", "dwl/window" ],
     "modules-center": [  "cpu", "memory", "disk", "network", "temperature#cpu", "temperature#gpu" ],
-    "modules-right": [ "backlight", "battery", "pulseaudio", "tray", "clock", "custom/exit" ],
+    "modules-right": [ "backlight", "battery", "pulseaudio", "custom/kbd-layout", "tray", "clock", "custom/exit" ],
 }

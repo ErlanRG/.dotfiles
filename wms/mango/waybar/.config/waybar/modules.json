@@ -111,6 +111,13 @@
         "on-click": "pavucontrol"
     },
 
+    "custom/kbd-layout": {
+        "exec": "~/.config/waybar/scripts/keyboard-layout",
+        "format": "󰌌 {}",
+        "interval": 0.5,
+        "tooltip": false
+    },
+
     "tray": {
         "spacing": 10
     },
