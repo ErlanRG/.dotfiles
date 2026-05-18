@@ -1,0 +1,158 @@
+{
+    "custom/launcher": {
+        "format": " \udb82\udcc7 ",
+        "on-click": "wofi",
+    },
+
+    "cpu": {
+        "format": "󰻠 {usage}%"
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": " {used:0.1f}G"
+    },
+
+    "disk": {
+        "format": " {free}",
+    },
+
+    "network": {
+        "interval": 2,
+        "format-ethernet": "󰈀 {bandwidthUpBits}",
+        "format-wifi": " {bandwidthUpBits}",
+        "format-disconnected": "󰈂 Not connected",
+    },
+
+    "temperature#cpu": {
+        "interval": 2,
+        "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "format": " {temperatureC}°C",
+        "format-critical": " {temperatureC}°C",
+        "tooltip": true,
+        "tooltip-format": "CPU"
+    },
+
+    "temperature#gpu": {
+        "interval": 2,
+        "hwmon-path": "/sys/devices/pci0000:00/0000:00:01.1/0000:01:00.0/0000:02:00.0/0000:03:00.0/hwmon/hwmon0/temp1_input",
+        "critical-threshold": 80,
+        "format": " {temperatureC}°C",
+        "format-critical": " {temperatureC}°C",
+        "tooltip": true,
+        "tooltip-format": "GPU"
+    },
+
+    "ext/workspaces": {
+        "format": "{icon}",
+        "ignore-hidden": true,
+        "on-click": "activate",
+        "on-click-right": "deactivate",
+        "sort-by-id": true,
+    },
+
+    "dwl/window": {
+        "format": "[{layout}] {title}",
+    },
+
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "scroll-step": 1
+    },
+
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "  {capacity}%",
+        "format-plugged": "  {capacity}%",
+        "format-alt": "{icon}  {time}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": [" ", " ", " ", " ", " "]
+    },
+
+    "niri/language": {
+        "format-en": "󰌌 us",
+        "format-es": "󰌌 es"
+    },
+
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": " {volume}%",
+        "format-bluetooth": " {volume}%  {format_source}",
+        "format-bluetooth-muted": "  {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "custom/kbd-layout": {
+        "exec": "~/.config/waybar/scripts/keyboard-layout",
+        "format": "󰌌 {}",
+        "interval": 0.5,
+        "tooltip": false
+    },
+
+    "tray": {
+        "spacing": 10
+    },
+
+    "clock": {
+        "format": "󰥔 {:%I:%M %p}",
+        "format-alt": " {:%A, %B %d, %Y (%I:%M %p)}",
+        "interval": 1,
+        "timezone": "America/Costa_Rica",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode"          : "year",
+            "mode-mon-col"  : 3,
+            "weeks-pos"     : "right",
+            "on-scroll"     : 1,
+            "format": {
+                "months":     "<span color='#F4DBD6'><b>{}</b></span>",
+                "days":       "<span color='#F0C6C6'><b>{}</b></span>",
+                "weeks":      "<span color='#A6E3A1'><b>W{}</b></span>",
+                "weekdays":   "<span color='#F9E2AF'><b>{}</b></span>",
+                "today":      "<span color='#F38BA8'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions":  {
+            "on-click-right": "mode",
+            "on-scroll-up": "tz_up",
+            "on-scroll-down": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
+    "custom/exit": {
+        "format": " 󰐥 ",
+        "on-click": "~/.config/waybar/scripts/powermenu.sh",
+        "tooltip-format": "Power Menu"
+    },
+}

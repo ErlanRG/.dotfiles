@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+mmsg -g -k | awk '{print $3}'

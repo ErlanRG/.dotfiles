@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+# Based on Omarchy's omarchy-webapp-install script
+# See:
+# https://github.com/basecamp/omarchy/blob/1acaa7ba4da1ce089936cb4bc730d280bd0c93f4/bin/omarchy-webapp-install
+
+set -e
+
+usage() {
+    cat <<EOF
+    Usage:
+        webapp <name> <url> [icon]
+
+    Examples:
+        webapp "YouTube" "youtube.com"
+        webapp "ChatGPT" "chatgpt.com"
+        webapp "GitHub" "github.com" "/path/to/github.png"
+
+    Arguments:
+        name    Application name
+        url     Website URL
+        icon    Optional local icon path
+EOF
+}
+
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  usage
+  exit 0
+fi
+
+if (( $# < 2 )); then
+  usage
+  exit 1
+fi
+
+name="$1"
+url="$2"
+icon="${3:-}"
+browser="helium-browser"
+
+app_dir="$HOME/.local/share/applications"
+icon_dir="$HOME/.local/share/icons"
+
+mkdir -p "$app_dir" "$icon_dir"
+
+# Add https:// the url does not include it
+[[ "$url" =~ ^https?:// ]] || url="https://$url"
+
+if [[ -z "$icon" ]]; then
+    icon="$icon_dir/$name.png"
+    curl -fsSL \
+        "https://www.google.com/s2/favicons?domain=$url&sz=128" \
+        -o "$icon" || true
+fi
+
+desktop="$app_dir/$name.desktop"
+
+cat > "$desktop" <<EOF
+[Desktop Entry]
+Name=$name
+Exec=$browser --app=$url
+Type=Application
+Terminal=false
+Icon=$icon
+Keywords=$(printf '%s' "$name" | tr '[:upper:]' '[:lower:]');
+EOF
+
+chmod +x "$desktop"
+
+echo "Created: $desktop"
