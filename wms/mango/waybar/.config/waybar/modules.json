@@ -111,6 +111,13 @@
         "on-click": "pavucontrol"
     },
 
+    "custom/kbd": {
+        "exec": "~/.config/waybar/scripts/keyboard-layout.sh",
+        "return-type": "json",
+        "format": "󰌌 {text}",
+        "restart-interval": 0.5,
+    },
+
     "tray": {
         "spacing": 10
     },
