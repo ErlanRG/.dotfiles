@@ -1,0 +1,12 @@
+-- See https://wiki.hypr.land/Configuring/Basics/Autostart/
+hl.on("hyprland.start", function()
+	hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
+	hl.exec_cmd("$HOME/.config/screenlayout/main.sh")
+	hl.exec_cmd("awww-daemon")
+	hl.exec_cmd("awww img $HOME/Nextcloud/Wallpapers/Kath.png")
+	hl.exec_cmd("gnome-keyring-daemon --start")
+	hl.exec_cmd("keepassxc")
+	hl.exec_cmd("nextcloud")
+	hl.exec_cmd("nm-applet")
+	hl.exec_cmd("octopi-notifier")
+end)

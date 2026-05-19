@@ -1,0 +1,12 @@
+-- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
+hl.env("DISPLAY", ":1")
+hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
+hl.env("PROTON_FSR4_RDNA3_UPGRADE", "1g")
+hl.env("PROTON_FSR4_UPGRADE", "1g")
+hl.env("PROTON_XESS_UPGRADE", "1g")
+hl.env("QT_QPA_PLATFORM", "wayland")
+hl.env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
+hl.env("XDG_SESSION_TYPE", "wayland")
+hl.env("_JAVA_AWT_WM_NONREPARENTING", "1")
+hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("XCURSOR_SIZE", "24")
