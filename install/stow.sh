@@ -14,6 +14,8 @@ mkdir -p "$BACKUP_DIR"
 
 if [ "$TARGET" == "core" ]; then
     TARGET_DIR="$PROJECT_ROOT/core"
+elif [ "$TARGET" == "wayland-common" ]; then
+    TARGET_DIR="$PROJECT_ROOT/wms/wayland-common"
 else
     TARGET_DIR="$PROJECT_ROOT/wms/$TARGET"
 fi
