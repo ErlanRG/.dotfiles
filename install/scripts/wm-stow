@@ -5,56 +5,66 @@ set -eo pipefail
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 PROJECT_ROOT=$(dirname "$(dirname "$SCRIPT_DIR")")
 
-ACTION=$1
-WM=$2
+usage() {
+    cat <<EOF
+Usage: $(basename "$0") <stow|unstow> [wm_name|all]
 
-if [ -z "$ACTION" ] || [ -z "$WM" ]; then
-    echo "Usage: $0 <stow|unstow> <wm_name>"
+Examples:
+    $(basename "$0") stow all        Stow core and all window managers
+    $(basename "$0") unstow all      Unstow core and all window managers
+EOF
+}
+
+ACTION=$1
+TARGET=${2:-all}
+
+if [ -z "$ACTION" ]; then
+    usage
     exit 1
 fi
+
+case "$ACTION" in
+    stow|unstow) ;;
+    *)
+        echo "Error: Invalid action '$ACTION'. Use 'stow' or 'unstow'."
+        usage
+        exit 1
+        ;;
+esac
 
 CORE_DIR="$PROJECT_ROOT/core"
-WM_DIR="$PROJECT_ROOT/wms/$WM"
 
-if [ ! -d "$WM_DIR" ]; then
-    echo "Error: Window manager '$WM' not found in '$PROJECT_ROOT/wms'."
-    exit 1
+stow_action() {
+    local dir="$1"
+    local label="$2"
+    local flag=""
+
+    [ "$ACTION" = "unstow" ] && flag="-D"
+
+    cd "$dir" || exit
+    echo "${ACTION}ing $label..."
+    stow $flag -t "$HOME" -v */
+    echo "${ACTION}ing $label completed."
+    echo ""
+}
+
+DIRS=("$CORE_DIR:core packages")
+
+if [ "$TARGET" = "all" ]; then
+    for wm in "$PROJECT_ROOT/wms"/*/; do
+        [ -d "$wm" ] && DIRS+=("${wm%/}:$(basename "$wm")")
+    done
+else
+    WM_DIR="$PROJECT_ROOT/wms/$TARGET"
+    if [ ! -d "$WM_DIR" ]; then
+        echo "Error: Window manager '$TARGET' not found in '$PROJECT_ROOT/wms'."
+        exit 1
+    fi
+    DIRS+=("$WM_DIR:$TARGET")
 fi
 
-# Handle core packages
-cd "$CORE_DIR" || exit
-case "$ACTION" in
-    stow)
-        echo "Stowing core packages..."
-        stow -t "$HOME" -v */
-        ;;
-    unstow)
-        echo "Unstowing core packages..."
-        stow -D -t "$HOME" -v */
-        ;;
-    *)
-        echo "Error: Invalid action '$ACTION'. Use 'stow' or 'unstow'."
-        exit 1
-        ;;
-esac
-echo "Action '$ACTION' for core packages completed."
-echo ""
-
-# Handle window manager packages
-cd "$WM_DIR" || exit
-case "$ACTION" in
-    stow)
-        echo "Stowing packages for $WM..."
-        stow -t "$HOME" -v */
-        ;;
-    unstow)
-        echo "Unstowing packages for $WM..."
-        stow -D -t "$HOME" -v */
-        ;;
-    *)
-        echo "Error: Invalid action '$ACTION'. Use 'stow' or 'unstow'."
-        exit 1
-        ;;
-esac
-
-echo "Action '$ACTION' for '$WM' completed."
+for entry in "${DIRS[@]}"; do
+    dir="${entry%%:*}"
+    label="${entry#*:}"
+    stow_action "$dir" "$label"
+done
