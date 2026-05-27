@@ -1,0 +1,1 @@
+../../../../../wayland-common/waybar/.config/waybar/scripts/waybar-restart.sh

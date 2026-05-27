@@ -1,0 +1,44 @@
+{
+    "include": [ "modules-common.json" ],
+
+    "custom/launcher": {
+        "format": "  ",
+        "on-click": "wofi --show drun",
+        "tooltip": false
+    },
+    "hyprland/language": {
+        "format": "{}",
+        "format-en": "󰌌 us",
+        "format-es": "󰌌 es"
+    },
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "sort-by": "number",
+        "persistent-workspaces": {
+            "*": 5
+        }
+    },
+    "group/hardware": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "children-class": "not-power",
+            "transition-left-to-right": true
+        },
+        "modules": [
+            "custom/icon",
+            "cpu",
+            "disk",
+            "temperature#cpu",
+            "temperature#gpu"
+        ]
+    },
+    "custom/icon": {
+        "format": "  "
+    },
+    "clock": {
+        "format": " {:%A, %B %d, %Y | 󰥔 %I:%M %p}",
+        "interval": 1,
+        "timezone": "America/Costa_Rica"
+    }
+}

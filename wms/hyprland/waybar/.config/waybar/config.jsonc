@@ -1,0 +1,12 @@
+{
+    "layer": "top",
+    "position": "top",
+    "margin-top": 2,
+    "spacing": 0,
+
+    "include": [ "~/.config/waybar/modules.json" ],
+
+    "modules-left": [ "custom/launcher", "hyprland/workspaces", "group/hardware" ],
+    "modules-center": [ "clock" ],
+    "modules-right": [ "battery", "pulseaudio", "hyprland/language", "tray", "custom/exit" ]
+}
