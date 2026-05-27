@@ -73,6 +73,9 @@ hl.bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd(screenlayoutPath))
 hl.bind(mod .. " + SHIFT + R", hl.dsp.exec_cmd("hyprctl reload && notify-send 'Reloading Hyprland config...'"))
 hl.bind(mod .. " + T", toggle_float)
 
+-- Promote focused window to master
+hl.bind(mod .. " + M", hl.dsp.layout("swapwithmaster"))
+
 -- Fullscreen
 hl.bind(mod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
 hl.bind(mod .. " +SHIFT + F", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))

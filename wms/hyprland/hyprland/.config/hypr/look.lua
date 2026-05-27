@@ -7,7 +7,7 @@ hl.config({
 		border_size = 1,
 
 		col = {
-			active_border = { colors = { "rgba(cba6f7ee)", "rgba(89b4faee)" }, angle = 45 },
+			active_border = { colors = { "rgba(a6e3a1ee)", "rgba(89b4faee)" }, angle = 45 },
 			inactive_border = "rgba(6c7086aa)",
 		},
 
@@ -87,7 +87,9 @@ hl.config({
 -- See https://wiki.hypr.land/Configuring/Layouts/Master-Layout/ for more
 hl.config({
 	master = {
+		mfact = 0.5,
 		new_status = "master",
+		orientation = "center",
 	},
 })
 
