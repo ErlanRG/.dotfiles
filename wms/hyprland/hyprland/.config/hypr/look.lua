@@ -77,49 +77,6 @@ hl.animation({ leaf = "workspacesOut", enabled = true, speed = 2.5, bezier = "sw
 
 hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "swift" })
 
--- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
--- Floating apps
-hl.window_rule({
-	name = "floating-apps",
-	match = {
-		class = "^(org.keepassxc.KeePassXC|qalculate-gtk)$",
-	},
-	float = true,
-	move = "50%-w/2 50%-h/2",
-})
-
--- Floating apps size to 1920 to 1080
-hl.window_rule({
-	name = "floating-size-hd",
-	match = { class = "^(org.keepassxc.KeePassXC)$" },
-	float = true,
-	size = { "1920", "1080" },
-})
-
--- Floating apps size to minimum values
-hl.window_rule({
-	name = "floating-size-small",
-	match = {
-		class = "^(qalculate-gtk)$",
-		title = "^(KeePassXC - Passkey credentials)$",
-	},
-	float = true,
-	size = { "1", "1" },
-})
-
-hl.window_rule({
-	name = "ignore-blur",
-	match = { class = "^(com.mitchellh.ghostty)$" },
-	opacity = "0.95 0.90 override",
-})
-
--- Enable blur and ignore_alpha for rofi
-hl.layer_rule({
-	match = { namespace = "wofi" },
-	blur = true,
-	ignore_alpha = 0.5,
-})
-
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
 	dwindle = {

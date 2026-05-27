@@ -1,11 +1,39 @@
 --- @see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 ---- APPS ----
-local fileManager = "ghostty -e yazi"
 local browser = "zen-browser"
-local mod = "SUPER"
+local fileManager = "ghostty -e yazi"
 local menu = "wofi"
-local terminal = "ghostty -e tmux"
+local mod = "SUPER"
 local screenlayoutPath = "~/.config/screenlayout/applet.sh"
+local powermenuPath = "~/.config/waybar/scripts/powermenu.sh"
+local terminal = "ghostty -e tmux"
+
+local cycle_layout = function()
+	local layouts = { "master", "dwindle", "scrolling" }
+	local workspace = hl.get_active_workspace()
+	local next_layout = "dwindle"
+
+	if not workspace then
+		return
+	end
+
+	for i = 1, #layouts do
+		if layouts[i] == workspace.tiled_layout then
+			local next_layout_idx = (i % #layouts) + 1
+			next_layout = layouts[next_layout_idx]
+			break
+		end
+	end
+
+	hl.exec_cmd("notify-send 'Layout: " .. next_layout .. "'")
+	hl.workspace_rule({ workspace = workspace.name, layout = next_layout })
+end
+
+-- Center windows on float
+local toggle_float = function()
+	hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
+	hl.dispatch(hl.dsp.window.center())
+end
 
 -- Focus & window movement
 local directions = {
@@ -40,9 +68,10 @@ hl.bind(mod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(mod .. " + N", hl.dsp.exec_cmd(fileManager))
 hl.bind(mod .. " + Q", hl.dsp.window.close())
 hl.bind(mod .. " + RETURN", hl.dsp.exec_cmd(terminal))
+hl.bind(mod .. " + SHIFT + E", hl.dsp.exec_cmd(powermenuPath))
 hl.bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd(screenlayoutPath))
 hl.bind(mod .. " + SHIFT + R", hl.dsp.exec_cmd("hyprctl reload && notify-send 'Reloading Hyprland config...'"))
-hl.bind(mod .. " + T", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mod .. " + T", toggle_float)
 
 -- Fullscreen
 hl.bind(mod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
@@ -90,7 +119,5 @@ hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
--- hl.bind(
--- 	mod .. " + M",
--- 	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
--- )
+-- Cycle through window layouts (dwindle, master, etc.)
+hl.bind(mod .. " + SHIFT + TAB", cycle_layout)
