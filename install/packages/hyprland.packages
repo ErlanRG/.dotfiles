@@ -1,0 +1,5 @@
+# Hyprland packages
+# These packages are specific to the Hyprland compositor
+
+hyprland
+xdg-desktop-portal-hyprland

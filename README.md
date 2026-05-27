@@ -8,7 +8,7 @@
 
 - **Shell:** Zsh with Oh My Zsh, along with a curated set of plugins and aliases for a powerful and efficient command-line experience.
 - **Terminal:** Configurations for Kitty, WezTerm, and Ghostty, with a consistent and beautiful Catppuccin theme.
-- **Window Managers:** Customized configurations for i3 and Niri, complete with scripts and themes.
+- **Window Managers:** Customized configurations for Hyprland, i3, Niri, and Mango, complete with scripts and themes.
 - **Editors:** Neovim setup with Lua-based configuration, and settings for IdeaVim.
 - **Other Tools:** Configurations for Git, Starship, Tmux, Yazi, and more.
 
@@ -17,7 +17,7 @@
 The repository is organized into the following directories:
 
 - `core`: Contains the core configuration files for essential tools like `zsh`, `nvim`, `kitty`, etc.
-- `wms`: Contains the configuration files for window managers like `i3` and `niri`.
+- `wms`: Contains the configuration files for window managers like `hyprland`, `i3`, `niri`, and `mango`.
 - `install`: Contains the installation scripts for setting up the dotfiles.
 
 ## Installation
