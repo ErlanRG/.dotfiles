@@ -4,8 +4,9 @@ local browser = "zen-browser"
 local fileManager = "ghostty -e yazi"
 local menu = "wofi"
 local mod = "SUPER"
-local screenlayoutPath = "~/.config/screenlayout/applet.sh"
 local powermenuPath = "~/.config/waybar/scripts/powermenu.sh"
+local screenlayoutPath = "~/.config/screenlayout/applet.sh"
+local screenshotPath = "~/.local/bin/screenshot.sh"
 local terminal = "ghostty -e tmux"
 
 local cycle_layout = function()
@@ -72,6 +73,11 @@ hl.bind(mod .. " + SHIFT + E", hl.dsp.exec_cmd(powermenuPath))
 hl.bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd(screenlayoutPath))
 hl.bind(mod .. " + SHIFT + R", hl.dsp.exec_cmd("hyprctl reload && notify-send 'Reloading Hyprland config...'"))
 hl.bind(mod .. " + T", toggle_float)
+
+-- Screenshots
+hl.bind("ALT + PRINT", hl.dsp.exec_cmd(screenshotPath .. " full"))
+hl.bind("PRINT", hl.dsp.exec_cmd(screenshotPath .. " clip"))
+hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd(screenshotPath .. " area"))
 
 -- Promote focused window to master
 hl.bind(mod .. " + M", hl.dsp.layout("swapwithmaster"))
