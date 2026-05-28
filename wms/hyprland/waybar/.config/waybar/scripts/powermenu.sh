@@ -8,7 +8,7 @@ case "$chosen" in
     *Logout*)     hyprctl dispatch 'hl.dsp.exit()';;
     *Suspend*)    systemctl suspend ;;
     *Hibernate*)  systemctl hibernate ;;
-    *Lock*)       swaylock ;;
+    *Lock*)       hyprlock ;;
     *Exit*)       exit 0 ;;
     *)            exit 1 ;;
 esac

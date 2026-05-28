@@ -62,7 +62,7 @@ for i = 1, 10 do
 end
 
 hl.bind("ALT + TAB", hl.dsp.focus({ last = true }))
-hl.bind(mod .. " + ALT + L", hl.dsp.exec_cmd("swaylock"))
+hl.bind(mod .. " + ALT + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(mod .. " + N", hl.dsp.exec_cmd(fileManager))
