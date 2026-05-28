@@ -37,17 +37,17 @@ The setup script will guide you through the installation process, allowing you t
 This repository includes scripts to help manage the dotfiles:
 
 - **`install/setup.sh`**: The main installation script that guides you through the setup process.
-- **`install/scripts/wm-stow.sh`**: A script to manage window manager configurations. It can be used to `stow` (create symlinks) or `unstow` (remove symlinks) the configuration files for a specific window manager.
+- **`install/scripts/wm-stow`**: A script to manage window manager configurations. It can be used to `stow` (create symlinks) or `unstow` (remove symlinks) the configuration files for a specific window manager.
 
   **Usage:**
   ```bash
-  ./install/scripts/wm-stow.sh <stow|unstow> <wm_name>
+  ./install/scripts/wm-stow <stow|unstow> [wm_name|all]
   ```
 
   **Example:**
-  To stow the i3 configuration:
+  To stow all window manager configurations:
   ```bash
-  ./install/scripts/wm-stow.sh stow i3
+  ./install/scripts/wm-stow stow all
   ```
 
 ## Dependencies
