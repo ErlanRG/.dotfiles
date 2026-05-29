@@ -1,5 +1,6 @@
 # Core packages
 
+brightnessctl
 curl
 eza
 fd

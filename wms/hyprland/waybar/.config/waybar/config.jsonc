@@ -8,5 +8,5 @@
 
     "modules-left": [ "custom/launcher", "hyprland/workspaces", "group/hardware" ],
     "modules-center": [ "clock" ],
-    "modules-right": [ "battery", "pulseaudio", "hyprland/language", "tray", "custom/exit" ]
+    "modules-right": [ "battery", "backlight", "pulseaudio", "hyprland/language", "tray", "custom/exit" ]
 }

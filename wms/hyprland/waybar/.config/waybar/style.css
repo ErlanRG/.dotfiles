@@ -111,13 +111,30 @@ tooltip {
 }
 
 /* ── Right chip ── */
-#battery,
-#pulseaudio {
+#battery {
     background: @base;
     border-radius: 8px 0 0 8px;
     border: 1px solid @surface1;
     border-right: none;
     padding: 1px 6px 1px 8px;
+    margin: 1px 0;
+}
+
+#backlight {
+    background: @base;
+    border-radius: 0 8px 8px 0;
+    border: 1px solid @surface1;
+    border-left: none;
+    padding: 1px 8px 1px 6px;
+    margin: 1px 6px 1px 0;
+}
+
+#pulseaudio {
+    background: @base;
+    border-radius: 8px 0 0 8px;
+    border: 1px solid @surface1;
+    border-right: none;
+    padding: 1px 6px;
     margin: 1px 0;
 }
 
@@ -187,6 +204,7 @@ tooltip {
 }
 
 #battery:hover,
+#backlight:hover,
 #pulseaudio:hover,
 #language:hover {
     background: @surface1;
