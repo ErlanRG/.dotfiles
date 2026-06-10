@@ -1,4 +1,13 @@
 local snacks_opts = require 'rangeler.plugins.custom.snacks_opts'
+local compile_cmd = function()
+    local last = vim.g.snacks_last_compile or 'make'
+    local cmd = vim.fn.input('Compile: ', last)
+    if cmd == '' then
+        return
+    end
+    vim.g.snacks_last_compile = cmd
+    Snacks.terminal(cmd, { win = { position = 'bottom', height = 0.3 }, auto_close = false })
+end
 
 -- Collection of various small independent plugins/modules
 return {
@@ -18,11 +27,13 @@ return {
             -- stylua: ignore start
             { "<leader>/", function() Snacks.picker.buffers() end, desc = "[F]ind [B]uffers" },
             { '<leader>bd', function() Snacks.bufdelete() end, desc = '[B]uffer [D]elete' },
+            { '<leader>oc',  compile_cmd, desc = '[O]pen [C]ompile' },
             { '<leader>od', function() Snacks.dashboard() end, desc = '[O]pen [D]ashboard' },
             { '<leader>og', function() Snacks.lazygit() end, desc = '[O]pen Lazy[G]it' },
             { '<leader>on', function() Snacks.notifier.show_history() end, desc = '[O]pen [N]otifications' },
             { '<leader>os', function() Snacks.scratch() end, desc = '[O]pen [S]cratch' },
             { '<leader>oss', function() Snacks.scratch.select() end, desc = '[O]pen [S]elect [S]cratch' },
+            { '<leader>ot', function() Snacks.terminal.open() end, desc = '[O]pen [T]erminal' },
 
             -- Picker
             { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
@@ -34,6 +45,11 @@ return {
             { "<leader>fg", function() Snacks.picker.git_files() end, desc = "[F]ind [G]it Files" },
             { "<leader>fp", function() Snacks.picker.projects() end, desc = "[F]ind [P]rojects" },
             { "<leader>fr", function() Snacks.picker.recent() end, desc = "[F]ind [R]ecent" },
+
+            -- Help keymaps
+            { '<leader>hc', function() Snacks.picker.commands() end,  desc = '[C]ommands' },
+            { '<leader>hh', function() Snacks.picker.help() end,  desc = '[H]elp Pages' },
+            { '<leader>hk', function() Snacks.picker.keymaps() end,  desc = '[K]eymaps' },
 
             -- Search (grep)
             { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "[S]earch Grep Open [B]uffers" },
@@ -59,7 +75,9 @@ return {
             image = { enabled = true },
             input = { enabled = true },
             notifier = { enabled = true },
+            scroll = { enabled = true },
             statuscolumn = { enabled = true },
+            terminal = { enabled = true },
 
             -- Custom
             dashboard = snacks_opts.dashboard,

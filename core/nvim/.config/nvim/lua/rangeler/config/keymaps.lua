@@ -33,6 +33,10 @@ map('v', '>', '>gv')
 map('n', 'gco', 'o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Below' })
 map('n', 'gcO', 'O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Above' })
 
+-- Center scrolling
+map('n', '<C-d>', '<C-d>zz')
+map('n', '<C-u>', '<C-u>zz')
+
 -- lazy
 map('n', '<leader>ol', '<cmd>Lazy<cr>', { desc = '[O]pen [L]azy' })
 
@@ -40,9 +44,17 @@ map('n', '<leader>ol', '<cmd>Lazy<cr>', { desc = '[O]pen [L]azy' })
 map('n', '<leader>om', '<cmd>Mason<cr>', { desc = '[O]pen [M]ason' })
 
 -- windows
--- map('n', '<leader>w', '<c-w>', { desc = 'Windows', remap = true })
-map('n', '<leader>-', '<C-W>s', { desc = 'Split Window Below', remap = true })
-map('n', '<leader>|', '<C-W>v', { desc = 'Split Window Right', remap = true })
+map('n', '<leader>w=', '<C-W>=', { desc = 'Balance Windows' })
+map('n', '<leader>w_', '<C-W>_', { desc = 'Maximize Height' })
+map('n', '<leader>wd', '<C-W>c', { desc = '[D]elete Window' })
+map('n', '<leader>wh', '<C-W>h', { desc = 'Go to Left Window' })
+map('n', '<leader>wj', '<C-W>j', { desc = 'Go to Lower Window' })
+map('n', '<leader>wk', '<C-W>k', { desc = 'Go to Upper Window' })
+map('n', '<leader>wl', '<C-W>l', { desc = 'Go to Right Window' })
+map('n', '<leader>wo', '<C-W>o', { desc = 'Close [O]ther Windows' })
+map('n', '<leader>ws', '<C-W>s', { desc = '[S]plit Below' })
+map('n', '<leader>wv', '<C-W>v', { desc = 'Split [V]ertically Right' })
+map('n', '<leader>w|', '<C-W>|', { desc = 'Maximize Width' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`

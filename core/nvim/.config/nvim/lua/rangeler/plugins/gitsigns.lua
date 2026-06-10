@@ -71,77 +71,77 @@ return {
             -- Actions
             -- visual mode
             {
-                '<leader>hs',
+                '<leader>gs',
                 mode = 'v',
                 function()
                     require('gitsigns').stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
                 end,
-                desc = 'git [s]tage hunk',
+                desc = '[S]tage hunk',
             },
             {
-                '<leader>hr',
+                '<leader>gr',
                 mode = 'v',
                 function()
                     require('gitsigns').reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
                 end,
-                desc = 'git [r]eset hunk',
+                desc = '[R]eset hunk',
             },
             -- normal mode
             {
-                '<leader>hs',
+                '<leader>gs',
                 function()
                     require('gitsigns').stage_hunk()
                 end,
-                desc = 'git [s]tage hunk',
+                desc = '[S]tage hunk',
             },
             {
-                '<leader>hr',
+                '<leader>gr',
                 function()
                     require('gitsigns').reset_hunk()
                 end,
-                desc = 'git [r]eset hunk',
+                desc = '[R]eset hunk',
             },
             {
-                '<leader>hS',
+                '<leader>gS',
                 function()
                     require('gitsigns').stage_buffer()
                 end,
-                desc = 'git [S]tage buffer',
+                desc = 'Stage [B]uffer',
             },
             {
-                '<leader>hu',
+                '<leader>gu',
                 function()
-                    require('gitsigns').stage_hunk()
+                    require('gitsigns').undo_stage_hunk()
                 end,
-                desc = 'git [u]ndo stage hunk',
+                desc = '[U]ndo stage hunk',
             },
             {
-                '<leader>hR',
+                '<leader>gR',
                 function()
                     require('gitsigns').reset_buffer()
                 end,
-                desc = 'git [R]eset buffer',
+                desc = '[R]eset buffer',
             },
             {
-                '<leader>hp',
+                '<leader>gp',
                 function()
                     require('gitsigns').preview_hunk()
                 end,
-                desc = 'git [p]review hunk',
+                desc = '[P]review hunk',
             },
             {
-                '<leader>hd',
+                '<leader>gd',
                 function()
                     require('gitsigns').diffthis()
                 end,
-                desc = 'git [d]iff against index',
+                desc = '[D]iff against index',
             },
             {
-                '<leader>hD',
+                '<leader>gD',
                 function()
                     require('gitsigns').diffthis() '@'
                 end,
-                desc = 'git [D]iff against last commit',
+                desc = '[D]iff against last commit',
             },
             -- Toggles
             {

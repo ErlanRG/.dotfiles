@@ -4,6 +4,7 @@ return {
     lazy = false,
     keys = {
         { '<leader>oe', '<cmd>Oil --float<cr>', { desc = '[O]pen [E]xplorer' } },
+        { '<leader>.', '<cmd>Oil --float<cr>', { desc = '[O]pen [E]xplorer' } },
     },
     opts = {
         columns = {
@@ -44,7 +45,20 @@ return {
         },
         keymaps = {
             ['<BS>'] = 'actions.parent',
+            ['-'] = 'actions.parent',
+            ['h'] = 'actions.parent',
+            ['l'] = 'actions.select',
             ['q'] = 'actions.close',
+            ['.'] = 'actions.toggle_hidden',
+            ['c'] = 'actions.copy_to_system_clipboard',
+            ['p'] = { 'actions.paste_from_system_clipboard', desc = 'Copy from clipboard' },
+            ['P'] = {
+                callback = function()
+                    require('oil.actions').paste_from_system_clipboard { delete_original = true }
+                end,
+                desc = 'Move from clipboard',
+            },
+            ['R'] = 'actions.refresh',
         },
     },
 }
