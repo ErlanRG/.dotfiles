@@ -47,13 +47,14 @@ return {
         npairs.setup {}
 
         npairs.add_rules {
-            Rule('<', '>'):with_pair(function(opts)
-                return opts.filetype ~= 'html'
-                    and opts.filetype ~= 'xml'
-                    and opts.filetype ~= 'javascriptreact'
-                    and opts.filetype ~= 'typescriptreact'
-                    and opts.filetype ~= 'cs'
-            end),
+            Rule('<', '>', {
+                'typescript',
+                'javascript',
+                'javascriptreact',
+                'typescriptreact',
+                'html',
+                'xml',
+            }),
         }
     end,
 }
