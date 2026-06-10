@@ -1,7 +1,7 @@
 --- @see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 ---- APPS ----
 local browser = "zen-browser"
-local fileManager = "ghostty -e yazi"
+local fileManager = "nautilus"
 local menu = "wofi"
 local mod = "SUPER"
 local powermenuPath = "~/.config/waybar/scripts/powermenu.sh"
