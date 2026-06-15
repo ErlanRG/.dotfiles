@@ -76,7 +76,9 @@ return {
             bashls = {},
             clangd = server_cfg.clangd,
             lua_ls = server_cfg.lua_ls,
+            pyright = {},
             texlab = {},
+            ts_ls = {},
         }
 
         -- Ensure the servers and tools above are installed
