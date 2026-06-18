@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-mmsg -g -k | jq -R --unbuffered --compact-output '
-    split(" ") |
+mmsg get keyboardlayout | jq --compact-output '
+    if .layout == "English (US)" then "US" else "ES" end as $short |
     {
-        text: .[2],
-        alt: .[2],
-        tooltip: ("Keyboard layout: " + .[2]),
-        class: ("layout-" + .[2])
+        text: $short,
+        alt: $short,
+        tooltip: ("Keyboard layout: " + .layout),
+        class: ("layout-" + $short)
     }
 '

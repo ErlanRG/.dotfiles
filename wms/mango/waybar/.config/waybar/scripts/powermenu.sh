@@ -5,7 +5,7 @@ chosen=$(echo -e "$options" | wofi --dmenu --prompt "Power Menu" --width 300 --h
 case "$chosen" in
     *Shutdown*)   systemctl poweroff ;;
     *Reboot*)     systemctl reboot ;;
-    *Logout*)     mmsg -q ;;
+    *Logout*)     mmsg dispatch quit ;;
     *Suspend*)    systemctl suspend ;;
     *Hibernate*)  systemctl hibernate ;;
     *Lock*)       swaylock ;;
