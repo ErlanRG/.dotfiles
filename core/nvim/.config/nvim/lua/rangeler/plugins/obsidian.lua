@@ -35,36 +35,44 @@ return {
         { '<leader>Or', '<cmd>Obsidian rename<cr>', desc = '[R]ename current note' },
         { '<leader>Ot', '<cmd>Obsidian tags<cr>', desc = '[T]ags' },
     },
-    opts = {
-        attachments = {
-            img_folder = 'Assets/Images',
-            img_name_func = function()
-                return string.format('Pasted image %s', os.date '%Y%m%d%H%M%S')
-            end,
-            confirm_img_paste = false,
-        },
-        completion = {
-            blink = true,
-        },
-        legacy_commands = false,
-        note_id_func = function(title)
-            local suffix = ''
-            if title ~= nil then
-                suffix = title:gsub(' ', '-'):gsub('[^A-Za-z0-9-]', ''):lower()
-            else
-                for _ = 1, 4 do
-                    suffix = suffix .. string.char(math.random(65, 90))
-                end
-            end
-            return tostring(os.time()) .. '-' .. suffix
-        end,
-        workspaces = vim.tbl_values(vaults),
-        ui = {
-            enable = false,
-        },
-        follow_url_func = function(url)
-            local browser = os.getenv 'BROWSER'
-            vim.ui.open(url, { cmd = { browser } })
-        end,
-    },
+    config = function()
+        local ok, obsidian = pcall(require, 'obsidian')
+        if not ok then
+            return
+        end
+
+        obsidian.setup {
+            attachments = {
+                folder = 'Attachments',
+                img_name_func = function()
+                    return string.format('Pasted image %s', os.date '%Y%m%d%H%M%S')
+                end,
+                confirm_img_paste = false,
+            },
+            legacy_commands = false,
+            note_id_func = require('obsidian.builtin').title_id,
+            workspaces = vim.tbl_values(vaults),
+            checkbox = {
+                enabled = true,
+                create_new = true,
+                order = { ' ', '~', '!', '>', 'x' },
+            },
+            ui = {
+                enable = true,
+                ignore_conceal_warn = false,
+                update_debounce = 200,
+                max_file_length = 5000,
+                bullets = { char = '•', hl_group = 'ObsidianBullet' },
+                external_link_icon = { char = '', hl_group = 'ObsidianExtLinkIcon' },
+                reference_text = { hl_group = 'ObsidianRefText' },
+                highlight_text = { hl_group = 'ObsidianHighlightText' },
+                tags = { hl_group = 'ObsidianTag' },
+                block_ids = { hl_group = 'ObsidianBlockID' },
+                follow_url_func = function(url)
+                    local browser = os.getenv 'BROWSER'
+                    vim.ui.open(url, { cmd = { browser } })
+                end,
+            },
+        }
+    end,
 }
