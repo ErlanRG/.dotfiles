@@ -23,7 +23,7 @@
             "description": "Samsung Electric Company SAMSUNG 0x01000E00",
             "x": 3440,
             "y": 0,
-            "physical_width": 4096,
+            "physical_width": 3840,
             "physical_height": 2160,
             "transform": "normal",
             "scale": 1.0,
