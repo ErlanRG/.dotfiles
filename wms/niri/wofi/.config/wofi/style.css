@@ -1,33 +1,35 @@
 window {
     margin: 0px;
-    border: 2px solid #45475a; /* Surface1 */
-    border-radius: 5px;
-    background-color: #1e1e2e; /* Base */
-    font-family: monospace;
-    font-size: 12px;
+    border: 1px solid rgba(205, 214, 244, 0.06);
+    border-radius: 14px;
+    background-color: rgba(24, 24, 37, 0.55);
+    font-family: "Iosevka NFM Medium";
+    font-size: 13px;
 }
 
 #input {
-    margin: 5px;
-    border: 1px solid #1e1e2e; /* Base */
-    color: #cdd6f4; /* Text */
-    background-color: #1e1e2e; /* Base */
+    margin: 10px 12px 0px 12px;
+    border: 1px solid rgba(205, 214, 244, 0.06);
+    border-radius: 10px;
+    color: #cdd6f4;
+    background-color: rgba(49, 50, 68, 0.4);
+    padding: 8px 14px;
 }
 
 #input image {
-    color: #cdd6f4; /* Text */
+    color: #cdd6f4;
 }
 
 #inner-box {
-    margin: 5px;
+    margin: 8px 12px;
     border: none;
-    background-color: #11111b; /* Base */
+    background-color: transparent;
 }
 
 #outer-box {
-    margin: 5px;
+    margin: 0px;
     border: none;
-    background-color: #11111b; /* Base */
+    background-color: transparent;
 }
 
 #scroll {
@@ -36,17 +38,23 @@ window {
 }
 
 #text {
-    margin: 5px;
+    margin: 6px 10px;
     border: none;
-    color: #cdd6f4; /* Text */
+    color: #cdd6f4;
+}
+
+#entry {
+    border-radius: 8px;
+    margin: 2px 0;
 }
 
 #entry:selected {
-    background-color: #45475a; /* Surface1 */
+    background-color: rgba(203, 166, 247, 0.15);
+    border: 1px solid rgba(203, 166, 247, 0.2);
     font-weight: normal;
 }
 
 #text:selected {
-    background-color: #45475a; /* Surface1 */
+    background-color: transparent;
     font-weight: normal;
 }

@@ -12,23 +12,23 @@ on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
 # [ STYLE OPTIONS ]
 font=Iosevka NFM 11
 
-# Catppuccin Mocha Base
-background-color=#1e1e2e
+# Catppuccin Mocha Glass
+background-color=#1e1e2e99
 text-color=#cdd6f4
 
 # Layout
 width=320
-padding=12
-margin=6
-outer-margin=8
+padding=14
+margin=10
+outer-margin=10
 
 # Border
-border-size=2
-border-color=#94e2d5
-border-radius=10
+border-size=1
+border-color=#cdd6f40c
+border-radius=12
 
-# Progress bar (Subtle contrast)
-progress-color=over #313244
+# Progress bar
+progress-color=over #31324499
 
 # Icons
 icons=1
@@ -45,8 +45,8 @@ default-timeout=8000
 ignore-timeout=0
 
 max-visible=5
-layer=top
+layer=overlay
 anchor=top-right
 
 [urgency=critical]
-border-color=#f38ba8
+border-color=#f38ba855

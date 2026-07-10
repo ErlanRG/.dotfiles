@@ -1,7 +1,6 @@
 ignore-empty-password
 disable-caps-lock-text
 font=Cantarelle Regular
-#font-size=9
 
 screenshots
 effect-blur=15x15
@@ -17,9 +16,9 @@ ring-color=94e2d5
 key-hl-color=a6e3a1
 line-color=45475a
 separator-color=585b70
-inside-color=1e1e2e
-bs-hl-color=f38ba8
-layout-bg-color=1e1e2e
-layout-border-color=89b4fa
+inside-color=1e1e2e99
+bs-hl-color=f38ba899
+layout-bg-color=1e1e2e99
+layout-border-color=89b4fa33
 layout-text-color=cdd6f4
 text-color=cdd6f4

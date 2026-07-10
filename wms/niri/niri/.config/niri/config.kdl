@@ -310,9 +310,68 @@ window-rule {
     open-floating true
 }
 
+blur {
+    passes 3
+    offset 4.0
+    noise 0.03
+    saturation 1.6
+}
+
 layer-rule {
     match namespace="^awww-daemon$"
     place-within-backdrop true
+}
+
+// ────────────── Glass Background Effects ──────────────
+
+// Waybar — glass bar with blur
+layer-rule {
+    match namespace="^waybar$"
+
+    geometry-corner-radius 14
+
+    background-effect {
+        xray true
+        blur true
+        noise 0.03
+        saturation 1.6
+    }
+
+    popups {
+        geometry-corner-radius 10
+        opacity 0.92
+
+        background-effect {
+            xray true
+            blur true
+            noise 0.03
+            saturation 1.6
+        }
+    }
+}
+
+// Mako — glass notifications
+layer-rule {
+    match namespace="^mako$"
+
+    geometry-corner-radius 12
+
+    background-effect {
+        xray true
+        blur true
+    }
+}
+
+// Wofi — glass launcher
+layer-rule {
+    match namespace="^wofi$"
+
+    geometry-corner-radius 14
+
+    background-effect {
+        xray true
+        blur true
+    }
 }
 
 // ────────────── Environment Variables ──────────────

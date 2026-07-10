@@ -25,13 +25,10 @@
 @define-color mantle    #181825;
 @define-color crust     #11111b;
 
-/* -----------------------------
- * Global
- * ----------------------------- */
 * {
     border: none;
-    font-family: "Iosevka NFM Medium";
-    font-size: 13px;
+    font-family: "Iosevka Nerd Font";
+    font-size: 11px;
     margin: 0;
     padding: 0;
 }
@@ -40,25 +37,22 @@ window#waybar {
     background: transparent;
 }
 
-/* Floating bar effect */
 window#waybar > box {
-    background: @mantle;
+    background: rgba(24, 24, 37, 0.45);
     margin: 1px 6px;
-    padding: 2px 8px;
-    border-radius: 10px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    border: 1px solid rgba(205, 214, 244, 0.08);
 }
 
-/* Tooltip */
 tooltip {
-    background: @base;
+    background: rgba(30, 30, 46, 0.75);
     color: @text;
     border-radius: 8px;
-    padding: 6px;
+    padding: 6px 10px;
+    border: 1px solid rgba(205, 214, 244, 0.06);
 }
 
-/* -----------------------------
- * Modules base
- * ----------------------------- */
 #backlight,
 #battery,
 #clock,
@@ -74,39 +68,64 @@ tooltip {
 #temperature.gpu,
 #tray {
     color: @subtext1;
+    background: rgba(49, 50, 68, 0.35);
+    border: 1px solid rgba(205, 214, 244, 0.06);
+    border-radius: 6px;
+    padding: 0 7px;
+    margin: 1px 2px;
+}
+
+#tray {
+    background: transparent;
+    border: none;
+    padding: 0 4px;
+    margin: 1px 0;
+}
+
+#custom-launcher {
+    background: rgba(137, 180, 250, 0.12);
+    border: 1px solid rgba(137, 180, 250, 0.15);
+    color: @blue;
+    font-size: 13px;
     padding: 0 6px;
 }
 
-/* -----------------------------
- * Workspaces
- * ----------------------------- */
-#workspaces {
+#custom-exit {
+    background: rgba(243, 139, 168, 0.12);
+    border: 1px solid rgba(243, 139, 168, 0.15);
+    color: @red;
     padding: 0 6px;
+}
+
+#workspaces {
+    padding: 0 2px;
 }
 
 #workspaces button {
     color: @overlay1;
     padding: 0 6px;
     border-radius: 6px;
+    min-width: 20px;
+    margin: 1px 1px;
 }
 
 #workspaces button.active {
     color: @text;
-    background: @surface0;
+    background: rgba(148, 226, 213, 0.15);
+    border: 1px solid rgba(148, 226, 213, 0.25);
 }
 
 #workspaces button.visible {
     color: @blue;
+    background: rgba(137, 180, 250, 0.1);
+    border: 1px solid rgba(137, 180, 250, 0.12);
 }
 
 #workspaces button:hover {
-    background: @surface0;
+    background: rgba(49, 50, 68, 0.4);
     color: @text;
 }
 
-/* -----------------------------
- * Subtle accent colors
- * ----------------------------- */
 #cpu { color: @sapphire; }
 #memory { color: @yellow; }
 #disk { color: @lavender; }
@@ -117,24 +136,7 @@ tooltip {
 #pulseaudio { color: @teal; }
 #language { color: @peach; }
 
-/* Clock */
 #clock {
     color: @yellow;
     font-weight: 600;
-}
-
-/* Exit */
-#custom-exit {
-    color: @red;
-}
-
-/* -----------------------------
- * Spacing tweaks
- * ----------------------------- */
-#tray {
-    padding-right: 6px;
-}
-
-#clock {
-    padding-right: 6px;
 }
