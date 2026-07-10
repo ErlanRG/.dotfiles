@@ -3,7 +3,7 @@
 desktop="${XDG_CURRENT_DESKTOP,,}"
 
 case "$desktop" in
-    hyprland|niri)
+    hyprland)
         options="󰍹  Main Monitor\n󰍺  Dual 2K\n󰍺  Dual 4K\n󰍹  Secondary Monitor"
         chosen=$(echo -e "$options" | wofi --dmenu --prompt "Monitor configuration" --width 300 --height 250)
         case "$chosen" in
@@ -13,7 +13,7 @@ case "$desktop" in
             *Secondary*) nwg-displays-apply -p secondary ;;
         esac
         ;;
-    mango)
+    mango|niri)
         options="󰍹  Main Monitor\n󰍺  Dual Monitor\n󰍹  Secondary Monitor"
         chosen=$(echo -e "$options" | wofi --dmenu --prompt "Monitor configuration" --width 300 --height 250)
         case "$chosen" in
