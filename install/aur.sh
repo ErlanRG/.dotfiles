@@ -31,10 +31,15 @@ mapfile -t packages < <(grep -v '^#' "./packages/aur.packages" | grep -v '^$')
 if [ "$WM" = "i3" ]; then
     install_packages=("${packages[@]}")
 else
-    # Filter out autotiling & vicinae if WM is not i3
+    # Filter out autotiling if WM is not i3
     mapfile -t install_packages < <(
-        printf '%s\n' "${packages[@]}" | grep -Ev "autotiling|vicinae"
+        printf '%s\n' "${packages[@]}" | grep -Ev "autotiling"
     )
+fi
+
+if [ "${#install_packages[@]}" -eq 0 ]; then
+    banner "No AUR packages found. Skipping installation."
+    exit 0
 fi
 
 banner "Installing AUR packages: ${install_packages[*]}"
