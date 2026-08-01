@@ -1,5 +1,6 @@
 # Core packages
 
+autotiling
 brightnessctl
 curl
 eza
@@ -14,7 +15,9 @@ kdeconnect
 keepassxc
 kitty
 lazygit
+librewolf-bin
 libsecret
+localsend
 neovim
 nextcloud-client
 npm
@@ -25,9 +28,12 @@ ripgrep
 starship
 stow
 tmux
+ttf-iosevka-nerd
 ttf-jetbrains-mono
 unzip
 xdg-desktop-portal-gnome
+xdg-desktop-portal-wlr
 yazi
+zen-browser-bin
 zoxide
 zsh
