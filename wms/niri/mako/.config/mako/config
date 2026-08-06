@@ -11,24 +11,16 @@ on-notify=exec mpv /usr/share/sounds/freedesktop/stereo/message.oga
 
 # [ STYLE OPTIONS ]
 font=Iosevka NFM 11
-
-# Catppuccin Mocha Base
-background-color=#1e1e2e
+background-color=#1e1e2ec2
 text-color=#cdd6f4
-
-# Layout
-width=320
+width=380
 padding=12
-margin=6
-outer-margin=8
-
-# Border
-border-size=2
-border-color=#94e2d5
-border-radius=10
-
-# Progress bar (Subtle contrast)
-progress-color=over #313244
+margin=0
+outer-margin=12
+border-size=1
+border-color=#cdd6f414
+border-radius=0
+progress-color=over #cdd6f412
 
 # Icons
 icons=1
@@ -38,8 +30,10 @@ icon-location=left
 # Behavior
 actions=1
 history=1
-format=<span foreground="#7aa2f7"><b>%s</b></span>\n<span foreground="#a9b1d6">%b</span>
+markup=1
 text-alignment=left
+
+format=<span foreground="#74c7ec">%a</span>  <span foreground="#b4befe"><b>%s</b></span>\n<span foreground="#bac2de">%b</span>
 
 default-timeout=8000
 ignore-timeout=0
@@ -48,5 +42,16 @@ max-visible=5
 layer=top
 anchor=top-right
 
+# [ PER-URGENCY OVERRIDES ]
+[urgency=low]
+border-color=#74c7ec4d
+text-color=#bac2de
+
+[urgency=normal]
+border-color=#b4befe66
+
 [urgency=critical]
-border-color=#f38ba8
+border-color=#f38ba899
+background-color=#1e1e2ee0
+default-timeout=0
+format=<span foreground="#f38ba8">%a</span>  <span foreground="#f38ba8"><b>%s</b></span>\n<span foreground="#cdd6f4">%b</span>

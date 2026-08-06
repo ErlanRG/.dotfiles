@@ -1,3 +1,6 @@
+/* -----------------------------
+ * Catppuccin Mocha
+ * ----------------------------- */
 @define-color rosewater #f5e0dc;
 @define-color flamingo  #f2cdcd;
 @define-color pink      #f5c2e7;
@@ -25,39 +28,54 @@
 @define-color mantle    #181825;
 @define-color crust     #11111b;
 
+@define-color l1       rgba(30, 30, 46, 0.76);
+@define-color l2       rgba(205, 214, 244, 0.07);
+@define-color l3       rgba(205, 214, 244, 0.12);
+@define-color l4       rgba(180, 190, 254, 0.18);
+@define-color l4s      rgba(180, 190, 254, 0.28);
+@define-color line     rgba(205, 214, 244, 0.08);
+@define-color line2    rgba(205, 214, 244, 0.15);
+@define-color line_acc rgba(180, 190, 254, 0.55);
+@define-color line_red rgba(243, 139, 168, 0.30);
+@define-color l4_red   rgba(243, 139, 168, 0.18);
+
 /* -----------------------------
  * Global
  * ----------------------------- */
 * {
     border: none;
-    font-family: "Iosevka NFM Medium";
-    font-size: 13px;
+    font-family: "Iosevka Nerd Font";
+    font-size: 12px;
     margin: 0;
     padding: 0;
+    min-height: 0;
 }
 
 window#waybar {
-    background: transparent;
+    background: @l1;
+    border: 1px solid @line;
+    border-radius: 12px;
+    color: @subtext1;
 }
 
-/* Floating bar effect */
 window#waybar > box {
-    background: @mantle;
-    margin: 1px 6px;
     padding: 2px 8px;
-    border-radius: 10px;
 }
 
-/* Tooltip */
 tooltip {
-    background: @base;
+    background: @l1;
     color: @text;
+    border: 1px solid @line;
     border-radius: 8px;
     padding: 6px;
 }
 
+tooltip label {
+    color: @text;
+}
+
 /* -----------------------------
- * Modules base
+ * Modules
  * ----------------------------- */
 #backlight,
 #battery,
@@ -73,68 +91,130 @@ tooltip {
 #temperature.cpu,
 #temperature.gpu,
 #tray {
+    background: @l2;
+    border: 1px solid @line;
+    border-radius: 8px;
     color: @subtext1;
-    padding: 0 6px;
+    margin: 0 3px;
+    padding: 3px 9px;
+    transition: background 150ms ease-out, border-color 150ms ease-out;
+}
+
+#backlight:hover,
+#battery:hover,
+#clock:hover,
+#cpu:hover,
+#custom-launcher:hover,
+#disk:hover,
+#language:hover,
+#memory:hover,
+#network:hover,
+#pulseaudio:hover,
+#temperature.cpu:hover,
+#temperature.gpu:hover {
+    background: @l3;
+    border-color: @line2;
 }
 
 /* -----------------------------
  * Workspaces
  * ----------------------------- */
 #workspaces {
-    padding: 0 6px;
+    background: transparent;
+    padding: 0 3px;
 }
 
 #workspaces button {
+    background: @l2;
+    border: 1px solid @line;
+    border-radius: 8px;
     color: @overlay1;
-    padding: 0 6px;
-    border-radius: 6px;
+    margin: 0 2px;
+    padding: 1px 1px;
+    transition: background 150ms ease-out, border-color 150ms ease-out;
 }
 
 #workspaces button.active {
-    color: @text;
-    background: @surface0;
+    background: @l4;
+    border-color: @line_acc;
+    color: @lavender;
 }
 
 #workspaces button.visible {
-    color: @blue;
+    color: @sapphire;
 }
 
 #workspaces button:hover {
-    background: @surface0;
+    background: @l3;
+    border-color: @line2;
     color: @text;
 }
 
-/* -----------------------------
- * Subtle accent colors
- * ----------------------------- */
-#cpu { color: @sapphire; }
-#memory { color: @yellow; }
-#disk { color: @lavender; }
-#network { color: @pink; }
-#temperature.cpu,
-#temperature.gpu { color: @teal; }
-#battery { color: @green; }
-#pulseaudio { color: @teal; }
-#language { color: @peach; }
-
-/* Clock */
-#clock {
-    color: @yellow;
-    font-weight: 600;
-}
-
-/* Exit */
-#custom-exit {
+#workspaces button.urgent {
+    background: @l4_red;
+    border-color: @line_red;
     color: @red;
 }
 
 /* -----------------------------
- * Spacing tweaks
+ * Accents
  * ----------------------------- */
-#tray {
-    padding-right: 6px;
+#custom-launcher {
+    color: @lavender;
+    padding: 0 6px;
 }
 
+#cpu               { color: @sapphire; }
+#temperature.cpu,
+#temperature.gpu   { color: @sapphire; }
+#memory            { color: @yellow; }
+#disk              { color: @lavender; }
+#network           { color: @sky; }
+#battery           { color: @green; }
+#backlight         { color: @peach; }
+#pulseaudio        { color: @teal; }
+#language          { color: @peach; }
+
+#battery.warning   { color: @yellow; }
+#battery.critical  { color: @red; border-color: @line_red; }
+#temperature.critical { color: @red; border-color: @line_red; }
+#pulseaudio.muted  { color: @overlay1; }
+
 #clock {
-    padding-right: 6px;
+    background: @l4;
+    border-color: @line_acc;
+    color: @lavender;
+    font-weight: 600;
+}
+
+#clock:hover {
+    background: @l4s;
+}
+
+#custom-exit {
+    background: @l4_red;
+    border-color: @line_red;
+    color: @red;
+    padding: 0 6px;
+}
+
+#custom-exit:hover {
+    background: rgba(243, 139, 168, 0.28);
+    border-color: rgba(243, 139, 168, 0.45);
+}
+
+/* -----------------------------
+ * Tray
+ * ----------------------------- */
+#tray {
+    padding: 0 6px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background: @l4_red;
 }

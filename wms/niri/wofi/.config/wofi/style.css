@@ -1,52 +1,84 @@
 window {
-    margin: 0px;
-    border: 2px solid #45475a; /* Surface1 */
-    border-radius: 5px;
-    background-color: #1e1e2e; /* Base */
-    font-family: monospace;
-    font-size: 12px;
+    margin: 0;
+    background-color: rgba(30, 30, 46, 0.76);
+    border: 1px solid rgba(205, 214, 244, 0.08);
+    border-radius: 20px;
+    color: #cdd6f4;
+    font-family: "Iosevka NFM Medium";
+    font-size: 13px;
 }
 
 #input {
-    margin: 5px;
-    border: 1px solid #1e1e2e; /* Base */
-    color: #cdd6f4; /* Text */
-    background-color: #1e1e2e; /* Base */
+    margin: 14px 14px 0 14px;
+    padding: 8px 12px;
+    background-color: rgba(205, 214, 244, 0.07);
+    border: 1px solid rgba(205, 214, 244, 0.08);
+    border-radius: 12px;
+    color: #cdd6f4;
+    transition: border-color 150ms ease-out;
+}
+
+#input:focus {
+    border-color: rgba(180, 190, 254, 0.55);
 }
 
 #input image {
-    color: #cdd6f4; /* Text */
+    color: #b4befe;
 }
 
-#inner-box {
-    margin: 5px;
+#inner-box,
+#outer-box,
+#scroll {
+    margin: 0;
     border: none;
-    background-color: #11111b; /* Base */
+    background-color: transparent;
 }
 
 #outer-box {
-    margin: 5px;
-    border: none;
-    background-color: #11111b; /* Base */
+    padding: 0 0 8px 0;
 }
 
 #scroll {
-    margin: 0px;
-    border: none;
+    margin-top: 8px;
 }
 
 #text {
-    margin: 5px;
+    margin: 0 0 0 6px;
     border: none;
-    color: #cdd6f4; /* Text */
+    color: #cdd6f4;
+}
+
+#entry {
+    margin: 2px 8px;
+    padding: 7px 9px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    transition: background-color 150ms ease-out, border-color 150ms ease-out;
+}
+
+#entry:hover {
+    background-color: rgba(205, 214, 244, 0.12);
+    border-color: rgba(205, 214, 244, 0.08);
 }
 
 #entry:selected {
-    background-color: #45475a; /* Surface1 */
+    background-color: rgba(180, 190, 254, 0.18);
+    border-color: rgba(180, 190, 254, 0.55);
     font-weight: normal;
 }
 
+#entry:selected #text,
 #text:selected {
-    background-color: #45475a; /* Surface1 */
-    font-weight: normal;
+    background-color: transparent;
+    color: #b4befe;
+    font-weight: bold;
+}
+
+#entry img {
+    margin-right: 4px;
+}
+
+#unselected {
+    color: #bac2de;
 }
