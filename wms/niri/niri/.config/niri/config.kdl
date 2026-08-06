@@ -36,7 +36,7 @@ binds {
     MOD+SHIFT+SLASH                     { show-hotkey-overlay; }
 
     // ─── Applications ───
-    MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
+    MOD+ALT+L                           hotkey-overlay-title="Lock Screen: hyprlock" { spawn-sh "hyprlock"; }
     MOD+B                               hotkey-overlay-title="Open Browser: zen-browser" { spawn-sh "zen-browser"; }
     MOD+D                               hotkey-overlay-title="Open App Launcher: wofi" { spawn-sh "wofi"; }
     MOD+RETURN                          hotkey-overlay-title="Open Terminal: ghostty" { spawn-sh "ghostty -e tmux"; }
@@ -175,9 +175,8 @@ binds {
 spawn-sh-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &" // Polkit
 spawn-sh-at-startup "gnome-keyring-daemon --start"
 spawn-sh-at-startup "nm-applet &" // Network Applet
-spawn-sh-at-startup "octopi-notifier"
-spawn-sh-at-startup "awww img $HOME/Nextcloud/Wallpapers/aishot-2377.jpg"
-spawn-sh-at-startup "awww-daemon" // Wallpaper daemon
+spawn-sh-at-startup "awww-daemon & until awww query >/dev/null 2>&1; do sleep 0.1; done; awww img --transition-type none --resize crop $HOME/Nextcloud/Wallpapers/aishot-2377.jpg"
+spawn-sh-at-startup "pgrep -x mako >/dev/null || mako &"
 spawn-sh-at-startup "waybar" // Launch waybar
 spawn-sh-at-startup "~/.config/screenlayout/main.sh" // Force main monitor on startup
 
@@ -193,7 +192,7 @@ layout {
     center-focused-column "never" // Don’t auto-center focused column
     default-column-display "normal"
     default-column-width { proportion 0.5; }
-    gaps 4 // Gap between windows
+    gaps 8
 
     preset-column-widths {
         proportion 0.25
@@ -201,42 +200,76 @@ layout {
     }
 
     focus-ring {
-        active-color "#94e2d5"
-        inactive-color "#505050"
-        urgent-color "#f38ba8"
         width 1
+        active-gradient from="#b4befe" to="#74c7ec" angle=135 relative-to="workspace-view" in="oklch shorter hue"
+        inactive-color "#45475a99"
+        urgent-gradient from="#f38ba8" to="#eba0ac" angle=135 in="oklch shorter hue"
+    }
+
+    border {
+        width 1
+        active-color "#cdd6f426"
+        inactive-color "#cdd6f414"
+        urgent-color "#f38ba859"
     }
 
     shadow {
+        on
         softness 30
-        spread 5
-        offset x=0 y=5
-        color "#0007"
+        spread 4
+        offset x=0 y=6
+        color "#0d0d14b3"
+    }
+
+    insert-hint {
+        gradient from="#b4befe66" to="#74c7ec66" angle=135 relative-to="workspace-view" in="oklch shorter hue"
     }
 
     struts {}
 
     tab-indicator {
-        active-color "#94e2d5"
-        corner-radius 8
+        active-gradient from="#b4befe" to="#74c7ec" angle=180 in="oklch shorter hue"
+        corner-radius 4
+        gap 6
+        gaps-between-tabs 4
         hide-when-single-tab
-        inactive-color "#505050"
-        length total-proportion=0.25
+        inactive-color "#45475aa6"
+        length total-proportion=0.35
         place-within-column
         position "right"
         urgent-color "#f38ba8"
-        width 3
+        width 4
     }
 }
 
+// ────────────── Blur ──────────────
+blur {
+    on
+    passes 3
+    offset 3.0
+    noise 0.015
+    saturation 1.1
+}
+
 overview {
+    zoom 0.5
+    backdrop-color "#11111b"
     workspace-shadow {
+        softness 40
+        spread 8
+        offset x=0 y=10
+        color "#0d0d14cc"
+    }
+}
+
+gestures {
+    hot-corners {
         off
     }
 }
 
 cursor {
-    xcursor-theme "catppuccin-mocha-light-cursors"
+    xcursor-theme "volantes_light_cursors"
     xcursor-size 24
 }
 
@@ -276,25 +309,28 @@ animations {
 }
 
 // ────────────── Window Rules ──────────────
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
-
- // Always float PiP windows
 window-rule {
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    match app-id=r#"zen$"# title="^Picture-in-Picture$"
-    open-floating true
-}
-
-window-rule {
-    geometry-corner-radius 5
+    geometry-corner-radius 12
     clip-to-geometry true
+    tiled-state true
 }
 
 window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    block-out-from "screen-capture"
-    default-column-width {}
-    open-floating true
+    match app-id=r#"^com\.mitchellh\.ghostty$"#
+    background-effect {
+        blur true
+        xray true
+    }
+}
+
+window-rule {
+    match is-floating=true
+    opacity 0.94
+    geometry-corner-radius 20
+    background-effect {
+        blur true
+        xray true
+    }
 }
 
 window-rule {
@@ -310,20 +346,90 @@ window-rule {
     open-floating true
 }
 
+// ─── Opaque overrides — must come AFTER the is-floating rule ───
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r#"zen$"# title="^Picture-in-Picture$"
+    open-floating true
+    opacity 1.0
+    background-effect {
+        blur false
+    }
+}
+
+window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    block-out-from "screen-capture"
+    default-column-width {}
+    open-floating true
+    opacity 1.0
+    background-effect {
+        blur false
+    }
+}
+
+// ────────────── Layer Rules ──────────────
 layer-rule {
     match namespace="^awww-daemon$"
     place-within-backdrop true
+}
+
+layer-rule {
+    match namespace="^waybar$"
+    geometry-corner-radius 12 // r3 — mirrored in style.css
+    background-effect {
+        blur true
+        xray true
+    }
+    shadow {
+        on
+        softness 24
+        spread 2
+        offset x=0 y=4
+        color "#0d0d1499" // ink-lo
+    }
+}
+
+layer-rule {
+    match namespace="^notifications$" // mako
+    geometry-corner-radius 12 // r3
+    background-effect {
+        blur true
+        xray true
+    }
+    shadow {
+        on
+        softness 24
+        spread 2
+        offset x=0 y=6
+        color "#0d0d14b3" // ink
+    }
+}
+
+layer-rule {
+    match namespace="^wofi$"
+    geometry-corner-radius 20 // r4 — mirrored in style.css
+    background-effect {
+        blur true
+        xray true
+    }
+    shadow {
+        on
+        softness 48
+        spread 4
+        offset x=0 y=12
+        color "#0d0d14cc" // ink-hi
+    }
 }
 
 // ────────────── Environment Variables ──────────────
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#environment
 
 environment {
-    DISPLAY ":1"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
-    PROTON_FSR4_RDNA3_UPGRADE "1g"
-    PROTON_FSR4_UPGRADE "1g"
-    PROTON_XESS_UPGRADE "1g"
+    PROTON_FSR4_RDNA3_UPGRADE "1"
+    PROTON_FSR4_UPGRADE "1"
+    PROTON_XESS_UPGRADE "1"
     QT_QPA_PLATFORM "wayland"
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
     XDG_CURRENT_DESKTOP "niri"

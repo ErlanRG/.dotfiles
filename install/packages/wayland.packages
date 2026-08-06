@@ -2,6 +2,7 @@
 # These packages work for any wayland compositor
 
 awww
+hyprlock
 mako
 niri
 qt5-wayland
