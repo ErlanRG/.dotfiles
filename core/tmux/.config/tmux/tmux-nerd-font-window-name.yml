@@ -1,0 +1,9 @@
+# joshmedeski/tmux-nerd-font-window-name
+#
+# The icon table is compiled into automatic-rename-format once, at plugin load.
+# Changes here need a `tmux kill-server` (or prefix + I), not just prefix + r.
+
+config:
+  show-name: false # icon only, no program name — the bar stays thin
+  fallback-icon: "" # unknown program
+  multi-pane-icon: "" # prefixed when a window holds more than one pane
