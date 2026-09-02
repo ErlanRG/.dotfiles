@@ -25,10 +25,11 @@ alias rm='rm -i'
 
 # other
 alias c='clear'
+alias cd='z'
+alias lg='lazygit'
 alias rmdir='rm -rf'
 alias shutdown='shutdown now'
 alias startup_nvim='nvim --startuptime startup.log -c exit && tail -100 startup.log'
-alias lg='lazygit'
 
 # Tmux
 alias tconf='nvim $HOME/.config/tmux/tmux.conf'
