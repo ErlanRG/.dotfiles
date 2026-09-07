@@ -6,9 +6,9 @@
 
 ## Features
 
-- **Shell:** Zsh with Oh My Zsh, along with a curated set of plugins and aliases for a powerful and efficient command-line experience.
+- **Shell:** Zsh with a curated set of plugins and aliases for a powerful and efficient command-line experience.
 - **Terminal:** Configurations for Kitty, WezTerm, and Ghostty, with a consistent and beautiful Catppuccin theme.
-- **Window Managers:** Customized configurations for Hyprland, i3, Niri, and Mango, complete with scripts and themes.
+- **Window Managers:** Customized configurations for Hyprland, Niri, and Mango, complete with scripts and themes.
 - **Editors:** Neovim setup with Lua-based configuration, and settings for IdeaVim.
 - **Other Tools:** Configurations for Git, Starship, Tmux, Yazi, and more.
 
@@ -17,7 +17,8 @@
 The repository is organized into the following directories:
 
 - `core`: Contains the core configuration files for essential tools like `zsh`, `nvim`, `kitty`, etc.
-- `wms`: Contains the configuration files for window managers like `hyprland`, `i3`, `niri`, and `mango`.
+- `wms`: Contains the configuration files for the window managers `hyprland`, `niri` and `mango`, plus
+  `wayland-common` — waybar and wofi fragments shared between them through committed symlinks.
 - `install`: Contains the installation scripts for setting up the dotfiles.
 
 ## Installation
@@ -25,34 +26,59 @@ The repository is organized into the following directories:
 To install these dotfiles, you can use the provided setup script. The script will install the necessary packages and create the required symlinks.
 
 ```bash
-git clone --depth 1 https://github.com/ErlanRG/.dotfiles.git $HOME
-cd $HOME/.dotfiles/install
-./setup.sh
+git clone https://github.com/ErlanRG/.dotfiles.git $HOME/.dotfiles
+$HOME/.dotfiles/install/setup.sh
 ```
 
-The setup script will guide you through the installation process, allowing you to choose which window manager configuration to install.
+Run bare, the script asks which window manager to install. It can also be driven directly:
+
+```bash
+./setup.sh --wm mango                  # skip the menu
+./setup.sh --wm niri --dry-run         # print what would happen, change nothing
+./setup.sh --wm mango --skip-stow      # packages only
+./setup.sh --wm mango --skip-packages  # symlinks only
+./setup.sh --list                      # list the known window managers
+```
+
+Every package is installed from the enabled repos with `pacman`; nothing is ever built from
+the AUR. `paru` is installed as an ordinary package so `pacman -Syu` keeps it updated, but
+the installer itself never calls it. Before touching the system the script checks that every
+package resolves in an enabled repo, and stops with a list if any does not.
+
+Adding a window manager means adding one line to `install/wms.conf` and a matching
+`install/packages/<name>.packages`.
 
 ## Scripts
 
 This repository includes scripts to help manage the dotfiles:
 
 - **`install/setup.sh`**: The main installation script that guides you through the setup process.
-- **`install/scripts/wm-stow`**: A script to manage window manager configurations. It can be used to `stow` (create symlinks) or `unstow` (remove symlinks) the configuration files for a specific window manager.
+- **`install/scripts/dot-stow`**: Manages the symlinks for `core` plus one window manager.
+  It is also copied to `~/.local/bin`, so it works from anywhere once installed.
 
   **Usage:**
   ```bash
-  ./install/scripts/wm-stow <stow|unstow> [wm_name|all]
+  dot-stow <stow|restow|unstow> <wm>
   ```
 
   **Example:**
-  To stow all window manager configurations:
   ```bash
-  ./install/scripts/wm-stow stow all
+  dot-stow stow mango     # link core + mango into $HOME
+  dot-stow restow mango   # re-link after adding or renaming files
+  dot-stow unstow mango   # remove the symlinks again
   ```
+
+  Anything real that is already in the way is moved to `~/config_backup_<timestamp>/` first;
+  symlinks the repo already owns are simply replaced. There is no `all` target on purpose —
+  every window manager claims `~/.config/waybar` and `~/.config/wofi`, so only one can be
+  stowed at a time.
+- **`install/scripts/screenshot.sh`** and **`install/scripts/webapps`**: also installed to
+  `~/.local/bin`.
 
 ## Dependencies
 
-The installation script will automatically install the required packages for the selected configuration. However, you will need to have `git` and `stow` installed on your system before running the script.
+The installation script installs the required packages for the selected configuration. You need
+`git`, `stow` and a CachyOS-style repo set (`cachyos`, `core`, `extra`, `multilib`) before running it.
 
 ## License
 
