@@ -1,0 +1,147 @@
+#!/usr/bin/env bash
+# Symlink the dotfiles into $HOME with GNU stow.
+#
+# Always operates on core plus exactly one window manager. There is no "all"
+# target on purpose: every WM package claims ~/.config/waybar and
+# ~/.config/wofi, so stowing more than one at a time can only conflict.
+
+set -euo pipefail
+
+# Works both from inside the repo and from ~/.local/bin, where this script is
+# installed as a copy.
+_script_dir=$(builtin cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
+if [ -f "$_script_dir/../lib/common.sh" ]; then
+    source "$_script_dir/../lib/common.sh"
+else
+    _root=${DOTFILES:-$HOME/.dotfiles}
+    [ -f "$_root/install/lib/common.sh" ] ||
+        { echo "error: cannot find the dotfiles repo; set \$DOTFILES" >&2; exit 1; }
+    source "$_root/install/lib/common.sh"
+fi
+
+usage() {
+    cat <<EOF
+Usage: $(basename "$0") <stow|restow|unstow> <wm>
+
+  stow     link core + <wm> into \$HOME, backing up anything in the way
+  restow   re-link, cleaning up links that no longer exist (stow -R)
+  unstow   remove the links again (stow -D)
+
+Window managers: $(wm_names | tr '\n' ' ')
+EOF
+}
+
+ACTION=${1:-}
+WM=${2:-}
+
+case "$ACTION" in
+    stow | restow | unstow) ;;
+    -h | --help)
+        usage
+        exit 0
+        ;;
+    *)
+        usage >&2
+        exit 1
+        ;;
+esac
+
+if [ -z "$WM" ]; then
+    usage >&2
+    die "no window manager given"
+fi
+wm_is_known "$WM" || die "unknown window manager: $WM"
+
+BACKUP_DIR="$HOME/config_backup_$(date +%Y%m%d%H%M%S)"
+
+# Created only when something actually has to be moved, so a clean run leaves
+# no empty backup directory behind.
+ensure_backup_dir() {
+    [ -d "$BACKUP_DIR" ] || run mkdir -p "$BACKUP_DIR"
+}
+
+# A path already pointing into the repo is ours: replace it, never archive it.
+is_ours() {
+    local target=$1 resolved
+    [ -L "$target" ] || return 1
+    resolved=$(readlink -f -- "$target" 2>/dev/null) || return 1
+    case "$resolved" in
+    "$DOTFILES_ROOT"/*) return 0 ;;
+    *) return 1 ;;
+    esac
+}
+
+back_up_if_real() {
+    local target=$1
+    [ -e "$target" ] || [ -L "$target" ] || return 0
+    if is_ours "$target"; then
+        run rm -f -- "$target"
+        return 0
+    fi
+    ensure_backup_dir
+    info "backing up $target"
+    run mv -- "$target" "$BACKUP_DIR/"
+}
+
+# Move aside whatever would block stow, for one package directory.
+clear_conflicts() {
+    local pkg_dir=$1 entry name
+
+    if [ -d "$pkg_dir/.config" ]; then
+        for entry in "$pkg_dir/.config"/*; do
+            [ -e "$entry" ] || continue
+            back_up_if_real "$HOME/.config/$(basename "$entry")"
+        done
+    fi
+
+    for entry in "$pkg_dir"/.[^.]*; do
+        [ -f "$entry" ] || continue
+        name=$(basename "$entry")
+        [ "$name" = ".stow-local-ignore" ] && continue
+        back_up_if_real "$HOME/$name"
+    done
+}
+
+stow_dir() {
+    local dir=$1 label=$2 pkg
+    [ -d "$dir" ] || die "not found: $dir"
+
+    local -a packages=()
+    for pkg in "$dir"/*/; do
+        [ -d "$pkg" ] || continue
+        packages+=("$(basename "$pkg")")
+    done
+    [ "${#packages[@]}" -gt 0 ] || { warn "no stow packages in $dir"; return 0; }
+
+    case "$ACTION" in
+    stow)
+        for pkg in "${packages[@]}"; do clear_conflicts "$dir/$pkg"; done
+        run stow --dir "$dir" --target "$HOME" "${packages[@]}"
+        ;;
+    restow)
+        run stow -R --dir "$dir" --target "$HOME" "${packages[@]}"
+        ;;
+    unstow)
+        run stow -D --dir "$dir" --target "$HOME" "${packages[@]}"
+        ;;
+    esac
+    info "${ACTION}ed $label: ${packages[*]}"
+}
+
+banner "${ACTION^}ing core + $WM"
+
+# core/ holds packages directly; wms/<wm>/ nests them one level deeper, so each
+# needs its own --dir.
+for target in $(wm_field "$WM" 3); do
+    if [ "$target" = "core" ]; then
+        stow_dir "$DOTFILES_ROOT/core" "core"
+    else
+        stow_dir "$DOTFILES_ROOT/wms/$target" "$target"
+    fi
+done
+
+if [ -d "$BACKUP_DIR" ]; then
+    rmdir --ignore-fail-on-non-empty "$BACKUP_DIR"
+fi
+
+banner "Done"

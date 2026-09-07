@@ -1,0 +1,5 @@
+# Packages specific to the niri compositor
+
+hyprlock
+niri
+xwayland-satellite

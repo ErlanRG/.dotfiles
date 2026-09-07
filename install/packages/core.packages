@@ -1,39 +1,82 @@
-# Core packages
+# Base packages installed for every window manager.
+# Everything here must be available in the enabled repos (cachyos / core /
+# extra / multilib). Nothing is built from the AUR.
 
-autotiling
-brightnessctl
+# Shell
+zsh
+zsh-autosuggestions
+zsh-syntax-highlighting
+starship
+zoxide
+fzf
+
+# CLI tools
 curl
 eza
 fd
-ghostty
 git
-gnome-keyring
-gparted
-helium-browser-bin
+jq
 jujutsu
-kdeconnect
-keepassxc
-kitty
 lazygit
-librewolf
-libsecret
-localsend
 neovim
-nextcloud-client
 npm
+ripgrep
+stow
+tmux
+unzip
+xdg-utils
+yazi
+
+# Package management
+base-devel
+paru
+
+# Fonts
+ttf-iosevka-nerd
+ttf-jetbrains-mono
+
+# Terminals
+ghostty
+kitty
+
+# Wayland base
+awww
+grim
+libnotify
+mako
+qt5-wayland
+slurp
+waybar
+wl-clipboard
+wlr-randr
+wofi
+xdg-desktop-portal-gnome
+xdg-desktop-portal-wlr
+xorg-xhost
+xorg-xwayland
+
+# Audio / media
+pavucontrol
+playerctl
+wireplumber
+
+# Desktop integration
+brightnessctl
+gnome-keyring
+libsecret
+network-manager-applet
 nwg-displays
 nwg-look
 polkit-gnome
-ripgrep
-starship
-stow
-tmux
-ttf-iosevka-nerd
-ttf-jetbrains-mono
-unzip
-xdg-desktop-portal-gnome
-xdg-desktop-portal-wlr
-yazi
+
+# Applications
+gparted
+kdeconnect
+keepassxc
+localsend
+nextcloud-client
+
+# Browsers
+helium-browser-bin
+librewolf
 zen-browser-bin
-zoxide
-zsh
