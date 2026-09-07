@@ -1,0 +1,3 @@
+# .zshrc sources these straight from $DOTFILES, so they must not be linked
+# into $HOME as stray ~/aliases.zsh and ~/functions.zsh.
+^/(aliases|functions)\.zsh$

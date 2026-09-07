@@ -6,9 +6,6 @@ export MANPATH="/usr/local/texlive/2026/texmf-dist/doc/man:$MANPATH"
 export INFOPATH="/usr/local/texlive/2026/texmf-dist/doc/info:$INFOPATH"
 export PATH="/usr/local/texlive/2026/bin/x86_64-linux:$PATH"
 
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-
 # .dotfiles path
 export DOTFILES=$HOME/.dotfiles
 
@@ -17,7 +14,7 @@ export DOTFILES=$HOME/.dotfiles
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # History related configuration
-HIST_FILE="$HOME/.zsh_history"
+HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
 SAVEHIST=10000000
 
@@ -35,17 +32,15 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
-# Automatically update without prompting.
-DISABLE_UPDATE_PROMPT="true"
+# Vi mode
+bindkey -v
+export KEYTIMEOUT=1
 
-plugins=(
-    vi-mode
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-)
-
-# Oh-my-zsh
-source $ZSH/oh-my-zsh.sh
+# Completion
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zcompdump"
 
 # Load additional configuration files
 export EDITOR='nvim'
@@ -58,4 +53,9 @@ eval "$(starship init zsh)"
 # Load the zoxide directory jumping tool
 eval "$(zoxide init zsh)"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Plugins and shell integration, all from the repos.
+# zsh-syntax-highlighting must be sourced last.
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
