@@ -96,7 +96,7 @@ local function get_process(tab)
       { Foreground = { Color = catppuccin_colors.blue } },
       { Text = wnf.md_package_variant },
     },
-    ["yay"] = {
+    ["paru"] = {
       { Foreground = { Color = catppuccin_colors.mauve } },
       { Text = wnf.md_arch },
     },
