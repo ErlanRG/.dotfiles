@@ -74,6 +74,7 @@ tooltip {
 #network,
 #pulseaudio,
 #custom-kbd,
+#custom-notification,
 #temperature.cpu,
 #temperature.gpu,
 #tray {
@@ -96,6 +97,7 @@ tooltip {
 #temperature.cpu:hover,
 #temperature.gpu:hover,
 #custom-kbd:hover,
+#custom-notification:hover,
 #pulseaudio:hover {
     background: rgba(69, 71, 90, 0.55);
 }
@@ -132,6 +134,17 @@ tooltip {
 #battery { border: 1px solid rgba(166, 227, 161, 0.2); }
 #pulseaudio { border: 1px solid rgba(148, 226, 213, 0.2); }
 #custom-kbd { border: 1px solid rgba(148, 226, 213, 0.2); }
+#custom-notification { border: 1px solid rgba(250, 179, 135, 0.2); }
+
+/* Notifications: peach when unread, dimmed under do-not-disturb */
+#custom-notification.unread {
+    color: @peach;
+    border: 1px solid rgba(250, 179, 135, 0.35);
+}
+
+#custom-notification.dnd {
+    color: @overlay1;
+}
 
 /* Clock*/
 #clock {

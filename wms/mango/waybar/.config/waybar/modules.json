@@ -13,6 +13,17 @@
         "format": "[{layout}] {title}",
     },
 
+    "custom/notification": {
+        "exec": "~/.local/bin/notifications.sh watch",
+        "return-type": "json",
+        "restart-interval": 0,
+        "format": "{}",
+        "on-click": "~/.local/bin/notifications.sh history",
+        "on-click-right": "~/.local/bin/notifications.sh dnd",
+        "on-click-middle": "~/.local/bin/notifications.sh dismiss",
+        "tooltip": true,
+    },
+
     "custom/kbd": {
         "exec": "~/.config/waybar/scripts/keyboard-layout.sh",
         "return-type": "json",
