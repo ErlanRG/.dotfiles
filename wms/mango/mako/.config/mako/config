@@ -1,8 +1,8 @@
 # -----------------------------
 # Global
 # -----------------------------
-max-history=5
-sort=+time
+max-history=100
+sort=-time
 
 # -----------------------------
 # Bindings
@@ -79,3 +79,9 @@ border-color=#94e2d533
 [urgency=critical]
 border-color=#f38ba866
 background-color=#1e1e2eee
+
+# -----------------------------
+# Do Not Disturb
+# -----------------------------
+[mode=do-not-disturb]
+invisible=1
