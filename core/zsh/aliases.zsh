@@ -1,6 +1,4 @@
 # ALIASES
-# omz
-alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias sz='source $HOME/.zshrc'
 alias zshc="nvim ~/.zshrc"
 
@@ -9,14 +7,14 @@ alias l='eza -lahF --color=always --icons --git --sort=size --group-directories-
 alias ll='eza -lah'
 alias ls='eza -lhF --color=always --icons --sort=size --group-directories-first'
 
-# pacman and yay
+# pacman and paru
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'  # remove orphaned packages
 alias pacsyu='sudo pacman -Syu'                  # update only standard pkgs
 alias pacsyyu='sudo pacman -Syyu'                # Refresh pkglist & update standard pkgs
 alias pacrns='sudo pacman -Rns'                 # Remove a package with its dependencies
 alias unlock='sudo rm /var/lib/pacman/db.lck'    # remove pacman lock
-alias yaysua='yay -Sua --noconfirm'              # update only AUR pkgs (yay)
-alias yaysyu='yay -Syu --noconfirm'              # update standard pkgs and AUR pkgs (yay)
+alias parusua='paru -Sua --noconfirm'            # update only AUR pkgs (paru)
+alias parusyu='paru -Syu --noconfirm'            # update standard pkgs and AUR pkgs (paru)
 
 # confirm before overwriting something
 alias cp="cp -i"
