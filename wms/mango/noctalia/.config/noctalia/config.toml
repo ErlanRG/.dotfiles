@@ -1,37 +1,232 @@
-# Noctalia shell for mango. Only overrides of the built-in defaults live here;
-# anything changed from the settings GUI lands in ~/.local/state/noctalia/settings.toml
-# (untracked). See every default with: noctalia config export full
-
-[shell]
-# Replaces polkit-gnome.
-polkit_agent = true
-
-[notification]
-# Replaces mako.
-enable_daemon = true
-
 [bar.default]
-start = [ "launcher", "workspaces" ]
-center = [ "cpu", "ram", "temp" ]
+capsule = true
+center = [ "cpu", "ram", "temp_cpu", "temp_gpu", "weather" ]
 end = [
     "media",
-    "tray",
+    "spacer_2",
     "keyboard_layout",
-    "notifications",
     "network",
     "volume",
     "brightness",
     "battery",
+    "spacer_2",
+    "tray",
     "clock",
     "control-center",
+    "notifications",
+    "spacer_2",
     "session"
 ]
+margin_edge = 4
+margin_opposite_edge = 1
+start = [ "launcher", "workspaces" ]
+
+[battery.device."/org/freedesktop/UPower/devices/battery_hidpp_battery_2"]
+warning_threshold = 20
+
+[battery.device."/org/freedesktop/UPower/devices/battery_ps_controller_battery_bcoc7o46o80o8fo25"]
+warning_threshold = 20
+
+[control_center]
+sidebar_section = "none"
+
+    [[control_center.shortcuts]]
+    type = "wifi"
+
+    [[control_center.shortcuts]]
+    type = "bluetooth"
+
+    [[control_center.shortcuts]]
+    type = "caffeine"
+
+    [[control_center.shortcuts]]
+    type = "notification"
+
+    [[control_center.shortcuts]]
+    type = "nightlight"
+
+    [[control_center.shortcuts]]
+    type = "noctalia/wallhaven:shortcut"
+
+[desktop_widgets]
+enabled = false
 
 [idle.behavior.lock]
 action = "lock"
 enabled = true
 timeout = 600.0
 
-[theme.templates]
-# Writes ~/.config/mango/noctalia.conf, sourced at the end of mango's config.conf.
-builtin_ids = [ "mango" ]
+[location]
+latitude = 9.9268368931174145
+longitude = -84.092018556392262
+
+[lockscreen_widgets]
+enabled = true
+schema_version = 2
+widget_order = [ "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@DP-1", "lockscreen-widget-0000000000000001" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 1720.0
+    cy = 1258.0
+    output = "DP-1"
+    placement_height = 1440.0
+    placement_width = 3440.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 1920.0
+    cy = 1978.0
+    output = "HDMI-A-1"
+    placement_height = 2160.0
+    placement_width = 3840.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
+    box_height = 128.0
+    box_width = 512.0
+    cx = 1720.0
+    cy = 720.0
+    output = "DP-1"
+    placement_height = 1440.0
+    placement_width = 3440.0
+    rotation = -0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000001.settings]
+        format = "{:%I:%M %p}"
+
+[notification]
+enable_daemon = true
+
+[plugin_settings."noctalia/wallhaven"]
+download_dir = "/home/rangeler/Nextcloud/Wallpapers"
+
+[plugin_settings."thepunkoff/pomodoro"]
+sessions-before-long-break = 1
+short-break-duration = 0
+work-duration = 50
+
+[plugins]
+enabled = [ "noctalia/wallhaven", "thepunkoff/pomodoro" ]
+
+[shell]
+polkit_agent = true
+time_format = "{:%I:%M %p}"
+
+    [shell.launcher]
+    app_grid = true
+    categories = false
+
+    [shell.panel]
+    open_near_click_control_center = true
+
+[system.monitor]
+cpu_temp_activity_threshold = 80
+cpu_temp_critical_threshold = 95
+gpu_temp_activity_threshold = 80
+gpu_temp_critical_threshold = 95
+
+[theme]
+community_palette = "Oxocarbon"
+mode = "dark"
+source = "wallpaper"
+wallpaper_scheme = "m3-tonal-spot"
+
+    [theme.templates]
+    builtin_ids = [ "mango" ]
+
+[wallpaper]
+directory = "/home/rangeler/Nextcloud/Wallpapers"
+
+    [wallpaper.automation]
+    enabled = true
+
+    [wallpaper.default]
+    path = "/home/rangeler/Nextcloud/Wallpapers/wallhaven-p97l5e.png"
+
+    [wallpaper.last]
+    path = "/home/rangeler/Nextcloud/Wallpapers/wallhaven-p97l5e.png"
+
+    [wallpaper.monitors.DP-1]
+    path = "/home/rangeler/Nextcloud/Wallpapers/wallhaven-p97l5e.png"
+
+    [wallpaper.monitors.HDMI-A-1]
+    path = "/home/rangeler/Nextcloud/Wallpapers/wallhaven-8g8e62.jpg"
+
+[widget.clock]
+format = "{:%I:%M %p}"
+
+[widget.launcher]
+glyph = "api-app"
+
+[widget.network]
+show_label = false
+
+[widget.session]
+color = "error"
+
+[widget.spacer_2]
+type = "spacer"
+
+[widget.spacer_3]
+type = "spacer"
+
+[widget.spacer_4]
+type = "spacer"
+
+[widget.temp_cpu]
+stat = "cpu_temp"
+type = "sysmon"
+
+[widget.temp_gpu]
+stat = "gpu_temp"
+type = "sysmon"
+
+[widget.volume]
+show_label = false
+
+[widget.wallhaven]
+type = "noctalia/wallhaven:wallhaven"
