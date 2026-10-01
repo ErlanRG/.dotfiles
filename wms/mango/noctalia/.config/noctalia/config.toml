@@ -1,0 +1,37 @@
+# Noctalia shell for mango. Only overrides of the built-in defaults live here;
+# anything changed from the settings GUI lands in ~/.local/state/noctalia/settings.toml
+# (untracked). See every default with: noctalia config export full
+
+[shell]
+# Replaces polkit-gnome.
+polkit_agent = true
+
+[notification]
+# Replaces mako.
+enable_daemon = true
+
+[bar.default]
+start = [ "launcher", "workspaces" ]
+center = [ "cpu", "ram", "temp" ]
+end = [
+    "media",
+    "tray",
+    "keyboard_layout",
+    "notifications",
+    "network",
+    "volume",
+    "brightness",
+    "battery",
+    "clock",
+    "control-center",
+    "session"
+]
+
+[idle.behavior.lock]
+action = "lock"
+enabled = true
+timeout = 600.0
+
+[theme.templates]
+# Writes ~/.config/mango/noctalia.conf, sourced at the end of mango's config.conf.
+builtin_ids = [ "mango" ]
