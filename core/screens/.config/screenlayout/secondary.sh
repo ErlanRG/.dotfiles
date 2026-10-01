@@ -4,4 +4,4 @@ PRIMARY="DP-1"
 SECONDARY="HDMI-A-1"
 
 wlr-randr --output "$PRIMARY" --off \
-          --output "$SECONDARY" --on --mode 3840x2160@60.00
+          --output "$SECONDARY" --on --mode 3840x2160@60.00 --pos 0,0
