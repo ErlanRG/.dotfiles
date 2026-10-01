@@ -2,7 +2,7 @@
 # Symlink the dotfiles into $HOME with GNU stow.
 #
 # Always operates on core plus exactly one window manager. There is no "all"
-# target on purpose: every WM package claims ~/.config/waybar and
+# target on purpose: hyprland and niri both claim ~/.config/waybar and
 # ~/.config/wofi, so stowing more than one at a time can only conflict.
 
 set -euo pipefail

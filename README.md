@@ -19,6 +19,9 @@ The repository is organized into the following directories:
 - `core`: Contains the core configuration files for essential tools like `zsh`, `nvim`, `kitty`, etc.
 - `wms`: Contains the configuration files for the window managers `hyprland`, `niri` and `mango`, plus
   `wayland-common` — waybar and wofi fragments shared between them through committed symlinks.
+  Mango uses the [Noctalia](https://noctalia.dev) shell instead, which provides its bar, launcher,
+  notifications, polkit agent, lock screen, wallpaper and screenshots; only overrides of
+  Noctalia's defaults are tracked, in `wms/mango/noctalia/.config/noctalia/config.toml`.
 - `install`: Contains the installation scripts for setting up the dotfiles.
 
 ## Installation
@@ -70,8 +73,8 @@ This repository includes scripts to help manage the dotfiles:
 
   Anything real that is already in the way is moved to `~/config_backup_<timestamp>/` first;
   symlinks the repo already owns are simply replaced. There is no `all` target on purpose —
-  every window manager claims `~/.config/waybar` and `~/.config/wofi`, so only one can be
-  stowed at a time.
+  hyprland and niri both claim `~/.config/waybar` and `~/.config/wofi`, so only one window
+  manager can be stowed at a time.
 - **`install/scripts/screenshot.sh`** and **`install/scripts/webapps`**: also installed to
   `~/.local/bin`.
 
