@@ -40,16 +40,12 @@ ghostty
 kitty
 
 # Wayland base
-awww
 grim
 libnotify
-mako
 qt5-wayland
 slurp
-waybar
 wl-clipboard
 wlr-randr
-wofi
 xdg-desktop-portal-gnome
 xdg-desktop-portal-wlr
 xorg-xhost
@@ -64,10 +60,8 @@ wireplumber
 brightnessctl
 gnome-keyring
 libsecret
-network-manager-applet
 nwg-displays
 nwg-look
-polkit-gnome
 
 # Applications
 gparted

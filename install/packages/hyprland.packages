@@ -3,3 +3,11 @@
 hyprland
 hyprlock
 xdg-desktop-portal-hyprland
+
+# Shell pieces (mango gets these from noctalia instead)
+awww
+mako
+network-manager-applet
+polkit-gnome
+waybar
+wofi
