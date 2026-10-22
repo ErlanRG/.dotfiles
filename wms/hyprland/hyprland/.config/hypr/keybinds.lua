@@ -5,7 +5,7 @@ local fileManager = "nautilus"
 local menu = "wofi"
 local mod = "SUPER"
 local powermenuPath = "~/.config/waybar/scripts/powermenu.sh"
-local screenlayoutPath = "~/.config/screenlayout/applet.sh"
+local displayModeMenu = "~/.local/bin/display-mode menu"
 local screenshotPath = "~/.local/bin/screenshot.sh"
 local terminal = "ghostty -e tmux"
 
@@ -70,7 +70,7 @@ hl.bind(mod .. " + N", hl.dsp.exec_cmd(fileManager))
 hl.bind(mod .. " + Q", hl.dsp.window.close())
 hl.bind(mod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(mod .. " + SHIFT + E", hl.dsp.exec_cmd(powermenuPath))
-hl.bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd(screenlayoutPath))
+hl.bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd(displayModeMenu))
 hl.bind(mod .. " + SHIFT + R", hl.dsp.exec_cmd("hyprctl reload && notify-send 'Reloading Hyprland config...'"))
 hl.bind(mod .. " + T", toggle_float)
 

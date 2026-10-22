@@ -1,0 +1,318 @@
+#!/usr/bin/env bash
+#
+# Switch between main-only, extended and second-only screen layouts, like
+# Windows' Win+P. Outputs, modes and positions come from wlr-randr, so nothing
+# about the monitors themselves is hardcoded.
+
+set -o pipefail
+
+CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/display-mode/config"
+
+PRIMARY=""
+EXTEND_POSITION="above"
+MANGO_RULES_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/mango/display-mode.conf"
+# shellcheck source=/dev/null
+[ -r "$CONFIG" ] && . "$CONFIG"
+
+ICON_SINGLE="󰍹"
+ICON_DUAL="󰍺"
+ICON_CURRENT="󰄬"
+
+MODES=(main extend second)
+
+notify() {
+    notify-send -a "Display" "Display" "$1"
+}
+
+die() {
+    notify "$1"
+    echo "display-mode: $1" >&2
+    exit 1
+}
+
+# Every connected output, as wlr-randr reports it.
+outputs_json() {
+    wlr-randr --json 2>/dev/null || die "wlr-randr failed (not a wlroots session?)"
+}
+
+# Pick the main and second outputs: PRIMARY if it is connected, otherwise the
+# first enabled output; the second is the first other connected output.
+resolve_outputs() {
+    local json names
+    json=$(outputs_json) || exit 1
+    names=$(jq -r '.[].name' <<<"$json")
+    [ -n "$names" ] || die "No outputs connected"
+
+    if [ -n "$PRIMARY" ] && grep -qx "$PRIMARY" <<<"$names"; then
+        main_output="$PRIMARY"
+    else
+        main_output=$(jq -r 'map(select(.enabled)) | .[0].name // empty' <<<"$json")
+        [ -n "$main_output" ] || main_output=$(head -n1 <<<"$names")
+    fi
+    second_output=$(grep -vx "$main_output" <<<"$names" | head -n1)
+    OUTPUTS_JSON="$json"
+}
+
+# "WIDTHxHEIGHT@REFRESH" for an output: its largest preferred resolution at the
+# highest refresh rate that resolution offers.
+best_mode() {
+    jq -r --arg name "$1" '
+        .[] | select(.name == $name) | .modes
+        | (map(select(.preferred)) | if length > 0 then . else null end) as $preferred
+        | ($preferred // .) | max_by(.width * .height) as $res
+        | map(select(.width == $res.width and .height == $res.height)) | max_by(.refresh)
+        | "\(.width)x\(.height)@\(.refresh * 1000 | round / 1000)"
+    ' <<<"$OUTPUTS_JSON"
+}
+
+# SCALE_<OUTPUT> from the config, with anything that isn't alphanumeric turned
+# into an underscore (HDMI-A-1 -> SCALE_HDMI_A_1).
+scale_for() {
+    local var="SCALE_${1//[^A-Za-z0-9]/_}"
+    echo "${!var:-1}"
+}
+
+# Logical "WIDTH HEIGHT" of a mode once the output's scale is applied.
+logical_size() {
+    local mode="$1" scale="$2" res
+    res="${mode%@*}"
+    awk -v w="${res%x*}" -v h="${res#*x}" -v s="$scale" \
+        'BEGIN { printf "%d %d\n", w / s, h / s }'
+}
+
+current_mode() {
+    local json main_on second_on
+    json="$OUTPUTS_JSON"
+    main_on=$(jq -r --arg n "$main_output" '.[] | select(.name == $n) | .enabled' <<<"$json")
+    second_on=$(jq -r --arg n "$second_output" '.[] | select(.name == $n) | .enabled' <<<"$json")
+
+    if [ "$main_on" = true ] && [ "$second_on" = true ]; then
+        echo extend
+    elif [ "$main_on" = true ]; then
+        echo main
+    elif [ "$second_on" = true ]; then
+        echo second
+    else
+        echo unknown
+    fi
+}
+
+# A layout is built up with layout_on / layout_off, then applied in one go.
+LAYOUT_ARGS=()
+LAYOUT_EXPECTED=()
+
+layout_on() {
+    local name="$1" mode="$2" pos="$3" scale="$4"
+    LAYOUT_ARGS+=(--output "$name" --on --mode "$mode" --pos "$pos" --scale "$scale")
+    LAYOUT_EXPECTED+=("$name $pos")
+}
+
+layout_off() {
+    LAYOUT_ARGS+=(--output "$1" --off)
+}
+
+# Mango auto-places an output in the same commit that turns it on and ignores
+# its --pos, so when a position didn't stick, apply the layout a second time
+# now that every output is already on.
+apply_layout() {
+    local actual expected
+    wlr-randr "${LAYOUT_ARGS[@]}" || return 1
+
+    actual=$(wlr-randr --json | jq -r '.[] | select(.enabled) | "\(.name) \(.position.x),\(.position.y)"')
+    for expected in "${LAYOUT_EXPECTED[@]}"; do
+        grep -qx "$expected" <<<"$actual" || { wlr-randr "${LAYOUT_ARGS[@]}"; return; }
+    done
+}
+
+# Turn on just one output at 0,0 and switch every other one off.
+apply_single() {
+    local keep="$1" name
+    while read -r name; do
+        if [ "$name" = "$keep" ]; then
+            layout_on "$name" "$(best_mode "$name")" 0,0 "$(scale_for "$name")"
+        else
+            layout_off "$name"
+        fi
+    done < <(jq -r '.[].name' <<<"$OUTPUTS_JSON")
+    apply_layout
+}
+
+# Main and second side by side, the second centered on EXTEND_POSITION's edge
+# of the main one, shifted so the layout starts at 0,0.
+apply_extend() {
+    local main_mode second_mode main_scale second_scale mw mh sw sh
+    local mx=0 my=0 sx sy shift_x shift_y name
+
+    main_mode=$(best_mode "$main_output")
+    second_mode=$(best_mode "$second_output")
+    main_scale=$(scale_for "$main_output")
+    second_scale=$(scale_for "$second_output")
+    read -r mw mh < <(logical_size "$main_mode" "$main_scale")
+    read -r sw sh < <(logical_size "$second_mode" "$second_scale")
+
+    case "$EXTEND_POSITION" in
+        above) sx=$(((mw - sw) / 2)); sy=$((-sh)) ;;
+        below) sx=$(((mw - sw) / 2)); sy=$mh ;;
+        left)  sx=$((-sw));           sy=$(((mh - sh) / 2)) ;;
+        right) sx=$mw;                sy=$(((mh - sh) / 2)) ;;
+        *) die "Unknown EXTEND_POSITION '$EXTEND_POSITION' (above, below, left or right)" ;;
+    esac
+
+    shift_x=$((sx < 0 ? -sx : 0))
+    shift_y=$((sy < 0 ? -sy : 0))
+
+    layout_on "$second_output" "$second_mode" "$((sx + shift_x)),$((sy + shift_y))" "$second_scale"
+    layout_on "$main_output" "$main_mode" "$((mx + shift_x)),$((my + shift_y))" "$main_scale"
+
+    # Anything beyond the first two outputs is switched off.
+    while read -r name; do
+        [ "$name" = "$main_output" ] || [ "$name" = "$second_output" ] || layout_off "$name"
+    done < <(jq -r '.[].name' <<<"$OUTPUTS_JSON")
+
+    apply_layout
+}
+
+# Mango re-applies monitor rules on every config reload (and auto-reloads when
+# any sourced file changes, e.g. a theme), re-enabling outputs that were only
+# switched off through wlr-randr. Save the layout mango actually applied as
+# rules, rewriting the file only when it changes to avoid extra reloads.
+persist_mango_rules() {
+    local rules tmp
+    [ -n "$MANGO_RULES_FILE" ] || return 0
+    pgrep -x mango >/dev/null || return 0
+
+    rules=$(outputs_json | jq -r '
+        .[]
+        | (.name | gsub("(?<c>[.^$*+?()\\[\\]{}|\\\\])"; "\\\(.c)")) as $re
+        | if .enabled then
+            (.modes | map(select(.current)) | .[0]) as $m
+            | "monitor_rule=name:^\($re)$,width:\($m.width),height:\($m.height),refresh:\($m.refresh * 1000 | round / 1000),x:\(.position.x),y:\(.position.y),scale:\(.scale)"
+          else
+            "monitor_rule=name:^\($re)$,disable:1"
+          end
+    ') || return 1
+
+    mkdir -p "$(dirname "$MANGO_RULES_FILE")"
+    tmp=$(mktemp "$MANGO_RULES_FILE.XXXXXX") || return 1
+    {
+        echo "# Generated by display-mode; overwritten on every layout change."
+        echo "$rules"
+    } >"$tmp"
+    if cmp -s "$tmp" "$MANGO_RULES_FILE"; then
+        rm -f "$tmp"
+    else
+        mv -f "$tmp" "$MANGO_RULES_FILE"
+    fi
+}
+
+label_for() {
+    case "$1" in
+        main)   echo "Main only ($main_output)" ;;
+        extend) echo "Extend ($second_output $EXTEND_POSITION)" ;;
+        second) echo "Second only ($second_output)" ;;
+    esac
+}
+
+cmd_apply() {
+    local mode="$1"
+    resolve_outputs
+
+    if [ -z "$second_output" ] && [ "$mode" != main ]; then
+        notify "Only $main_output is connected"
+        mode=main
+    fi
+
+    case "$mode" in
+        main)   apply_single "$main_output" ;;
+        second) apply_single "$second_output" ;;
+        extend) apply_extend ;;
+    esac || die "Could not switch to $(label_for "$mode")"
+
+    persist_mango_rules || echo "display-mode: could not save mango monitor rules" >&2
+    notify "$(label_for "$mode")"
+}
+
+cmd_next() {
+    local current i
+    resolve_outputs
+    current=$(current_mode)
+    for i in "${!MODES[@]}"; do
+        if [ "${MODES[$i]}" = "$current" ]; then
+            cmd_apply "${MODES[$(((i + 1) % ${#MODES[@]}))]}"
+            return
+        fi
+    done
+    cmd_apply main
+}
+
+cmd_status() {
+    resolve_outputs
+    echo "mode:   $(current_mode)"
+    echo "main:   $main_output $(best_mode "$main_output")"
+    if [ -n "$second_output" ]; then
+        echo "second: $second_output $(best_mode "$second_output")"
+    else
+        echo "second: (none connected)"
+    fi
+}
+
+# noctalia's launcher when the shell is running (mango), wofi otherwise.
+menu() {
+    if pgrep -x noctalia >/dev/null; then
+        noctalia dmenu --prompt "$1"
+    else
+        wofi --dmenu --prompt "$1" --width 300 --height 250
+    fi
+}
+
+cmd_menu() {
+    local current mode icon line options=() chosen
+    resolve_outputs
+    current=$(current_mode)
+
+    if [ -z "$second_output" ]; then
+        options+=("$ICON_SINGLE  Only $main_output is connected")
+    else
+        for mode in "${MODES[@]}"; do
+            icon=$ICON_SINGLE
+            [ "$mode" = extend ] && icon=$ICON_DUAL
+            line="$icon  $(label_for "$mode")"
+            [ "$mode" = "$current" ] && line="$line  $ICON_CURRENT"
+            options+=("$line")
+        done
+    fi
+
+    chosen=$(printf '%s\n' "${options[@]}" | menu "Display mode") || return 0
+    case "$chosen" in
+        *"Main only"*)   cmd_apply main ;;
+        *Extend*)        cmd_apply extend ;;
+        *"Second only"*) cmd_apply second ;;
+    esac
+}
+
+usage() {
+    cat <<EOF
+Usage: display-mode <command>
+
+  menu              pick a mode from a launcher menu
+  main              only the main screen
+  extend            both screens, the second one $EXTEND_POSITION the main one
+  second            only the second screen
+  next              cycle main -> extend -> second
+  status            print the current mode and outputs
+
+Config: $CONFIG
+EOF
+}
+
+command -v wlr-randr >/dev/null || die "wlr-randr is not installed"
+command -v jq >/dev/null || die "jq is not installed"
+
+case "$1" in
+    menu)                cmd_menu ;;
+    main|extend|second)  cmd_apply "$1" ;;
+    next)                cmd_next ;;
+    status)              cmd_status ;;
+    -h|--help|help)      usage ;;
+    *)                   usage >&2; exit 1 ;;
+esac
