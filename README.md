@@ -77,6 +77,24 @@ This repository includes scripts to help manage the dotfiles:
   manager can be stowed at a time.
 - **`install/scripts/screenshot.sh`** and **`install/scripts/webapps`**: also installed to
   `~/.local/bin`.
+- **`install/scripts/display-mode`**: a Win+P-style screen switcher, installed to `~/.local/bin`
+  and bound to `Super+Shift+P`. It reads the connected outputs from `wlr-randr`, uses each one's
+  preferred resolution at its highest refresh rate, and works out positions itself. Every session
+  starts on the main screen only.
+
+  **Usage:**
+  ```bash
+  display-mode menu     # pick a mode from noctalia's launcher (wofi without noctalia)
+  display-mode main     # only the main screen
+  display-mode extend   # both screens
+  display-mode second   # only the second screen
+  display-mode next     # cycle main -> extend -> second
+  display-mode status   # print the current mode and outputs
+  ```
+
+  Settings live in `~/.config/display-mode/config` (`core/display-mode`): `PRIMARY` picks the
+  main output, `EXTEND_POSITION` places the second screen (`above`, `below`, `left` or `right`,
+  centered on that edge), and `SCALE_<output>` sets a per-output scale.
 
 ## Dependencies
 

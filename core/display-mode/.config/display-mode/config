@@ -1,0 +1,10 @@
+# Sourced by display-mode (~/.local/bin/display-mode).
+
+# The screen used for "Main only"; the first other connected output is "second".
+PRIMARY="DP-1"
+
+# Where the second screen sits in "Extend": above | below | left | right.
+EXTEND_POSITION="above"
+
+# Per-output scale, named SCALE_<output> with non-alphanumerics as underscores.
+# SCALE_HDMI_A_1=1.5

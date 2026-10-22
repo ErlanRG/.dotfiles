@@ -1,7 +1,7 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Autostart/
 hl.on("hyprland.start", function()
 	hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
-	hl.exec_cmd("$HOME/.config/screenlayout/main.sh")
+	hl.exec_cmd("$HOME/.local/bin/display-mode main")
 	hl.exec_cmd("awww-daemon")
 	hl.exec_cmd("awww img $HOME/Nextcloud/Wallpapers/japan-artistic-3840x2160-25406.jpg")
 	hl.exec_cmd("gnome-keyring-daemon --start")
