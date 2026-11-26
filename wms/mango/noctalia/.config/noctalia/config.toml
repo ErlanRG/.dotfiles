@@ -19,7 +19,7 @@ end = [
 ]
 margin_edge = 4
 margin_opposite_edge = 1
-start = [ "launcher", "workspaces", "widget" ]
+start = [ "launcher", "workspaces", "widget", "btn" ]
 
 [battery.device."/org/freedesktop/UPower/devices/battery_hidpp_battery_2"]
 warning_threshold = 20
@@ -66,7 +66,6 @@ longitude = -84.092018556392262
 [lockscreen_widgets]
 enabled = false
 schema_version = 2
-widget_order = [ "lockscreen-login-box@DP-1", "lockscreen-login-box@HDMI-A-1" ]
 
     [lockscreen_widgets.grid]
     cell_size = 16
@@ -158,7 +157,7 @@ short-break-duration = 5
 work-duration = 25
 
 [plugins]
-enabled = [ "noctalia/wallhaven", "thepunkoff/pomodoro" ]
+enabled = [ "noctalia/wallhaven", "thepunkoff/pomodoro", "ezequiel/mango_layouts" ]
 
 [shell]
 polkit_agent = true
@@ -203,16 +202,19 @@ directory = "/home/rangeler/Nextcloud/Wallpapers"
     enabled = true
 
     [wallpaper.default]
-    path = "/home/rangeler/Nextcloud/Wallpapers/wallhaven-ey762w.jpg"
+    path = "/home/rangeler/Nextcloud/Wallpapers/wallhaven-5g17z9.jpg"
 
     [wallpaper.last]
-    path = "/home/rangeler/Nextcloud/Wallpapers/wallhaven-ey762w.jpg"
+    path = "/home/rangeler/Nextcloud/Wallpapers/wallhaven-5g17z9.jpg"
 
     [wallpaper.monitors.DP-1]
-    path = "/home/rangeler/Nextcloud/Wallpapers/wallhaven-ey762w.jpg"
+    path = "/home/rangeler/Nextcloud/Wallpapers/wallhaven-5g17z9.jpg"
 
     [wallpaper.monitors.HDMI-A-1]
-    path = "/home/rangeler/Nextcloud/Wallpapers/wallhaven-8g8e62.jpg"
+    path = "/home/rangeler/Nextcloud/Wallpapers/wallhaven-yqkoed.png"
+
+    [wallpaper.monitors.HEADLESS-4]
+    path = "/home/rangeler/Nextcloud/Wallpapers/wallhaven-pk3kde.jpg"
 
     [[wallpaper.favorite]]
     palette_source = "wallpaper"
@@ -237,6 +239,12 @@ directory = "/home/rangeler/Nextcloud/Wallpapers"
 
     [[wallpaper.favorite]]
     path = "/home/rangeler/Nextcloud/Wallpapers/wallhaven-6l7dm7.png"
+
+    [[wallpaper.favorite]]
+    path = "/home/rangeler/Nextcloud/Wallpapers/wallhaven-vpeek5.png"
+
+[widget.btn]
+type = "ezequiel/mango_layouts:btn"
 
 [widget.clock]
 format = "{:%I:%M %p}"
